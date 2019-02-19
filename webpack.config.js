@@ -9,7 +9,11 @@ module.exports = {
         path: path.resolve(__dirname, "./dist")
     },
     devServer: {
-        port: 9000
+        port: 9000,
+        open: true,
+        proxy: {
+            "/api": "http://localhost:8080"
+        }
     },
     devtool: "source-map",
     resolve: {

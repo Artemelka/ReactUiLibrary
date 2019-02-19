@@ -1,1 +1,1 @@
-export { ToDo } from './todo';
+export { App } from './app';
