@@ -1,0 +1,29 @@
+{
+  "collectCoverage": true,
+  "coverageReporters": [
+    "lcov",
+    "text"
+  ],
+  "transform": {
+    ".(ts|tsx)": "ts-jest",
+    "^.+\\.(css|scss|less)$": "jest-css-modules"
+  },
+  "globals": {
+    "NODE_ENV": "test"
+  },
+  "setupFiles": [
+    "./setupTest.js"
+  ],
+  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+  "moduleDirectories": [
+    "node_modules"
+  ]
+}
