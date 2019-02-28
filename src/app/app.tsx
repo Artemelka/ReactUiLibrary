@@ -7,9 +7,9 @@ export interface AppPropsType { title: Array<string>; }
 
 const TEST_URL = '/api/getUsername';
 const requestTestServer = (url: string, queryParams?: string): any => {
-    const finallUrl = queryParams ? `${url}?${queryParams}` : url;
+    const finalUrl = queryParams ? `${url}?${queryParams}` : url;
 
-    axios.get(finallUrl)
+    axios.get(finalUrl)
         .then(res => {
             console.log('persons', res.data);
 
@@ -28,7 +28,7 @@ export class App extends React.Component<AppPropsType, {}> {
         const { title } = this.props;
 
         return (
-            <div className='Todo'>
+            <div className='App'>
                 {title.map((item, index) => <h1 key={index}>{item}</h1>)}
                 <button onClick={this.handleClick}>REQUEST</button>
             </div>
