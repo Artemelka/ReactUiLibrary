@@ -78,9 +78,10 @@
     "webpack-dev-server": "^3.1.9"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start": "concurrently --kill-others \"npm run start:dev\" \"npm run start:server\"",
     "build": "webpack --mode production",
-    "server": "nodemon src/server/index.js",
+    "start:dev": "webpack-dev-server --open --mode development",
+    "start:server": "node src/server/index.js",
     "test": "jest --no-cache"
   }
 }
