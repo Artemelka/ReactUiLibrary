@@ -1,0 +1,1 @@
+export { TestHomePage } from './home/home';
