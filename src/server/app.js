@@ -15,7 +15,6 @@ app.use(bodyParser.text());
 app.use(fileUpload());
 app.use(express.static("dist"));
 app.use('/api', routes);
-
 const appServer = app.listen(PORT, HOST, listenCallback);
 
 appServer.keepAliveTimeout = KEEP_ALIVE_TIMEOUT;
