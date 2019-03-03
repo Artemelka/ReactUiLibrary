@@ -20,7 +20,7 @@ export const request = (url: string, config: RequestOptionsType = {}) => {
         url,
         method,
         timeout,
-        ...requestData,
+        data: requestData,
         ...restConfig
     };
 

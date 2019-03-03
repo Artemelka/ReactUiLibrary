@@ -5,9 +5,15 @@ export const getUserName = express.Router();
 
 const NOT_FOUND = 'not found';
 
-getUserName.get('/', (req, res) => {
+getUserName.get('/', (request, response) => {
     const info = os.userInfo();
-    const username = req.query.name === 'tim' ? info.username : NOT_FOUND;
+    const username = request.query.name === 'tim' ? info.username : NOT_FOUND;
 
-    return res.send({ username });
+    return response.send({ username });
+});
+
+getUserName.post('/', (request, response) => {
+    const { data } = request.body;
+
+    return response.send({status: 'OK'})
 });

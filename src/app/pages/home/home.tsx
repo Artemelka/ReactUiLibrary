@@ -19,7 +19,6 @@ interface MapStateType {
 }
 
 const TEST_URL = '/api/getUsername';
-const TITLE = ['hello', 'world'];
 const concatUrl = (url: string, queryParams?: string): string => queryParams ? `${url}?${queryParams}` : url;
 
 @(connect(({counter}: MapStateType, routing) => ({counter, routing})) as any)
@@ -34,6 +33,12 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
             .then(data => console.log('persons', data))
             .catch(requestError => console.log(requestError));
 
+    handleRequestPostClick = () => {
+        request(TEST_URL, {method: 'POST', data: {userName: 'Alex'}})
+            .then(response => console.log('response', response))
+            .catch(requestError => console.log(requestError));
+    };
+
     handleCounterClick = (dir: boolean) => () => this.props.dispatch({type: dir ? 'INCREMENT' : 'DECREMENT'});
 
     handleLinkClick = () => this.props.routing.history.push('/app?filter=123');
@@ -43,10 +48,12 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
         console.log('routing', routing);
         return (
             <React.Fragment>
-                {TITLE.map((item, index) => <h1 key={index}>{item}</h1>)}
                 <div>
-                    <button onClick={this.handleRequestClick}>REQUEST</button>
-                    <button onClick={this.handleRequestErrorClick}>REQUEST error</button>
+                    <button onClick={this.handleRequestClick}>REQUEST GET</button>
+                    <button onClick={this.handleRequestErrorClick}>REQUEST GET ERROR</button>
+                </div>
+                <div>
+                    <button onClick={this.handleRequestPostClick}>REQUEST POST</button>
                 </div>
                 <h2>counter : {counter.value}</h2>
                 <div>
