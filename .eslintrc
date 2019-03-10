@@ -1,0 +1,36 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "function-paren-newline": ["error", "consistent"],
+    "indent": ["error", 4, {"SwitchCase": 1}],
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "object-curly-spacing": ["off", "always"],
+    "comma-dangle": ["error", "never"],
+    "max-len": ["error", 120, 2, {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-use-before-define": ["error", {"functions": false}],
+    "no-underscore-dangle": ["off"],
+    "no-return-assign": "off", // for use: (this.componentEl = ref)
+    "no-duplicate-imports": "off", // we use eslint-import-plugin instead
+    "class-methods-use-this": "off",
+
+    // react
+    "react/default-props-match-prop-types": "off",
+    "react/require-default-props": "off",
+    "react/prefer-stateless-function": ["off", {"ignorePureComponents": true}],
+    "arrow-body-style": "off",
+    "arrow-parens": "off"
+  }
+}

@@ -6,10 +6,10 @@
   ],
   "plugins": [
     ["@babel/plugin-proposal-decorators", {"legacy": true}],
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from",
+    ["@babel/plugin-proposal-object-rest-spread", {"loose": true, "useBuiltIns": true}],
     ["@babel/proposal-class-properties", {"loose": true}],
-    "@babel/proposal-object-rest-spread"
-  ],
-  "exclude": [
-    "node_modules"
+    ["@babel/transform-runtime", {"helpers": true, "regenerator": false}]
   ]
 }

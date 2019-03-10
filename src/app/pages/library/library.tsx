@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { SideBar, Layout } from '../../layouts';
 
 export class LibraryPage extends React.Component {
     render() {
         return (
-            <div>
-                library
-            </div>
+            <Layout
+                aside={<SideBar />}
+            />
         );
     }
 }

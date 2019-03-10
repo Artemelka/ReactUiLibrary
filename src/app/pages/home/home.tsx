@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { connect } from 'react-redux';
 import { request } from '../../../services';
 
@@ -17,36 +16,47 @@ interface AppPropsType {
 interface MapStateType {
     counter: CounterType;
 }
+interface RequestData {
+    userName: string;
+}
+interface Config {
+    method: string;
+    data: RequestData;
+}
+interface RequestParams {
+    url: string;
+    config?: Config;
+}
 
 const TEST_URL = '/api/getUsername';
+const USER_PARAMS = 'name=tim';
+const wrapperStyle = { padding: '15px' };
+const requestGetParams = { url: TEST_URL };
+
 const concatUrl = (url: string, queryParams?: string): string => queryParams ? `${url}?${queryParams}` : url;
-const wrapperStyle = {
-    padding: '15px'
-};
+
+const getPostConfig = (userName: string) => ({
+    url: TEST_URL,
+    config: {
+        method: 'POST',
+        data: { userName }
+    }
+});
+
+const requestWrapper = ({ url, config }: RequestParams, params?: string) =>
+    request(concatUrl(url, params), config)
+        .then(data => console.log('persons', data))
+        .catch(requestError => console.log(requestError));
 
 @(connect(({counter}: MapStateType, routing) => ({counter, routing})) as any)
 export class TestHomePage extends React.Component<AppPropsType, {}> {
-    handleRequestClick = () =>
-        request(concatUrl(TEST_URL, 'name=tim'))
-            .then(data => console.log('persons', data))
-            .catch(requestError => console.log(requestError));
+    handleRequestClick = () => requestWrapper(requestGetParams, USER_PARAMS);
 
-    handleRequestErrorClick = () =>
-        request(concatUrl(TEST_URL))
-            .then(data => console.log('persons', data))
-            .catch(requestError => console.log(requestError));
+    handleRequestErrorClick = () => requestWrapper(requestGetParams);
 
-    handleRequestPostClick = () => {
-        request(TEST_URL, {method: 'POST', data: {userName: 'Tim'}})
-            .then(response => console.log('response', response))
-            .catch(requestError => console.log(requestError));
-    };
+    handleRequestPostClick = () => requestWrapper(getPostConfig('Tim'));
 
-    handleRequestErrorPostClick = () => {
-        request(TEST_URL, {method: 'POST', data: {userName: ''}})
-            .then(response => console.log('response', response))
-            .catch(requestError => console.log(requestError));
-    };
+    handleRequestErrorPostClick = () => requestWrapper(getPostConfig(''));
 
     handleCounterClick = (dir: boolean) => () => this.props.dispatch({type: dir ? 'INCREMENT' : 'DECREMENT'});
 
@@ -59,7 +69,7 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
     render() {
         const { counter, routing } = this.props;
         const { pathname, search } = routing.history.location;
-        console.log('routing', routing);
+
         return (
             <React.Fragment>
                 <div style={wrapperStyle}>

@@ -41,7 +41,7 @@ module.exports = {
                 enforce: "pre",
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['source-map-loader']
+                use: ['source-map-loader', 'babel-loader']
             }
         ],
     },
