@@ -66,25 +66,45 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
 
     handleLinkLibraryClick = () => this.props.routing.history.push('/library');
 
-    render() {
-        const { counter, routing } = this.props;
-        const { pathname, search } = routing.history.location;
+    buttonsExample = [
+        {
+            onClick: this.handleRequestClick,
+            label: 'REQUEST GET'
+        },
+        {
+            onClick: this.handleRequestErrorClick,
+            label: 'REQUEST GET ERROR'
+        },
+        {
+            onClick: this.handleRequestPostClick,
+            label: 'REQUEST POST'
+        },
+        {
+            onClick: this.handleRequestErrorPostClick,
+            label: 'REQUEST POST ERROR'
+        },
+    ];
+
+    renderCounter = () => {
+        const { counter } = this.props;
 
         return (
             <React.Fragment>
-                <div style={wrapperStyle}>
-                    <button onClick={this.handleRequestClick}>REQUEST GET</button>
-                    <button onClick={this.handleRequestErrorClick}>REQUEST GET ERROR</button>
-                </div>
-                <div style={wrapperStyle}>
-                    <button onClick={this.handleRequestPostClick}>REQUEST POST</button>
-                    <button onClick={this.handleRequestErrorPostClick}>REQUEST POST</button>
-                </div>
                 <h2>counter : {counter.value}</h2>
                 <div>
                     <button onClick={this.handleCounterClick(true)}>counter +</button>
                     <button onClick={this.handleCounterClick(false)}>counter -</button>
                 </div>
+            </React.Fragment>
+        );
+    };
+
+    renderLink = () => {
+        const { routing } = this.props;
+        const { pathname, search } = routing.history.location;
+
+        return (
+            <React.Fragment>
                 <h3>pathname: {pathname || 'no'}</h3>
                 <h3>search: {search || 'no search'}</h3>
                 <div style={wrapperStyle}>
@@ -94,6 +114,20 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
                 <div style={wrapperStyle}>
                     <button onClick={this.handleLinkLibraryClick}>library</button>
                 </div>
+            </React.Fragment>
+        );
+    };
+
+    render() {
+        return (
+            <React.Fragment>
+                {this.renderCounter()}
+                {this.buttonsExample.map(({onClick, label}) => (
+                    <div style={wrapperStyle}>
+                        <button onClick={onClick}>{label}</button>
+                    </div>
+                ))}
+                {this.renderLink()}
             </React.Fragment>
         );
     }
