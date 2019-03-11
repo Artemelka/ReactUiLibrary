@@ -27,6 +27,10 @@ interface RequestParams {
     url: string;
     config?: Config;
 }
+interface Buttons {
+    onClick: () => void;
+    label: string;
+}
 
 const TEST_URL = '/api/getUsername';
 const USER_PARAMS = 'name=tim';
@@ -36,7 +40,7 @@ const requestGetParams = { url: TEST_URL };
 const concatUrl = (url: string, queryParams?: string): string => queryParams ? `${url}?${queryParams}` : url;
 
 const getPostConfig = (userName: string) => ({
-    url: TEST_URL,
+    ...requestGetParams,
     config: {
         method: 'POST',
         data: { userName }
@@ -66,24 +70,42 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
 
     handleLinkLibraryClick = () => this.props.routing.history.push('/library');
 
-    buttonsExample = [
-        {
-            onClick: this.handleRequestClick,
-            label: 'REQUEST GET'
-        },
-        {
-            onClick: this.handleRequestErrorClick,
-            label: 'REQUEST GET ERROR'
-        },
-        {
-            onClick: this.handleRequestPostClick,
-            label: 'REQUEST POST'
-        },
-        {
-            onClick: this.handleRequestErrorPostClick,
-            label: 'REQUEST POST ERROR'
-        },
-    ];
+    buttonsExample = {
+        request: [
+            {
+                onClick: this.handleRequestClick,
+                label: 'REQUEST GET'
+            },
+            {
+                onClick: this.handleRequestErrorClick,
+                label: 'REQUEST GET ERROR'
+            },
+            {
+                onClick: this.handleRequestPostClick,
+                label: 'REQUEST POST'
+            },
+            {
+                onClick: this.handleRequestErrorPostClick,
+                label: 'REQUEST POST ERROR'
+            }
+        ],
+        counter: [
+            {
+                onClick: this.handleCounterClick(true),
+                label: 'counter +'
+            },
+            {
+                onClick: this.handleCounterClick(false),
+                label: 'counter -'
+            }
+        ]
+    };
+
+    renderButtons = (buttons: Array<Buttons>) => buttons.map(({onClick, label}: Buttons) => (
+        <div style={wrapperStyle}>
+            <button onClick={onClick}>{label}</button>
+        </div>
+    ));
 
     renderCounter = () => {
         const { counter } = this.props;
@@ -92,8 +114,7 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
             <React.Fragment>
                 <h2>counter : {counter.value}</h2>
                 <div>
-                    <button onClick={this.handleCounterClick(true)}>counter +</button>
-                    <button onClick={this.handleCounterClick(false)}>counter -</button>
+                    {this.renderButtons(this.buttonsExample.counter)}
                 </div>
             </React.Fragment>
         );
@@ -122,11 +143,7 @@ export class TestHomePage extends React.Component<AppPropsType, {}> {
         return (
             <React.Fragment>
                 {this.renderCounter()}
-                {this.buttonsExample.map(({onClick, label}) => (
-                    <div style={wrapperStyle}>
-                        <button onClick={onClick}>{label}</button>
-                    </div>
-                ))}
+                {this.renderButtons(this.buttonsExample.request)}
                 {this.renderLink()}
             </React.Fragment>
         );

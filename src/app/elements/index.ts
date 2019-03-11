@@ -1,0 +1,1 @@
+export { TextParagraph } from './text/text-paragraph/text-paragraph';

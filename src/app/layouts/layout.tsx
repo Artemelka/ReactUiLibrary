@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { TextParagraph } from '../elements';
 import './layout.less';
-
 
 interface LayoutProps {
     aside?: React.ReactElement<any>;
@@ -21,6 +21,11 @@ export class Layout extends React.Component<LayoutProps> {
             <div className={classNames('Layout')}>
                 {aside &&
                     <aside className={classNames('Layout__aside')}>
+                        <div className={classNames('Layout__aside-heading')}>
+                            <TextParagraph bold upper>
+                                React UI Library
+                            </TextParagraph>
+                        </div>
                         {aside}
                     </aside>
                 }
