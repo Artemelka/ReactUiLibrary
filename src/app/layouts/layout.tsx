@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { TextParagraph } from '../elements';
+import { Anchor, TextParagraph } from '../elements';
 import './layout.less';
 
 interface LayoutProps {
@@ -8,6 +8,8 @@ interface LayoutProps {
     content?: HTMLElement;
     footer?: HTMLElement;
 }
+
+const PROJECT_LINK = 'https://github.com/Artemelka/ReactUiLibrary';
 
 export class Layout extends React.Component<LayoutProps> {
     render() {
@@ -27,6 +29,10 @@ export class Layout extends React.Component<LayoutProps> {
                             </TextParagraph>
                         </div>
                         {aside}
+                        <div className={'Layout__aside-footer'}>
+                            <Anchor href={PROJECT_LINK} label={'Project in GitHub'} />
+                            <Anchor label={'Go to Home'} />
+                        </div>
                     </aside>
                 }
                 {content &&
