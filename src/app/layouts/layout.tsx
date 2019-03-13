@@ -30,7 +30,7 @@ export class Layout extends React.Component<LayoutProps> {
                         </div>
                         {aside}
                         <div className={'Layout__aside-footer'}>
-                            <Anchor href={PROJECT_LINK} label={'Project in GitHub'} />
+                            <Anchor href={PROJECT_LINK} newPage label={'Project in GitHub'} />
                             <Anchor label={'Go to Home'} />
                         </div>
                     </aside>

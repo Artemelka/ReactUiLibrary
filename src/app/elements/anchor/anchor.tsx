@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import './anchor.less';
 
 interface Props {
     active?: boolean;
@@ -31,6 +32,7 @@ const PseudoLink = ({ anchorClasses, label, onClick }: ComponentType) => (
     <span
         className={anchorClasses}
         onClick={onClick}
+        tabIndex={1}
     >
         {label}
     </span>
