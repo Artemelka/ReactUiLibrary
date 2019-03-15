@@ -1,29 +1,25 @@
 {
   "collectCoverage": true,
-  "coverageReporters": [
-    "lcov",
-    "text"
-  ],
+  "coverageReporters": ["lcov", "text"],
+  "globals": {
+    "DEBUG": false,
+    "NODE_ENV": "test",
+    "ts-jest": {
+      "babelConfig": true
+    }
+  },
+  "moduleDirectories": ["node_modules"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
+  "moduleNameMapper": {},
+  "setupFiles": ["./setupTest.js"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "testEnvironment": "jsdom",
+  "testPathIgnorePatterns": ["/node_modules/"],
+  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
   "transform": {
     "^.+\\.jsx?$": "babel-jest",
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.(css|less)$": "jest-css-modules"
   },
-  "globals": {
-    "NODE_ENV": "test"
-  },
-  "setupFiles": [
-    "./setupTest.js"
-  ],
-  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "jsx",
-    "json"
-  ],
-  "moduleDirectories": [
-    "node_modules"
-  ]
+  "verbose": true
 }

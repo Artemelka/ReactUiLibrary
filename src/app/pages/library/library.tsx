@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SideBar, Layout } from '../../layouts';
 
 export class LibraryPage extends React.Component {

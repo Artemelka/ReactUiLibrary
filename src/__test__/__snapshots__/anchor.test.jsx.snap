@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Anchor test Render snapshot anchor 1`] = `ShallowWrapper {}`;
-
-exports[`Anchor test Render snapshot pseudoLink 1`] = `ShallowWrapper {}`;

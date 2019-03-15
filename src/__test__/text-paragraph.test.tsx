@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { TextParagraph } from "../app/elements";
+import { TextParagraph } from '../app/elements';
 
 const TEST_TEXT = 'test text';
 

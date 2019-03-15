@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ToDo component Rendering snapshot 1`] = `
+<div
+  className="App"
+>
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/"
+  />
+  <button
+    onClick={[Function]}
+    style={
+      Object {
+        "position": "relative",
+        "zIndex": 100,
+      }
+    }
+  >
+    duplicate
+  </button>
+</div>
+`;

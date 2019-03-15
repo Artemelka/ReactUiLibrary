@@ -42,7 +42,7 @@ describe('Test request', () => {
     });
     test('Expect correct send POST', (done) => {
         request(POST_URL, postConfig)
-            .then(response => {
+            .then((response: {[key: string]: any}) => {
                 expect(response.user).toEqual(fakeUser.users[0]);
                 done();
             });

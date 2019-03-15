@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test TextParagraph element Rendering snapshot 1`] = `
+<p
+  className="Text-paragraph"
+  style={
+    Object {
+      "fontSize": "16px",
+    }
+  }
+>
+  test text
+</p>
+`;

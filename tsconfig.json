@@ -1,15 +1,20 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "es6",
     "allowJs":  true,
-    "target": "esnext",
-    "jsx": "react",
-    "moduleResolution": "node",
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./dist/",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "./src/**/*"

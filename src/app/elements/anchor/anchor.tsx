@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import './anchor.less';
 
 interface Props {
     active?: boolean;
-    disabled?: string;
+    disabled?: boolean;
     href?: string;
     label: string;
     newPage?: boolean;
