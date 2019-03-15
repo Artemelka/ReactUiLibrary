@@ -1,2 +1,2 @@
-export { TextParagraph } from './text/text-paragraph/text-paragraph';
+export { TextComponent as Text } from './text/text';
 export { Anchor } from './anchor/anchor';

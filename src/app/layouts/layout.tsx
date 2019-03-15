@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Anchor, TextParagraph } from '../elements';
+import { Anchor, Text } from '../elements';
 import './layout.less';
 
 interface LayoutProps {
@@ -24,9 +24,30 @@ export class Layout extends React.Component<LayoutProps> {
                 {aside &&
                     <aside className={classNames('Layout__aside')}>
                         <div className={classNames('Layout__aside-heading')}>
-                            <TextParagraph bold upper>
+                            <Text.H1 bold light>
                                 React UI Library
-                            </TextParagraph>
+                            </Text.H1>
+                            <Text.H2 bold upper>
+                                React UI Library
+                            </Text.H2>
+                            <Text.H3 bold upper>
+                                React UI Library
+                            </Text.H3>
+                            <Text.H4 bold upper>
+                                React UI Library
+                            </Text.H4>
+                            <Text.H5 bold upper>
+                                React UI Library
+                            </Text.H5>
+                            <Text.H6 bold upper>
+                                React UI Library
+                            </Text.H6>
+                            <Text.Paragraph bold upper>
+                                React UI Library
+                            </Text.Paragraph>
+                            <Text.Span bold upper>
+                                React UI Library
+                            </Text.Span>
                         </div>
                         {aside}
                         <div className={'Layout__aside-footer'}>
