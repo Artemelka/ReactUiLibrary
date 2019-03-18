@@ -37,7 +37,10 @@ const USER_PARAMS = 'name=tim';
 const wrapperStyle = { padding: '15px' };
 const requestGetParams = { url: TEST_URL };
 
-const concatUrl = (url: string, queryParams?: string): string => queryParams ? `${url}?${queryParams}` : url;
+const concatUrl = (url: string, queryParams?: string): string =>
+    queryParams
+        ? `${url}?${queryParams}`
+        : url;
 
 const getPostConfig = (userName: string) => ({
     ...requestGetParams,

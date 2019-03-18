@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { App } from '../app';
 
-describe('Test ToDo component', () => {
+describe('Test App component', () => {
     test('Rendering snapshot', () => {
         const output = shallow(<App />);
 

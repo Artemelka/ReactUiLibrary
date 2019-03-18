@@ -1,3 +1,16 @@
-.Aside {
+.SideBar {
+    overflow: hidden;
+    padding: 15px 0;
     text-align: left;
+
+    &__scroll-wrapper {
+        max-height: 100%;
+        overflow-y: scroll;
+        width: calc(100% + 20px);
+    }
+
+    &__link {
+        padding: 5px;
+        text-align: left;
+    }
 }
