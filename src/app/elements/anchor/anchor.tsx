@@ -41,7 +41,7 @@ const PseudoLink = ({ anchorClasses, label, onClick }: ComponentType) => (
 export class Anchor extends React.Component<Props> {
     render() {
         const { active, disabled, href, label, newPage, onClick } = this.props;
-        const Component = Boolean(href) ? AnchorLink : PseudoLink;
+        const Component = (Boolean(href) && !disabled) ? AnchorLink : PseudoLink;
         const anchorClasses = classNames('Anchor', {
             'Anchor--active': active,
             'Anchor--disabled': disabled
