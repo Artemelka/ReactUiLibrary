@@ -108,7 +108,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run dev\" \"npm run server\"",
-    "dev": "webpack-dev-server --open --mode development",
+    "dev": "webpack-dev-server --history-api-fallback --open --mode development",
     "server": "node src/server/index.js",
     "stylelint": "stylelint \"src/**/*.less\"",
     "tslint": "npx tslint \"src/app/**/.@(ts|tsx)\"",
