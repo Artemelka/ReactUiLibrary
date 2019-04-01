@@ -10,7 +10,7 @@ interface LayoutProps {
     onGoHomeClick: () => void;
 }
 
-const PROJECT_LINK = 'https://github.com/Artemelka/ReactUiLibrary';
+export const PROJECT_LINK = 'https://github.com/Artemelka/ReactUiLibrary';
 
 export class Layout extends React.Component<LayoutProps> {
     render() {

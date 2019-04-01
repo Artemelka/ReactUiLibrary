@@ -1,47 +1,35 @@
 import React from 'react';
-import classNames from 'classnames';
+import { SandBox } from '../sand-box';
 import { Anchor } from '../../../elements';
-import '../sand-box.less';
+import { PROJECT_LINK } from '../../../layouts/layout';
 
-export const AnchorSandBox = () => {
-    return (
-        <div className={classNames('Sandbox')}>
-            <div className={classNames('Sandbox__item Sandbox__item--bg-white')}>
-                <Anchor
-                    href={'https://github.com/Artemelka/ReactUiLibrary'}
-                    label={'Link to GitHub open in new window'}
-                    newPage
-                />
-            </div>
-            <div className={classNames('Sandbox__item Sandbox__item--bg-white')}>
-                <Anchor
-                    href={'https://github.com/Artemelka/ReactUiLibrary'}
-                    label={'Link disabled'}
-                    newPage
-                    disabled
-                />
-            </div>
-            <div className={classNames('Sandbox__item Sandbox__item--bg-white')}>
-                <Anchor
-                    label={'Link pseudo console message on click'}
-                    onClick={() => console.log('Link click')}
-                />
-            </div>
-            <div className={classNames('Sandbox__item')}>
-
-            </div>
-            <div className={classNames('Sandbox__item')}>
-
-            </div>
-            <div className={classNames('Sandbox__item')}>
-
-            </div>
-            <div className={classNames('Sandbox__item')}>
-
-            </div>
-            <div className={classNames('Sandbox__item')}>
-
-            </div>
-        </div>
-    );
+const LabelLink = {
+    LINK: 'Link to GitHub open in new window',
+    DISABLED: 'Link disabled',
+    PSEUDO: 'Link pseudo console message on click'
 };
+const logger = (text: string) => () => console.log(text);
+const anchorProps = [
+    {
+        href: PROJECT_LINK,
+        label: LabelLink.LINK,
+        newPage: true
+    }, {
+        href: PROJECT_LINK,
+        label: LabelLink.DISABLED,
+        newPage: true,
+        disabled: true
+    }, {
+        label: LabelLink.PSEUDO,
+        onClick: logger('Link click')
+    }
+];
+
+const anchorItems = anchorProps.map((props, index) => <Anchor {...props} key={index}/>);
+
+export const AnchorSandBox = () => (
+    <SandBox
+        items={anchorItems}
+        bgWhite
+    />
+);
