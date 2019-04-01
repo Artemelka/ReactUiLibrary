@@ -1,4 +1,4 @@
-export { TestHomePage } from './home/home';
-export { LibraryPage } from './library/library';
-export { SandBox } from './sand-box';
 export { ComponentsCollection } from './constants';
+export { LibraryPage } from './library/library';
+export { SandBoxPage } from './sand-box';
+export { TestHomePage } from './home/home';

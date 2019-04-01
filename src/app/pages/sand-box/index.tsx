@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import { ComponentsCollection } from '../constants';
 
-export class SandBox extends React.Component {
+export class SandBoxPage extends React.Component {
     render() {
         return (
             <Switch>

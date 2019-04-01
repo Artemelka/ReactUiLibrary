@@ -1,6 +1,7 @@
 import React from 'react';
 import { SandBox } from '../sand-box';
 import { Anchor } from '../../../elements';
+import { logger } from '../utils';
 import { PROJECT_LINK } from '../../../layouts/layout';
 
 const LabelLink = {
@@ -8,7 +9,6 @@ const LabelLink = {
     DISABLED: 'Link disabled',
     PSEUDO: 'Link pseudo console message on click'
 };
-const logger = (text: string) => () => console.log(text);
 const anchorProps = [
     {
         href: PROJECT_LINK,
