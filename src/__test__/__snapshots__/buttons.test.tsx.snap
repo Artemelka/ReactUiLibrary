@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Buttons Rendering snapshot 1`] = `
+<button
+  className="Button"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  type="button"
+>
+  test button
+</button>
+`;
