@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnchorSandBox } from './sand-box/anchor/anchor-sand-box';
 import { ButtonSandBox } from './sand-box/button/button-sand-box';
+import { ButtonGroupSandBox } from './sand-box/button/button-group-sand-box';
 import { IconSandBox } from './sand-box/icon/icon-sand-box';
 import { TextSandBox } from './sand-box/text/text-sand-box';
 
@@ -26,6 +27,11 @@ export const ComponentsCollection = [
         exact: true,
         name: ButtonSandBox.name,
         url: '/library/button'
+    },  {
+        component: ButtonGroupSandBox,
+        exact: true,
+        name: ButtonGroupSandBox.name,
+        url: '/library/button-group'
     }, {
         component: IconSandBox,
         exact: true,

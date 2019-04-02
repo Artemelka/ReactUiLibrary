@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { keyCodes } from '../../../services';
 import './button.less';
 
-interface Props {
+export interface ButtonProps {
     disabled?: boolean;
     onClick?: (event: React.SyntheticEvent) => void;
     type?: string;
@@ -11,7 +11,7 @@ interface Props {
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
 
-export class Button extends Component<Props> {
+export class Button extends Component<ButtonProps> {
     static defaultProps = {
         onClick: () => {},
         type: 'button'
