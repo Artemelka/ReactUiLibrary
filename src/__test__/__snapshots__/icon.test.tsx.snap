@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Icon Render snapshot 1`] = `
+<span
+  className="Icon fa-rocket fa"
+  style={Object {}}
+/>
+`;
