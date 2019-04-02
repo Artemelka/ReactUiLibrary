@@ -1,0 +1,21 @@
+export const iconNames = [
+    'angle-down',
+    'angle-left',
+    'angle-right',
+    'angle-up',
+    'arrow-alt-circle-down',
+    'arrow-alt-circle-left',
+    'arrow-alt-circle-right',
+    'arrow-alt-circle-up',
+    'backspace',
+    'ban',
+    'calendar-alt',
+    'phone',
+    'plus',
+    'plus-square',
+    'rocket',
+    'sync',
+    'sync-alt',
+    'trash',
+    'trash-alt'
+];

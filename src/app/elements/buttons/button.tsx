@@ -5,7 +5,6 @@ import './button.less';
 
 interface Props {
     disabled?: boolean;
-    label: string;
     onClick?: (event: React.SyntheticEvent) => void;
     type?: string;
 }
@@ -35,7 +34,7 @@ export class Button extends Component<Props> {
     };
 
     render() {
-        const { disabled, label, type } = this.props;
+        const { children, disabled, type } = this.props;
         const buttonClasses = classNames('Button', {
             'Button--disabled': disabled
         });
@@ -48,7 +47,7 @@ export class Button extends Component<Props> {
                 onKeyPress={this.handleKeyPress}
                 type={type}
             >
-                {label}
+                {children}
             </button>
         );
     }

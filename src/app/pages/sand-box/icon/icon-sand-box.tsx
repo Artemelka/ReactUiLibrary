@@ -1,11 +1,8 @@
 import React from 'react';
 import { SandBox } from '../sand-box';
 import { Icon } from '../../../elements';
+import { iconNames } from '../../../elements/icon/icon-names';
 
-const iconNames = [
-    'arrow-alt-circle-left', 'arrow-alt-circle-right', 'arrow-alt-circle-up', 'backspace', 'ban', 'calendar-alt',
-    'rocket', 'phone', 'angle-down', 'angle-left', 'angle-right', 'angle-up', 'arrow-alt-circle-down',
-];
 const iconProps = [
     {
         size: '2x',
