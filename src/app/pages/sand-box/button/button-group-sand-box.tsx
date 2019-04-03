@@ -7,15 +7,8 @@ const buttons = [
         children: 'first button'
     }, {
         children: 'second button'
-    }
-];
-const roundButtons = [
-    {
-        children: 'round first button'
     }, {
-        children: 'round second button'
-    }, {
-        children: 'round third button'
+        children: 'third button'
     }
 ];
 const buttonGroupItems = [
@@ -25,10 +18,14 @@ const buttonGroupItems = [
         title: 'Button group'
     }, {
         buttons,
-        props: {separatorSize: 16},
-        title: 'Button group with separator'
+        props: {separatorSize: ButtonGroup.SeparatorSize.SMALL},
+        title: 'Button group with separator small'
     }, {
-        buttons: roundButtons,
+        buttons,
+        props: {separatorSize: ButtonGroup.SeparatorSize.MEDIUM},
+        title: 'Button group with separator medium'
+    }, {
+        buttons,
         props: {round: true},
         title: 'Button group rounded'
     }
@@ -37,7 +34,7 @@ const buttonGroupItems = [
 const sandBoxItems = buttonGroupItems.map(({buttons, props, title}, index) => (
         <Fragment>
             <Text.H3>{title}</Text.H3>
-            <ButtonGroup buttons={buttons} {...props} key={index} />
+            <ButtonGroup.Component buttons={buttons} {...props} key={index} />
         </Fragment>
 ));
 

@@ -1,47 +1,52 @@
 import React, { Component, Fragment } from 'react';
-import { Button } from '../';
-import { ButtonProps } from '../buttons/button';
+import { Button, ButtonProps } from '../buttons/button';
 import classNames from 'classnames';
 import './button-group.less';
 
-interface ItemsProps extends ButtonProps {
-    children: React.ComponentType | string;
-}
 interface Props {
-    buttons: Array<ItemsProps>;
-    buttonType?: React.ComponentType;
+    buttons: Array<ButtonProps>;
+    buttonComponent?: React.ComponentType;
     round?: boolean;
-    separatorSize?: number;
+    separatorSize?: Symbol;
 }
+
+export const SeparatorSize = {
+    MEDIUM: Symbol('medium'),
+    SMALL: Symbol('small')
+};
 
 export class ButtonGroup extends Component<Props> {
     static defaultProps = {
-        buttonType: Button
+        buttonComponent: Button
     };
 
     render() {
-        const { buttons, buttonType: ButtonComponent, round, separatorSize } = this.props;
+        const { buttons, buttonComponent: ButtonComponent, round, separatorSize } = this.props;
         const lastButtonIndex = buttons.length - 1;
         const hasSeparator = separatorSize && (buttons.length > 1);
-        const styleClasses = classNames('Button-group', {
-            'Button-group--round': round && !separatorSize
+        const separatorClasses = classNames('Button-group__separator', {
+            'Button-group__separator--medium': separatorSize === SeparatorSize.MEDIUM,
+            'Button-group__separator--small': separatorSize === SeparatorSize.SMALL
         });
 
         return (
-            <div className={styleClasses}>
+            <div className={classNames('Button-group')}>
                 {buttons.map((buttonProps, index) => {
                     const {children, ...restProps} = buttonProps;
+                    const roundLeft = round && (index === 0);
+                    const roundRight = round && (index === lastButtonIndex);
 
                     return (
-                        <Fragment  key={index}>
-                            <ButtonComponent {...restProps}>
+                        <Fragment key={index}>
+                            <ButtonComponent
+                                {...restProps}
+                                roundLeft={roundLeft}
+                                roundRight={roundRight}
+                            >
                                 {children}
                             </ButtonComponent>
                             {hasSeparator && (lastButtonIndex !== index) &&
-                                <span
-                                    className={classNames('Button-group__separator')}
-                                    style={{width: `${separatorSize}px`}}
-                                />
+                                <span className={separatorClasses}/>
                             }
                         </Fragment>
                     );

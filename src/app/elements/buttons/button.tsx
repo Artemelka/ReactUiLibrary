@@ -4,17 +4,27 @@ import { keyCodes } from '../../../services';
 import './button.less';
 
 export interface ButtonProps {
+    children: React.ComponentType | string;
     disabled?: boolean;
     onClick?: (event: React.SyntheticEvent) => void;
+    roundLeft?: boolean;
+    roundRight?: boolean;
     type?: string;
+}
+interface State {
+    isActive: boolean;
 }
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
 
-export class Button extends Component<ButtonProps> {
+export class Button extends Component<ButtonProps, State> {
     static defaultProps = {
-        onClick: () => {},
+        onClick: () => false,
         type: 'button'
+    };
+
+    state = {
+        isActive: false
     };
 
     handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -33,10 +43,22 @@ export class Button extends Component<ButtonProps> {
         }
     };
 
+    handleKeyDownOrUp = (isActive: boolean) => (event: KeyboardEvent<HTMLButtonElement>) => {
+        const {keyCode} = event;
+
+        if (targetKeyCodes.includes(keyCode)) {
+            this.setState(() => ({isActive}));
+        }
+    };
+
     render() {
-        const { children, disabled, type } = this.props;
+        const { isActive } = this.state;
+        const { children, disabled, roundLeft, roundRight, type } = this.props;
         const buttonClasses = classNames('Button', {
-            'Button--disabled': disabled
+            'Button--active': isActive,
+            'Button--disabled': disabled,
+            'Button--round-left': roundLeft,
+            'Button--round-right': roundRight
         });
 
         return (
@@ -44,10 +66,14 @@ export class Button extends Component<ButtonProps> {
                 className={buttonClasses}
                 disabled={disabled}
                 onClick={this.handleClick}
+                onKeyDown={this.handleKeyDownOrUp(true)}
                 onKeyPress={this.handleKeyPress}
+                onKeyUp={this.handleKeyDownOrUp(false)}
                 type={type}
             >
-                {children}
+                <span className={classNames('Button__content')}>
+                    {children}
+                </span>
             </button>
         );
     }

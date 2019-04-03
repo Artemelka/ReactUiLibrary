@@ -1,9 +1,97 @@
+@border-radius: 12px;
+
 .Button {
+    background-color: #f3e367;
+    border: 1px solid #929d9e;
     cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    outline: none;
+    overflow: hidden;
     padding: 7px 14px;
+    position: relative;
+    transition: background-color 0.3s, box-shadow, 0.3s, transform 0.3s;
+    vertical-align: middle;
+
+    &::after,
+    &::before {
+        background-color: rgba(255, 255, 255, 0.35);
+        content: '';
+        height: 100%;
+        position: absolute;
+        top: 0;
+        transition: width 0.3s;
+        width: 0;
+        z-index: 1;
+    }
+
+    &::after {
+        left: 50%;
+    }
+
+    &::before {
+        right: 50%;
+    }
+
+    &:focus {
+        background-color: darken(#f3e367, 15%);
+    }
+
+    &:hover {
+        background-color: darken(#f3e367, 15%);
+
+        &::after,
+        &::before {
+            width: 50%;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 8px darken(#f3e367, 30%);
+    }
+
+    &:active,
+    &--active {
+        box-shadow: 0 0 2px darken(#f3e367, 30%);
+        transform: translateY(1px);
+
+        &::after,
+        &::before {
+            width: 50%;
+        }
+    }
 
     &:disabled,
     &--disabled {
         cursor: default;
+
+        &::after,
+        &::before {
+            width: 0;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: #f3e367;
+            box-shadow: none;
+        }
+    }
+
+    &--round {
+        &-left {
+            border-bottom-left-radius: @border-radius;
+            border-top-left-radius: @border-radius;
+        }
+
+        &-right {
+            border-bottom-right-radius: @border-radius;
+            border-top-right-radius: @border-radius;
+        }
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
     }
 }

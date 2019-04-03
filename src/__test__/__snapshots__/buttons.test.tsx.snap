@@ -4,9 +4,15 @@ exports[`Test Buttons Rendering snapshot 1`] = `
 <button
   className="Button"
   onClick={[Function]}
+  onKeyDown={[Function]}
   onKeyPress={[Function]}
+  onKeyUp={[Function]}
   type="button"
 >
-  test button
+  <span
+    className="Button__content"
+  >
+    test button
+  </span>
 </button>
 `;
