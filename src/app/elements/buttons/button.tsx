@@ -1,15 +1,20 @@
 import React, { Component, MouseEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
+import { ButtonIcon } from './button-icon';
+import { ButtonIconLabel } from './button-icon-label';
 import { keyCodes } from '../../../services';
 import './button.less';
 
-export interface ButtonProps {
-    children: React.ComponentType | string;
+export interface ButtonNotRequiredProps {
     disabled?: boolean;
+    icon?: boolean;
     onClick?: (event: React.SyntheticEvent) => void;
     roundLeft?: boolean;
     roundRight?: boolean;
     type?: string;
+}
+export interface ButtonProps extends ButtonNotRequiredProps {
+    label: string;
 }
 interface State {
     isActive: boolean;
@@ -18,6 +23,8 @@ const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
 
 export class Button extends Component<ButtonProps, State> {
+    static Icon = ButtonIcon;
+    static IconLabel = ButtonIconLabel;
     static defaultProps = {
         onClick: () => false,
         type: 'button'
@@ -53,10 +60,11 @@ export class Button extends Component<ButtonProps, State> {
 
     render() {
         const { isActive } = this.state;
-        const { children, disabled, roundLeft, roundRight, type } = this.props;
+        const { children, disabled, icon, label, roundLeft, roundRight, type } = this.props;
         const buttonClasses = classNames('Button', {
             'Button--active': isActive,
             'Button--disabled': disabled,
+            'Button--icon': icon,
             'Button--round-left': roundLeft,
             'Button--round-right': roundRight
         });
@@ -72,7 +80,7 @@ export class Button extends Component<ButtonProps, State> {
                 type={type}
             >
                 <span className={classNames('Button__content')}>
-                    {children}
+                    {icon ? children : label}
                 </span>
             </button>
         );

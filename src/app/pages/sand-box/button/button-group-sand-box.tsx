@@ -4,11 +4,11 @@ import { ButtonGroup, Text } from '../../../elements';
 
 const buttons = [
     {
-        children: 'first button'
+        label: 'first button'
     }, {
-        children: 'second button'
+        label: 'second button'
     }, {
-        children: 'third button'
+        label: 'third button'
     }
 ];
 const buttonGroupItems = [

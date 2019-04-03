@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Buttons Rendering snapshot 1`] = `
+exports[`Test Buttons Default Rendering snapshot 1`] = `
 <button
   className="Button"
   onClick={[Function]}
@@ -15,4 +15,41 @@ exports[`Test Buttons Rendering snapshot 1`] = `
     test button
   </span>
 </button>
+`;
+
+exports[`Test Buttons Icon Rendering snapshot 1`] = `
+<Button
+  icon={true}
+  label=""
+  onClick={[Function]}
+  type="button"
+>
+  <Icon
+    fontSize={14}
+    name="plus"
+  />
+</Button>
+`;
+
+exports[`Test Buttons IconLabel Rendering snapshot 1`] = `
+<Button
+  icon={true}
+  label=""
+  onClick={[Function]}
+  type="button"
+>
+  <span
+    className="Button__icon-content"
+  >
+    <Icon
+      fontSize={14}
+      name="plus"
+    />
+  </span>
+  <span
+    className="Button__label-content"
+  >
+    test button
+  </span>
+</Button>
 `;

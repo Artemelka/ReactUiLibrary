@@ -1,14 +1,16 @@
 @border-radius: 12px;
+@Button: Button;
 
-.Button {
+.@{Button} {
     background-color: #f3e367;
     border: 1px solid #929d9e;
     cursor: pointer;
     display: inline-block;
+    font-size: 14px;
     font-weight: bold;
     outline: none;
     overflow: hidden;
-    padding: 7px 14px;
+    padding: 15px 30px;
     position: relative;
     transition: background-color 0.3s, box-shadow, 0.3s, transform 0.3s;
     vertical-align: middle;
@@ -66,6 +68,11 @@
     &--disabled {
         cursor: default;
 
+        &:active,
+        & .@{Button}--active {
+            transform: translateY(0);
+        }
+
         &::after,
         &::before {
             width: 0;
@@ -90,8 +97,27 @@
         }
     }
 
+    &--icon {
+        padding: 8px 10px;
+    }
+
     &__content {
+        display: inline-block;
         position: relative;
         z-index: 2;
+    }
+
+    &__icon-content {
+        padding: 7px 7px 7px 20px;
+    }
+
+    &__label-content {
+        padding: 7px 20px 7px 7px;
+    }
+
+    &__icon-content,
+    &__label-content {
+        display: inline-block;
+        vertical-align: middle;
     }
 }

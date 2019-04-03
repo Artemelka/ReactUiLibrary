@@ -31,23 +31,17 @@ export class ButtonGroup extends Component<Props> {
 
         return (
             <div className={classNames('Button-group')}>
-                {buttons.map((buttonProps, index) => {
-                    const {children, ...restProps} = buttonProps;
-                    const roundLeft = round && (index === 0);
-                    const roundRight = round && (index === lastButtonIndex);
+                {buttons.map((buttonProps: {[key: string]: any}, index) => {
+                    const nextProps = {
+                        ...buttonProps,
+                        roundLeft: round && (index === 0),
+                        roundRight: round && (index === lastButtonIndex)
+                    };
 
                     return (
                         <Fragment key={index}>
-                            <ButtonComponent
-                                {...restProps}
-                                roundLeft={roundLeft}
-                                roundRight={roundRight}
-                            >
-                                {children}
-                            </ButtonComponent>
-                            {hasSeparator && (lastButtonIndex !== index) &&
-                                <span className={separatorClasses}/>
-                            }
+                            <ButtonComponent {...nextProps} />
+                            {hasSeparator && (lastButtonIndex !== index) && <span className={separatorClasses}/>}
                         </Fragment>
                     );
                 })}
