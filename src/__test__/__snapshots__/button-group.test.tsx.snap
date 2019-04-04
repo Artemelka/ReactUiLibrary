@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ButtonGroup Rendering Snapshot 1`] = `
+<div
+  className="Button-group"
+>
+  <Button
+    label="test 1"
+    onClick={[MockFunction]}
+    type="button"
+  />
+  <Button
+    label="test 2"
+    onClick={[MockFunction]}
+    type="button"
+  />
+  <Button
+    label="test 2"
+    onClick={[MockFunction]}
+    type="button"
+  />
+</div>
+`;
+
+exports[`Test ButtonGroup Rendering Snapshot with separator 1`] = `
+<div
+  className="Button-group"
+>
+  <Button
+    label="test 1"
+    onClick={[MockFunction]}
+    type="button"
+  />
+  <span
+    className="Button-group__separator Button-group__separator--medium"
+  />
+  <Button
+    label="test 2"
+    onClick={[MockFunction]}
+    type="button"
+  />
+  <span
+    className="Button-group__separator Button-group__separator--medium"
+  />
+  <Button
+    label="test 2"
+    onClick={[MockFunction]}
+    type="button"
+  />
+</div>
+`;

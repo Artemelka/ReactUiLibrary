@@ -32,7 +32,7 @@ export class ButtonGroup extends Component<Props> {
         return (
             <div className={classNames('Button-group')}>
                 {buttons.map((buttonProps: {[key: string]: any}, index) => {
-                    const nextProps = {
+                    const nextProps: {[key: string]: any} = {
                         ...buttonProps,
                         roundLeft: round && (index === 0),
                         roundRight: round && (index === lastButtonIndex)
