@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TextComponent, TextProps } from './text';
 import { ComponentType, HeadingType } from './constants';
 

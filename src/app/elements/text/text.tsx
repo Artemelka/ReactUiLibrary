@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import {
     getComponentText,
@@ -50,7 +50,6 @@ export class TextComponent extends React.Component<Props> {
                 return Paragraph;
             case ComponentType.SPAN:
                 return Span;
-            default: return;
         }
     };
 
