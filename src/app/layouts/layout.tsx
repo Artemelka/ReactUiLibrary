@@ -23,30 +23,33 @@ export class Layout extends React.Component<LayoutProps> {
 
         return (
             <div className={classNames('Layout')}>
-                {aside &&
-                    <aside className={classNames('Layout__aside')}>
-                        <div className={classNames('Layout__aside-heading')}>
-                            <Text.H6 bold upper>
-                                React UI Library
-                            </Text.H6>
-                        </div>
+                <aside className={classNames('Layout__aside')}>
+                    <div className={classNames('Layout__aside-heading')}>
+                        <Text.H6 bold upper>
+                            React UI Library
+                        </Text.H6>
+                    </div>
+                    <div className={classNames('Layout__aside-content')}>
                         {aside}
-                        <div className={'Layout__aside-footer'}>
-                            <Anchor href={PROJECT_LINK} newPage label={'Project in GitHub'} />
-                            <Anchor label={'Go to Home'} onClick={onGoHomeClick}/>
-                        </div>
-                    </aside>
-                }
+                    </div>
+                    <div className={'Layout__aside-footer'}>
+                        123456789
+                    </div>
+                </aside>
                 {content &&
                     <main className={classNames('Layout__content')}>
                         {content}
                     </main>
                 }
-                {footer &&
-                    <footer className={classNames('Layout__footer')}>
+                <footer className={classNames('Layout__footer')}>
+                    <div className={classNames('Layout__footer-aside')}>
+                        <Anchor href={PROJECT_LINK} newPage label={'Project in GitHub'} />
+                        <Anchor label={'Go to Home'} onClick={onGoHomeClick}/>
+                    </div>
+                    <div className={classNames('Layout__footer-content')}>
                         {footer}
-                    </footer>
-                }
+                    </div>
+                </footer>
             </div>
         );
     }

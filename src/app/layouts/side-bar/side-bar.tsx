@@ -14,16 +14,16 @@ export class SideBar extends React.Component<Props> {
     render() {
         return (
             <div className={classNames('SideBar')}>
-                <div className={classNames('SideBar__scroll-wrapper')}>
+                <ul className={classNames('SideBar__scroll-wrapper')}>
                     {this.props.items.map(({name, url}, index) =>
-                        <div className={classNames('SideBar__link')} key={index}>
+                        <li className={classNames('SideBar__link')} key={index}>
                             <Anchor
                                 label={name}
                                 onClick={this.handleLinkClick(url)}
                             />
-                        </ div>
+                        </ li>
                     )}
-                </div>
+                </ul>
             </div>
         );
     }

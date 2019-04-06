@@ -16,6 +16,7 @@ export class LibraryPageComponent extends React.Component<Props> {
                 aside={<SideBar items={ComponentsCollection} routing={this.props.history} />}
                 onGoHomeClick={this.handleGoHomeClick}
                 content={<SandBoxPage/>}
+                footer={<div style={{textAlign: 'right'}}>123456789</div>}
             />
         );
     }
