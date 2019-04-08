@@ -1,0 +1,16 @@
+{
+  "ru": {
+    "test": "тест",
+    "russian-language": "Русский",
+    "english-language": "Английский",
+    "library": "библиотека",
+    "link-back": "назад"
+  },
+  "en": {
+    "test": "test",
+    "russian-language": "Russian",
+    "english-language": "English",
+    "library": "library",
+    "link-back": "back"
+  }
+}

@@ -1,46 +1,33 @@
-import * as React from 'react';
+import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import createHistory from 'history/createBrowserHistory';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
-
+import { routerMiddleware } from 'react-router-redux';
+import { reducers } from './app/reducers';
+import { translateMiddleware, TranslateProvider } from './services/translate';
 import { App } from './app';
 import './index.less';
 
-interface ActionType {
-    type: string;
-}
-
-const ELEMENT_NAME = 'App';
-const ROOT = document.getElementById(ELEMENT_NAME);
-const rootReducers = (state = {value: 0}, action: ActionType) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {value: state.value + 1};
-        case 'DECREMENT':
-            return {value: state.value - 1};
-        default:
-            return state;
-    }
-};
-const reducers = combineReducers({
-    counter: rootReducers,
-    routing: routerReducer
-});
+const ELEMENT_ID = 'App';
+const ROOT = document.getElementById(ELEMENT_ID);
 const history = createHistory();
-const middleware = routerMiddleware(history);
-const composeMiddleware = composeWithDevTools(applyMiddleware(middleware));
-const store = createStore(reducers, composeMiddleware);
-
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(
+    routerMiddleware(history),
+    thunk,
+    translateMiddleware
+)));
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history}>
-            <App />
-        </Router>
+        <TranslateProvider>
+            <Router history={history}>
+                <App />
+            </Router>
+        </TranslateProvider>
     </Provider>,
     ROOT
 );
