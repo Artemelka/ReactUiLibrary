@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { changeLocale, translate } from '../../../services/translate';
 import { TranslateState } from '../../../services/translate/reducer';
 import { getPostConfig, requestWrapper, requestGetParams } from './utils';
+import { Select } from '../../elements/inputs';
 import './home.less';
 
 interface AppPropsType {
@@ -47,17 +48,9 @@ const buttonRequestSettings = [
     }
 ) as any)
 export class TestHomePage extends React.Component<AppPropsType> {
-    handleLinkClick = (method: string, url?: string) => () => this.props.routing.history[method](url);
+    handleLangChange = (value: string) => this.props.changeLocale(value);
 
-    buttonsLangExample = [
-        {
-            onClick: () => this.props.changeLocale('ru'),
-            label: translate('russian-language')
-        }, {
-            onClick: () => this.props.changeLocale('en'),
-            label: translate('english-language')
-        }
-    ];
+    handleLinkClick = (method: string, url?: string) => () => this.props.routing.history[method](url);
 
     buttonLinkExample = [
         {
@@ -66,6 +59,16 @@ export class TestHomePage extends React.Component<AppPropsType> {
         }, {
             onClick: this.handleLinkClick('goBack'),
             label: translate('link-back')
+        }
+    ];
+
+    selectOptions = [
+        {
+            value: 'ru',
+            title: translate('russian-language')
+        }, {
+            value: 'en',
+            title: translate('english-language')
         }
     ];
 
@@ -88,7 +91,11 @@ export class TestHomePage extends React.Component<AppPropsType> {
                 <br />
                 <h2>Change language</h2>
                 <h3>language: {translateDictionary.locale}</h3>
-                {this.renderButtons(this.buttonsLangExample)}
+                <Select
+                    options={this.selectOptions}
+                    value={translateDictionary.locale}
+                    onChange={this.handleLangChange}
+                />
             </div>
         );
     }
