@@ -10,6 +10,11 @@ export interface TranslateState {
     locale: string;
 }
 
+const INITIAL_STATE = {
+    dictionary: {},
+    locale: 'en'
+};
+
 const addDictionary = (state: TranslateState, payload: StringObject) => ({
     ...state,
     dictionary: payload
@@ -18,10 +23,7 @@ const changeLang = (state: TranslateState, payload: string) => ({
     ...state,
     locale: payload
 });
-const INITIAL_STATE = {
-    dictionary: {},
-    locale: 'en'
-};
+
 export const TranslateActions = {
     ADD_DICTIONARY: 'ADD_DICTIONARY',
     CHANGE_LANG: 'CHANGE_LANG'

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { addDictionary } from './actions';
 import dictionary from '../../app/dictionary.json';
@@ -25,7 +25,7 @@ export class TranslateProvider extends Component<Props> {
         const { children, locale } = this.props;
 
         return (
-            <div key={locale}>{children}</div>
+            <Fragment key={locale}>{children}</Fragment>
         );
     }
 }
