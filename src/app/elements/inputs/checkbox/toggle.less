@@ -1,0 +1,66 @@
+.Toggle {
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    height: 18px;
+    outline: none;
+    position: relative;
+    transition: box-shadow 0.3s;
+    vertical-align: middle;
+    width: 32px;
+
+    &:hover,
+    &:focus {
+        background-color: #0aaf;
+    }
+
+    &::before {
+        background-color: #fff;
+        border-radius: 50%;
+        content: '';
+        height: 14px;
+        left: 2px;
+        position: absolute;
+        top: 2px;
+        transition: left 0.5s, right 0.5s;
+        width: 14px;
+    }
+
+    &--checked {
+        background-color: #f3e367;
+
+        &:hover,
+        &:focus {
+            background-color: darken(#f3e367, 15%);
+        }
+
+        &::before {
+            left: auto;
+            right: 2px;
+        }
+    }
+
+    &--disabled {
+        background-color: #eee;
+        cursor: default;
+
+        &:hover,
+        &:focus {
+            background-color: #eee;
+        }
+
+        &::before {
+            background-color: #ccc;
+        }
+    }
+
+    &__input {
+        height: 0;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        width: 0;
+    }
+}

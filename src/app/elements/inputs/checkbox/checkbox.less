@@ -1,57 +1,65 @@
-.Checkbox {
-    background-color: #ccc;
-    border-radius: 20px;
+@className: Checkbox;
+
+.@{className} {
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #000;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
     height: 18px;
+    justify-content: center;
     outline: none;
-    position: relative;
-    transition: box-shadow 0.3s;
-    vertical-align: middle;
-    width: 32px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    width: 18px;
 
     &:hover,
     &:focus {
-        background-color: #0aaf;
-    }
-
-    &::before {
-        background-color: #fff;
-        border-radius: 50%;
-        content: '';
-        height: 14px;
-        left: 2px;
-        position: absolute;
-        top: 2px;
-        transition: left 0.5s, right 0.5s;
-        width: 14px;
+        border-color: #f3e367;
     }
 
     &--checked {
-        background-color: #00a648;
+        background-color: #f3e367;
+        border-color: #f3e367;
 
         &:hover,
         &:focus {
-            background-color: #30bf6e;
+            border-color: #000;
         }
 
-        &::before {
-            left: auto;
-            right: 2px;
+        &:disabled {
+            border-color: #000;
         }
     }
 
-    &--disabled {
+    &--disabled,
+    &:disabled {
         background-color: #ccc;
+        border-color: #000;
         cursor: default;
 
         &:hover,
         &:focus {
-            background-color: #ccc;
+            border-color: #000;
+        }
+
+        & .@{className}__icon {
+            color: #7f8688;
         }
     }
 
     &__input {
-        display: none;
+        height: 0;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        width: 0;
+    }
+
+    &__icon {
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
 }
