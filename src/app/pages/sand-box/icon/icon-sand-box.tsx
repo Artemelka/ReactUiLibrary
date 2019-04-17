@@ -1,8 +1,8 @@
 import React from 'react';
 import { SandBox } from '../sand-box';
-import { Icon } from '../../../elements';
-import { iconNames } from '../../../elements/icon/icon-names';
+import { IconModule } from '../../../elements/icon';
 
+const { Icon, IconNames } = IconModule;
 const iconProps = [
     {
         size: '2x',
@@ -17,23 +17,27 @@ const iconProps = [
         fontSize: 40
     },
 ];
-const iconItems = iconNames.map((name, index) => iconProps.map((props, propsIndex) => (
+const renderTable = (index: number, name: string) => iconProps.map((props, propsIndex) => (
     <table key={index + propsIndex}>
         <tbody>
-            <tr>
-                <td>
-                    <Icon name={name} {...props}/>
-                </td>
-                <td>
-                    <span style={{padding: '0 20px'}}>name: {name}</span>
-                </td>
-                <td>
-                    <span style={{padding: '0 20px'}}>stack: {props.stack}</span>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <Icon name={name} {...props}/>
+            </td>
+            <td>
+                <span style={{padding: '0 20px'}}>name: {name}</span>
+            </td>
+            <td>
+                <span style={{padding: '0 20px'}}>stack: {props.stack}</span>
+            </td>
+        </tr>
         </tbody>
     </table>
-)));
+));
+const iconItems = Object.values(IconNames).map((item, index) => typeof item === 'string'
+        ? renderTable(index, item)
+        : Object.values(item).map((name, index) => renderTable(index, name))
+);
 
 export const IconSandBox = () => (
     <SandBox

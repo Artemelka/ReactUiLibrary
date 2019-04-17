@@ -6,5 +6,5 @@ export const ButtonGroup = {
     Component: Self,
     SeparatorSize
 };
-export { Icon } from './icon/icon';
+export { IconModule } from './icon';
 export { TextComponent as Text } from './text/text';

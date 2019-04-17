@@ -1,6 +1,6 @@
 import React, { Component, createRef, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames';
-import { Icon } from '../..';
+import { IconModule } from '../..';
 import { keyCodes } from '../../../../services';
 import './checkbox.less';
 import './toggle.less';
@@ -17,7 +17,7 @@ export interface CheckboxProps {
 
 const iconProps = {
     fontSize: 18,
-    name: 'angle-down',
+    name: IconModule.IconNames.ANGLE.DOWN,
     size: '2x',
     stack: 'fas'
 };
@@ -95,7 +95,7 @@ export class Checkbox extends Component<CheckboxProps> {
                 />
                 {hasIcon &&
                     <span className={classNames('Checkbox__icon')}>
-                        <Icon {...iconProps}/>
+                        <IconModule.Icon {...iconProps}/>
                     </span>
                 }
             </label>
