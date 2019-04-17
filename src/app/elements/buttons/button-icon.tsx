@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonNotRequiredProps } from './button';
-import { Icon } from '../';
+import { IconModule } from '../';
 import { ICON_SIZE } from './constants';
 
 export interface ButtonIconProps extends ButtonNotRequiredProps {
@@ -13,7 +13,7 @@ export class ButtonIcon extends Component<ButtonIconProps> {
 
         return (
             <Button {...restProps} icon label="">
-                <Icon name={iconName} fontSize={ICON_SIZE}/>
+                <IconModule.Icon name={iconName} fontSize={ICON_SIZE}/>
             </Button>
         );
     }

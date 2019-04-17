@@ -1,11 +1,12 @@
 import React from 'react';
 import { SandBox } from '../sand-box';
-import { Button, Icon } from '../../../elements';
+import { Button, IconModule } from '../../../elements';
 import { ButtonProps } from '../../../elements/buttons/button';
 import { ButtonIconProps } from '../../../elements/buttons/button-icon';
 import { ButtonIconLabelProps } from '../../../elements/buttons/button-icon-label';
 import { logger } from '../utils';
 
+const { IconNames } = IconModule;
 const buttonProps: Array<ButtonProps> = [
     {
         label: 'Button'
@@ -23,28 +24,28 @@ const buttonProps: Array<ButtonProps> = [
 ];
 const buttonIconProps: Array<ButtonIconProps> = [
     {
-        iconName: 'plus',
+        iconName: IconNames.PLUS,
         onClick: logger('buttonClick plus')
     }, {
-        iconName: 'trash-alt',
+        iconName: IconNames.TRASH_ALT,
         onClick: logger('buttonClick trash-alt')
     }, {
-        iconName: 'trash-alt',
+        iconName: IconNames.TRASH_ALT,
         disabled: true,
         onClick: logger('buttonClick trash-alt')
     }
 ];
 const buttonIconLabelProps: Array<ButtonIconLabelProps> = [
     {
-        iconName: 'plus',
+        iconName: IconNames.PLUS,
         label: 'Button.IconLabel',
         onClick: logger('button IconLabel Click plus')
     }, {
-        iconName: 'trash-alt',
+        iconName: IconNames.TRASH_ALT,
         label: 'Button.IconLabel trash',
         onClick: logger('button IconLabel Click trash-alt')
     }, {
-        iconName: 'trash-alt',
+        iconName: IconNames.TRASH_ALT,
         label: 'Button.IconLabel disabled',
         disabled: true,
         onClick: logger('button IconLabel Click trash-alt')

@@ -7,5 +7,5 @@ export const ButtonGroup = {
     SeparatorSize
 };
 export { Checkbox } from './inputs';
-export { Icon } from './icon/icon';
+export { IconModule } from './icon';
 export { TextComponent as Text } from './text/text';
