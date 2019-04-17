@@ -1,10 +1,13 @@
 import React from 'react';
-import { AnchorSandBox } from './sand-box/anchor/anchor-sand-box';
-import { ButtonSandBox } from './sand-box/button/button-sand-box';
-import { ButtonGroupSandBox } from './sand-box/button/button-group-sand-box';
-import { IconSandBox } from './sand-box/icon/icon-sand-box';
-import { TextSandBox } from './sand-box/text/text-sand-box';
-import { CheckboxSandBox } from './sand-box/checkbox/checkbox-sand-box';
+import {
+    AnchorSandBox,
+    ButtonSandBox,
+    ButtonGroupSandBox,
+    CheckboxSandBox,
+    IconSandBox,
+    InputSandBox,
+    TextSandBox,
+} from './sand-box';
 
 const MenuExample = () => {
     return (
@@ -43,6 +46,11 @@ export const ComponentsCollection = [
         exact: true,
         name: IconSandBox.name,
         url: '/library/icon'
+    }, {
+        component: InputSandBox,
+        exact: true,
+        name: InputSandBox.name,
+        url: '/library/input'
     }, {
         component: TextSandBox,
         exact: true,

@@ -1,6 +1,6 @@
-import React, { Component, createRef, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { SandBox } from '../sand-box';
-import { Checkbox } from '../../../elements/inputs';
+import { Checkbox } from '../../../elements';
 import { CheckboxProps } from '../../../elements/inputs/checkbox/checkbox';
 import { logger } from '../utils';
 
