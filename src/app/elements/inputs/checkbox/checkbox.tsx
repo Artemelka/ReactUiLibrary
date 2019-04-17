@@ -1,6 +1,6 @@
 import React, { Component, createRef, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames';
-import { IconModule } from '../..';
+import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';
 import './checkbox.less';
 import './toggle.less';
