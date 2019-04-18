@@ -37,6 +37,15 @@ const buttonRequestSettings = [
         label: 'REQUEST POST ERROR'
     }
 ];
+const selectOptions = [
+    {
+        value: 'ru',
+        title: 'russian-language'
+    }, {
+        value: 'en',
+        title: 'english-language'
+    }
+];
 
 @(connect(
     (state: MapStateType, routing) => ({
@@ -55,31 +64,21 @@ export class TestHomePage extends React.Component<AppPropsType> {
     buttonLinkExample = [
         {
             onClick: this.handleLinkClick('push', '/library'),
-            label: translate('library')
+            label: 'library'
         }, {
             onClick: this.handleLinkClick('goBack'),
-            label: translate('link-back')
-        }
-    ];
-
-    selectOptions = [
-        {
-            value: 'ru',
-            title: translate('russian-language')
-        }, {
-            value: 'en',
-            title: translate('english-language')
+            label: 'link-back'
         }
     ];
 
     renderButtons = (buttons: Array<Buttons>) => buttons.map(({onClick, label}: Buttons, index: number) => (
         <div className={classNames('Test-page__button-wrapper')} key={index}>
-            <button onClick={onClick}>{label}</button>
+            <button onClick={onClick}>{translate(label)}</button>
         </div>
     ));
 
     render() {
-        const { translateDictionary } = this.props;
+        const { translateDictionary: {locale} } = this.props;
 
         return (
             <div className={classNames('Test-page')}>
@@ -90,10 +89,10 @@ export class TestHomePage extends React.Component<AppPropsType> {
                 {this.renderButtons(this.buttonLinkExample)}
                 <br />
                 <h2>Change language</h2>
-                <h3>language: {translateDictionary.locale}</h3>
+                <h3>language: {locale}</h3>
                 <Select
-                    options={this.selectOptions}
-                    value={translateDictionary.locale}
+                    options={selectOptions}
+                    value={locale}
                     onChange={this.handleLangChange}
                 />
             </div>

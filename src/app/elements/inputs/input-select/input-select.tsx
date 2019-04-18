@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { translate } from '../../../../services/translate';
 import './input-select.less';
 
 interface Options {
@@ -30,6 +31,7 @@ export class Select extends Component<Props> {
             <select
                 className={classNames('Select')}
                 disabled={disabled}
+                id={name}
                 name={name}
                 multiple={multiple}
                 onChange={this.handleChange}
@@ -41,7 +43,7 @@ export class Select extends Component<Props> {
                         disabled={option.disabled}
                         value={option.value}
                     >
-                        {option.title}
+                        {translate(option.title)}
                     </option>
                 ))}
             </select>

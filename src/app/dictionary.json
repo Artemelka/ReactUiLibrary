@@ -1,16 +1,20 @@
 {
   "ru": {
-    "test": "тест",
-    "russian-language": "Русский",
     "english-language": "Английский",
+    "go-to-home": "На главную",
     "library": "библиотека",
-    "link-back": "назад"
+    "link-back": "назад",
+    "link-project": "Проект на GitHub",
+    "russian-language": "Русский",
+    "test": "тест"
   },
   "en": {
-    "test": "test",
-    "russian-language": "Russian",
     "english-language": "English",
+    "go-to-home": "Go to Home",
     "library": "library",
-    "link-back": "back"
+    "link-back": "back",
+    "link-project": "Project in GitHub",
+    "russian-language": "Russian",
+    "test": "test"
   }
 }

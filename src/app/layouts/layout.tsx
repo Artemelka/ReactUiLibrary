@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Anchor, Text } from '../elements';
+import { translate } from '../../services/translate';
 import './layout.less';
 
 interface LayoutProps {
@@ -43,8 +44,8 @@ export class Layout extends React.Component<LayoutProps> {
                 }
                 <footer className={classNames('Layout__footer')}>
                     <div className={classNames('Layout__footer-aside')}>
-                        <Anchor href={PROJECT_LINK} newPage label={'Project in GitHub'} />
-                        <Anchor label={'Go to Home'} onClick={onGoHomeClick}/>
+                        <Anchor href={PROJECT_LINK} newPage label={translate('link-project')} />
+                        <Anchor label={translate('go-to-home')} onClick={onGoHomeClick}/>
                     </div>
                     <div className={classNames('Layout__footer-content')}>
                         {footer}

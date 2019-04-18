@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SideBar, Layout } from '../../layouts';
-import { SandBoxPage, ComponentsCollection } from '../../pages';
+import { SandBoxPage } from '../';
+import { ComponentsCollection } from '../constants';
+import { LibraryFooter } from './library-footer';
 
 interface Props {
     history: {[key: string]: any};
@@ -16,7 +18,7 @@ export class LibraryPageComponent extends React.Component<Props> {
                 aside={<SideBar items={ComponentsCollection} routing={this.props.history} />}
                 onGoHomeClick={this.handleGoHomeClick}
                 content={<SandBoxPage/>}
-                footer={<div style={{textAlign: 'right'}}>123456789</div>}
+                footer={<LibraryFooter/>}
             />
         );
     }
