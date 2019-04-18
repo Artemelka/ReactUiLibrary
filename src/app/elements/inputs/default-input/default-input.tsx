@@ -6,7 +6,7 @@ export class DefaultInput extends Component {
     render() {
         return (
             <input
-                className={classNames('Input-text')}
+                className={classNames('Input')}
                 {...this.props}
             />
         );
