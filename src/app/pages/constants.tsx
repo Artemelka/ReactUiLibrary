@@ -6,7 +6,8 @@ import {
     CheckboxSandBox,
     IconSandBox,
     InputSandBox,
-    TextSandBox,
+    ProgressSandBox,
+    TextSandBox
 } from './sand-box';
 
 const MenuExample = () => {
@@ -51,6 +52,11 @@ export const ComponentsCollection = [
         exact: true,
         name: InputSandBox.name,
         url: '/library/input'
+    },  {
+        component: ProgressSandBox,
+        exact: true,
+        name: ProgressSandBox.name,
+        url: '/library/progress'
     }, {
         component: TextSandBox,
         exact: true,

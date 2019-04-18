@@ -1,0 +1,42 @@
+.Progress {
+    padding: 5px 30px;
+    position: relative;
+
+    &__title {
+        font-size: 16px;
+    }
+
+    &__line {
+        border: 2px solid #ccc;
+        height: 8px;
+        margin-top: 10px;
+        position: relative;
+    }
+
+    &__status {
+        background-color: #3a33d1;
+        height: 6px;
+        left: 0;
+        position: absolute;
+        text-align: right;
+        top: 1px;
+        transition: width 0.7s, background-color 0.5s;
+        vertical-align: middle;
+
+        &--blue {
+            background-color: #0af;
+        }
+
+        &--crimson {
+            background-color: crimson;
+        }
+
+        &--green {
+            background-color: #30bf6e;
+        }
+
+        &--yellow {
+            background-color: #ffef00;
+        }
+    }
+}

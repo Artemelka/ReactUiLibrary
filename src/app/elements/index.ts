@@ -8,4 +8,5 @@ export const ButtonGroup = {
 };
 export { Checkbox, Select } from './inputs';
 export { IconModule } from './icon';
+export { Progress } from './progress';
 export { TextComponent as Text } from './text/text';
