@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import './anchor.less';
+import './Anchor.less';
 
 interface Props {
     active?: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { Anchor, Text } from '../elements';
 import { translate } from '../../services/translate';
-import './layout.less';
+import './Layout.less';
 
 interface LayoutProps {
     aside?: React.ReactElement<any>;

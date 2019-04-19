@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Button, ButtonProps } from '../buttons/button';
 import classNames from 'classnames';
-import './button-group.less';
+import './ButtonGroup.less';
 
 interface Props {
     buttons: Array<ButtonProps>;

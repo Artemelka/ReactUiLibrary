@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { translate } from '../../../../services/translate';
-import './input-select.less';
+import './Select.less';
 
 interface Options {
     disabled?: boolean;

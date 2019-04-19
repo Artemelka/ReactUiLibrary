@@ -2,7 +2,7 @@ import React from 'react';
 import { SandBox } from '../sand-box';
 import { Anchor } from '../../../elements';
 import { logger } from '../utils';
-import { PROJECT_LINK } from '../../../layouts/layout';
+import { PROJECT_LINK } from '../../../layouts/Layout';
 
 const LabelLink = {
     LINK: 'Link to GitHub open in new window',

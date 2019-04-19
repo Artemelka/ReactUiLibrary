@@ -2,8 +2,8 @@ import React, { Component, createRef, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames';
 import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';
-import './checkbox.less';
-import './toggle.less';
+import './Checkbox.less';
+import './Toggle.less';
 
 export interface CheckboxProps {
     checked?: boolean;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Anchor } from '../../elements';
-import './side-bar.less';
+import './SideBar.less';
 
 interface Props {
     items: Array<any>;

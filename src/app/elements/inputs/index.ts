@@ -1,5 +1,5 @@
-export { Select } from './input-select/input-select';
-export { Checkbox } from './checkbox/checkbox';
-export { DefaultInput as Input } from './default-input/default-input';
+export { Select } from './select/Select';
+export { Checkbox } from './checkbox/Checkbox';
+export { Input } from './input/Input';
 
 

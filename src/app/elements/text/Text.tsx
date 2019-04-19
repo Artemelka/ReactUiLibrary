@@ -8,7 +8,7 @@ import {
     Span,
 } from './components';
 import { ComponentType, HeadingType } from './constants';
-import './text.less';
+import './Text.less';
 
 interface Props {
     bold?: boolean;

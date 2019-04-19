@@ -1,2 +1,2 @@
-export { SideBar } from './side-bar/side-bar';
-export { Layout } from './layout';
+export { SideBar } from './side-bar/SideBar';
+export { Layout } from './Layout';

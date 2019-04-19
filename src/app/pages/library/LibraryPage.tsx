@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { SideBar, Layout } from '../../layouts';
 import { SandBoxPage } from '../';
 import { ComponentsCollection } from '../constants';
-import { LibraryFooter } from './library-footer';
+import { LibraryFooter } from './LibraryFooter';
 
 interface Props {
     history: {[key: string]: any};

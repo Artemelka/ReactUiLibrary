@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Button } from './button';
-import { ButtonIconProps } from './button-icon';
+import { ButtonIconProps } from './ButtonIcon';
 import { IconModule } from '../';
 import { ICON_SIZE } from './constants';
-import './button.less';
+import './Button.less';
 
 export interface ButtonIconLabelProps extends ButtonIconProps {
     label: string;

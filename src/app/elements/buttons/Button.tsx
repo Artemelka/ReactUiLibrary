@@ -1,9 +1,9 @@
 import React, { Component, MouseEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
-import { ButtonIcon } from './button-icon';
-import { ButtonIconLabel } from './button-icon-label';
+import { ButtonIcon } from './ButtonIcon';
+import { ButtonIconLabel } from './ButtonIconLabel';
 import { keyCodes } from '../../../services';
-import './button.less';
+import './Button.less';
 
 export interface ButtonNotRequiredProps {
     disabled?: boolean;

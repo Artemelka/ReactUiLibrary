@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextComponent, TextProps } from './text';
+import { TextComponent, TextProps } from './Text';
 import { ComponentType, HeadingType } from './constants';
 
 interface Paragraph {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SandBox } from '../sand-box';
-import { Input } from '../../../elements/inputs';
+import { Input } from '../../../elements';
 
 const inputProps = [
     {
