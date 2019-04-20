@@ -3,15 +3,21 @@ import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
 import { keyCodes } from '../../../services';
+
 const style = require('./Button.less');
 const cn = classNames.bind(style);
 
+const ButtonSize = {
+    SMALL: 'small',
+    BIG: 'big'
+};
 export interface ButtonNotRequiredProps {
     disabled?: boolean;
     icon?: boolean;
     onClick?: (event: React.SyntheticEvent) => void;
     roundLeft?: boolean;
     roundRight?: boolean;
+    size?: string;
     type?: string;
 }
 export interface ButtonProps extends ButtonNotRequiredProps {
@@ -61,13 +67,15 @@ export class Button extends Component<ButtonProps, State> {
 
     render() {
         const { isActive } = this.state;
-        const { children, disabled, icon, label, roundLeft, roundRight, type } = this.props;
+        const { children, disabled, icon, label, roundLeft, roundRight, size, type } = this.props;
         const buttonClasses = cn('Button', {
             'Button--active': isActive,
             'Button--disabled': disabled,
             'Button--icon': icon,
             'Button--round-left': roundLeft,
-            'Button--round-right': roundRight
+            'Button--round-right': roundRight,
+            'Button--small': size === ButtonSize.SMALL,
+            'Button--big': size === ButtonSize.BIG,
         });
 
         return (

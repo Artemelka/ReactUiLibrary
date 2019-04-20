@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment, ComponentClass } from 'react';
 import { SandBox } from '../sand-box';
 import { Button, IconModule } from '../../../elements';
 import { ButtonProps } from '../../../elements/buttons/button';
-import { ButtonIconProps } from '../../../elements/buttons/button-icon';
-import { ButtonIconLabelProps } from '../../../elements/buttons/button-icon-label';
+import { ButtonIconProps } from '../../../elements/buttons/ButtonIcon';
+import { ButtonIconLabelProps } from '../../../elements/buttons/ButtonIconLabel';
 import { logger } from '../utils';
 
 const { IconNames } = IconModule;
@@ -20,6 +20,17 @@ const buttonProps: Array<ButtonProps> = [
         label: 'Button with disable onClick',
         disabled: true,
         onClick: logger('buttonClick disable')
+    }
+];
+const buttonSizeProps: Array<ButtonProps> = [
+    {
+        label: 'Button big',
+        size: 'big'
+    }, {
+        label: 'Button default'
+    }, {
+        label: 'Button small',
+        size: 'small'
     }
 ];
 const buttonIconProps: Array<ButtonIconProps> = [
@@ -39,7 +50,8 @@ const buttonIconLabelProps: Array<ButtonIconLabelProps> = [
     {
         iconName: IconNames.PLUS,
         label: 'Button.IconLabel',
-        onClick: logger('button IconLabel Click plus')
+        onClick: logger('button IconLabel Click plus'),
+        size: 'big'
     }, {
         iconName: IconNames.TRASH_ALT,
         label: 'Button.IconLabel trash',
@@ -48,24 +60,62 @@ const buttonIconLabelProps: Array<ButtonIconLabelProps> = [
         iconName: IconNames.TRASH_ALT,
         label: 'Button.IconLabel disabled',
         disabled: true,
-        onClick: logger('button IconLabel Click trash-alt')
+        onClick: logger('button IconLabel Click trash-alt'),
+        size: 'small'
     }
 ];
 
-const buttonItems = buttonProps.map(
-    (props: ButtonProps, index: number) => <Button {...props} key={index + 'a'} />);
+type Props = ButtonProps | ButtonIconProps | ButtonIconLabelProps;
+interface ExampleParams {
+    heading: string;
+    props: Array<Props>;
+    mapCallback: (props: Props, index: number) => any;
+}
 
-const buttonIconItems = buttonIconProps.map(
-    (props: ButtonIconProps, index: number) => <Button.Icon {...props} key={index + 'b'} />);
+const getButtonType = (type: string) => type === 'Icon' ? Button.Icon : Button.IconLabel;
 
-const buttonIconLabelItems = buttonIconLabelProps.map(
-    (props: ButtonIconLabelProps, index: number) => <Button.IconLabel {...props} key={index + 'c'} />);
+const renderButtonExample = (prefix: string, type?: string) =>
+    (props: Props, index: number) => {
+        const Component: ComponentClass<any> = type ? getButtonType(type) : Button;
 
-const sandBoxItems = [
-    ...buttonItems,
-    ...buttonIconItems,
-    ...buttonIconLabelItems
+        return (
+            <div style={{display: 'inline-block', padding: '0 10px'}} key={index + prefix}>
+                <Component {...props} />
+            </div>
+        );
+    };
+
+const examplesParams: Array<ExampleParams> = [
+    {
+        heading: 'Button default',
+        props: buttonProps,
+        mapCallback: renderButtonExample('a')
+    }, {
+        heading: 'Button sizes',
+        props: buttonSizeProps,
+        mapCallback: renderButtonExample('b')
+    }, {
+        heading: 'Button.Icon',
+        props: buttonIconProps,
+        mapCallback: renderButtonExample('c', 'Icon')
+    }, {
+        heading: 'Button.IconLabel',
+        props: buttonIconLabelProps,
+        mapCallback: renderButtonExample('d', 'IconLabel')
+    }
 ];
+
+const getExampleItem = (params: ExampleParams) => {
+    const { heading, mapCallback, props } = params;
+
+    return (
+        <Fragment>
+            <h3>{heading}</h3>
+            {props.map(mapCallback)}
+        </Fragment>
+    );
+};
+const sandBoxItems = examplesParams.map((params: ExampleParams) => getExampleItem(params));
 
 export const ButtonSandBox = () => (
     <SandBox

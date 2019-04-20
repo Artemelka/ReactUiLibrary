@@ -7,10 +7,10 @@
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
     outline: none;
     overflow: hidden;
-    padding: 15px 30px;
+    padding: 10px 15px;
     position: relative;
     transition: background-color 0.3s, box-shadow, 0.3s, transform 0.3s;
     vertical-align: middle;
@@ -95,6 +95,18 @@
             border-bottom-right-radius: @border-radius;
             border-top-right-radius: @border-radius;
         }
+    }
+
+    &--big {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 15px 30px;
+    }
+
+    &--small {
+        font-size: 12px;
+        font-weight: normal;
+        padding: 7px 12px;
     }
 
     &--icon {

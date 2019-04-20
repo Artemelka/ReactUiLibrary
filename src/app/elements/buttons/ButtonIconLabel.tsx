@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { Button } from './button';
 import { ButtonIconProps } from './ButtonIcon';
 import { IconModule } from '../';
