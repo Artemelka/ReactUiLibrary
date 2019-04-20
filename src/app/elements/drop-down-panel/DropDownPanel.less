@@ -1,0 +1,37 @@
+@ClassName: Drop-down-panel;
+
+.@{ClassName} {
+    border: 1px solid #f3e367;
+
+    &--opened {
+        & .@{ClassName}__details {
+            height: auto;
+            padding: 15px;
+        }
+    }
+
+    &__summary {
+        align-items: center;
+        background-color: #f3e367;
+        display: flex;
+        justify-content: flex-start;
+        padding: 15px;
+
+        &-action {
+            margin-left: auto;
+            padding-left: 15px;
+        }
+
+        &-icon {
+            margin-right: 15px;
+        }
+    }
+
+    &__details {
+        background-color: #fff;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: height 0.5s, padding 0.5s;
+    }
+}

@@ -4,6 +4,7 @@ import {
     ButtonSandBox,
     ButtonGroupSandBox,
     CheckboxSandBox,
+    DropDownPanelSandBox,
     IconSandBox,
     InputSandBox,
     ProgressSandBox,
@@ -42,6 +43,11 @@ export const ComponentsCollection = [
         exact: true,
         name: CheckboxSandBox.name,
         url: '/library/checkbox'
+    },  {
+        component: DropDownPanelSandBox,
+        exact: true,
+        name: DropDownPanelSandBox.name,
+        url: '/library/drop-down-panel'
     }, {
         component: IconSandBox,
         exact: true,
