@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { translate } from '../../../../services/translate';
-import './Select.less';
+
+const style = require('./Select.less');
+const cn = classNames.bind(style);
 
 interface Options {
     disabled?: boolean;
@@ -29,7 +31,7 @@ export class Select extends Component<Props> {
 
         return (
             <select
-                className={classNames('Select')}
+                className={cn('Select')}
                 disabled={disabled}
                 id={name}
                 name={name}

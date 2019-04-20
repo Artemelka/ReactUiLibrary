@@ -1,6 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
-import './sand-box.less';
+import classNames from 'classnames/bind';
+
+const style = require('./sand-box.less');
+const cn = classNames.bind(style);
 
 interface Props {
     bgWhite?: boolean;
@@ -9,12 +11,12 @@ interface Props {
 
 export const SandBox = (props: Props) => {
     const {items, bgWhite} = props;
-    const itemClasses = classNames('Sandbox__item', {
+    const itemClasses = cn('Sandbox__item', {
         'Sandbox__item--bg-white': bgWhite
     });
 
     return (
-        <div className={classNames('Sandbox')}>
+        <div className={cn('Sandbox')}>
             {items.map((item, index) => (
                 <div className={itemClasses} key={index}>
                     {item}

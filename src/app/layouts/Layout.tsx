@@ -1,8 +1,10 @@
 import React from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { Anchor, Text } from '../elements';
 import { translate } from '../../services/translate';
-import './Layout.less';
+
+const style = require('./Layout.less');
+const cn = classNames.bind(style);
 
 interface LayoutProps {
     aside?: React.ReactElement<any>;
@@ -23,31 +25,31 @@ export class Layout extends React.Component<LayoutProps> {
         } = this.props;
 
         return (
-            <div className={classNames('Layout')}>
-                <aside className={classNames('Layout__aside')}>
-                    <div className={classNames('Layout__aside-heading')}>
+            <div className={cn('Layout')}>
+                <aside className={cn('Layout__aside')}>
+                    <div className={cn('Layout__aside-heading')}>
                         <Text.H6 bold upper>
                             React UI Library
                         </Text.H6>
                     </div>
-                    <div className={classNames('Layout__aside-content')}>
+                    <div className={cn('Layout__aside-content')}>
                         {aside}
                     </div>
-                    <div className={'Layout__aside-footer'}>
+                    <div className={cn('Layout__aside-footer')}>
                         123456789
                     </div>
                 </aside>
                 {content &&
-                    <main className={classNames('Layout__content')}>
+                    <main className={cn('Layout__content')}>
                         {content}
                     </main>
                 }
-                <footer className={classNames('Layout__footer')}>
-                    <div className={classNames('Layout__footer-aside')}>
+                <footer className={cn('Layout__footer')}>
+                    <div className={cn('Layout__footer-aside')}>
                         <Anchor href={PROJECT_LINK} newPage label={translate('link-project')} />
                         <Anchor label={translate('go-to-home')} onClick={onGoHomeClick}/>
                     </div>
-                    <div className={classNames('Layout__footer-content')}>
+                    <div className={cn('Layout__footer-content')}>
                         {footer}
                     </div>
                 </footer>

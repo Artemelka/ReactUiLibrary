@@ -1,6 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
-import './Anchor.less';
+import classNames from 'classnames/bind';
+
+const style = require('./Anchor.less');
+const cn = classNames.bind(style);
 
 interface Props {
     active?: boolean;
@@ -42,7 +44,7 @@ export class Anchor extends React.Component<Props> {
     render() {
         const { active, disabled, href, label, newPage, onClick } = this.props;
         const Component = (Boolean(href) && !disabled) ? AnchorLink : PseudoLink;
-        const anchorClasses = classNames('Anchor', {
+        const anchorClasses = cn('Anchor', {
             'Anchor--active': active,
             'Anchor--disabled': disabled
         });

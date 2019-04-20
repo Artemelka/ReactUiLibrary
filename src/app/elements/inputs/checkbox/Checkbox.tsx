@@ -1,9 +1,12 @@
 import React, { Component, createRef, KeyboardEvent, RefObject } from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';
-import './Checkbox.less';
-import './Toggle.less';
+
+const checkboxStyle = require('./Checkbox.less');
+const toggleStyle = require('./Toggle.less');
+const checkboxClassNames = classNames.bind(checkboxStyle);
+const toggleClassNames = classNames.bind(toggleStyle);
 
 export interface CheckboxProps {
     checked?: boolean;
@@ -62,15 +65,15 @@ export class Checkbox extends Component<CheckboxProps> {
 
     render() {
         const { checked, disabled, id, name, toggle } = this.props;
-        const checkboxStyle = classNames('Checkbox', {
+        const checkboxStyle = checkboxClassNames('Checkbox', {
             'Checkbox--checked': checked,
             'Checkbox--disabled': disabled
         });
-        const toggleStyle = classNames('Toggle', {
+        const toggleStyle = toggleClassNames('Toggle', {
             'Toggle--checked': checked,
             'Toggle--disabled': disabled
         });
-        const inputClasses = toggle ? 'Toggle__input' : 'Checkbox__input';
+        const inputClasses = toggle ? toggleClassNames('Toggle__input') : checkboxClassNames('Checkbox__input');
         const hasIcon = !toggle && checked;
 
         return (
@@ -82,7 +85,7 @@ export class Checkbox extends Component<CheckboxProps> {
             >
                 <input
                     checked={checked}
-                    className={classNames(inputClasses)}
+                    className={inputClasses}
                     disabled={disabled}
                     id={id}
                     name={name}
@@ -94,7 +97,7 @@ export class Checkbox extends Component<CheckboxProps> {
                     value={id}
                 />
                 {hasIcon &&
-                    <span className={classNames('Checkbox__icon')}>
+                    <span className={checkboxClassNames('Checkbox__icon')}>
                         <IconModule.Icon {...iconProps}/>
                     </span>
                 }

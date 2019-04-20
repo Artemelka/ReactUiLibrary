@@ -10,7 +10,7 @@ import { routerMiddleware } from 'react-router-redux';
 import { reducers } from './app/reducers';
 import { translateMiddleware, TranslateProvider } from './services/translate';
 import { App } from './app';
-import './index.less';
+import './index.css';
 
 const ELEMENT_ID = 'App';
 const ROOT = document.getElementById(ELEMENT_ID);

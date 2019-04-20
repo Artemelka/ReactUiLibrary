@@ -1,12 +1,14 @@
 import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { changeLocale, translate } from '../../../services/translate';
 import { TranslateState } from '../../../services/translate/reducer';
 import { getPostConfig, requestWrapper, requestGetParams } from './utils';
 import { Select } from '../../elements/inputs';
-import './home.less';
+
+const style = require('./home.less');
+const cn = classNames.bind(style);
 
 interface AppPropsType {
     changeLocale: (locale: string) => (dispatch: Dispatch) => void;
@@ -72,7 +74,7 @@ export class TestHomePage extends React.Component<AppPropsType> {
     ];
 
     renderButtons = (buttons: Array<Buttons>) => buttons.map(({onClick, label}: Buttons, index: number) => (
-        <div className={classNames('Test-page__button-wrapper')} key={index}>
+        <div className={cn('Test-page__button-wrapper')} key={index}>
             <button onClick={onClick}>{translate(label)}</button>
         </div>
     ));
@@ -81,7 +83,7 @@ export class TestHomePage extends React.Component<AppPropsType> {
         const { translateDictionary: {locale} } = this.props;
 
         return (
-            <div className={classNames('Test-page')}>
+            <div className={cn('Test-page')}>
                 <h1>Test page</h1>
                 {this.renderButtons(buttonRequestSettings)}
                 <br />

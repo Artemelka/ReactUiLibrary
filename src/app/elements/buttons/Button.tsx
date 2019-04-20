@@ -1,9 +1,10 @@
 import React, { Component, MouseEvent, KeyboardEvent } from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
 import { keyCodes } from '../../../services';
-import './Button.less';
+const style = require('./Button.less');
+const cn = classNames.bind(style);
 
 export interface ButtonNotRequiredProps {
     disabled?: boolean;
@@ -61,7 +62,7 @@ export class Button extends Component<ButtonProps, State> {
     render() {
         const { isActive } = this.state;
         const { children, disabled, icon, label, roundLeft, roundRight, type } = this.props;
-        const buttonClasses = classNames('Button', {
+        const buttonClasses = cn('Button', {
             'Button--active': isActive,
             'Button--disabled': disabled,
             'Button--icon': icon,
@@ -79,7 +80,7 @@ export class Button extends Component<ButtonProps, State> {
                 onKeyUp={this.handleKeyDownOrUp(false)}
                 type={type}
             >
-                <span className={classNames('Button__content')}>
+                <span className={cn('Button__content')}>
                     {icon ? children : label}
                 </span>
             </button>

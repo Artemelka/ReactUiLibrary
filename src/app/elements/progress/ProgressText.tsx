@@ -1,6 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
-import './Progress.less';
+import classNames from 'classnames/bind';
+
+const style = require('./Progress.less');
+const cn = classNames.bind(style);
 
 interface Props {
     value: number;
@@ -15,8 +17,8 @@ export class ProgressText extends React.Component<Props> {
         const { value } = this.props;
 
         return (
-            <div className={classNames('Progress')}>
-                <p className={classNames('Progress__title')}>
+            <div className={cn('Progress')}>
+                <p className={cn('Progress__title')}>
                     Progress status: {value}%
                 </p>
             </div>

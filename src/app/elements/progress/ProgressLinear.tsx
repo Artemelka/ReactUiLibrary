@@ -1,12 +1,14 @@
-import React from 'react';
-import classNames from 'classnames';
-import './Progress.less';
+import React, { Component } from 'react';
+import classNames from 'classnames/bind';
+
+const style = require('./Progress.less');
+const cn = classNames.bind(style);
 
 interface Props {
     value: number;
 }
 
-export class ProgressLinear extends React.Component<Props> {
+export class ProgressLinear extends Component<Props> {
     static defaultProps = {
         value: 50
     };
@@ -14,7 +16,7 @@ export class ProgressLinear extends React.Component<Props> {
     render() {
         const { value } = this.props;
         const countStyle = {width: `${value}%`};
-        const progressStatusClasses = classNames('Progress__status', {
+        const progressStatusClasses = cn('Progress__status', {
             'Progress__status--blue': (value > 50) && (value < 80),
             'Progress__status--crimson': value <= 20,
             'Progress__status--green': value > 80,
@@ -22,8 +24,8 @@ export class ProgressLinear extends React.Component<Props> {
         });
 
         return (
-            <div className={classNames('Progress')}>
-                <div className={classNames('Progress__line')}>
+            <div className={cn('Progress')}>
+                <div className={cn('Progress__line')}>
                     <div
                         className={progressStatusClasses}
                         style={countStyle}

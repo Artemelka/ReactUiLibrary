@@ -2,8 +2,8 @@
     background-color: #eee;
     margin: 0;
     padding: 0;
+}
 
-    &__wrapper {
-        text-align: left;
-    }
+.Page__app-container {
+    text-align: center;
 }

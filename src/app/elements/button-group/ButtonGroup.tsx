@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Button, ButtonProps } from '../buttons/button';
-import classNames from 'classnames';
-import './ButtonGroup.less';
+import classNames from 'classnames/bind';
+
+const style = require('./ButtonGroup.less');
+const cn = classNames.bind(style);
 
 interface Props {
     buttons: Array<ButtonProps>;
@@ -24,13 +26,13 @@ export class ButtonGroup extends Component<Props> {
         const { buttons, buttonComponent: ButtonComponent, round, separatorSize } = this.props;
         const lastButtonIndex = buttons.length - 1;
         const hasSeparator = separatorSize && (buttons.length > 1);
-        const separatorClasses = classNames('Button-group__separator', {
+        const separatorClasses = cn('Button-group__separator', {
             'Button-group__separator--medium': separatorSize === SeparatorSize.MEDIUM,
             'Button-group__separator--small': separatorSize === SeparatorSize.SMALL
         });
 
         return (
-            <div className={classNames('Button-group')}>
+            <div className={cn('Button-group')}>
                 {buttons.map((buttonProps: {[key: string]: any}, index) => {
                     const nextProps: {[key: string]: any} = {
                         ...buttonProps,

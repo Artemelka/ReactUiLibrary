@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import {
     getComponentText,
     getHeading,
@@ -8,7 +8,9 @@ import {
     Span,
 } from './components';
 import { ComponentType, HeadingType } from './constants';
-import './Text.less';
+
+const style = require('./Text.less');
+const cn = classNames.bind(style);
 
 interface Props {
     bold?: boolean;
@@ -61,7 +63,7 @@ export class TextComponent extends React.Component<Props> {
             console.warn(WarningMessages.TEXT, WarningMessages.STATUS);
         }
 
-        return classNames('Text', {
+        return cn('Text', {
             'Text--heading-h1': isHeading && headingType === HeadingType.H1,
             'Text--heading-h2': isHeading && headingType === HeadingType.H2,
             'Text--heading-h3': isHeading && headingType === HeadingType.H3,

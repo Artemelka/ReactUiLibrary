@@ -1,7 +1,9 @@
 import React from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import { Anchor } from '../../elements';
-import './SideBar.less';
+
+const style = require('./SideBar.less');
+const cn = classNames.bind(style);
 
 interface Props {
     items: Array<any>;
@@ -13,10 +15,10 @@ export class SideBar extends React.Component<Props> {
 
     render() {
         return (
-            <div className={classNames('SideBar')}>
-                <ul className={classNames('SideBar__scroll-wrapper')}>
+            <div className={cn('SideBar')}>
+                <ul className={cn('SideBar__scroll-wrapper')}>
                     {this.props.items.map(({name, url}, index) =>
-                        <li className={classNames('SideBar__link')} key={index}>
+                        <li className={cn('SideBar__link')} key={index}>
                             <Anchor
                                 label={name}
                                 onClick={this.handleLinkClick(url)}
