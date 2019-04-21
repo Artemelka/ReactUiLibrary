@@ -18,18 +18,27 @@ export class DropDownPanel extends Component<DropDownPropsWithChildren> {
         const { children, onAction, onChange, opened } = this.props;
 
         return children.map(childElement => {
-            if (childElement.type.name === 'DropDownSummary') {
-                return {
-                    ...childElement,
-                    props: {
-                        ...childElement.props,
-                        onAction,
-                        onChange,
-                        opened
-                    }
-                };
+            switch (childElement.type.name) {
+                case 'DropDownSummary':
+                    return {
+                        ...childElement,
+                        props: {
+                            ...childElement.props,
+                            onAction,
+                            onChange,
+                            opened
+                        }
+                    };
+                case 'DropDownDetails':
+                    return {
+                        ...childElement,
+                        props: {
+                            ...childElement.props,
+                            opened
+                        }
+                    };
+                default: return childElement;
             }
-            return childElement;
         });
     };
 

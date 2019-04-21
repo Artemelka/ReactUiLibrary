@@ -12,10 +12,13 @@ const dropDownPanelProps: Array<DropDownPanelProps> = [
         opened: true
     }
 ];
+const Header = () => <h2 style={{margin: 0}}>Heading</h2>;
+const Content = () => <div style={{height: '200px'}}>Content</div>;
 
 interface State {
     opened: boolean;
 }
+
 class DropDownPanelExample extends Component<DropDownPanelProps, State> {
     static getDerivedStateFromProps (prevState: State, nextProps: DropDownPanelProps) {
         return prevState.opened !== nextProps.opened ? {opened: nextProps.opened} : null;
@@ -38,8 +41,12 @@ class DropDownPanelExample extends Component<DropDownPanelProps, State> {
                 onChange={this.handleChange}
                 opened={this.state.opened}
             >
-                <DropDownSummary>123456</DropDownSummary>
-                <DropDownDetails>098765</DropDownDetails>
+                <DropDownSummary>
+                    <Header/>
+                </DropDownSummary>
+                <DropDownDetails>
+                    <Content/>
+                </DropDownDetails>
             </DropDownPanel>
         );
     }

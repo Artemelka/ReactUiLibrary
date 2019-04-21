@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, RefObject } from 'react';
 import classNames from 'classnames/bind';
 
 const style = require('./DropDownPanel.less');
@@ -9,9 +9,25 @@ interface Props {
 }
 
 export class DropDownDetails extends Component<Props> {
+    componentDidMount() {
+            this.height = `${this.ref.current.getBoundingClientRect().height + 30}px`;
+            console.log('height', this.height);
+    }
+
+    height = 'auto';
+    ref: RefObject<HTMLDivElement> = createRef();
+
     render() {
+        const style = this.props.opened
+            ? {height: this.height}
+            : {};
+
         return (
-            <div className={cn('Drop-down-panel__details')}>
+            <div
+                className={cn('Drop-down-panel__details')}
+                ref={this.ref}
+                style={style}
+            >
                 {this.props.children}
             </div>
         );
