@@ -17,6 +17,9 @@ export interface CheckboxProps {
     toggle?: boolean;
     withRef?: (ref: HTMLElement) => void;
 }
+interface State {
+    isActive: boolean;
+}
 
 const iconProps = {
     fontSize: 18,
@@ -24,22 +27,30 @@ const iconProps = {
     size: '2x',
     stack: 'fas'
 };
-const {ENTER, SPACE} = keyCodes;
-const targetKeyCodes = [ENTER, SPACE];
 
-export class Checkbox extends Component<CheckboxProps> {
+export class Checkbox extends Component<CheckboxProps, State> {
     static defaultProps = {
         checked: false,
         onChange: () => {},
-        withRef: (ref: HTMLElement) => ref
+        withRef: () => {}
+    };
+
+    state = {
+        isActive: false
     };
 
     componentDidMount() {
-        this.props.withRef(this.label.current);
+        this.props.withRef(this.input.current);
     }
 
-    label: RefObject<HTMLLabelElement> = createRef();
+    setActive = () => {
+        this.setState({isActive: true});
+        this.input.current.focus();
+    };
+
     input: RefObject<HTMLInputElement> = createRef();
+
+    handleBlur = () => this.setState({isActive: false});
 
     handleChange = () => {
         const { disabled, onChange } = this.props;
@@ -49,29 +60,28 @@ export class Checkbox extends Component<CheckboxProps> {
         }
     };
 
-    handleFocus = () => {
-        // this.input.current.blur();
-        this.label.current.focus();
-    };
-
     handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
         const {keyCode, which } = event;
         const code = keyCode || which;
 
-        if (targetKeyCodes.includes(code)) {
+        if (keyCodes.ENTER === code) {
+            this.setActive();
             this.handleChange();
         }
     };
 
     render() {
         const { checked, disabled, id, name, toggle } = this.props;
+        const { isActive } = this.state;
         const checkboxStyle = checkboxClassNames('Checkbox', {
             'Checkbox--checked': checked,
-            'Checkbox--disabled': disabled
+            'Checkbox--disabled': disabled,
+            'Checkbox--focused': isActive
         });
         const toggleStyle = toggleClassNames('Toggle', {
             'Toggle--checked': checked,
-            'Toggle--disabled': disabled
+            'Toggle--disabled': disabled,
+            'Toggle--focused': isActive
         });
         const inputClasses = toggle ? toggleClassNames('Toggle__input') : checkboxClassNames('Checkbox__input');
         const hasIcon = !toggle && checked;
@@ -79,9 +89,8 @@ export class Checkbox extends Component<CheckboxProps> {
         return (
             <label
                 className={toggle ? toggleStyle : checkboxStyle}
+                onFocus={this.setActive}
                 onKeyPress={this.handleKeyPress}
-                tabIndex={disabled ? -1 : 0}
-                ref={this.label}
             >
                 <input
                     checked={checked}
@@ -89,9 +98,8 @@ export class Checkbox extends Component<CheckboxProps> {
                     disabled={disabled}
                     id={id}
                     name={name}
+                    onBlur={this.handleBlur}
                     onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    tabIndex={-1}
                     ref={this.input}
                     type="checkbox"
                     value={id}

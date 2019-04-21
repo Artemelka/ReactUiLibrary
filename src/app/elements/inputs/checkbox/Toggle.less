@@ -10,6 +10,7 @@
     vertical-align: middle;
     width: 32px;
 
+    &--focused,
     &:hover,
     &:focus {
         background-color: #0aaf;
@@ -23,21 +24,21 @@
         left: 2px;
         position: absolute;
         top: 2px;
-        transition: left 0.5s, right 0.5s;
+        transition: left 0.5s;
         width: 14px;
     }
 
     &--checked {
         background-color: #f3e367;
 
+        &--focused,
         &:hover,
         &:focus {
             background-color: darken(#f3e367, 15%);
         }
 
         &::before {
-            left: auto;
-            right: 2px;
+            left: 16px;
         }
     }
 
@@ -45,6 +46,7 @@
         background-color: #eee;
         cursor: default;
 
+        &--focused,
         &:hover,
         &:focus {
             background-color: #eee;
