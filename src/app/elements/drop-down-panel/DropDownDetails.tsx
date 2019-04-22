@@ -11,7 +11,6 @@ interface Props {
 export class DropDownDetails extends Component<Props> {
     componentDidMount() {
             this.height = `${this.ref.current.getBoundingClientRect().height + 30}px`;
-            console.log('height', this.height);
     }
 
     height = 'auto';

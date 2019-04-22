@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames/bind';
 
 const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
 
 export interface DropDownPanelProps {
-    onAction?: () => void;
+    actionIcon?: {
+        iconName: string;
+        onClick: () => void;
+    };
     onChange?: () => void;
     opened: boolean;
+    openingByIcon?: boolean;
 }
 interface DropDownPropsWithChildren extends DropDownPanelProps {
     children: Array<{[key: string]: any}>;
@@ -15,28 +19,20 @@ interface DropDownPropsWithChildren extends DropDownPanelProps {
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
     updateChildren = () => {
-        const { children, onAction, onChange, opened } = this.props;
+        const { children, actionIcon, onChange, opened, openingByIcon } = this.props;
 
-        return children.map(childElement => {
+
+        return Children.toArray(children).map(childElement => {
             switch (childElement.type.name) {
                 case 'DropDownSummary':
-                    return {
-                        ...childElement,
-                        props: {
-                            ...childElement.props,
-                            onAction,
-                            onChange,
-                            opened
-                        }
-                    };
+                    return cloneElement(childElement, {
+                        actionIcon,
+                        onChange,
+                        opened,
+                        openingByIcon
+                    });
                 case 'DropDownDetails':
-                    return {
-                        ...childElement,
-                        props: {
-                            ...childElement.props,
-                            opened
-                        }
-                    };
+                    return cloneElement(childElement, {opened});
                 default: return childElement;
             }
         });
@@ -47,14 +43,13 @@ export class DropDownPanel extends Component<DropDownPropsWithChildren> {
         const styleName = cn('Drop-down-panel', {
             'Drop-down-panel--opened': opened
         });
-        const updatedChildren = this.updateChildren();
 
         return (
             <div
                 className={styleName}
                 tabIndex={0}
             >
-                {updatedChildren}
+                {this.updateChildren()}
             </div>
         );
     }

@@ -1,15 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { SandBox } from '../sand-box';
-import { DropDownPanel, DropDownDetails, DropDownSummary } from '../../../elements';
+import { DropDownPanel, DropDownDetails, DropDownSummary, IconModule } from '../../../elements';
 import { logger } from '../utils';
 import { DropDownPanelProps } from '../../../elements/drop-down-panel/DropDownPanel';
 
+const { PLUS, TRASH } = IconModule.IconNames;
 const dropDownPanelProps: Array<DropDownPanelProps> = [
     {
         opened: false
     }, {
-        onAction: logger('click action'),
+        actionIcon: {
+            iconName: TRASH,
+            onClick: logger('click action')
+        },
         opened: true
+    }, {
+        opened: false,
+        openingByIcon: true
+    }, {
+        actionIcon: {
+            iconName: PLUS,
+            onClick: logger('click another action')
+        },
+        opened: false,
+        openingByIcon: true
     }
 ];
 const Header = () => <h2 style={{margin: 0}}>Heading</h2>;
