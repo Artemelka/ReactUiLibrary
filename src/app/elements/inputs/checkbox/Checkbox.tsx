@@ -12,6 +12,7 @@ export interface CheckboxProps {
     checked?: boolean;
     disabled?: boolean;
     id: string;
+    indeterminate?: boolean;
     name: string;
     onChange?: () => void;
     toggle?: boolean;
@@ -71,7 +72,7 @@ export class Checkbox extends Component<CheckboxProps, State> {
     };
 
     render() {
-        const { checked, disabled, id, name, toggle } = this.props;
+        const { checked, disabled, id, indeterminate, name, toggle } = this.props;
         const { isActive } = this.state;
         const checkboxStyle = checkboxClassNames('Checkbox', {
             'Checkbox--checked': checked,
@@ -106,7 +107,10 @@ export class Checkbox extends Component<CheckboxProps, State> {
                 />
                 {hasIcon &&
                     <span className={checkboxClassNames('Checkbox__icon')}>
-                        <IconModule.Icon {...iconProps}/>
+                        {indeterminate
+                            ? <span className={checkboxClassNames('Checkbox__icon-indeterminate')}/>
+                            : <IconModule.Icon {...iconProps}/>
+                        }
                     </span>
                 }
             </label>

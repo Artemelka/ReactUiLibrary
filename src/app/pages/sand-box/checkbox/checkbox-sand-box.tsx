@@ -22,9 +22,10 @@ const checkboxProps: Array<Props> = [
     }, {
         onChange: logger('checkbox Click'),
         id: 'test2',
-        heading: 'Checkbox',
+        indeterminate: true,
+        heading: 'Checkbox indeterminate',
         name: 'test2',
-        checked: false
+        checked: true
     }, {
         heading: 'Checkbox without prop checked',
         id: 'test3',
