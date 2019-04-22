@@ -27,18 +27,21 @@ const dropDownPanelProps: Array<DropDownPanelProps> = [
     }
 ];
 const Header = () => <h2 style={{margin: 0}}>Heading</h2>;
-const Content = () => <div style={{height: '200px'}}>Content</div>;
+const Content = ({index}: {index: number}) => <div style={{height: `${index + 1}00px`}}>Content</div>;
 
 interface State {
     opened: boolean;
 }
+interface Props extends DropDownPanelProps {
+    index: number;
+}
 
-class DropDownPanelExample extends Component<DropDownPanelProps, State> {
+class DropDownPanelExample extends Component<Props, State> {
     static getDerivedStateFromProps (prevState: State, nextProps: DropDownPanelProps) {
         return prevState.opened !== nextProps.opened ? {opened: nextProps.opened} : null;
     }
 
-    constructor(props: DropDownPanelProps) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             opened: props.opened
@@ -48,7 +51,7 @@ class DropDownPanelExample extends Component<DropDownPanelProps, State> {
     handleChange = () => this.setState(({opened}) => ({opened: !opened}));
 
     render() {
-        const { onChange, opened, ...restProps} = this.props;
+        const { onChange, opened, index, ...restProps} = this.props;
         return (
             <DropDownPanel
                 {...restProps}
@@ -59,13 +62,13 @@ class DropDownPanelExample extends Component<DropDownPanelProps, State> {
                     <Header/>
                 </DropDownSummary>
                 <DropDownDetails>
-                    <Content/>
+                    <Content index={index}/>
                 </DropDownDetails>
             </DropDownPanel>
         );
     }
 }
-const sandBoxItems = dropDownPanelProps.map((props, index) => <DropDownPanelExample {...props} key={index}/>);
+const sandBoxItems = dropDownPanelProps.map((props, index) => <DropDownPanelExample {...props} index={index} key={index}/>);
 
 export const DropDownPanelSandBox = () => (
     <SandBox
