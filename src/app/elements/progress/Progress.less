@@ -2,8 +2,48 @@
     padding: 5px 30px;
     position: relative;
 
+    &--circular {
+        height: 114px;
+        padding: 0;
+        width: 114px;
+    }
+
+    &__circle {
+        height: 114px;
+        width: 114px;
+
+        &-line {
+            fill: none;
+            stroke: #343035;
+            stroke-width: 10px;
+        }
+
+        &-status {
+            fill: none;
+            stroke: #ffef00;
+            stroke-dasharray: 326.56;
+            //stroke-dashoffset: 60;
+            stroke-linecap: round;
+            stroke-width: 10px;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.5s;
+        }
+    }
+
     &__title {
         font-size: 16px;
+
+        &--circular {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 22px;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
     }
 
     &__line {

@@ -1,5 +1,17 @@
 .Page {
-    background-color: #eee;
+    /*background-color: #eee;*/
+    background: #413951;
+    background: linear-gradient(145deg, #413951 0%, #201c29 100%);
+    color: #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#413951',
+        endColorstr='#201c29',
+        GradientType=0
+    );
+    height: 100vh;
+    font-family: 'montserrat', Helvetica, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
     margin: 0;
     padding: 0;
 }

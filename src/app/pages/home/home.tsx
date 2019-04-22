@@ -75,7 +75,18 @@ export class TestHomePage extends React.Component<AppPropsType> {
 
     renderButtons = (buttons: Array<Buttons>) => buttons.map(({onClick, label}: Buttons, index: number) => (
         <div className={cn('Test-page__button-wrapper')} key={index}>
-            <button onClick={onClick}>{translate(label)}</button>
+            <button
+                onClick={onClick}
+                style={{
+                    backgroundColor: '#9a0fe0',
+                    border: 'none',
+                    padding: '7px 14px',
+                    color: '#fff',
+                    fontWeight: 'bold'
+                }}
+            >
+                {translate(label)}
+            </button>
         </div>
     ));
 
