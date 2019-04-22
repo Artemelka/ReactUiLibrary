@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames/bind'
+import classNames from 'classnames/bind';
 import { SandBox } from '../sand-box';
 import { IconModule } from '../../../elements/icon';
 
