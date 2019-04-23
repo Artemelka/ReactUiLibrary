@@ -21,43 +21,45 @@ interface DropDownPropsWithChildren extends DropDownPanelProps {
 }
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
-    updateChildren = () => {
-        const { actionIcon, children, darkColor, emptyStyle, onChange, onlyBorder, opened, openingByIcon } = this.props;
-
+    getUpdatedChildren = () => {
+        const { actionIcon, children, onChange, opened, openingByIcon } = this.props;
+        const summaryClassName = cn('Drop-down-panel__summary', {
+            'Drop-down-panel__summary--clickable': !openingByIcon
+        });
+        const summaryProps = {
+            actionIcon,
+            className: summaryClassName,
+            onChange,
+            opened,
+            openingByIcon
+        };
 
         return Children.toArray(children).map(childElement => {
             switch (childElement.type.name) {
                 case 'DropDownSummary':
-                    return cloneElement(childElement, {
-                        actionIcon,
-                        darkColor,
-                        emptyStyle,
-                        onChange,
-                        onlyBorder,
-                        opened,
-                        openingByIcon
-                    });
+                    return cloneElement(childElement, summaryProps);
                 case 'DropDownDetails':
-                    return cloneElement(childElement, {opened});
+                    return cloneElement(childElement, {
+                        className: cn('Drop-down-panel__details'),
+                        opened
+                    });
                 default: return childElement;
             }
         });
     };
 
     render() {
-        const { darkColor, emptyStyle, opened } = this.props;
+        const { darkColor, emptyStyle, onlyBorder, opened } = this.props;
         const styleName = cn('Drop-down-panel', {
             'Drop-down-panel--opened': opened,
             'Drop-down-panel--dark': darkColor,
             'Drop-down-panel--empty': emptyStyle,
+            'Drop-down-panel--only-border': onlyBorder,
         });
 
         return (
-            <div
-                className={styleName}
-                tabIndex={0}
-            >
-                {this.updateChildren()}
+            <div className={styleName}>
+                {this.getUpdatedChildren()}
             </div>
         );
     }

@@ -14,34 +14,72 @@
 
     &--dark {
         border: none;
+
+        & .@{ClassName}__summary {
+            background-color: @secondDarkColor;
+            color: @textMain;
+
+            &--clickable {
+                &:hover,
+                &:focus {
+                    background-color: darken(@secondDarkColor, 10%);
+                }
+            }
+        }
     }
 
     &--empty {
         border: none;
+
+        & .@{ClassName}__summary {
+            &--clickable {
+                &:hover,
+                &:focus {
+                    background: none;
+                    color: @secondColor;
+                }
+            }
+        }
+    }
+
+    &--empty,
+    &--only-border {
+        & .@{ClassName}__summary,
+        & .@{ClassName}__details {
+            background: none;
+            color: @textMain;
+        }
+    }
+
+    &--only-border {
+        & .@{ClassName}__summary {
+            &--clickable {
+                &:hover,
+                &:focus {
+                    background: rgba(@textMain, 0.1);
+                }
+            }
+        }
     }
 
     &__summary {
         align-items: center;
         background-color: @secondColor;
-        color: @textActive;
+        color: @baseDarkColor;
         display: flex;
         justify-content: flex-start;
         outline: none;
         padding: 15px;
+        transition: background-color 0.3s, color 0.3s;
 
         &--clickable {
             cursor: pointer;
-        }
 
-        &--dark {
-            background-color: @secondDarkColor;
-            color: @textMain;
-        }
-
-        &--empty,
-        &--only-border {
-            background: none;
-            color: @textMain;
+            &:hover,
+            &:focus {
+                background-color: darken(@secondColor, 15%);
+                color: @textMain;
+            }
         }
 
         &-action {

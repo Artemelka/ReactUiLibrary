@@ -5,6 +5,22 @@ import { logger } from '../utils';
 import { DropDownPanelProps } from '../../../elements/drop-down-panel/DropDownPanel';
 
 const { PLUS, TRASH } = IconModule.IconNames;
+const dropDownPanelActionProps = [
+    {}, {
+        actionIcon: {
+            iconName: TRASH,
+            onClick: logger('click action')
+        }
+    }, {
+        openingByIcon: true
+    }, {
+        actionIcon: {
+            iconName: TRASH,
+            onClick: logger('click action')
+        },
+        openingByIcon: true
+    }
+];
 const dropDownPanelProps: Array<DropDownPanelProps> = [
     {
         opened: false
@@ -12,32 +28,11 @@ const dropDownPanelProps: Array<DropDownPanelProps> = [
         onlyBorder: true,
         opened: false
     }, {
-        actionIcon: {
-            iconName: TRASH,
-            onClick: logger('click action')
-        },
         darkColor: true,
-        opened: false,
-        openingByIcon: true
+        opened: false
     }, {
         emptyStyle: true,
         opened: false
-    }, {
-        actionIcon: {
-            iconName: TRASH,
-            onClick: logger('click action')
-        },
-        opened: true
-    }, {
-        opened: false,
-        openingByIcon: true
-    }, {
-        actionIcon: {
-            iconName: PLUS,
-            onClick: logger('click another action')
-        },
-        opened: false,
-        openingByIcon: true
     }
 ];
 const Header = () => <h2 style={{margin: 0}}>Heading</h2>;
@@ -82,7 +77,17 @@ class DropDownPanelExample extends Component<Props, State> {
         );
     }
 }
-const sandBoxItems = dropDownPanelProps.map((props, index) => <DropDownPanelExample {...props} index={index} key={index}/>);
+const sandBoxItems = dropDownPanelProps.map((props, index) =>
+    dropDownPanelActionProps.map((actions, otherIndex) => (
+        <div style={{padding: '10px 0'}}>
+            <DropDownPanelExample
+                {...props}
+                {...actions}
+                index={index}
+                key={Number(`${otherIndex}${index}`)}
+            />
+        </div>
+)));
 
 export const DropDownPanelSandBox = () => (
     <SandBox

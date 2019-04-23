@@ -33,7 +33,7 @@ exports[`Test Buttons Icon Rendering snapshot 1`] = `
 
 exports[`Test Buttons IconLabel Rendering snapshot 1`] = `
 <Button
-  icon={true}
+  iconLabel={true}
   label=""
   onClick={[Function]}
   type="button"

@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
 import { Button } from '..';
 import { keyCodes } from '../../../services';
-import { DropDownPanelProps } from './DropDownPanel';
 
 const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
@@ -16,10 +15,8 @@ interface Props {
         iconName: string;
         onClick: () => void;
     };
-    darkColor?: boolean;
-    emptyStyle?: boolean;
+    className?: string;
     onChange?: () => void;
-    onlyBorder?: boolean;
     opened?: boolean;
     openingByIcon?: boolean;
 }
@@ -48,19 +45,14 @@ export class DropDownSummary extends Component<Props> {
     };
 
     render() {
-        const { actionIcon, children, darkColor, emptyStyle,  onChange,  onlyBorder, opened, openingByIcon } = this.props;
+        const { actionIcon, children, className, onChange, opened, openingByIcon } = this.props;
         const iconName = opened ? ANGLE.UP : ANGLE.DOWN;
         const summaryTabIndex = openingByIcon ? -1 : 0;
-        const styleName = cn('Drop-down-panel__summary', {
-            'Drop-down-panel__summary--clickable': !openingByIcon,
-            'Drop-down-panel__summary--empty': emptyStyle,
-            'Drop-down-panel__summary--only-border': onlyBorder,
-            'Drop-down-panel__summary--dark': darkColor
-        });
+
 
         return (
             <div
-                className={styleName}
+                className={className}
                 onClick={this.handleClick}
                 onKeyPress={this.handleKeyPress}
                 tabIndex={summaryTabIndex}

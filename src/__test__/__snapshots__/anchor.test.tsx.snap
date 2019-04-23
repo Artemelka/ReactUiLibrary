@@ -5,6 +5,8 @@ exports[`Anchor test Render snapshot anchor 1`] = `
   anchorClasses="Anchor"
   href="test"
   label="test"
+  onClick={[Function]}
+  onKeyPress={[Function]}
 />
 `;
 
@@ -12,5 +14,7 @@ exports[`Anchor test Render snapshot pseudoLink 1`] = `
 <PseudoLink
   anchorClasses="Anchor"
   label="test"
+  onClick={[Function]}
+  onKeyPress={[Function]}
 />
 `;
