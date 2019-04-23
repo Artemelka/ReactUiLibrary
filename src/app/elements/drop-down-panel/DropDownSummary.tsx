@@ -1,4 +1,4 @@
-import React, {Component, KeyboardEvent, SyntheticEvent} from 'react';
+import React, { Component, KeyboardEvent, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
 import { Button } from '..';
@@ -16,7 +16,10 @@ interface Props {
         iconName: string;
         onClick: () => void;
     };
+    darkColor?: boolean;
+    emptyStyle?: boolean;
     onChange?: () => void;
+    onlyBorder?: boolean;
     opened?: boolean;
     openingByIcon?: boolean;
 }
@@ -45,11 +48,14 @@ export class DropDownSummary extends Component<Props> {
     };
 
     render() {
-        const { actionIcon, children, onChange, opened, openingByIcon } = this.props;
+        const { actionIcon, children, darkColor, emptyStyle,  onChange,  onlyBorder, opened, openingByIcon } = this.props;
         const iconName = opened ? ANGLE.UP : ANGLE.DOWN;
         const summaryTabIndex = openingByIcon ? -1 : 0;
         const styleName = cn('Drop-down-panel__summary', {
-            'Drop-down-panel__summary--clickable': !openingByIcon
+            'Drop-down-panel__summary--clickable': !openingByIcon,
+            'Drop-down-panel__summary--empty': emptyStyle,
+            'Drop-down-panel__summary--only-border': onlyBorder,
+            'Drop-down-panel__summary--dark': darkColor
         });
 
         return (

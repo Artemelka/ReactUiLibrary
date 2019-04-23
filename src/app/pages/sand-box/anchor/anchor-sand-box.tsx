@@ -13,13 +13,19 @@ const anchorProps = [
     {
         href: PROJECT_LINK,
         label: LabelLink.LINK,
-        newPage: true
+        newPage: true,
+        onClick: logger('Link click')
     }, {
+        disabled: true,
         href: PROJECT_LINK,
         label: LabelLink.DISABLED,
         newPage: true,
-        disabled: true
+        onClick: logger('Link click')
     }, {
+        label: LabelLink.PSEUDO,
+        onClick: logger('Link click')
+    }, {
+        active: true,
         label: LabelLink.PSEUDO,
         onClick: logger('Link click')
     }

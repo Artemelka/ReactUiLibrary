@@ -1,9 +1,13 @@
+@import '../../../styles/constants';
+
 @className: Checkbox;
 
 .@{className} {
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #000;
+    background-color: @secondDarkColor;
+    border: 2px solid rgba(@textMain, 0);
+    border-radius: 2px;
+    color: @textMain;
     cursor: pointer;
     display: inline-flex;
     height: 18px;
@@ -14,40 +18,38 @@
     width: 18px;
 
     &--focused,
-    &:hover,
-    &:focus {
-        border-color: #f3e367;
+    &:focus,
+    &:hover {
+        border-color: rgba(@textMain, 1);
     }
 
     &--checked {
-        background-color: #f3e367;
-        border-color: #f3e367;
-
-        &--focused,
-        &:hover,
-        &:focus {
-            border-color: #000;
-        }
-
         &:disabled {
-            border-color: #000;
+            background-color: @textDisabled;
+
+            &--focused,
+            &:hover,
+            &:focus {
+                background-color: @textDisabled;
+            }
         }
     }
 
     &--disabled,
     &:disabled {
-        background-color: #ccc;
-        border-color: #000;
+        background-color: @textDisabled;
+        border-color: @textDisabled;
         cursor: default;
 
-        &--focused,
+        &.@{className}--focused,
         &:hover,
         &:focus {
-            border-color: #000;
+            background-color: @textDisabled;
+            border-color: rgba(@textMain, 0);
         }
 
         & .@{className}__icon {
-            color: #7f8688;
+            color: @textActive;
         }
     }
 
@@ -66,10 +68,11 @@
         justify-content: center;
 
         &-indeterminate {
-            background-color: #000;
+            background-color: @textMain;
+            border-radius: 2px;
             display: block;
-            height: 12px;
-            width: 12px;
+            height: 10px;
+            width: 10px;
         }
     }
 }

@@ -9,7 +9,10 @@ export interface DropDownPanelProps {
         iconName: string;
         onClick: () => void;
     };
+    darkColor?: boolean;
+    emptyStyle?: boolean;
     onChange?: () => void;
+    onlyBorder?: boolean;
     opened: boolean;
     openingByIcon?: boolean;
 }
@@ -19,7 +22,7 @@ interface DropDownPropsWithChildren extends DropDownPanelProps {
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
     updateChildren = () => {
-        const { children, actionIcon, onChange, opened, openingByIcon } = this.props;
+        const { actionIcon, children, darkColor, emptyStyle, onChange, onlyBorder, opened, openingByIcon } = this.props;
 
 
         return Children.toArray(children).map(childElement => {
@@ -27,7 +30,10 @@ export class DropDownPanel extends Component<DropDownPropsWithChildren> {
                 case 'DropDownSummary':
                     return cloneElement(childElement, {
                         actionIcon,
+                        darkColor,
+                        emptyStyle,
                         onChange,
+                        onlyBorder,
                         opened,
                         openingByIcon
                     });
@@ -39,9 +45,11 @@ export class DropDownPanel extends Component<DropDownPropsWithChildren> {
     };
 
     render() {
-        const { opened } = this.props;
+        const { darkColor, emptyStyle, opened } = this.props;
         const styleName = cn('Drop-down-panel', {
-            'Drop-down-panel--opened': opened
+            'Drop-down-panel--opened': opened,
+            'Drop-down-panel--dark': darkColor,
+            'Drop-down-panel--empty': emptyStyle,
         });
 
         return (

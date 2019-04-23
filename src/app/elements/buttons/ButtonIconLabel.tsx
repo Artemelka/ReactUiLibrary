@@ -17,7 +17,7 @@ export class ButtonIconLabel extends Component<ButtonIconLabelProps> {
         const {iconName, label, ...restProps} = this.props;
 
         return (
-            <Button {...restProps} icon label="">
+            <Button {...restProps} iconLabel label="">
                 <span className={cn('Button__icon-content')}>
                     <IconModule.Icon name={iconName} fontSize={ICON_SIZE}/>
                 </span>

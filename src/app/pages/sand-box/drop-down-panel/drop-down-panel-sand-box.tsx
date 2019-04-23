@@ -9,6 +9,20 @@ const dropDownPanelProps: Array<DropDownPanelProps> = [
     {
         opened: false
     }, {
+        onlyBorder: true,
+        opened: false
+    }, {
+        actionIcon: {
+            iconName: TRASH,
+            onClick: logger('click action')
+        },
+        darkColor: true,
+        opened: false,
+        openingByIcon: true
+    }, {
+        emptyStyle: true,
+        opened: false
+    }, {
         actionIcon: {
             iconName: TRASH,
             onClick: logger('click action')

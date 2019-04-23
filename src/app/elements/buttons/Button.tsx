@@ -14,6 +14,7 @@ const ButtonSize = {
 export interface ButtonNotRequiredProps {
     disabled?: boolean;
     icon?: boolean;
+    iconLabel?: boolean;
     onClick?: (event: React.SyntheticEvent) => void;
     roundLeft?: boolean;
     roundRight?: boolean;
@@ -50,7 +51,7 @@ export class Button extends Component<ButtonProps, State> {
     };
 
     handleKeyPress = (event: KeyboardEvent<HTMLButtonElement>) => {
-        const {keyCode} = event;
+        const { keyCode } = event;
 
         if (targetKeyCodes.includes(keyCode)) {
             this.props.onClick(event);
@@ -67,11 +68,12 @@ export class Button extends Component<ButtonProps, State> {
 
     render() {
         const { isActive } = this.state;
-        const { children, disabled, icon, label, roundLeft, roundRight, size, type } = this.props;
+        const { children, disabled, icon, iconLabel, label, roundLeft, roundRight, size, type } = this.props;
         const buttonClasses = cn('Button', {
             'Button--active': isActive,
             'Button--disabled': disabled,
             'Button--icon': icon,
+            'Button--icon-label': iconLabel,
             'Button--round-left': roundLeft,
             'Button--round-right': roundRight,
             'Button--small': size === ButtonSize.SMALL,
@@ -89,7 +91,7 @@ export class Button extends Component<ButtonProps, State> {
                 type={type}
             >
                 <span className={cn('Button__content')}>
-                    {icon ? children : label}
+                    {icon || iconLabel ? children : label}
                 </span>
             </button>
         );
