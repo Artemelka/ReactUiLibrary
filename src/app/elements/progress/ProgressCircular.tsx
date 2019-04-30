@@ -19,38 +19,31 @@ interface Props {
     radius: number;
 }
 export class ProgressCircular extends Component<Props> {
-
     render() {
         const { darkColor, percent: value, strokeWidth, radius } = this.props;
         const percent = getValidPercent(value);
         const diameter = radius * 2;
+        const viewBox = `0 0 ${diameter} ${diameter}`;
+        const transform = `rotate(-90 ${radius} ${radius})`;
         const dashRadius = (diameter - strokeWidth) / 2;
         const dashArray = dashRadius * Math.PI * 2;
         const dashOffset = dashArray - dashArray * percent / 100;
-        const svgProps = {
-            width: diameter,
-            height: diameter,
-            viewBox: `0 0 ${diameter} ${diameter}`
-        };
         const circlesProps = {
             cx: radius,
             cy: radius,
             r: dashRadius,
             strokeWidth: `${strokeWidth}px`
         };
-        const circleStatusProps = {
-            style: {
-                strokeDasharray: dashArray,
-                strokeDashoffset: dashOffset
-            },
-            transform: `rotate(-90 ${radius} ${radius})`
-        };
+        const circleStatusStyle = { strokeDashoffset: dashOffset };
+        const textStyle = { fontSize: `${radius / 2}` };
 
         return (
             <div className={cn('Progress', 'Progress--circular')}>
                 <svg
                     className={cn('Progress__circle', {'Progress__circle--dark': darkColor})}
-                    {...svgProps}
+                    width={diameter}
+                    height={diameter}
+                    viewBox={viewBox}
                 >
                     <circle
                         className={cn('Progress__circle-line')}
@@ -59,12 +52,14 @@ export class ProgressCircular extends Component<Props> {
                     <circle
                         className={cn('Progress__circle-status')}
                         {...circlesProps}
-                        {...circleStatusProps}
+                        strokeDasharray={dashArray}
+                        style={circleStatusStyle}
+                        transform={transform}
                     />
                     <text
                         className={cn('Progress__circle-text')}
                         {...textProps}
-                        style={{fontSize: `${radius / 2}`}}
+                        style={textStyle}
                     >
                         {`${percent}%`}
                     </text>
