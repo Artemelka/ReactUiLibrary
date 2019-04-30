@@ -1,49 +1,45 @@
+@import '../../styles/constants';
+
 .Progress {
     padding: 5px 30px;
     position: relative;
 
     &--circular {
-        height: 114px;
         padding: 0;
-        width: 114px;
     }
 
     &__circle {
-        height: 114px;
-        width: 114px;
+        //height: 114px;
+        //width: 114px;
+
+        &-line,
+        &-status {
+            fill: none;
+        }
 
         &-line {
-            fill: none;
-            stroke: #343035;
-            stroke-width: 10px;
+            stroke: @textMain;
         }
 
         &-status {
-            fill: none;
-            stroke: #ffef00;
-            stroke-dasharray: 326.56;
-            //stroke-dashoffset: 60;
+            stroke: @secondColor;
             stroke-linecap: round;
-            stroke-width: 10px;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-            transition: stroke-dashoffset 0.5s;
+            stroke-linejoin: round;
+        }
+
+        &-text {
+            fill: @textMain;
+        }
+
+        &--dark {
+            & .Progress__circle-status {
+                stroke: @secondDarkColor;
+            }
         }
     }
 
     &__title {
         font-size: 16px;
-
-        &--circular {
-            font-size: 24px;
-            font-weight: 400;
-            line-height: 22px;
-            position: absolute;
-            text-align: center;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-        }
     }
 
     &__line {

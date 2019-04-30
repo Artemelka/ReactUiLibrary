@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { getValidPercent } from './utils';
 
 const style = require('./Progress.less');
 const cn = classNames.bind(style);
 
 interface Props {
-    value: number;
+    percent: number;
 }
 
 export class ProgressLinear extends Component<Props> {
     static defaultProps = {
-        value: 50
+        percent: 50
     };
 
     render() {
-        const { value } = this.props;
+        const { percent } = this.props;
+        const value = getValidPercent(percent);
         const countStyle = {width: `${value}%`};
         const progressStatusClasses = cn('Progress__status', {
             'Progress__status--blue': (value > 50) && (value < 80),

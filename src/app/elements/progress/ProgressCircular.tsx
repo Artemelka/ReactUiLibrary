@@ -1,50 +1,73 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { getValidPercent } from './utils';
 
 const style = require('./Progress.less');
 const cn = classNames.bind(style);
 
-const ZERO_STATUS = 326;
+const textProps = {
+    dy: '.3em',
+    x: '50%',
+    y: '50%',
+    textAnchor: 'middle'
+};
 
 interface Props {
-    size: number;
-    value: number;
+    darkColor?: boolean;
+    percent: number;
+    strokeWidth: number;
+    radius: number;
 }
 export class ProgressCircular extends Component<Props> {
-    getValue = () => {
-        const { value } = this.props;
-        const onePercent = ZERO_STATUS / 100;
-        const valueToPercent = value * onePercent;
-
-        return ZERO_STATUS - valueToPercent;
-    };
 
     render() {
-        const { size = 100, value } = this.props;
-        const text = `${value}%`;
-        const statusStyle = { strokeDashoffset: this.getValue() };
-        const circleStyle = {
-            height: size,
-            width: size
+        const { darkColor, percent: value, strokeWidth, radius } = this.props;
+        const percent = getValidPercent(value);
+        const diameter = radius * 2;
+        const dashRadius = (diameter - strokeWidth) / 2;
+        const dashArray = dashRadius * Math.PI * 2;
+        const dashOffset = dashArray - dashArray * percent / 100;
+        const svgProps = {
+            width: diameter,
+            height: diameter,
+            viewBox: `0 0 ${diameter} ${diameter}`
         };
-        const circleSize = {
-            cx: size / 2,
-            cy: size / 2,
-            r: size / 2 - 5
+        const circlesProps = {
+            cx: radius,
+            cy: radius,
+            r: dashRadius,
+            strokeWidth: `${strokeWidth}px`
+        };
+        const circleStatusProps = {
+            style: {
+                strokeDasharray: dashArray,
+                strokeDashoffset: dashOffset
+            },
+            transform: `rotate(-90 ${radius} ${radius})`
         };
 
         return (
-            <div className={cn('Progress', 'Progress--circular')} style={circleStyle}>
-                <div className={cn('Progress__title', 'Progress__title--circular')}>
-                    {text}
-                </div>
-                <svg className={cn('Progress__circle')} style={circleStyle}>
-                    <circle className={cn('Progress__circle-line')} {...circleSize}/>
+            <div className={cn('Progress', 'Progress--circular')}>
+                <svg
+                    className={cn('Progress__circle', {'Progress__circle--dark': darkColor})}
+                    {...svgProps}
+                >
+                    <circle
+                        className={cn('Progress__circle-line')}
+                        {...circlesProps}
+                    />
                     <circle
                         className={cn('Progress__circle-status')}
-                        {...circleSize}
-                        style={statusStyle}
+                        {...circlesProps}
+                        {...circleStatusProps}
                     />
+                    <text
+                        className={cn('Progress__circle-text')}
+                        {...textProps}
+                        style={{fontSize: `${radius / 2}`}}
+                    >
+                        {`${percent}%`}
+                    </text>
                 </svg>
             </div>
         );
