@@ -1,4 +1,4 @@
-import React, { Component, KeyboardEvent, SyntheticEvent } from 'react';
+import React, {Component, createRef, KeyboardEvent, RefObject, SyntheticEvent} from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
 import { Button } from '..';
@@ -39,10 +39,14 @@ export class DropDownSummary extends Component<Props> {
         const { keyCode, which } = event;
         const code = keyCode || which;
 
-        if (TargetKeyCode.includes(code)) {
+
+        if (TargetKeyCode.includes(code) && document.activeElement === this.panel.current) {
+            event.preventDefault();
             this.handleClick();
         }
     };
+
+    panel: RefObject<HTMLDivElement> = createRef();
 
     render() {
         const { actionIcon, children, className, onChange, opened, openingByIcon } = this.props;
@@ -56,6 +60,8 @@ export class DropDownSummary extends Component<Props> {
                 onClick={this.handleClick}
                 onKeyPress={this.handleKeyPress}
                 tabIndex={summaryTabIndex}
+                ref={this.panel}
+                role="button"
             >
                 {openingByIcon &&
                     <div className={cn('Drop-down-panel__summary-icon')}>
