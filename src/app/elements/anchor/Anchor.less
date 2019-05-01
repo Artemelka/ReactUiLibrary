@@ -1,7 +1,7 @@
 @import '../../styles/constants';
 
 .Anchor {
-    color: #000;
+    color: inherit;
     cursor: pointer;
     outline: none;
     text-decoration: none;
@@ -13,10 +13,10 @@
     }
 
     &--active {
-        color: lighten(@secondDarkColor, 20%);
+        color: @accentDarkColor;
 
         &:disabled {
-            color: @textActive;
+            color: @textDisabled;
         }
     }
 
