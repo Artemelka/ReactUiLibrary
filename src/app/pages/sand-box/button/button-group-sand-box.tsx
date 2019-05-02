@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
 import { SandBox } from '../sand-box';
-import { ButtonGroup, Text } from '../../../elements';
+import { Button, ButtonGroup, IconModule, Text } from '../../../elements';
 
 const buttons = [
     {
-        label: 'first button'
+        label: 'first button',
+        iconName: IconModule.IconNames.PLUS
     }, {
-        label: 'second button'
+        label: 'second button',
+        iconName: IconModule.IconNames.PHONE
     }, {
-        label: 'third button'
+        label: 'third button',
+        iconName: IconModule.IconNames.TRASH
     }
 ];
 const buttonGroupItems = [
@@ -18,16 +21,20 @@ const buttonGroupItems = [
         title: 'Button group'
     }, {
         buttons,
-        props: {separatorSize: ButtonGroup.SeparatorSize.SMALL},
-        title: 'Button group with separator small'
-    }, {
-        buttons,
         props: {separatorSize: ButtonGroup.SeparatorSize.MEDIUM},
         title: 'Button group with separator medium'
     }, {
         buttons,
         props: {round: true},
         title: 'Button group rounded'
+    }, {
+        buttons,
+        props: {buttonComponent: Button.IconLabel},
+        title: 'Button group IconLabel'
+    }, {
+        buttons,
+        props: {buttonComponent: Button.Icon},
+        title: 'Button group Icon'
     }
 ];
 

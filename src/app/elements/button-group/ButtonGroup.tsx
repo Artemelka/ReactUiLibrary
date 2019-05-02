@@ -19,7 +19,8 @@ export const SeparatorSize = {
 
 export class ButtonGroup extends Component<Props> {
     static defaultProps = {
-        buttonComponent: Button
+        buttonComponent: Button,
+        separatorSize: SeparatorSize.SMALL
     };
 
     render() {

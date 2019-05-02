@@ -9,10 +9,16 @@ exports[`Test ButtonGroup Rendering Snapshot 1`] = `
     onClick={[MockFunction]}
     type="button"
   />
+  <span
+    className="Button-group__separator Button-group__separator--small"
+  />
   <Button
     label="test 2"
     onClick={[MockFunction]}
     type="button"
+  />
+  <span
+    className="Button-group__separator Button-group__separator--small"
   />
   <Button
     label="test 2"
