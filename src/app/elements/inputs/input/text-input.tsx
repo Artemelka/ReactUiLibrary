@@ -11,13 +11,13 @@ export class TextInput extends Component<InputProps, State> {
         onChange: () => false
     };
 
-    static getDerivedStateFromProps(nextProps: InputProps, prevState: State) {
-        return nextProps.value !== prevState.value ? {value: nextProps.value} : null;
-    }
+    constructor(props: InputProps) {
+        super(props);
 
-    state = {
-        value: this.props.defaultValue || ''
-    };
+        this.state = {
+            value: props.value || ''
+        };
+    }
 
     handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
@@ -35,8 +35,8 @@ export class TextInput extends Component<InputProps, State> {
     input: RefObject<HTMLInputElement> = createRef();
 
     render() {
-        const { value } = this.state;
-        const { icon, onChange, value: val, ...restProps } = this.props;
+        const { value: stateValue } = this.state;
+        const { icon, onChange, value, ...restProps } = this.props;
         const iconProps = {
             name: IconModule.IconNames.BACKSPACE,
             onClick: this.handleClearClick
@@ -44,9 +44,9 @@ export class TextInput extends Component<InputProps, State> {
 
         return (
             <Input
-                icon={value && iconProps}
+                icon={stateValue && iconProps}
                 inputRef={this.input}
-                value={value}
+                value={stateValue}
                 onChange={this.handleChange}
                 {...restProps}
             />

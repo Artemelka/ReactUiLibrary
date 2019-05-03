@@ -1,4 +1,4 @@
-import React, { Fragment, SyntheticEvent } from 'react';
+import React, { Component, Fragment, SyntheticEvent } from 'react';
 import { SandBox } from '../sand-box';
 import { Input } from '../../../elements';
 
@@ -19,7 +19,7 @@ const inputProps = [
         id: 'test2',
         label: 'Input.Text with default value',
         name: 'test2',
-        defaultValue: 'defaultValue'
+        value: 'defaultValue'
     }
 ];
 const sandBoxItems = inputProps.map(props => {
