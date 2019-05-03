@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Select } from '../../elements';
@@ -25,7 +25,7 @@ interface Props {
     { changeLocale }
 ) as any)
 export class LibraryFooter extends Component<Props> {
-    handleLangChange = (value: string) => this.props.changeLocale(value);
+    handleLangChange = (event: SyntheticEvent<HTMLSelectElement>, value: string) => this.props.changeLocale(value);
 
     render() {
         return (

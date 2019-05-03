@@ -1,0 +1,28 @@
+@import '../../../styles/constants';
+
+.Select-list {
+    background-color: @textMain;
+    border: 1px solid @baseColor;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+
+    &__item {
+        color: @baseDarkColor;
+        cursor: pointer;
+        outline: none;
+        padding: 15px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: @secondColor;
+
+        }
+
+        &--disabled,
+        &--disabled:hover {
+            background-color: @textActive;
+            cursor: default;
+        }
+    }
+}
