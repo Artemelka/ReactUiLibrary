@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent, KeyboardEvent } from 'react';
+import React, { Component, MouseEvent, KeyboardEvent, RefObject, createRef } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
@@ -12,6 +12,7 @@ const ButtonSize = {
     BIG: 'big'
 };
 export interface ButtonNotRequiredProps {
+    buttonRef?: RefObject<HTMLButtonElement>;
     disabled?: boolean;
     icon?: boolean;
     iconLabel?: boolean;
@@ -68,7 +69,7 @@ export class Button extends Component<ButtonProps, State> {
 
     render() {
         const { isActive } = this.state;
-        const { children, disabled, icon, iconLabel, label, roundLeft, roundRight, size, type } = this.props;
+        const { buttonRef, children, disabled, icon, iconLabel, label, roundLeft, roundRight, size, type } = this.props;
         const buttonClasses = cn('Button', {
             'Button--active': isActive,
             'Button--disabled': disabled,
@@ -88,6 +89,7 @@ export class Button extends Component<ButtonProps, State> {
                 onKeyDown={this.handleKeyDownOrUp(true)}
                 onKeyPress={this.handleKeyPress}
                 onKeyUp={this.handleKeyDownOrUp(false)}
+                ref={buttonRef}
                 type={type}
             >
                 <span className={cn('Button__content')}>

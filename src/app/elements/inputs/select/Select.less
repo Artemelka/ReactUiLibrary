@@ -1,3 +1,19 @@
-.Select {
-    padding: 8px 15px;
+@Select: Select;
+
+.@{Select} {
+    display: inline-block;
+    position: relative;
+
+    &__options {
+        left: 0;
+        position: absolute;
+        top: 38px;
+        width: 100%;
+        z-index: 10;
+
+        .@{Select}--list-on-top & {
+            bottom: 38px;
+            top: auto;
+        }
+    }
 }

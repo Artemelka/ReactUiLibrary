@@ -59,7 +59,8 @@ const selectProps: Array<ExampleProps> = [
 const selectListItems = selectListProps.map((props, index) =>{
     return (
         <Fragment key={index}>
-            <SelectList items={props.items} />
+            <SelectList items={props.items} onClick={(value: string) => console.log('value', value)} />
+            <div style={{height: '300px'}}/>
         </Fragment>
     );
 });

@@ -59,7 +59,7 @@ const selectOptions = [
     }
 ) as any)
 export class TestHomePage extends Component<AppPropsType> {
-    handleLangChange = (event: SyntheticEvent<HTMLSelectElement>, value: string) => this.props.changeLocale(value);
+    handleLangChange = (value: string) => this.props.changeLocale(value);
 
     handleLinkClick = (method: string, url?: string) => () => this.props.routing.history[method](url);
 

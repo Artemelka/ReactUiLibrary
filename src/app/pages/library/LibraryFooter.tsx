@@ -25,15 +25,16 @@ interface Props {
     { changeLocale }
 ) as any)
 export class LibraryFooter extends Component<Props> {
-    handleLangChange = (event: SyntheticEvent<HTMLSelectElement>, value: string) => this.props.changeLocale(value);
+    handleLangChange = (value: string) => this.props.changeLocale(value);
 
     render() {
         return (
             <div style={{textAlign: 'right'}}>
                 <Select
+                    listOpenTop
+                    onChange={this.handleLangChange}
                     options={selectOptions}
                     value={this.props.translateDictionary.locale}
-                    onChange={this.handleLangChange}
                 />
             </div>
         );

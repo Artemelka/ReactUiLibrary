@@ -15,11 +15,13 @@ export interface InputProps {
     disabled?: boolean;
     icon?: IconProps;
     id?: string;
+    InputIconRef?: RefObject<HTMLButtonElement>;
     inputRef?: RefObject<HTMLInputElement>;
     name?: string;
     onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
     onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
     onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    readOnly?: boolean;
     value?: string;
 }
 interface State {
@@ -53,6 +55,7 @@ export class Input extends Component<InputProps, State> {
             disabled,
             icon,
             id,
+            InputIconRef,
             inputRef,
             name,
             onBlur,
@@ -87,6 +90,7 @@ export class Input extends Component<InputProps, State> {
                             disabled={disabled}
                             iconName={icon.name}
                             onClick={icon.onClick}
+                            buttonRef={InputIconRef}
                         />
                     </div>
                 }
