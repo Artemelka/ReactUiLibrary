@@ -1,68 +1,92 @@
-import React, {Component, createRef, RefObject, SyntheticEvent} from 'react';
+import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
-import { Button, IconModule } from '../../index';
+import { Button } from '../../index';
 
 const style = require('./Input.less');
 const cn = classNames.bind(style);
 
-interface Props {
+type IconProps = {
+    alwaysVisible?: boolean;
+    name: string;
+    onClick: () => void;
+};
+export interface InputProps {
+    defaultValue?: string;
     disabled?: boolean;
-    onChange?: (event: SyntheticEvent<HTMLInputElement>, value: string) => void;
+    icon?: IconProps;
+    id?: string;
+    inputRef?: RefObject<HTMLInputElement>;
+    name?: string;
+    onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
+    onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    value?: string;
 }
 interface State {
     focused: boolean;
-    value: string;
 }
-export class Input extends Component<Props, State> {
+
+export class Input extends Component<InputProps, State> {
     static defaultProps = {
-        onChange: () => false
+        onBlur: () => false,
+        onFocus: () => false
     };
 
     state = {
-        focused: false,
-        value: ''
+        focused: false
     };
 
-    handleBlur = () => this.setState({focused: false});
-
-    handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-        const { value } = event.currentTarget;
-        this.setState({value});
-        this.props.onChange(event, value);
+    handleBlur = (event: SyntheticEvent<HTMLInputElement>) => {
+        this.setState({focused: false});
+        this.props.onBlur(event);
     };
 
-    handleClearClick = () => {
-        this.setState({value: ''});
-        this.input.current.focus();
-        this.props.onChange(null, '');
+    handleFocus = (event: SyntheticEvent<HTMLInputElement>) => {
+        this.setState({focused: true});
+        this.props.onFocus(event);
     };
-
-    handleFocus = () => this.setState({focused: true});
-
-    input: RefObject<HTMLInputElement> = createRef();
 
     render() {
-        const { focused, value } = this.state;
-        const { disabled } = this.props;
+        const { focused } = this.state;
+        const {
+            defaultValue,
+            disabled,
+            icon,
+            id,
+            inputRef,
+            name,
+            onBlur,
+            onChange,
+            onFocus,
+            value,
+            ...restProps
+        } = this.props;
+        const visibleIcon = Boolean(icon) && (!disabled || icon.alwaysVisible);
+
         return (
-            <div
-                className={cn('Input', {'Input--focused': focused})}
-            >
+            <div className={cn('Input', {'Input--focused': focused})}>
                 <input
+                    {...restProps}
                     className={cn('Input__element', {'Input__element--disabled': disabled})}
                     disabled={disabled}
                     onBlur={this.handleBlur}
-                    onChange={this.handleChange}
+                    onChange={onChange}
                     onFocus={this.handleFocus}
                     value={value}
-                    ref={this.input}
+                    ref={inputRef}
+                    name={name}
+                    id={id}
                 />
-                {Boolean(value) &&
-                    <div className={cn('Input__clear-button')}>
+                {visibleIcon &&
+                    <div
+                        className={cn('Input__clear-button', {
+                            'Input__clear-button--always-visible': icon.alwaysVisible
+                        })}
+                    >
                         <Button.Icon
                             disabled={disabled}
-                            iconName={IconModule.IconNames.BACKSPACE}
-                            onClick={this.handleClearClick}
+                            iconName={icon.name}
+                            onClick={icon.onClick}
                         />
                     </div>
                 }
