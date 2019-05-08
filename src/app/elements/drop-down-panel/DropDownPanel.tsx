@@ -22,8 +22,9 @@ interface DropDownPropsWithChildren extends DropDownPanelProps {
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
     getUpdatedChildren = () => {
-        const { actionIcon, children, onChange, opened, openingByIcon } = this.props;
+        const { actionIcon, children, onChange, onlyBorder, opened, openingByIcon } = this.props;
         const summaryClassName = cn('Drop-down-panel__summary', {
+            'Drop-down-panel__summary--opened': opened && onlyBorder,
             'Drop-down-panel__summary--clickable': !openingByIcon
         });
         const summaryProps = {

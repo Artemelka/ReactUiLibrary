@@ -65,12 +65,13 @@
     &__summary {
         align-items: center;
         background-color: @secondColor;
+        border-bottom: 1px solid rgba(@secondColor, 0);
         color: @baseDarkColor;
         display: flex;
         justify-content: flex-start;
         outline: none;
         padding: 15px;
-        transition: background-color 0.3s, color 0.3s;
+        transition: background-color 0.3s, color 0.3s, border 0.5s ease-in;
 
         &--clickable {
             cursor: pointer;
@@ -80,6 +81,11 @@
                 background-color: darken(@secondColor, 15%);
                 color: @textMain;
             }
+        }
+
+        &--opened {
+            border-bottom: 1px solid @secondColor;
+            transition: border 0.1s ease-out;
         }
 
         &-action {
