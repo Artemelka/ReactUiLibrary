@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Select } from '../../elements';
@@ -31,9 +31,10 @@ export class LibraryFooter extends Component<Props> {
         return (
             <div style={{textAlign: 'right'}}>
                 <Select
+                    listOpenTop
+                    onChange={this.handleLangChange}
                     options={selectOptions}
                     value={this.props.translateDictionary.locale}
-                    onChange={this.handleLangChange}
                 />
             </div>
         );

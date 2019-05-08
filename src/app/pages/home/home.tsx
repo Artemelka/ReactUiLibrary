@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
@@ -58,7 +58,7 @@ const selectOptions = [
         changeLocale
     }
 ) as any)
-export class TestHomePage extends React.Component<AppPropsType> {
+export class TestHomePage extends Component<AppPropsType> {
     handleLangChange = (value: string) => this.props.changeLocale(value);
 
     handleLinkClick = (method: string, url?: string) => () => this.props.routing.history[method](url);

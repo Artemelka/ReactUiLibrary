@@ -8,6 +8,7 @@ import {
     IconSandBox,
     InputSandBox,
     ProgressSandBox,
+    SelectSandBox,
     TextSandBox
 } from './sand-box';
 
@@ -58,11 +59,16 @@ export const ComponentsCollection = [
         exact: true,
         name: InputSandBox.name,
         url: '/library/input'
-    },  {
+    }, {
         component: ProgressSandBox,
         exact: true,
         name: ProgressSandBox.name,
         url: '/library/progress'
+    },  {
+        component: SelectSandBox,
+        exact: true,
+        name: SelectSandBox.name,
+        url: '/library/select'
     }, {
         component: TextSandBox,
         exact: true,
