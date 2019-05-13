@@ -61,6 +61,7 @@ class DropDownPanelExample extends Component<Props, State> {
 
     render() {
         const { onChange, opened, index, ...restProps} = this.props;
+
         return (
             <DropDownPanel
                 {...restProps}
@@ -77,6 +78,7 @@ class DropDownPanelExample extends Component<Props, State> {
         );
     }
 }
+
 const sandBoxItems = dropDownPanelProps.map((props, index) =>
     dropDownPanelActionProps.map((actions, otherIndex) => (
         <div style={{padding: '10px 0'}} key={Number(`${otherIndex}${index}`)}>

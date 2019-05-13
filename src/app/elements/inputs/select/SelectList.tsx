@@ -1,17 +1,16 @@
-import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
+import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
 import { SelectOptions } from './Select';
+import { SelectListItem } from './SelectListItem';
 import { keyCodes } from '../../../../services';
-import { translate } from '../../../../services/translate';
 
 const style = require('./SelectList.less');
 const cn = classNames.bind(style);
-const { ENTER, SPACE } = keyCodes;
-const targetKey = [ ENTER, SPACE ];
+const { DOWN, TAB, UP } = keyCodes;
 
 interface Props {
     items: Array<SelectOptions>;
-    onBlur?: (event: SyntheticEvent<HTMLUListElement>) => void;
+    onBlur?: (event: FocusEvent) => void;
     onClick?: (item: any) => void;
     selectedItemValue?: string;
     style?: {[key: string]: string | number};
@@ -23,83 +22,113 @@ export class SelectList extends Component<Props> {
         onClick: () => false
     };
 
-    componentDidMount(): void {
-        const { current } = this.selectListRef;
+    constructor(props: Props) {
+        super(props);
 
-        if (current) {
-            current.focus();
+        this.firstItemIndex = props.items[0].disabled ? 1 : 0;
+        this.lastItemIndex = props.items.length - 1;
+    }
+
+    componentDidMount(): void {
+        if (this.listItemsRefs.length) {
+            this.listItemsRefs[this.firstItemIndex].element.focus();
         }
     }
 
-    handleBlur = (event: SyntheticEvent<HTMLUListElement>) => {
-        const blurOnItem = this.listItems.some(item => item.element === event.relatedTarget);
+    getNextActiveIndex = (index: number): number => {
+        const nextIndex = index + 1;
+
+        if (nextIndex <= this.lastItemIndex) {
+            return this.props.items[nextIndex].disabled ? this.getNextActiveIndex(nextIndex) : nextIndex;
+        }
+
+        return this.firstItemIndex;
+    };
+
+    getPrevActiveIndex = (index: number): number => {
+        const prevIndex = index - 1;
+
+        if (prevIndex >= 0) {
+            if (this.props.items[prevIndex].disabled) {
+                return this.getPrevActiveIndex(prevIndex);
+            }
+
+            if (prevIndex >= this.firstItemIndex) {
+                return prevIndex;
+            }
+        }
+
+        return this.lastItemIndex;
+    };
+
+    setNextItemFocus = (nextIndex: number) => this.listItemsRefs[nextIndex].element.focus();
+
+    handleItemBlur = (event: FocusEvent) => {
+        const blurOnItem = this.listItemsRefs.some(item => item.element === event.relatedTarget);
 
         if (!blurOnItem) {
             this.props.onBlur(event);
         }
     };
 
-    handleClick = (value: string, index: number) => () => {
-        this.handleChange(value, index);
-    };
+    handleKeyPress = (index: number, keyCode: number, shiftKey: boolean) => {
+        if (keyCode === DOWN || keyCode === TAB) {
+            const nextIndex = this.getNextActiveIndex(index);
 
-    handleKeyPress = (value: string, index: number) => (event: SyntheticEvent) => {
-        const { which } = event;
+            this.setNextItemFocus(nextIndex);
+        }
 
-        if (targetKey.includes(which)) {
-            this.handleChange(value, index);
+        if (keyCode === UP || (shiftKey && keyCode === TAB)) {
+            const prevIndex = this.getPrevActiveIndex(index);
+
+            this.setNextItemFocus(prevIndex);
         }
     };
 
-    handleListItemRef = (index: number) => (ref: HTMLLIElement) => {
-        const targetIndex = this.listItems.findIndex(item => item.index === index);
+    handleListItemRef = (ref: HTMLLIElement, index: number) => {
+        if (!ref) {
+            this.listItemsRefs = this.listItemsRefs.filter(item => item.index !== index);
+            return;
+        }
+
+        const targetIndex = this.listItemsRefs.findIndex(item => item.index === index);
 
         if (targetIndex === -1) {
-            this.listItems.push({element: ref, index});
+            this.listItemsRefs.push({element: ref, index});
         }
     };
 
-    listItems: Array<{element: HTMLLIElement, index: number}> = [];
-
-    handleChange = (value: string, index: number) => {
-        this.props.onClick(value);
-        this.listItems.filter(item => item.index === index)[0].element.blur();
-    };
-
-    selectListRef: RefObject<HTMLUListElement> = createRef();
+    firstItemIndex: number;
+    lastItemIndex: number;
+    listItemsRefs: Array<{element: HTMLLIElement, index: number}> = [];
 
     render() {
-        const { items, selectedItemValue } = this.props;
+        const { items, onClick, selectedItemValue, style } = this.props;
 
         return (
             <ul
                 className={cn('Select-list')}
-                onBlur={this.handleBlur}
-                ref={this.selectListRef}
-                tabIndex={0}
+                style={style}
             >
                 {
                     items.map((item, index) => {
                         const {disabled, title, value} = item;
-                        const tabIndex = disabled ? -1 : 0;
-                        const onClick = disabled ? () => false : this.handleClick(value, index);
-                        const onKeyPress = disabled ? () => false : this.handleKeyPress(value, index);
 
                         return (
-                            <li
+                            <SelectListItem
                                 className={cn('Select-list__item', {
                                     'Select-list__item--disabled': disabled,
                                     'Select-list__item--selected': selectedItemValue === value
                                 })}
+                                index={index}
+                                onBlur={this.handleItemBlur}
                                 onClick={onClick}
-                                onKeyPress={onKeyPress}
+                                onKeyPress={this.handleKeyPress}
                                 key={index}
-                                ref={this.handleListItemRef(index)}
-                                role="button"
-                                tabIndex={tabIndex}
-                            >
-                                {translate(title)}
-                            </li>
+                                listItemRef={this.handleListItemRef}
+                                title={title}
+                                value={value}
+                            />
                         );
                     })
                 }

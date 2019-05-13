@@ -1,6 +1,5 @@
 import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
-
 import { Input } from '../input/Input';
 import { SelectList } from './SelectList';
 import { IconModule } from '../../icon';
@@ -53,7 +52,7 @@ export class Select extends Component<SelectProps, State> {
         }
     }
 
-    handleListBlur = (event: SyntheticEvent<HTMLUListElement>) => {
+    handleListBlur = (event: FocusEvent) => {
         if (this.inputIconRef.current !== event.relatedTarget) {
             this.setState({opened: false});
         }
@@ -111,23 +110,3 @@ export class Select extends Component<SelectProps, State> {
         );
     }
 }
-
-/*<select
-                className={cn('Select')}
-                disabled={disabled}
-                id={name}
-                name={name}
-                multiple={multiple}
-                onChange={this.handleChange}
-                value={value}
-            >
-                {options.map((option: SelectOptions, index: number) => (
-                    <option
-                        key={index}
-                        disabled={option.disabled}
-                        value={option.value}
-                    >
-                        {translate(option.title)}
-                    </option>
-                ))}
-            </select>*/
