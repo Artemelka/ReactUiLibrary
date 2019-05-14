@@ -12,6 +12,7 @@ type IconProps = {
     onClick: () => void;
 };
 export interface InputProps {
+    cursorPointer?: boolean;
     defaultValue?: string;
     disabled?: boolean;
     icon?: IconProps;
@@ -69,6 +70,7 @@ export class Input extends Component<InputProps, State> {
     render() {
         const { focused } = this.state;
         const {
+            cursorPointer,
             defaultValue,
             disabled,
             icon,
@@ -89,7 +91,10 @@ export class Input extends Component<InputProps, State> {
             <div className={cn('Input', {'Input--focused': focused})}>
                 <input
                     {...restProps}
-                    className={cn('Input__element', {'Input__element--disabled': disabled})}
+                    className={cn('Input__element', {
+                        'Input__element--cursor-pointer': cursorPointer,
+                        'Input__element--disabled': disabled
+                    })}
                     disabled={disabled}
                     id={id}
                     name={name}

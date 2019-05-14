@@ -43,6 +43,8 @@ export class Button extends Component<ButtonProps, State> {
         isActive: false
     };
 
+    handleBlur = () => this.setState({isActive: false});
+
     handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         const { disabled, onClick} = this.props;
 
@@ -59,10 +61,11 @@ export class Button extends Component<ButtonProps, State> {
         }
     };
 
-    handleKeyDownOrUp = (isActive: boolean) => (event: KeyboardEvent<HTMLButtonElement>) => {
-        const {keyCode} = event;
+    handleKeyEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
+        const { keyCode, type } = event;
 
         if (targetKeyCodes.includes(keyCode)) {
+            const isActive = type === 'keydown';
             this.setState(() => ({isActive}));
         }
     };
@@ -85,10 +88,11 @@ export class Button extends Component<ButtonProps, State> {
             <button
                 className={buttonClasses}
                 disabled={disabled}
+                onBlur={this.handleBlur}
                 onClick={this.handleClick}
-                onKeyDown={this.handleKeyDownOrUp(true)}
+                onKeyDown={this.handleKeyEvent}
                 onKeyPress={this.handleKeyPress}
-                onKeyUp={this.handleKeyDownOrUp(false)}
+                onKeyUp={this.handleKeyEvent}
                 ref={buttonRef}
                 type={type}
             >

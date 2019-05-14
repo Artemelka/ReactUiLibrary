@@ -68,6 +68,7 @@ export class Select extends Component<SelectProps, State> {
     handleSelect = (value: string) => {
         this.props.onChange(value);
         this.setState({opened: false});
+        this.inputRef.current.focus();
     };
 
     inputIconRef: RefObject<HTMLButtonElement> = createRef();
@@ -78,9 +79,10 @@ export class Select extends Component<SelectProps, State> {
         const { disabled, listOpenTop, maxListHeight, multiple, onChange, options, value, ...restProps } = this.props;
         const { canOpenDown, opened } = this.state;
         const optionListStyle = {maxHeight: `${maxListHeight}px`};
+        const { DOWN, UP } = IconModule.IconNames.ANGLE;
         const iconProps = {
             alwaysVisible: true,
-            name: IconModule.IconNames.ANGLE.DOWN,
+            name: opened ? UP : DOWN,
             onClick: this.handleOpenClick
         };
 
@@ -91,6 +93,7 @@ export class Select extends Component<SelectProps, State> {
             >
                 <Input
                     {...restProps}
+                    cursorPointer
                     disabled={disabled}
                     icon={iconProps}
                     InputIconRef={this.inputIconRef}
