@@ -12,7 +12,7 @@ interface Props {
     items: Array<SelectOptions>;
     onBlur?: (event: FocusEvent) => void;
     onClick?: (item: any) => void;
-    selectedItemValue?: string;
+    selectedItemValue: string;
     style?: {[key: string]: string | number};
 }
 
@@ -31,7 +31,10 @@ export class SelectList extends Component<Props> {
 
     componentDidMount(): void {
         if (this.listItemsRefs.length) {
-            this.listItemsRefs[this.firstItemIndex].element.focus();
+            const { items, selectedItemValue } = this.props;
+            const selectItemIndex = items.findIndex(item => item.value === selectedItemValue);
+
+            this.listItemsRefs[selectItemIndex].element.focus();
         }
     }
 
@@ -111,27 +114,24 @@ export class SelectList extends Component<Props> {
                 style={style}
             >
                 {
-                    items.map((item, index) => {
-                        const {disabled, title, value} = item;
-
-                        return (
+                    items.map(({disabled, title, value}, index) => (
                             <SelectListItem
                                 className={cn('Select-list__item', {
                                     'Select-list__item--disabled': disabled,
                                     'Select-list__item--selected': selectedItemValue === value
                                 })}
+                                disabled={disabled}
                                 index={index}
                                 onBlur={this.handleItemBlur}
                                 onClick={onClick}
                                 onKeyPress={this.handleKeyPress}
-                                key={index}
+                                key={`${index}_${value}`}
                                 listItemRef={this.handleListItemRef}
                                 title={title}
                                 value={value}
                             />
-                        );
-                    })
-                }
+                        )
+                    )}
             </ul>
         );
     }

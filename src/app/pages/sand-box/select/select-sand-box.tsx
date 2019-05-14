@@ -1,4 +1,4 @@
-import React, { Component, Fragment, SyntheticEvent } from 'react';
+import React, { Component, Fragment } from 'react';
 import { SandBox } from '../sand-box';
 import { Select } from '../../../elements';
 import { SelectProps } from '../../../elements/inputs/select/Select';
@@ -91,6 +91,7 @@ const selectListItems = selectListProps.map((props, index) =>{
                 items={props.items}
                 onClick={(value: string) => console.log('value', value)}
                 style={{maxHeight: '200px'}}
+                selectedItemValue={props.items[1].value}
             />
             <div style={{height: '300px'}}/>
         </Fragment>

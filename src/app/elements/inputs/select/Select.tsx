@@ -1,4 +1,4 @@
-import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
+import React, { Component, createRef, RefObject, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
 import { Input } from '../input/Input';
 import { SelectList } from './SelectList';
@@ -53,14 +53,17 @@ export class Select extends Component<SelectProps, State> {
     }
 
     handleListBlur = (event: FocusEvent) => {
-        if (this.inputIconRef.current !== event.relatedTarget) {
+        const { relatedTarget } = event;
+        const blurOnIcon = this.inputIconRef.current === relatedTarget;
+        const blurOnInput = this.inputRef.current === relatedTarget;
+        const closeList = !(blurOnIcon || blurOnInput);
+
+        if (closeList) {
             this.setState({opened: false});
         }
     };
 
-    handleOpenClick = () => {
-        this.setState(({opened}) => ({opened: !opened}));
-    };
+    handleOpenClick = () => this.setState(({opened}) => ({opened: !opened}));
 
     handleSelect = (value: string) => {
         this.props.onChange(value);
@@ -68,6 +71,7 @@ export class Select extends Component<SelectProps, State> {
     };
 
     inputIconRef: RefObject<HTMLButtonElement> = createRef();
+    inputRef: RefObject<HTMLInputElement> = createRef();
     selectRef: RefObject<HTMLDivElement> = createRef();
 
     render() {
@@ -90,6 +94,8 @@ export class Select extends Component<SelectProps, State> {
                     disabled={disabled}
                     icon={iconProps}
                     InputIconRef={this.inputIconRef}
+                    inputRef={this.inputRef}
+                    onClick={this.handleOpenClick}
                     value={value}
                     readOnly
                 />

@@ -1,6 +1,7 @@
-import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
+import React, { Component, KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { Button } from '../../index';
+import { keyCodes } from '../../../../services';
 
 const style = require('./Input.less');
 const cn = classNames.bind(style);
@@ -20,7 +21,9 @@ export interface InputProps {
     name?: string;
     onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
     onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
+    onClick?: (event: MouseEvent<HTMLInputElement> | KeyboardEvent) => void;
     onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onKeyPress?: (event: KeyboardEvent) => void;
     readOnly?: boolean;
     value?: string;
 }
@@ -31,7 +34,9 @@ interface State {
 export class Input extends Component<InputProps, State> {
     static defaultProps = {
         onBlur: () => false,
-        onFocus: () => false
+        onClick: () => false,
+        onFocus: () => false,
+        onKeyPress: () => false
     };
 
     state = {
@@ -48,6 +53,19 @@ export class Input extends Component<InputProps, State> {
         this.props.onFocus(event);
     };
 
+    handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+        const { keyCode, which } = event;
+        const { onClick, onKeyPress } = this.props;
+        const { ENTER } = keyCodes;
+
+        if (keyCode === ENTER || which === ENTER) {
+            onClick(event);
+            return;
+        }
+
+        onKeyPress(event);
+    };
+
     render() {
         const { focused } = this.state;
         const {
@@ -60,6 +78,7 @@ export class Input extends Component<InputProps, State> {
             name,
             onBlur,
             onChange,
+            onClick,
             onFocus,
             value,
             ...restProps
@@ -72,13 +91,15 @@ export class Input extends Component<InputProps, State> {
                     {...restProps}
                     className={cn('Input__element', {'Input__element--disabled': disabled})}
                     disabled={disabled}
+                    id={id}
+                    name={name}
                     onBlur={this.handleBlur}
                     onChange={onChange}
+                    onClick={onClick}
                     onFocus={this.handleFocus}
-                    value={value}
+                    onKeyPress={this.handleKeyPress}
                     ref={inputRef}
-                    name={name}
-                    id={id}
+                    value={value}
                 />
                 {visibleIcon &&
                     <div
