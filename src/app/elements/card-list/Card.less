@@ -1,0 +1,95 @@
+@import '../../styles/constants';
+
+@Card: Card;
+
+.@{Card} {
+    height: 400px;
+    position: relative;
+
+    &::before {
+        //background: linear-gradient(315deg, #ff0057, #e64a19);
+        //background: linear-gradient(315deg, #89ff00, #00bcd4);
+        background: linear-gradient(315deg, #e91e63, #5d02ff);
+        bottom: -2px;
+        content: '';
+        left: -2px;
+        position: absolute;
+        right: -2px;
+        top: -2px;
+        transform: skew(2deg, 2deg);
+        z-index: 0;
+    }
+
+    &::after {
+        background-color: rgba(@textMain, 0.05);
+        content: '';
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 50%;
+        z-index: 1;
+    }
+
+    &__decorator {
+        align-items: center;
+        background: @baseDarkColor;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &__container {
+        color: @textMain;
+        padding: 20px;
+        position: relative;
+        transform: translateY(40px);
+        z-index: 1;
+    }
+
+    &__index {
+        color: rgba(@textMain, 0.05);
+        font-size: 10em;
+        margin: 0;
+        position: absolute;
+        right: 20px;
+        top: -60px;
+        transition: top 0.5s;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 0 10px;
+    }
+
+    &__content {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    &__button {
+        margin-top: 20px;
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: transform 0.5s, opacity 0.5s, visibility 0.1s 0.5s;
+        visibility: hidden;
+    }
+
+    &:hover {
+        & .@{Card}__index {
+            top: -140px;
+        }
+
+        & .@{Card}__button {
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 0.5s, opacity 0.5s, visibility 0.1s;
+            visibility: visible;
+        }
+    }
+}

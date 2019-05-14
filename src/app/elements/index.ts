@@ -1,6 +1,7 @@
 export { Anchor } from './anchor/Anchor';
-export { Button } from './buttons/button';
+export { Button } from './buttons/Button';
 export { ButtonGroup } from './button-group';
+export { CardList } from './card-list/CardList';
 export { Checkbox, Input, Select } from './inputs';
 export { DropDownPanel } from './drop-down-panel/DropDownPanel';
 export { DropDownDetails } from './drop-down-panel/DropDownDetails';

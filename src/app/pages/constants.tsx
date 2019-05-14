@@ -3,6 +3,7 @@ import {
     AnchorSandBox,
     ButtonSandBox,
     ButtonGroupSandBox,
+    CardListSandBox,
     CheckboxSandBox,
     DropDownPanelSandBox,
     IconSandBox,
@@ -39,6 +40,11 @@ export const ComponentsCollection = [
         exact: true,
         name: ButtonGroupSandBox.name,
         url: '/library/button-group'
+    }, {
+        component: CardListSandBox,
+        exact: true,
+        name: CardListSandBox.name,
+        url: '/library/card-list'
     }, {
         component: CheckboxSandBox,
         exact: true,
