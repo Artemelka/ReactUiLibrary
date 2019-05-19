@@ -1,0 +1,35 @@
+@radioButtons: Radio-buttons;
+
+.@{radioButtons} {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 0;
+    justify-content: flex-start;
+    vertical-align: middle;
+
+    &--vertical {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+
+        & .@{radioButtons}__item {
+            margin-right: 0;
+            padding: 10px 0;
+        }
+    }
+
+    &__item {
+        align-items: center;
+        display: inline-flex;
+        justify-content: flex-start;
+        margin-right: 20px;
+
+        &-label {
+            font-size: 14px;
+            line-height: 14px;
+            margin-left: 10px;
+        }
+    }
+}

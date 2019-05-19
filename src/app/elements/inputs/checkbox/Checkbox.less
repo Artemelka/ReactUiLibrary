@@ -17,6 +17,14 @@
     transition: border-color 0.3s;
     width: 18px;
 
+    &--radio {
+        border-radius: 50%;
+
+        & .@{className}__icon-indeterminate {
+            border-radius: 50%;
+        }
+    }
+
     &--focused,
     &:focus,
     &:hover {

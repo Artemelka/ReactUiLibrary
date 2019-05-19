@@ -9,6 +9,7 @@ import {
     IconSandBox,
     InputSandBox,
     ProgressSandBox,
+    RadioButtonsSandBox,
     SelectSandBox,
     TextSandBox
 } from './sand-box';
@@ -70,7 +71,12 @@ export const ComponentsCollection = [
         exact: true,
         name: ProgressSandBox.name,
         url: '/library/progress'
-    },  {
+    }, {
+        component: RadioButtonsSandBox,
+        exact: true,
+        name: RadioButtonsSandBox.name,
+        url: '/library/radio-buttons'
+    }, {
         component: SelectSandBox,
         exact: true,
         name: SelectSandBox.name,

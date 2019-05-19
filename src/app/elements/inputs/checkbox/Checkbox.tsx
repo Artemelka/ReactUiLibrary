@@ -15,6 +15,7 @@ export interface CheckboxProps {
     indeterminate?: boolean;
     name: string;
     onChange?: () => void;
+    radio?: boolean;
     toggle?: boolean;
     withRef?: (ref: HTMLElement) => void;
 }
@@ -72,12 +73,13 @@ export class Checkbox extends Component<CheckboxProps, State> {
     };
 
     render() {
-        const { checked, disabled, id, indeterminate, name, toggle } = this.props;
+        const { checked, disabled, id, indeterminate, name, radio, toggle } = this.props;
         const { isActive } = this.state;
         const checkboxStyle = checkboxClassNames('Checkbox', {
             'Checkbox--checked': checked,
             'Checkbox--disabled': disabled,
-            'Checkbox--focused': isActive
+            'Checkbox--focused': isActive,
+            'Checkbox--radio': radio
         });
         const toggleStyle = toggleClassNames('Toggle', {
             'Toggle--checked': checked,
@@ -85,6 +87,7 @@ export class Checkbox extends Component<CheckboxProps, State> {
             'Toggle--focused': isActive
         });
         const inputClasses = toggle ? toggleClassNames('Toggle__input') : checkboxClassNames('Checkbox__input');
+        const inputType = radio ? 'radio' : 'checkbox';
         const hasIcon = !toggle && checked;
 
         return (
@@ -102,7 +105,7 @@ export class Checkbox extends Component<CheckboxProps, State> {
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
                     ref={this.input}
-                    type="checkbox"
+                    type={inputType}
                     value={id}
                 />
                 {hasIcon &&
