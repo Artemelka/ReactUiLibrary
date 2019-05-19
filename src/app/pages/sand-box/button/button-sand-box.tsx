@@ -14,9 +14,11 @@ const buttonProps: Array<ButtonProps> = [
         label: 'Button disabled',
         disabled: true
     }, {
+        accent: true,
         label: 'Button with onClick',
         onClick: logger('buttonClick')
     }, {
+        accent: true,
         label: 'Button with disable onClick',
         disabled: true,
         onClick: logger('buttonClick disable')
@@ -87,7 +89,7 @@ const renderButtonExample = (prefix: string, type?: string) =>
 
 const examplesParams: Array<ExampleParams> = [
     {
-        heading: 'Button default',
+        heading: 'Button default & accent',
         props: buttonProps,
         mapCallback: renderButtonExample('a')
     }, {

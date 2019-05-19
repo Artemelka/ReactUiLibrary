@@ -27,6 +27,7 @@ export interface InputProps {
     onKeyPress?: (event: KeyboardEvent) => void;
     readOnly?: boolean;
     value?: string;
+    width?: number;
 }
 interface State {
     focused: boolean;
@@ -83,6 +84,7 @@ export class Input extends Component<InputProps, State> {
             onClick,
             onFocus,
             value,
+            width,
             ...restProps
         } = this.props;
         const visibleIcon = Boolean(icon) && (!disabled || icon.alwaysVisible);
@@ -105,6 +107,7 @@ export class Input extends Component<InputProps, State> {
                     onKeyPress={this.handleKeyPress}
                     ref={inputRef}
                     value={value}
+                    style={{width: `${width}px`}}
                 />
                 {visibleIcon &&
                     <div

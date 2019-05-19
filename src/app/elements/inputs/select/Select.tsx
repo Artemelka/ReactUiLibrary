@@ -1,6 +1,6 @@
 import React, { Component, createRef, RefObject, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
-import { Input } from '../input/Input';
+import { Input, InputProps } from '../input/Input';
 import { SelectList } from './SelectList';
 import { IconModule } from '../../icon';
 
@@ -14,6 +14,7 @@ export interface SelectOptions {
 }
 export interface SelectProps {
     disabled?: boolean;
+    inputWidth?: number;
     listOpenTop?: boolean;
     multiple?: boolean;
     maxListHeight?: number;
@@ -76,7 +77,9 @@ export class Select extends Component<SelectProps, State> {
     selectRef: RefObject<HTMLDivElement> = createRef();
 
     render() {
-        const { disabled, listOpenTop, maxListHeight, multiple, onChange, options, value, ...restProps } = this.props;
+        const {
+            disabled, inputWidth, listOpenTop, maxListHeight, multiple, onChange, options, value, ...restProps
+        } = this.props;
         const { canOpenDown, opened } = this.state;
         const optionListStyle = {maxHeight: `${maxListHeight}px`};
         const { DOWN, UP } = IconModule.IconNames.ANGLE;
@@ -101,6 +104,7 @@ export class Select extends Component<SelectProps, State> {
                     onClick={this.handleOpenClick}
                     value={value}
                     readOnly
+                    width={inputWidth}
                 />
                 {opened &&
                     <div className={cn('Select__options')}>

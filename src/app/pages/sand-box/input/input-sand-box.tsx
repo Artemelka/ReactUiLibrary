@@ -17,10 +17,11 @@ const inputProps = [
         name: 'test2',
         disabled: true
     }, {
-        id: 'test2',
-        label: 'Input.Text with default value',
-        name: 'test2',
-        value: 'defaultValue'
+        id: 'test3',
+        label: 'Input.Text with default value & custom width',
+        name: 'test3',
+        value: 'defaultValue',
+        width: 100
     }
 ];
 

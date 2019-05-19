@@ -6,6 +6,7 @@
 .@{Button} {
     background-color: @secondDarkColor;
     border: none;
+    border-radius: 2px;
     color: @textMain;
     cursor: pointer;
     display: inline-block;
@@ -95,6 +96,10 @@
         }
     }
 
+    &--accent {
+        background-color: @accentColor;
+    }
+
     &--round {
         &-left {
             border-bottom-left-radius: @border-radius;
@@ -136,18 +141,14 @@
         z-index: 2;
     }
 
-    &__icon-content {
-        //padding: 7px 7px 7px 20px;
-        margin-right: 20px;
-    }
-
-    &__label-content {
-        //padding: 7px 20px 7px 7px;
-    }
-
     &__icon-content,
     &__label-content {
         display: inline-block;
+        margin: 0 10px;
         vertical-align: middle;
+    }
+
+    &__label-content {
+        margin-left: 10px;
     }
 }

@@ -14,6 +14,7 @@ const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
 
 export interface ButtonNotRequiredProps {
+    accent?: boolean;
     buttonRef?: RefObject<HTMLButtonElement>;
     disabled?: boolean;
     icon?: boolean;
@@ -75,8 +76,11 @@ export class Button extends Component<ButtonProps, State> {
 
     render() {
         const { isActive } = this.state;
-        const { buttonRef, children, disabled, icon, iconLabel, label, roundLeft, roundRight, size, type } = this.props;
+        const {
+            accent, buttonRef, children, disabled, icon, iconLabel, label, roundLeft, roundRight, size, type
+        } = this.props;
         const buttonClasses = cn('Button', {
+            'Button--accent': accent,
             'Button--active': isActive,
             'Button--disabled': disabled,
             'Button--icon': icon,

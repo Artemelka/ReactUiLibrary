@@ -35,6 +35,7 @@ export class LibraryFooter extends Component<Props> {
                     onChange={this.handleLangChange}
                     options={selectOptions}
                     value={this.props.translateDictionary.locale}
+                    inputWidth={70}
                 />
             </div>
         );

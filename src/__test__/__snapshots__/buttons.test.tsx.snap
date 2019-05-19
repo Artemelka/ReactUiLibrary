@@ -26,7 +26,7 @@ exports[`Test Buttons Icon Rendering snapshot 1`] = `
   type="button"
 >
   <Icon
-    fontSize={14}
+    fontSize={12}
     name="plus"
   />
 </Button>
