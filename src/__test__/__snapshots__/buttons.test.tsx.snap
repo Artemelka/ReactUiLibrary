@@ -3,6 +3,7 @@
 exports[`Test Buttons Default Rendering snapshot 1`] = `
 <button
   className="Button"
+  onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
   onKeyPress={[Function]}
@@ -42,7 +43,7 @@ exports[`Test Buttons IconLabel Rendering snapshot 1`] = `
     className="Button__icon-content"
   >
     <Icon
-      fontSize={14}
+      fontSize={12}
       name="plus"
     />
   </span>

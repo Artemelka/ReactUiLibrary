@@ -46,11 +46,6 @@ describe('Test Buttons', () => {
             output.simulate('keypress', {keyCode: keyCodes.ENTER});
             expect(mockOnClick).toHaveBeenCalled();
         });
-        test('Expect default props onClick', () => {
-            const output = mount(<Button label={BUTTON_TEXT} />);
-
-            expect(output.instance().props.onClick()).toEqual(false);
-        });
         test('Expect render children with prop icon', () => {
             const FAKE_TEXT = 'fake text';
             const output = shallow(<Button icon label={BUTTON_TEXT}>{FAKE_TEXT}</Button>);

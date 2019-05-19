@@ -7,9 +7,7 @@
     position: relative;
 
     &::before {
-        //background: linear-gradient(315deg, #ff0057, #e64a19);
-        //background: linear-gradient(315deg, #89ff00, #00bcd4);
-        background: linear-gradient(315deg, #e91e63, #5d02ff);
+        background: linear-gradient(315deg, @gradientRed, @gradientBlue);
         bottom: -2px;
         content: '';
         left: -2px;
@@ -30,6 +28,10 @@
         top: 0;
         width: 50%;
         z-index: 1;
+    }
+
+    &--light::before {
+        background: linear-gradient(315deg, @gradientGreen, @gradientSkyBlue);
     }
 
     &__decorator {

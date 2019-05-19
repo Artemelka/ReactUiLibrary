@@ -7,17 +7,18 @@ const cn = classNames.bind(style);
 
 export interface CardListProps {
     cardItems: Array<CardProps>;
+    light?: boolean;
 }
 
 export class CardList extends Component<CardListProps> {
     render() {
-        const { cardItems } = this.props;
+        const { cardItems, light } = this.props;
 
         return (
             <ul className={cn('Card-list')}>
                 {cardItems.map((cardItem, index) =>
                     <li className={cn('Card-list__item')} key={`${cardItem.id}_${index}`}>
-                        <Card {...cardItem} positionIndex={index + 1} />
+                        <Card {...cardItem} positionIndex={index + 1} light={light} />
                     </li>
                 )}
             </ul>

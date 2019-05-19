@@ -30,15 +30,44 @@ const cardListProps = [
             }
         ],
         title: 'Card list'
+    }, {
+        cardItems: [
+            {
+                content: LONG_TEXT,
+                id: 1,
+                title: 'Card one'
+            }, {
+                content: LONG_TEXT,
+                id: 2,
+                title: 'Card two'
+            }, {
+                content: LONG_TEXT,
+                id: 3,
+                title: 'Card three'
+            }, {
+                content: LONG_TEXT,
+                id: 4,
+                title: 'Card four'
+            }, {
+                content: LONG_TEXT,
+                id: 5,
+                title: 'Card five'
+            }
+        ],
+        light: true,
+        title: 'Card list with prop light'
     }
 ];
 
-const sandBoxItems = cardListProps.map(({title, ...restProps}, index) => (
-        <Fragment key={index} >
-            <h3>{title}</h3>
-            <CardList {...restProps} />
-        </Fragment>
-));
+const sandBoxItems = cardListProps.map(({ cardItems, light, title}, index) => {
+    return (
+            <Fragment key={index} >
+                <h3>{title}</h3>
+                <CardList cardItems={cardItems} light={light}/>
+            </Fragment>
+        );
+    }
+);
 
 export const CardListSandBox = () => (
     <SandBox

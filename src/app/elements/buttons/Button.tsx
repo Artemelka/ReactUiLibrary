@@ -7,7 +7,7 @@ import { keyCodes } from '../../../services';
 const style = require('./Button.less');
 const cn = classNames.bind(style);
 
-const ButtonSize = {
+export const ButtonSize = {
     SMALL: 'small',
     BIG: 'big'
 };
@@ -61,12 +61,15 @@ export class Button extends Component<ButtonProps, State> {
         }
     };
 
-    handleKeyEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
-        const { keyCode, type } = event;
+    handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+        if (targetKeyCodes.includes(event.keyCode)) {
+            this.setState(() => ({isActive: true}));
+        }
+    };
 
-        if (targetKeyCodes.includes(keyCode)) {
-            const isActive = type === 'keydown';
-            this.setState(() => ({isActive}));
+    handleKeyUp = (event: KeyboardEvent<HTMLButtonElement>) => {
+        if (targetKeyCodes.includes(event.keyCode)) {
+            this.setState(() => ({isActive: false}));
         }
     };
 
@@ -90,9 +93,9 @@ export class Button extends Component<ButtonProps, State> {
                 disabled={disabled}
                 onBlur={this.handleBlur}
                 onClick={this.handleClick}
-                onKeyDown={this.handleKeyEvent}
+                onKeyDown={this.handleKeyDown}
                 onKeyPress={this.handleKeyPress}
-                onKeyUp={this.handleKeyEvent}
+                onKeyUp={this.handleKeyUp}
                 ref={buttonRef}
                 type={type}
             >

@@ -9,6 +9,7 @@ export interface CardProps {
     buttonLabel?: string;
     content?: string;
     id: number;
+    light?: boolean;
     positionIndex?: number;
     title?: string;
 }
@@ -24,11 +25,11 @@ export class Card extends Component<CardProps> {
     };
 
     render() {
-        const { buttonLabel, content, positionIndex, title } = this.props;
+        const { buttonLabel, content, light, positionIndex, title } = this.props;
         const contentFinaly = `${content.slice(0, 100)}...`;
 
         return (
-            <div className={cn('Card')}>
+            <div className={cn('Card', {'Card--light': light})}>
                 <div className={cn('Card__decorator')}>
                     <div className={cn('Card__container')}>
                         <h2 className={cn('Card__index')}>
