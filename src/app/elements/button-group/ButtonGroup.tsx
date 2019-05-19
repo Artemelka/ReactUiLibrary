@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Button, ButtonProps } from '../buttons/button';
 import classNames from 'classnames/bind';
+import { Button, ButtonProps } from '../buttons/Button';
 
 const style = require('./ButtonGroup.less');
 const cn = classNames.bind(style);
@@ -12,12 +12,12 @@ interface Props {
     separatorSize?: Symbol;
 }
 
-export const SeparatorSize = {
+const SeparatorSize = {
     MEDIUM: Symbol('medium'),
     SMALL: Symbol('small')
 };
 
-export class ButtonGroup extends Component<Props> {
+class ButtonGroupComponent extends Component<Props> {
     static defaultProps = {
         buttonComponent: Button,
         separatorSize: SeparatorSize.SMALL
@@ -52,3 +52,8 @@ export class ButtonGroup extends Component<Props> {
         );
     }
 }
+
+export const ButtonGroup = {
+    Component: ButtonGroupComponent,
+    SeparatorSize
+};

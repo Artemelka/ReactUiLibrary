@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonNotRequiredProps } from './button';
+import { Button, ButtonNotRequiredProps } from './Button';
 import { IconModule } from '../';
 import { ICON_SIZE } from './constants';
 

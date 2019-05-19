@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { Button, ButtonSize } from './button';
+import { Button, ButtonSize } from './Button';
 import { ButtonIconProps } from './ButtonIcon';
 import { IconModule } from '../';
 import { ICON_SIZE } from './constants';

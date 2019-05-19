@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent, KeyboardEvent, RefObject, createRef } from 'react';
+import React, { Component, MouseEvent, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
@@ -6,11 +6,13 @@ import { keyCodes } from '../../../services';
 
 const style = require('./Button.less');
 const cn = classNames.bind(style);
-
 export const ButtonSize = {
     SMALL: 'small',
     BIG: 'big'
 };
+const {ENTER, SPACE} = keyCodes;
+const targetKeyCodes = [ENTER, SPACE];
+
 export interface ButtonNotRequiredProps {
     buttonRef?: RefObject<HTMLButtonElement>;
     disabled?: boolean;
@@ -28,8 +30,6 @@ export interface ButtonProps extends ButtonNotRequiredProps {
 interface State {
     isActive: boolean;
 }
-const {ENTER, SPACE} = keyCodes;
-const targetKeyCodes = [ENTER, SPACE];
 
 export class Button extends Component<ButtonProps, State> {
     static Icon = ButtonIcon;
