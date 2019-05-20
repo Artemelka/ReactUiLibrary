@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import classNames from 'classnames/bind';
 import { Anchor } from '../../elements';
 
@@ -7,14 +8,16 @@ const cn = classNames.bind(style);
 
 interface Props {
     items: Array<any>;
-    routing: {[key: string]: any};
+    history?: {push: (url: string) => void};
+    location?: {[key: string]: any};
 }
 
-export class SideBar extends React.Component<Props> {
-    handleLinkClick = (url: string) => () => this.props.routing.push(url);
+@(withRouter as any)
+export class SideBar extends Component<Props> {
+    handleLinkClick = (url: string) => () => this.props.history.push(url);
 
     render() {
-        const { items, routing: { location: { pathname }}} = this.props;
+        const { items, location: { pathname }} = this.props;
 
         return (
             <div className={cn('SideBar')}>
