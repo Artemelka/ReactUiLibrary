@@ -8,7 +8,7 @@ exports[`Test SandBox Rendering snapshot 1`] = `
     className="Sandbox__item"
     key="0"
   >
-    test item
+    <test item />
   </div>
 </div>
 `;

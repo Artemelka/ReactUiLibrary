@@ -61,7 +61,7 @@ const textCollection: Array<Collection> = [{
     },
 ];
 
-const textItems = textCollection.map(({element: Component, params}: Collection) =>
+const textItems = textCollection.map(({element: Component, params}: Collection) => () =>
     params.map(({props, label}: Params, index: number) => (
         <Fragment key={index}>
             <Component {...props}>

@@ -38,7 +38,7 @@ const buttonGroupItems = [
     }
 ];
 
-const sandBoxItems = buttonGroupItems.map(({buttons, props, title}, index) => (
+const sandBoxItems = buttonGroupItems.map(({buttons, props, title}, index) => () => (
         <Fragment>
             <Text.H3>{title}</Text.H3>
             <ButtonGroup.Component buttons={buttons} {...props} key={index} />

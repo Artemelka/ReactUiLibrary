@@ -63,7 +63,7 @@ class TextInputExample extends Component<InputProps, State> {
         );
     }
 }
-const sandBoxItems = inputProps.map(props => {
+const sandBoxItems = inputProps.map(props => () => {
     const { label, ...restProps} = props;
 
     return (

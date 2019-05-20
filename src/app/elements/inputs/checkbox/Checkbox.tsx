@@ -33,8 +33,8 @@ const iconProps = {
 export class Checkbox extends Component<CheckboxProps, State> {
     static defaultProps = {
         checked: false,
-        onChange: () => {},
-        withRef: () => {}
+        onChange: () => false,
+        withRef: () => false
     };
 
     state = {

@@ -77,10 +77,10 @@ class CheckboxExample extends Component<Props, State> {
     }
 }
 
-const CheckboxItems = checkboxProps.map((props: Props, index: number) =>
+const CheckboxItems = checkboxProps.map((props: Props, index: number) => () =>
     <CheckboxExample {...props} key={index}/>
 );
-const CheckboxToggleItems = checkboxToggleProps.map((props: Props, index: number) =>
+const CheckboxToggleItems = checkboxToggleProps.map((props: Props, index: number) => () =>
     <CheckboxExample {...props} key={index} toggle/>
 );
 const sandBoxItems = [...CheckboxItems, ...CheckboxToggleItems];

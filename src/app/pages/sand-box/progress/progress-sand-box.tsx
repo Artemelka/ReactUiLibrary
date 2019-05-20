@@ -100,9 +100,9 @@ const progressCircularProps = [
     }
 ];
 
-const progressCircularExample = progressCircularProps.map(props => <CircleProgressExamples {...props} key={props.id}/>);
-const progressLinearExample = progressProps.map(props => <LinearProgressExample {...props} key={props.id}/>);
-const progressStringExample = progressProps.map(props => <Progress.String {...props} key={props.id}/>);
+const progressCircularExample = progressCircularProps.map(props => () => <CircleProgressExamples {...props} key={props.id}/>);
+const progressLinearExample = progressProps.map(props => () => <LinearProgressExample {...props} key={props.id}/>);
+const progressStringExample = progressProps.map(props => () => <Progress.String {...props} key={props.id}/>);
 const sandBoxItems = [
     ...progressCircularExample,
     ...progressLinearExample,

@@ -17,11 +17,14 @@ export const SandBox = (props: Props) => {
 
     return (
         <div className={cn('Sandbox')}>
-            {items.map((item, index) => (
-                <div className={itemClasses} key={index}>
-                    {item}
-                </div>
-            ))}
+            {items.map((item, index) => {
+                const Element = item;
+                return (
+                    <div className={itemClasses} key={index}>
+                        <Element />
+                    </div>
+                );
+            })}
         </div>
     );
 };

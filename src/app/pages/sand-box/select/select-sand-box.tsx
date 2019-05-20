@@ -84,21 +84,19 @@ class SelectExample extends Component<SelectProps, State> {
     }
 }
 
-const selectListItems = selectListProps.map((props, index) =>{
-    return (
-        <Fragment key={index}>
-            <SelectList
-                items={props.items}
-                onClick={(value: string) => console.log('value', value)}
-                style={{maxHeight: '200px'}}
-                selectedItemValue={props.items[1].value}
-            />
-            <div style={{height: '300px'}}/>
-        </Fragment>
-    );
-});
+const selectListItems = selectListProps.map((props, index) => () => (
+    <Fragment key={index}>
+        <SelectList
+            items={props.items}
+            onClick={(value: string) => console.log('value', value)}
+            style={{maxHeight: '200px'}}
+            selectedItemValue={props.items[1].value}
+        />
+        <div style={{height: '300px'}}/>
+    </Fragment>
+));
 
-const selectItems = selectProps.map((props: ExampleProps, index: number) => {
+const selectItems = selectProps.map((props: ExampleProps, index: number) => () =>  {
     const { label, ...restProps} = props;
 
     return (

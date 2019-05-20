@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { SandBox } from '../sand-box';
 import { CardList } from '../../../elements';
 
@@ -59,15 +59,12 @@ const cardListProps = [
     }
 ];
 
-const sandBoxItems = cardListProps.map(({ cardItems, light, title}, index) => {
-    return (
-            <Fragment key={index} >
-                <h3>{title}</h3>
-                <CardList cardItems={cardItems} light={light}/>
-            </Fragment>
-        );
-    }
-);
+const sandBoxItems = cardListProps.map(({ cardItems, light, title}, index) => () => (
+    <Fragment key={index} >
+        <h3>{title}</h3>
+        <CardList cardItems={cardItems} light={light}/>
+    </Fragment>
+));
 
 export const CardListSandBox = () => (
     <SandBox

@@ -42,6 +42,7 @@ interface Props {
     column?: boolean;
     items: Array<RadioButtonProps>;
     index?: number;
+    name: string;
     onChange?: (value: string) => void;
 }
 interface State {
@@ -66,19 +67,21 @@ class RadioButtonsExamples extends Component<Props, State> {
     };
 
     render() {
+        const { column, name } = this.props;
+
         return (
             <RadioButtons
-                column={this.props.column}
+                column={column}
                 items={this.items}
                 value={this.state.value}
-                name="radio-example"
+                name={name}
                 onChange={this.handleChange}
             />
         );
     }
 }
 
-const sandBoxItems = itemsHeading.map(({title, props}, index) => (
+const sandBoxItems = itemsHeading.map(({title, props}, index) => () =>  (
     <Fragment key={index}>
         <h3>{title}</h3>
         <RadioButtonsExamples items={checkboxProps} {...props} index={index}/>

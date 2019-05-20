@@ -34,7 +34,7 @@ const renderTable = (index: number, name: string) => iconProps.map((props, props
             <td className={cn('table-column')}>{props.stack}</td>
         </tr>
 ));
-const iconItems = Object.values(IconNames).map((item, index) => (
+const iconItems = Object.values(IconNames).map((item, index) => () => (
     <table  >
         <tbody>
         <tr>

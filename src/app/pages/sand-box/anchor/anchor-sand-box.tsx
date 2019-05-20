@@ -32,7 +32,7 @@ const anchorProps = [
     }
 ];
 
-const anchorItems = anchorProps.map((props, index) => <Anchor {...props} key={index}/>);
+const anchorItems = anchorProps.map((props, index) => () => <Anchor {...props} key={index}/>);
 
 export const AnchorSandBox = () => (
     <Fragment>

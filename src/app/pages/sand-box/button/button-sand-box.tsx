@@ -107,7 +107,7 @@ const examplesParams: Array<ExampleParams> = [
     }
 ];
 
-const getExampleItem = (params: ExampleParams) => {
+const getExampleItem = (params: ExampleParams) => () => {
     const { heading, mapCallback, props } = params;
 
     return (
