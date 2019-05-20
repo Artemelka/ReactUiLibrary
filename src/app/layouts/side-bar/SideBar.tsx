@@ -14,12 +14,12 @@ export class SideBar extends React.Component<Props> {
     handleLinkClick = (url: string) => () => this.props.routing.push(url);
 
     render() {
-        const { pathname } = this.props.routing.location;
+        const { items, routing: { location: { pathname }}} = this.props;
 
         return (
             <div className={cn('SideBar')}>
                 <ul className={cn('SideBar__scroll-wrapper')}>
-                    {this.props.items.map(({name, url}, index) =>
+                    {items.map(({name, url}, index) =>
                         <li className={cn('SideBar__link')} key={index}>
                             <Anchor
                                 active={pathname === url}
