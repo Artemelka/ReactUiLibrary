@@ -1,25 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SideBar, Layout } from '../../layouts';
+import { SideBar, LayoutModule } from '../../layouts';
 import { SandBoxPage } from '../';
 import { ComponentsCollection } from '../constants';
 import { LibraryFooter } from './LibraryFooter';
+
+const { Aside, Footer, Main, PageLayout } = LayoutModule;
+const ASIDE_HEADING = 'React UI Library';
+const ASIDE_TEXT = '123456789';
 
 interface Props {
     history: {[key: string]: any};
 }
 
-export class LibraryPageComponent extends React.Component<Props> {
+class LibraryPageComponent extends React.Component<Props> {
     handleGoHomeClick = () => this.props.history.push('/');
 
     render() {
         return (
-            <Layout
-                aside={<SideBar items={ComponentsCollection} routing={this.props.history} />}
-                onGoHomeClick={this.handleGoHomeClick}
-                content={<SandBoxPage/>}
-                footer={<LibraryFooter/>}
-            />
+            <PageLayout>
+                <Aside heading={ASIDE_HEADING} footerText={ASIDE_TEXT}>
+                    <SideBar items={ComponentsCollection} routing={this.props.history} />
+                </Aside>
+                <Main>
+                    <SandBoxPage />
+                </Main>
+                <Footer onGoHomeClick={this.handleGoHomeClick}>
+                    <LibraryFooter/>
+                </Footer>
+            </PageLayout>
         );
     }
 }
