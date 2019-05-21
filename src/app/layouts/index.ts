@@ -1,12 +1,14 @@
 export { SideBar } from './side-bar/SideBar';
 import { Aside } from './aside/Aside';
 import { Footer } from './footer/Footer';
+import { Header } from './header/Header';
 import { Main } from './main/Main';
-import { PageLayout } from './page-layout/PageLayout';
+import { PageLayout as Page } from './page-layout/PageLayout';
 
-export const LayoutModule = {
+export const PageLayout = {
     Aside,
     Footer,
+    Header,
     Main,
-    PageLayout
+    Page
 };

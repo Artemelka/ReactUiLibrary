@@ -1,4 +1,4 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
@@ -68,6 +68,9 @@ export class TestHomePage extends Component<AppPropsType> {
             onClick: this.handleLinkClick('push', '/library'),
             label: 'library'
         }, {
+            onClick: this.handleLinkClick('push', '/layout'),
+            label: 'layout'
+        }, {
             onClick: this.handleLinkClick('goBack'),
             label: 'link-back'
         }
@@ -85,18 +88,23 @@ export class TestHomePage extends Component<AppPropsType> {
         return (
             <div className={cn('Test-page')}>
                 <h1>Test page</h1>
-                {this.renderButtons(buttonRequestSettings)}
-                <br />
-                <h2>Test router</h2>
-                {this.renderButtons(this.buttonLinkExample)}
-                <br />
-                <h2>Change language</h2>
-                <h3>language: {locale}</h3>
-                <Select
-                    options={selectOptions}
-                    value={locale}
-                    onChange={this.handleLangChange}
-                />
+                <h3>Test request</h3>
+                <div className={cn('Test-page__item')}>
+                    {this.renderButtons(buttonRequestSettings)}
+                </div>
+                <h3>Test router</h3>
+                <div className={cn('Test-page__item')}>
+                    {this.renderButtons(this.buttonLinkExample)}
+                </div>
+                <h3>Test Change language</h3>
+                <h4>language: {locale}</h4>
+                <div className={cn('Test-page__item')}>
+                    <Select
+                        options={selectOptions}
+                        value={locale}
+                        onChange={this.handleLangChange}
+                    />
+                </div>
             </div>
         );
     }

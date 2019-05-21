@@ -1,11 +1,19 @@
-@import '../../styles/constants';
+
 
 .Main {
-    bottom: 50px;
-    left: 360px;
-    overflow-y: auto;
-    padding: 15px 30px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    box-sizing: border-box;
+    height: calc(100vh - 160px);
+    margin-right: -20px;
+    min-height: calc(650px - 160px);
+    overflow-y: scroll;
+    width: calc(100% - 330px);
+
+    &--full-width {
+        width: calc(100% + 20px);
+    }
+
+    &--without-header {
+        height: calc(100vh - 80px);
+        min-height: calc(650px - 80px);
+    }
 }

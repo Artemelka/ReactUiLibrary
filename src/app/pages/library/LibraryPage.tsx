@@ -1,27 +1,28 @@
 import React from 'react';
-import { SideBar, LayoutModule } from '../../layouts';
+import { SideBar, PageLayout } from '../../layouts';
 import { SandBoxPage } from '../';
 import { ComponentsCollection } from '../constants';
 import { LibraryFooter } from './LibraryFooter';
 
-const { Aside, Footer, Main, PageLayout } = LayoutModule;
+const { Aside, Footer, Header, Main, Page } = PageLayout;
 const ASIDE_HEADING = 'React UI Library';
 const ASIDE_TEXT = '123456789';
 
 export class LibraryPage extends React.Component {
     render() {
         return (
-            <PageLayout>
-                <Aside heading={ASIDE_HEADING} footerText={ASIDE_TEXT}>
+            <Page>
+                {/*<Header />*/}
+                <Aside heading={ASIDE_HEADING} footerText={ASIDE_TEXT} withoutHeader>
                     <SideBar items={ComponentsCollection} />
                 </Aside>
-                <Main>
+                <Main withoutHeader>
                     <SandBoxPage />
                 </Main>
                 <Footer>
                     <LibraryFooter/>
                 </Footer>
-            </PageLayout>
+            </Page>
         );
     }
 }

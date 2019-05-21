@@ -2,16 +2,21 @@
 
 .Aside {
     background-color: @secondColor;
-    bottom: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 160px);
     justify-content: flex-start;
-    left: 0;
-    padding-bottom: 50px;
-    position: absolute;
-    top: 0;
-    width: 360px;
+    margin-bottom: -80px;
+    min-height: calc(650px - 160px);
+    width: 350px;
+
+    &--without-header {
+        height: calc(100vh - 80px);
+        min-height: calc(650px - 80px);
+        //height: calc(100vh);
+        //min-height: calc(650px);
+    }
 
     &__content {
         padding: 15px 30px;
