@@ -7,11 +7,18 @@ exports[`Test App component Rendering snapshot 1`] = `
   <Route
     component={[Function]}
     exact={true}
+    key="0_/"
     path="/"
   />
   <Route
     component={[Function]}
+    key="1_/library"
     path="/library"
+  />
+  <Route
+    component={[Function]}
+    key="2_/layout"
+    path="/layout"
   />
 </div>
 `;

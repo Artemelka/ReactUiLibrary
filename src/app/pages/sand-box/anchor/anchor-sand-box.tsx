@@ -1,11 +1,14 @@
-import React, { Fragment } from 'react';
-import { SandBox } from '../sand-box';
-import { Anchor } from '../../../elements';
+import React from 'react';
+import classNames from 'classnames/bind';
+import { Anchor, Text } from '../../../elements';
 import { logger } from '../utils';
 import { PROJECT_LINK } from '../../../layouts/footer/Footer';
 
+const style = require('../sand-box.less');
+const cn = classNames.bind(style);
+
 const LabelLink = {
-    LINK: 'Link to GitHub open in new window',
+    DEFAULT: 'Link to GitHub open in new window',
     DISABLED: 'Link disabled',
     PSEUDO: 'Link pseudo console message on click',
     ACTIVE: 'Link active'
@@ -13,7 +16,7 @@ const LabelLink = {
 const anchorProps = [
     {
         href: PROJECT_LINK,
-        label: LabelLink.LINK,
+        label: LabelLink.DEFAULT,
         newPage: true,
         onClick: logger('Link click')
     }, {
@@ -32,16 +35,30 @@ const anchorProps = [
     }
 ];
 
-const anchorItems = anchorProps.map((props, index) => () => <Anchor {...props} key={index}/>);
-
 export const AnchorSandBox = () => (
-    <Fragment>
-        <SandBox
-            items={anchorItems}
-        />
-        <SandBox
-            items={anchorItems}
-            bgWhite
-        />
-    </Fragment>
+    <div className={cn('Sandbox')}>
+        <Text.H2 align="center">
+            Anchor
+        </Text.H2>
+        <div className={cn('Sandbox__block-items')}>
+            <Text.Paragraph>
+                Компонент для реализации гиперссылок и псевдоссылок
+            </Text.Paragraph>
+        </div>
+        <div className={cn('Sandbox__block-items')}>
+            {anchorProps.map((props, index) =>
+                <div className={cn('Sandbox__item')} key={`${props.label}${index}`}>
+                    <Anchor {...props} />
+                </div>
+            )}
+        </div>
+        <div className={cn('Sandbox__block-items')}>
+            {anchorProps.map((props, index) =>
+                <div className={cn('Sandbox__item', 'Sandbox__item--bg-white')} key={`${props.label}${index}`}>
+                    <Anchor {...props} />
+                </div>
+            )}
+        </div>
+    </div>
 );
+

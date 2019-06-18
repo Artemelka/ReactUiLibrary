@@ -5,6 +5,8 @@ import { Anchor } from '../../elements';
 
 const style = require('./SideBar.less');
 const cn = classNames.bind(style);
+const SAND_BOX = 'SandBox';
+const formatterComponentName = (fullName: string): string => fullName.substring(0, fullName.indexOf(SAND_BOX));
 
 interface Props {
     items: Array<any>;
@@ -26,7 +28,7 @@ export class SideBar extends Component<Props> {
                         <li className={cn('SideBar__link')} key={index}>
                             <Anchor
                                 active={pathname === url}
-                                label={name}
+                                label={formatterComponentName(name)}
                                 onClick={this.handleLinkClick(url)}
                             />
                         </ li>

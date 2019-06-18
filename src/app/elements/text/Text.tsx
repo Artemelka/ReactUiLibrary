@@ -13,6 +13,7 @@ const style = require('./Text.less');
 const cn = classNames.bind(style);
 
 interface Props {
+    align?: string;
     bold?: boolean;
     children: string;
     headingType?: symbol;
@@ -56,7 +57,7 @@ export class TextComponent extends React.Component<Props> {
     };
 
     getClassName = () => {
-        const { bold, headingType, light, type, upper } = this.props;
+        const { align, bold, headingType, light, type, upper } = this.props;
         const isHeading = type === ComponentType.HEADING;
 
         if (bold && light) {
@@ -64,6 +65,8 @@ export class TextComponent extends React.Component<Props> {
         }
 
         return cn('Text', {
+            'Text--center': align === 'center',
+            'Text--right': align === 'right',
             'Text--heading-h1': isHeading && headingType === HeadingType.H1,
             'Text--heading-h2': isHeading && headingType === HeadingType.H2,
             'Text--heading-h3': isHeading && headingType === HeadingType.H3,
