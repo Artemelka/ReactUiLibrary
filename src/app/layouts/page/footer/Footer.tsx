@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import classNames from 'classnames/bind';
-import { Anchor, Select } from '../../elements';
-import { changeLocale, translate } from '../../../services/translate';
-import { TranslateState } from '../../../services/translate/reducer';
+import { Anchor, Select } from '../../../elements';
+import { changeLocale, translate } from '../../../../services/translate';
+import { TranslateState } from '../../../../services/translate/reducer';
+import { PROJECT_LINK, HOME_URL } from '../../../constants';
 import { Dispatch } from 'redux';
 
 const style = require('./Footer.less');
 const cn = classNames.bind(style);
 
-export const PROJECT_LINK = 'https://github.com/Artemelka/ReactUiLibrary';
-const HOME_URL = '/';
+
 const SELECT_WIDTH = 70;
 const selectOptions = [
     {

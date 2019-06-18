@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { Anchor, Text } from '../../../elements';
 import { logger } from '../utils';
-import { PROJECT_LINK } from '../../../layouts/footer/Footer';
+import { PROJECT_LINK } from '../../../constants';
 
 const style = require('../sand-box.less');
 const cn = classNames.bind(style);

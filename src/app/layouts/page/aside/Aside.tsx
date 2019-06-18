@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from '../../elements';
+import { Text } from '../../../elements';
 import classNames from 'classnames/bind';
 
 const style = require('./Aside.less');

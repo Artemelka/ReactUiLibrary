@@ -1,5 +1,6 @@
 import React from 'react';
-import { SideBar, PageLayout } from '../../layouts';
+import { PageLayout } from '../../layouts';
+import { SideBar } from '../../components';
 import { SandBoxPage } from '../';
 import { ComponentsCollection } from '../constants';
 import { LibraryFooter } from './LibraryFooter';
