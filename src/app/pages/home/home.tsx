@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import { Button, Select } from '../../elements';
-import { changeLocale, translate } from '../../../services/translate';
+import { Button, changeLocale, Select } from '../../elements';
 import { getPostConfig, requestWrapper, requestGetParams } from './utils';
-import { TranslateState } from '../../../services/translate/reducer';
+import { TranslateState } from '../../elements/translate/reducer';
 
 const style = require('./home.less');
 const cn = classNames.bind(style);
@@ -78,7 +77,10 @@ export class TestHomePage extends Component<AppPropsType> {
 
     renderButtons = (buttons: Array<Buttons>) => buttons.map(({onClick, label}: Buttons, index: number) => (
         <div className={cn('Test-page__button-wrapper')} key={index}>
-            <Button onClick={onClick} label={translate(label)}/>
+            <Button
+                onClick={onClick}
+                label={label}
+            />
         </div>
     ));
 

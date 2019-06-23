@@ -13,7 +13,9 @@ exports[`Test Buttons Default Rendering snapshot 1`] = `
   <span
     className="Button__content"
   >
-    test button
+    <Connect(TranslateComponent)
+      translateKey="test button"
+    />
   </span>
 </button>
 `;

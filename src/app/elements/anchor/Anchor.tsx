@@ -1,4 +1,4 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component, ReactElement, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { keyCodes } from '../../../services';
 
@@ -9,9 +9,10 @@ const targetKeyCodes = [ENTER, SPACE];
 
 interface Props {
     active?: boolean;
+    children?: string | ReactElement;
     disabled?: boolean;
     href?: string;
-    label: string;
+    label?: string;
     newPage?: boolean;
     onClick?: (event: SyntheticEvent) => void;
 }
@@ -28,7 +29,7 @@ interface CustomEvent extends SyntheticEvent {
 const LINK_TARGET_BLANK = '_blank';
 
 const AnchorLink = (props: ComponentType) => {
-    const { anchorClasses, href, label, onClick, onKeyPress, target } = props;
+    const { anchorClasses, children, href, label, onClick, onKeyPress, target } = props;
 
     return (
         <a
@@ -38,12 +39,12 @@ const AnchorLink = (props: ComponentType) => {
             onKeyPress={onKeyPress}
             target={target}
         >
-            {label}
+            {label || children}
         </a>
     );
 };
 const PseudoLink = (props: ComponentType) => {
-    const { anchorClasses, disabled, label, onClick, onKeyPress } = props;
+    const { anchorClasses, children, disabled, label, onClick, onKeyPress } = props;
 
     return (
         <span
@@ -53,7 +54,7 @@ const PseudoLink = (props: ComponentType) => {
             tabIndex={disabled ? -1 : 0}
             role="button"
         >
-            {label}
+            {label || children}
         </span>
     );
 };
@@ -81,7 +82,7 @@ export class Anchor extends React.Component<Props> {
     };
 
     render() {
-        const { active, disabled, href, label, newPage } = this.props;
+        const { active, children, disabled, href, label, newPage } = this.props;
         const Component = (Boolean(href) && !disabled) ? AnchorLink : PseudoLink;
         const anchorClasses = cn('Anchor', {
             'Anchor--active': active,
@@ -90,6 +91,7 @@ export class Anchor extends React.Component<Props> {
         const anchorProps: ComponentType = {
             active,
             anchorClasses,
+            children,
             disabled,
             label,
             onClick: this.handleClick,

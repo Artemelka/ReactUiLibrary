@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { translateReducer } from '../services/translate';
+import { translateReducer } from './elements';
 
 export const reducers = combineReducers({
     routing: routerReducer,

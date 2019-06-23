@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Checkbox } from '../checkbox/Checkbox';
-import { translate } from '../../../../services/translate';
+import { TranslateComponent } from '../../translate';
 
 const style = require('./RadioButtons.less');
 const cn = classNames.bind(style);
@@ -45,7 +45,7 @@ export class RadioButtons extends Component<RadioButtonsProps> {
                                 />
                                 { label &&
                                     <span className={cn('Radio-buttons__item-label')}>
-                                        {translate(label)}
+                                        <TranslateComponent translateKey={label} />
                                     </span>
                                 }
                             </div>

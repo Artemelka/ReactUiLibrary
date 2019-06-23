@@ -2,6 +2,7 @@ import React, { Component, MouseEvent, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
+import { TranslateComponent } from '../translate';
 import { keyCodes } from '../../../services';
 
 const style = require('./Button.less');
@@ -104,7 +105,7 @@ export class Button extends Component<ButtonProps, State> {
                 type={type}
             >
                 <span className={cn('Button__content')}>
-                    {icon || iconLabel ? children : label}
+                    {icon || iconLabel ? children : <TranslateComponent translateKey={label} />}
                 </span>
             </button>
         );

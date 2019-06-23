@@ -1,6 +1,6 @@
 import React, { Component, FocusEvent, KeyboardEvent } from 'react';
 import { keyCodes } from '../../../../services';
-import { translate } from '../../../../services/translate';
+import { TranslateComponent } from '../../translate';
 
 const { DOWN, ENTER, SPACE, TAB, UP } = keyCodes;
 const targetClickKey = [ ENTER, SPACE ];
@@ -72,7 +72,7 @@ export class SelectListItem extends Component<Props> {
                 role="button"
                 tabIndex={tabIndex}
             >
-                {translate(title)}
+                <TranslateComponent translateKey={title}/>
             </li>
         );
     }

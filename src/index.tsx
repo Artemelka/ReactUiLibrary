@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import { reducers } from './app/reducers';
-import { translateMiddleware, TranslateProvider } from './services/translate';
 import { App } from './app';
 import './index.css';
 
@@ -17,17 +16,14 @@ const ROOT = document.getElementById(ELEMENT_ID);
 const history = createHistory();
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(
     routerMiddleware(history),
-    thunk,
-    translateMiddleware
+    thunk
 )));
 
 ReactDOM.render(
     <Provider store={store}>
-        <TranslateProvider>
             <Router history={history}>
                 <App />
             </Router>
-        </TranslateProvider>
     </Provider>,
     ROOT
 );

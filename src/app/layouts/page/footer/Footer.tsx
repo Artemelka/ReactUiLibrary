@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import classNames from 'classnames/bind';
-import { Anchor, Select } from '../../../elements';
-import { changeLocale, translate } from '../../../../services/translate';
-import { TranslateState } from '../../../../services/translate/reducer';
+import { Anchor, changeLocale, Select, TranslateComponent } from '../../../elements';
+import { TranslateState } from '../../../elements/translate/reducer';
 import { PROJECT_LINK, HOME_URL } from '../../../constants';
 import { Dispatch } from 'redux';
 
@@ -40,22 +39,27 @@ export class Footer extends Component<Props> {
     handleLangChange = (value: string) => this.props.changeLocale(value);
 
     render() {
+        const { children, translateDictionary } = this.props;
         return (
             <footer className={cn('Footer')}>
                 <div className={cn('Footer__aside')}>
-                    <Anchor href={PROJECT_LINK} newPage label={translate('link-project')} />
-                    <Anchor label={translate('go-to-home')} onClick={this.handleClick}/>
+                    <Anchor href={PROJECT_LINK} newPage>
+                        <TranslateComponent translateKey={'link-project'}/>
+                    </Anchor>
+                    <Anchor onClick={this.handleClick}>
+                        <TranslateComponent translateKey={'go-to-home'} />
+                    </Anchor>
                 </div>
                 <div className={cn('Footer__main')}>
                     <div className={cn('Footer__content')}>
-                        {this.props.children}
+                        {children}
                     </div>
                     <div className={cn('Footer__select')}>
                         <Select
                             listOpenTop
                             onChange={this.handleLangChange}
                             options={selectOptions}
-                            value={this.props.translateDictionary.locale}
+                            value={translateDictionary.locale}
                             inputWidth={SELECT_WIDTH}
                         />
                     </div>
