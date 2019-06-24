@@ -36,6 +36,7 @@ export class SandboxPanel extends Component<Props, State> {
 
     render() {
         const {
+            children,
             detailsComponent: Content,
             dataProps: { detailsProps = {}, summaryProps = {} },
             summaryComponent: Header
@@ -49,7 +50,9 @@ export class SandboxPanel extends Component<Props, State> {
                 openingByIcon
             >
                 <DropDownSummary>
-                    <Header {...summaryProps}/>
+                    <Header {...summaryProps}>
+                        {children}
+                    </Header>
                 </DropDownSummary>
                 {Content &&
                     <DropDownDetails>

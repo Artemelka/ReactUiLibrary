@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import {
     getComponentText,
@@ -15,7 +15,7 @@ const cn = classNames.bind(style);
 interface Props {
     align?: string;
     bold?: boolean;
-    children: string;
+    children: string | ReactElement;
     headingType?: symbol;
     light?: boolean;
     size?: number;

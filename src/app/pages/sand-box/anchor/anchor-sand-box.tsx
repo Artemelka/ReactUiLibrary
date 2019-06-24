@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { Anchor, Text } from '../../../elements';
+import { Anchor, Text, TranslateComponent } from '../../../elements';
 import { SandboxPanel } from '../../../components';
 import { logger } from '../utils';
 import { PROJECT_LINK } from '../../../constants';
@@ -9,30 +9,24 @@ import { PanelPropsDetails } from './components/PanelPropsDetails';
 const style = require('../sand-box.less');
 const cn = classNames.bind(style);
 
-const LabelLink = {
-    DEFAULT: 'Link to GitHub open in new window',
-    DISABLED: 'Link disabled',
-    PSEUDO: 'Link pseudo console message on click',
-    ACTIVE: 'Link active'
-};
 const anchorProps = [
     {
         href: PROJECT_LINK,
-        label: LabelLink.DEFAULT,
+        children: 'link-default',
         newPage: true,
         onClick: logger('Link click')
     }, {
         disabled: true,
         href: PROJECT_LINK,
-        label: LabelLink.DISABLED,
+        children: 'link-disabled',
         newPage: true,
         onClick: logger('Link click')
     }, {
-        label: LabelLink.PSEUDO,
+        children: 'link-pseudo',
         onClick: logger('Link click')
     }, {
         active: true,
-        label: LabelLink.ACTIVE,
+        children: 'link-active',
         onClick: logger('Link click')
     }
 ];
@@ -43,36 +37,48 @@ export const AnchorSandBox = () => (
             Anchor
         </Text.H2>
         <Text.H4>
-            Описание
+            <TranslateComponent translateKey={'description-header'} />
         </Text.H4>
         <div className={cn('Sandbox__block-items')}>
             <Text.Paragraph>
-                Компонент для реализации гиперссылок и псевдоссылок
+                <TranslateComponent translateKey={'anchor-description'} />
             </Text.Paragraph>
         </div>
         <div className={cn('Sandbox__block-items')}>
             <SandboxPanel
-                dataProps={{summaryProps: {align: 'center', children: 'Принемаемые параметры'}}}
+                dataProps={{summaryProps: {align: 'center'}}}
                 detailsComponent={PanelPropsDetails}
                 summaryComponent={Text.Paragraph}
-            />
+            >
+                {<TranslateComponent translateKey={'accepted-parameters'} />}
+            </SandboxPanel>
         </div>
         <Text.H4>
             UI
         </Text.H4>
         <div className={cn('Sandbox__block-items')}>
-            {anchorProps.map((props, index) =>
-                <div className={cn('Sandbox__item')} key={`${props.label}${index}`}>
-                    <Anchor {...props} />
+            {anchorProps.map(({children, ...rest}, index) =>
+                <div className={cn('Sandbox__item')} key={`${children}${index}`}>
+                    <Anchor {...rest}>
+                        <TranslateComponent translateKey={children} />
+                    </ Anchor>
                 </div>
             )}
         </div>
         <div className={cn('Sandbox__block-items')}>
-            {anchorProps.map((props, index) =>
-                <div className={cn('Sandbox__item', 'Sandbox__item--bg-white')} key={`${props.label}${index}`}>
-                    <Anchor {...props} />
+            {anchorProps.map(({children, ...rest}, index) =>
+                <div className={cn('Sandbox__item', 'Sandbox__item--bg-white')} key={`${children}${index}`}>
+                    <Anchor {...rest} >
+                        <TranslateComponent translateKey={children} />
+                    </Anchor>
                 </div>
             )}
+        </div>
+        <Text.H4>
+            <TranslateComponent translateKey={'examples'} />
+        </Text.H4>
+        <div className={cn('Sandbox__block-items')}>
+
         </div>
     </div>
 );

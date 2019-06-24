@@ -1,19 +1,35 @@
 {
   "ru": {
+    "accepted-parameters": "Принемаемые параметры",
+    "anchor-description": "Компонент для реализации гиперссылок и псевдоссылок",
+    "description-header": "Описание",
     "english-language": "Английский",
+    "examples": "Пример",
     "go-to-home": "На главную",
     "library": "библиотека",
+    "link-active": "активная ссылка",
     "link-back": "назад",
+    "link-default": "ссылка на GitHub откроется в новом окне",
+    "link-disabled": "ссылка без возможности взаимодействия",
     "link-project": "Проект на GitHub",
+    "link-pseudo": "псевдо-ссылка с сообщением в консоле при клике",
     "russian-language": "Русский",
     "test": "тест"
   },
   "en": {
+    "accepted-parameters": "Accepted parameters",
+    "anchor-description": "Component for implementing hyperlinks and pseudo links",
+    "description-header": "Description",
     "english-language": "English",
+    "examples": "Examples",
     "go-to-home": "Go to Home",
     "library": "library",
+    "link-active": "Link active",
     "link-back": "back",
+    "link-default": "Link to GitHub open in new window",
+    "link-disabled": "Link disabled",
     "link-project": "Project in GitHub",
+    "link-pseudo": "Link pseudo console message on click",
     "russian-language": "Russian",
     "test": "test"
   }

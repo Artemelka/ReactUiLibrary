@@ -1,20 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Anchor test Render snapshot anchor 1`] = `
-<AnchorLink
-  anchorClasses="Anchor"
+<a
+  className="Anchor"
   href="test"
-  label="test"
   onClick={[Function]}
   onKeyPress={[Function]}
+  target="_self"
 />
 `;
 
 exports[`Anchor test Render snapshot pseudoLink 1`] = `
-<PseudoLink
-  anchorClasses="Anchor"
-  label="test"
+<span
+  className="Anchor"
   onClick={[Function]}
   onKeyPress={[Function]}
+  role="button"
+  tabIndex={0}
 />
 `;

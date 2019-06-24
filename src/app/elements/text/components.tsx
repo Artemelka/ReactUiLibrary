@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { TextComponent, TextProps } from './Text';
 import { ComponentType, HeadingType } from './constants';
 
 interface Paragraph {
     className: string;
     style: {[key: string]: string | number};
-    text: string;
+    text: string | ReactElement;
 }
 interface Heading extends Paragraph {
     type: symbol;

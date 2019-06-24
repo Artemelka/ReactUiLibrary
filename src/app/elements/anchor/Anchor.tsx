@@ -12,51 +12,17 @@ interface Props {
     children?: string | ReactElement;
     disabled?: boolean;
     href?: string;
-    label?: string;
     newPage?: boolean;
     onClick?: (event: SyntheticEvent) => void;
-}
-interface ComponentType extends Props {
-    anchorClasses: string;
-    onKeyPress: (event: SyntheticEvent) => void;
-    target?: string;
 }
 interface CustomEvent extends SyntheticEvent {
     keyCode: number;
     which: number;
 }
 
-const LINK_TARGET_BLANK = '_blank';
-
-const AnchorLink = (props: ComponentType) => {
-    const { anchorClasses, children, href, label, onClick, onKeyPress, target } = props;
-
-    return (
-        <a
-            href={href}
-            className={anchorClasses}
-            onClick={onClick}
-            onKeyPress={onKeyPress}
-            target={target}
-        >
-            {label || children}
-        </a>
-    );
-};
-const PseudoLink = (props: ComponentType) => {
-    const { anchorClasses, children, disabled, label, onClick, onKeyPress } = props;
-
-    return (
-        <span
-            className={anchorClasses}
-            onClick={onClick}
-            onKeyPress={onKeyPress}
-            tabIndex={disabled ? -1 : 0}
-            role="button"
-        >
-            {label || children}
-        </span>
-    );
+const LinkTargetAttr = {
+    BLANK: '_blank',
+    SELF: '_self'
 };
 
 export class Anchor extends React.Component<Props> {
@@ -82,30 +48,35 @@ export class Anchor extends React.Component<Props> {
     };
 
     render() {
-        const { active, children, disabled, href, label, newPage } = this.props;
-        const Component = (Boolean(href) && !disabled) ? AnchorLink : PseudoLink;
+        const { active, children, disabled, href, newPage } = this.props;
         const anchorClasses = cn('Anchor', {
             'Anchor--active': active,
             'Anchor--disabled': disabled
         });
-        const anchorProps: ComponentType = {
-            active,
-            anchorClasses,
-            children,
-            disabled,
-            label,
-            onClick: this.handleClick,
-            onKeyPress: this.handleKeyPress
-        };
 
-        if (href) {
-            anchorProps.href = href;
-
-            if (newPage) {
-                anchorProps.target = LINK_TARGET_BLANK;
-            }
-        }
-
-        return <Component {...anchorProps}/>;
+        return (
+            Boolean(href) && !disabled
+                ? (
+                    <a
+                        href={href}
+                        className={anchorClasses}
+                        onClick={this.handleClick}
+                        onKeyPress={this.handleKeyPress}
+                        target={newPage ? LinkTargetAttr.BLANK : LinkTargetAttr.SELF}
+                    >
+                        {children}
+                    </a>
+                ) : (
+                    <span
+                        className={anchorClasses}
+                        onClick={this.handleClick}
+                        onKeyPress={this.handleKeyPress}
+                        tabIndex={disabled ? -1 : 0}
+                        role="button"
+                    >
+                        {children}
+                    </span>
+                )
+        );
     }
 }

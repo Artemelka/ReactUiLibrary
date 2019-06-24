@@ -28,9 +28,10 @@ export class SideBar extends Component<Props> {
                         <li className={cn('SideBar__link')} key={index}>
                             <Anchor
                                 active={pathname === url}
-                                label={formatterComponentName(name)}
                                 onClick={this.handleLinkClick(url)}
-                            />
+                            >
+                                {formatterComponentName(name)}
+                            </Anchor>
                         </ li>
                     )}
                 </ul>
