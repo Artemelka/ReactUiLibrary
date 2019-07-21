@@ -38,9 +38,11 @@ export class SandboxPropsTable extends Component<Props> {
                                 <TranslateComponent translateKey={param}/>
                             </td>
                         )}
-                        <td className={cn('Sandbox-props-table__column')}>
-                            <TranslateComponent translateKey={params[3] ? 'yes' : 'no'}/>
-                        </td>
+                        {!params[3] &&
+                            <td className={cn('Sandbox-props-table__column')}>
+                                <TranslateComponent translateKey={'no'}/>
+                            </td>
+                        }
                     </tr>
                 ))}
                 </tbody>

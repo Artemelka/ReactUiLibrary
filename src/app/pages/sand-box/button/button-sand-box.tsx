@@ -5,7 +5,12 @@ import { ButtonView } from './components/ButtonView';
 
 const { Sandbox } = SandboxLayout;
 const buttonProps = [
-    ['onClick', 'function', 'callback on click event']
+    ['accent', 'boolean', 'accent style'],
+    ['disabled', 'boolean', 'disabled style'],
+    ['iconName', 'string', 'name icon in button'],
+    ['label', 'string', 'button text', 'yes'],
+    ['onClick', 'function', 'callback on click event'],
+    ['size', 'string', 'button size']
 ];
 
 export const ButtonSandBox = () => (
