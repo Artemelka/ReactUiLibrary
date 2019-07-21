@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import classNames from 'classnames/bind';
 import { Text, TranslateComponent } from '../../elements';
-import { SandboxPanel } from '../index';
+import { SandboxPanel } from '../sandbox-panel/SandboxPanel';
 
 const style = require('./sandbox.less');
 const cn = classNames.bind(style);
@@ -11,6 +11,7 @@ interface SandboxProps {
 }
 interface Props {
     acceptedParameters: ComponentType;
+    acceptedParametersProps?: {[key: string]: any};
     description: string;
     example: ComponentType;
     name: string;
@@ -32,7 +33,7 @@ export const SandboxItem = ({bgWhite, children}: ItemProps) => (
     </div>
 );
 
-export const SandboxContainer = ({acceptedParameters, description, example: Example, name, view: View}: Props) => (
+export const SandboxContainer = ({acceptedParameters, acceptedParametersProps, description, example: Example, name, view: View}: Props) => (
     <div className={cn('Sandbox')}>
         <Text.H2 align="center">{name}</Text.H2>
         <Text.H4>
@@ -45,7 +46,10 @@ export const SandboxContainer = ({acceptedParameters, description, example: Exam
         </SandboxBlockItems>
         <SandboxBlockItems>
             <SandboxPanel
-                dataProps={{summaryProps: {align: 'center'}}}
+                dataProps={{
+                    detailsProps: acceptedParametersProps,
+                    summaryProps: {align: 'center'}
+                }}
                 detailsComponent={acceptedParameters}
                 summaryComponent={Text.H5}
             >
