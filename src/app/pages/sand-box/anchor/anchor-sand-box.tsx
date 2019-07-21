@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout, SandboxPropsTable } from '../../../components';
+import { SandboxLayout } from '../../../components';
 import { AnchorView } from './components/AnchorView';
 import { AnchorExample } from './components/AnchorExample';
 
@@ -15,7 +15,6 @@ const anchorProps = [
 
 export const AnchorSandBox = () => (
     <Sandbox
-        acceptedParameters={SandboxPropsTable}
         acceptedParametersProps={{items: anchorProps}}
         description="anchor-description"
         example={AnchorExample}

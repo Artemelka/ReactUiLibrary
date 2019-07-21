@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout, SandboxPropsTable } from '../../../components';
+import { SandboxLayout } from '../../../components';
 import { ButtonGroupExample } from './components/ButtonGroupExample';
 import { ButtonGroupView } from './components/ButtonGroupView';
 
@@ -12,7 +12,6 @@ const buttonProps = [
 
 export const ButtonGroupSandBox = () => (
     <Sandbox
-        acceptedParameters={SandboxPropsTable}
         acceptedParametersProps={{items: buttonProps}}
         description="button-group-description"
         example={ButtonGroupExample}

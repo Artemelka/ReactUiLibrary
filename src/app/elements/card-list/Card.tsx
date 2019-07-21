@@ -42,7 +42,7 @@ export class Card extends Component<CardProps> {
                             {contentFinaly}
                         </p>
                         <div className={cn('Card__button')}>
-                            <Button label={buttonLabel}/>
+                            <Button label={buttonLabel} accent={light}/>
                         </div>
                     </div>
                 </div>

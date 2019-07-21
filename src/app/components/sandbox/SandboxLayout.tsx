@@ -2,6 +2,7 @@ import React, { ComponentType } from 'react';
 import classNames from 'classnames/bind';
 import { Text, TranslateComponent } from '../../elements';
 import { SandboxPanel } from '../sandbox-panel/SandboxPanel';
+import { SandboxPropsTable } from '../sandbox-props-table/SandboxPropsTable';
 
 const style = require('./sandbox.less');
 const cn = classNames.bind(style);
@@ -10,7 +11,7 @@ interface SandboxProps {
     children: any;
 }
 interface Props {
-    acceptedParameters: ComponentType;
+    acceptedParameters?: ComponentType;
     acceptedParametersProps?: {[key: string]: any};
     description: string;
     example: ComponentType;
@@ -35,12 +36,19 @@ export const SandboxItem = ({bgWhite, inline, children}: ItemProps) => (
     </div>
 );
 
-export const SandboxContainer = ({acceptedParameters, acceptedParametersProps, description, example: Example, name, view: View}: Props) => (
+export const SandboxContainer = ({
+     acceptedParameters = SandboxPropsTable,
+     acceptedParametersProps,
+     description,
+     example: Example,
+     name,
+     view: View
+}: Props) => (
     <div className={cn('Sandbox')}>
-        <Text.H2 align="center">{name}</Text.H2>
-        <Text.H4>
+        <Text.H1 align="center">{name}</Text.H1>
+        <Text.H2>
             <TranslateComponent translateKey={'description-header'} />
-        </Text.H4>
+        </Text.H2>
         <SandboxBlockItems>
             <Text.Paragraph>
                 <TranslateComponent translateKey={description} />
@@ -58,13 +66,13 @@ export const SandboxContainer = ({acceptedParameters, acceptedParametersProps, d
                 <TranslateComponent translateKey={'accepted-parameters'} />
             </SandboxPanel>
         </SandboxBlockItems>
-        <Text.H4>
+        <Text.H2>
             <TranslateComponent translateKey={'example'} />
-        </Text.H4>
+        </Text.H2>
         <View/>
-        <Text.H4>
+        <Text.H2>
             <TranslateComponent translateKey={'usage-example'} />
-        </Text.H4>
+        </Text.H2>
         <SandboxBlockItems>
             <Example/>
         </SandboxBlockItems>

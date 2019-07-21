@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout, SandboxPropsTable } from '../../../components';
+import { SandboxLayout } from '../../../components';
 import { ButtonExample } from './components/ButtonExample';
 import { ButtonView } from './components/ButtonView';
 
@@ -15,7 +15,6 @@ const buttonProps = [
 
 export const ButtonSandBox = () => (
     <Sandbox
-        acceptedParameters={SandboxPropsTable}
         acceptedParametersProps={{items: buttonProps}}
         description="button-description"
         example={ButtonExample}

@@ -34,7 +34,7 @@ const Tag = ({name, end, single}: TagProps) => (
 interface Props {
     name: string;
     path: string;
-    text: string;
+    text?: string;
     single?: boolean;
 }
 
