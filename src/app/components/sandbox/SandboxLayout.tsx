@@ -19,14 +19,16 @@ interface Props {
 }
 interface ItemProps extends SandboxProps {
     bgWhite?: boolean;
+    inline?: boolean;
 }
 
 export const SandboxBlockItems = ({children}: SandboxProps) => <div className={cn('Sandbox__block-items')}>{children}</div>;
 
-export const SandboxItem = ({bgWhite, children}: ItemProps) => (
+export const SandboxItem = ({bgWhite, inline, children}: ItemProps) => (
     <div
         className={cn('Sandbox__item', {
-            'Sandbox__item--bg-white': bgWhite
+            'Sandbox__item--bg-white': bgWhite,
+            'Sandbox__item--inline': inline
         })}
     >
         {children}

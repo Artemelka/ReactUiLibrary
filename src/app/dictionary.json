@@ -2,6 +2,7 @@
   "ru": {
     "accepted-parameters": "Принемаемые параметры",
     "anchor-description": "Компонент для реализации гиперссылок и псевдоссылок",
+    "button-description": "Компонент для реализации кнопок",
     "description": "Описание",
     "description-header": "Описание",
     "english-language": "Английский",
@@ -26,6 +27,7 @@
   "en": {
     "accepted-parameters": "Accepted parameters",
     "anchor-description": "Component for implementing hyperlinks and pseudo links",
+    "button-description": "Component for implementing button",
     "description": "Description",
     "description-header": "Description",
     "english-language": "English",

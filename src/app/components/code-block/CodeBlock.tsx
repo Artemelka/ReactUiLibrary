@@ -23,7 +23,7 @@ const Keyword = ({word}: {word: string}) => <span className={cn('Code-block__key
 const Path = ({path}: {path: string}) => <span className={cn('Code-block__path')}>"{path}";</span>;
 
 const Text = ({label, inImport}: TextProps) =>
-    <span className={cn('Code-block__code')}>{inImport ? ` { ${name} } ` : label}</span>;
+    <span className={cn('Code-block__code')}>{inImport ? `{ ${label} } ` : label}</span>;
 
 const Tag = ({name, end, single}: TagProps) => (
     <span className={cn('Code-block__tag')}>
