@@ -16,7 +16,7 @@ export interface InputProps {
     defaultValue?: string;
     disabled?: boolean;
     icon?: IconProps;
-    id?: string;
+    id: string;
     InputIconRef?: RefObject<HTMLButtonElement>;
     inputRef?: RefObject<HTMLInputElement>;
     name?: string;
