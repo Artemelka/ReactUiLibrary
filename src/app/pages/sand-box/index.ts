@@ -10,4 +10,5 @@ export { ProgressSandBox } from './progress/progress-sand-box';
 export { RadioButtonsSandBox } from './radio/radio-sand-box';
 export { SelectSandBox } from './select/select-sand-box';
 export { TextSandBox } from './text/text-sand-box';
+export { TextareaSandBox } from './taxtarea/text-area-sand-box';
 
