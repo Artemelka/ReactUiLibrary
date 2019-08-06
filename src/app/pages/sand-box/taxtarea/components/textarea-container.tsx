@@ -1,6 +1,7 @@
 import React, { Component, SyntheticEvent } from 'react';
 import { Textarea, TranslateComponent } from '../../../../elements';
 
+const ERROR_MESSAGE_KEY = 'input-error-no-empty';
 interface Props {
     darkTheme?: boolean;
     disabled?: boolean;
@@ -33,7 +34,7 @@ export class TextareaContainer extends Component<Props, State> {
 
     setErrorState = () => this.setState({
         error: true,
-        errorMessage: 'should not be empty'
+        errorMessage: ERROR_MESSAGE_KEY
     });
 
     changeState = (value: string) => this.setState((state) => ({

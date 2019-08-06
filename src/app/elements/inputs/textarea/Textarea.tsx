@@ -2,10 +2,10 @@ import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
 import { TextareaUI, TextareaProps } from './Textarea-UI';
 
 const TEXTAREA_MAX_LENGTH = 255;
-const ERROR_MESSAGE = 'max length';
+const ERROR_MESSAGE_TRANSLATE_KEY = 'input-error-max-length';
 const errorParams = {
     error: true,
-    errorMessage: ERROR_MESSAGE
+    errorMessage: ERROR_MESSAGE_TRANSLATE_KEY
 };
 
 type State = {
