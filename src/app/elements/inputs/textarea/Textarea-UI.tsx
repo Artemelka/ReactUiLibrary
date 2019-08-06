@@ -69,6 +69,7 @@ export class TextareaUI extends Component<TextareaProps> {
             translateComponent: Translate,
             value
         } = this.props;
+        const buttonVisible = Boolean(value.length) && !(disabled || readonly);
         const translateProps = {translateKey: errorMessage};
 
         return (
@@ -95,9 +96,10 @@ export class TextareaUI extends Component<TextareaProps> {
                     ref={onRef}
                     rows={rows}
                     spellCheck
+                    style={{resize: 'none'}}
                     value={value}
                 />
-                {Boolean(value.length) && !disabled &&
+                {buttonVisible &&
                     <div className={cn('Textarea__clear-button')}>
                         <Button.Icon iconName={BACKSPACE} onClick={onClearClick}/>
                     </div>
