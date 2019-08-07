@@ -11,7 +11,8 @@ import {
     ProgressSandBox,
     RadioButtonsSandBox,
     SelectSandBox,
-    TextSandBox
+    TextSandBox,
+    TextareaSandBox
 } from './sand-box';
 
 const MenuExample = () => {
@@ -86,5 +87,10 @@ export const ComponentsCollection = [
         exact: true,
         name: TextSandBox.name,
         url: '/library/text'
+    }, {
+        component: TextareaSandBox,
+        exact: true,
+        name: TextareaSandBox.name,
+        url: '/library/textarea'
     }
 ];

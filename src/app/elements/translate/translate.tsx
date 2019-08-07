@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 
 type DictionaryData = {[key: string]: any};
 type Store = {[key: string]: any};
-interface Props {
+export interface TranslateProps {
+    dictionary?: DictionaryData;
+    locale?: string;
     translateKey: string;
-    locale: string;
+}
+
+export class TranslateComponent extends Component<TranslateProps> {
+    render() {
+        const { dictionary, locale = 'en', translateKey } = this.props;
+        const translatedText = dictionary[locale][translateKey];
+
+        return <Fragment key={locale}>{translatedText || translateKey}</Fragment>;
+    }
 }
 
 export const translate = (dictionary: DictionaryData) => connect(
-    (state: Store) => ({locale: state.translateDictionary.locale})
-)(class TranslateComponent extends Component<Props> {
-    render() {
-        const { translateKey, locale } = this.props;
-        const translatedText = dictionary[locale][translateKey];
-
-        return (
-            <Fragment key={locale}>{translatedText || translateKey}</Fragment>
-        );
-    }
-});
+    (state: Store) => ({
+        dictionary,
+        locale: state.translateDictionary.locale
+    })
+)(TranslateComponent);
