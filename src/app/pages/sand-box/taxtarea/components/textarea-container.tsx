@@ -39,6 +39,7 @@ export class TextareaContainer extends Component<Props, State> {
 
     changeState = (value: string) => this.setState((state) => ({
         error: state.error ? false : state.error,
+        errorMessage: '',
         isPristine: false,
         value
     }));
