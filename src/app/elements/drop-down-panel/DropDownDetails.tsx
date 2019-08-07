@@ -2,20 +2,25 @@ import React, { Component, createRef, RefObject } from 'react';
 
 interface Props {
     className?: string;
-    onCreateRef?: (ref: HTMLDivElement) => void;
-    onRemoveRef?: (ref: HTMLDivElement) => void;
     opened?: boolean;
 }
 
 export class DropDownDetails extends Component<Props> {
-    static defaultProps = {
-        onCreateRef: () => false,
-        onRemoveRef: () => false
+    state = {
+        height: 'auto'
     };
 
     componentDidMount() {
-            this.height = `${this.ref.current.scrollHeight}px`;
-            this.props.onCreateRef(this.ref.current);
+        let childHeight = 0;
+        // correct height after render children
+        setTimeout(() => {
+            childHeight = [...this.ref.current.children].reduce((result, el) => result + el.clientHeight, 0);
+            this.height = `${childHeight}px`;
+        }, 500);
+    }
+
+    componentDidUpdate() {
+        this.height = `${this.ref.current.scrollHeight}px`;
     }
 
     height = 'auto';

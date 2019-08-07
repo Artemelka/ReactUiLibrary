@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
@@ -13,7 +13,7 @@ import './index.css';
 
 const ELEMENT_ID = 'App';
 const ROOT = document.getElementById(ELEMENT_ID);
-const history = createHistory();
+const history = createBrowserHistory();
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(
     routerMiddleware(history),
     thunk
@@ -21,9 +21,9 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(
 
 ReactDOM.render(
     <Provider store={store}>
-            <Router history={history}>
-                <App />
-            </Router>
+        <Router history={history}>
+            <App />
+        </Router>
     </Provider>,
     ROOT
 );
