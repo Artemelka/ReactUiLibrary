@@ -11,7 +11,7 @@ interface Props extends RouteComponentProps {
     withIndex?: boolean;
 }
 
-export class SideBarAnchorContainer extends Component<Props> {
+export class SideBarLinkContainer extends Component<Props> {
     handleClick = () => {
         const { history: { push }, url } = this.props;
 
@@ -32,4 +32,4 @@ export class SideBarAnchorContainer extends Component<Props> {
     }
 }
 
-export const SideBarAnchor = withRouter(SideBarAnchorContainer);
+export const SideBarLink = withRouter(SideBarLinkContainer);

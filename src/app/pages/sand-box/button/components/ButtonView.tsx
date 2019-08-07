@@ -100,8 +100,8 @@ const getButtonType = (type: string) => type === 'Icon' ? Button.Icon : Button.I
 
 export const ButtonView = () => (
     <Fragment>
-        {examplesParams.map(({ heading, prefix, props, type }: ExampleParams) => (
-            <BlockItems>
+        {examplesParams.map(({ heading, prefix, props, type }: ExampleParams, index: number) => (
+            <BlockItems key={`${index}_${prefix}`}>
                 <h3>{heading}</h3>
                 {props.map((prop, index) => {
                     const Component: ComponentClass<any> = type ? getButtonType(type) : Button;

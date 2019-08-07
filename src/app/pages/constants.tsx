@@ -15,7 +15,7 @@ import {
     TextareaSandBox
 } from './sand-box';
 
-const MenuExample = () => {
+const MenuSandBox = () => {
     return (
         <div>MENU</div>
     );
@@ -23,9 +23,9 @@ const MenuExample = () => {
 
 export const ComponentsCollection = [
     {
-        component: MenuExample,
+        component: MenuSandBox,
         exact: true,
-        name: MenuExample.name,
+        name: MenuSandBox.name,
         url: '/library'
     }, {
         component: AnchorSandBox,

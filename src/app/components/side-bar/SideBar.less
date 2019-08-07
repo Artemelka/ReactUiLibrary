@@ -1,19 +1,46 @@
+@import '../../styles/constants';
+
 .SideBar {
     overflow: hidden;
     padding: 15px 0;
     text-align: left;
 
     &__scroll-wrapper {
-        list-style: none;
-        margin: 0;
         max-height: 100%;
         overflow-y: scroll;
-        padding-left: 0;
         width: calc(100% + 20px);
     }
 
-    &__link {
-        padding: 5px;
-        text-align: left;
+    &__menu-link {
+        text-align: center;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 20px 0 0;
+        padding-left: 0;
+
+        &-item {
+            padding: 5px;
+            text-align: left;
+        }
+    }
+
+    &__toggle {
+        &-wrapper {
+            align-items: center;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        &-label {
+            cursor: pointer;
+            margin-left: 20px;
+
+            &:hover {
+                color: @accentDarkColor;
+            }
+        }
     }
 }
