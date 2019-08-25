@@ -2,7 +2,6 @@ import React, { Component, MouseEvent, KeyboardEvent, RefObject } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
-import { TranslateComponent } from '../translate';
 import { keyCodes } from '../../../services';
 
 const style = require('./Button.less');
@@ -45,10 +44,16 @@ export class Button extends Component<ButtonProps, State> {
         isActive: false
     };
 
+    changeActive = (isActive: boolean, keyCode: number) => {
+        if (targetKeyCodes.includes(keyCode)) {
+            this.setState(() => ({isActive}));
+        }
+    };
+
     handleBlur = () => this.setState({isActive: false});
 
     handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        const { disabled, onClick} = this.props;
+        const { disabled, onClick } = this.props;
 
         if (!disabled) {
             onClick(event);
@@ -56,24 +61,14 @@ export class Button extends Component<ButtonProps, State> {
     };
 
     handleKeyPress = (event: KeyboardEvent<HTMLButtonElement>) => {
-        const { keyCode } = event;
-
-        if (targetKeyCodes.includes(keyCode)) {
+        if (targetKeyCodes.includes(event.keyCode)) {
             this.props.onClick(event);
         }
     };
 
-    handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-        if (targetKeyCodes.includes(event.keyCode)) {
-            this.setState(() => ({isActive: true}));
-        }
-    };
+    handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => this.changeActive(true, event.keyCode);
 
-    handleKeyUp = (event: KeyboardEvent<HTMLButtonElement>) => {
-        if (targetKeyCodes.includes(event.keyCode)) {
-            this.setState(() => ({isActive: false}));
-        }
-    };
+    handleKeyUp = (event: KeyboardEvent<HTMLButtonElement>) => this.changeActive(false, event.keyCode);
 
     render() {
         const { isActive } = this.state;
@@ -105,7 +100,7 @@ export class Button extends Component<ButtonProps, State> {
                 type={type}
             >
                 <span className={cn('Button__content')}>
-                    {icon || iconLabel ? children : <TranslateComponent translateKey={label} />}
+                    {icon || iconLabel ? children : label}
                 </span>
             </button>
         );

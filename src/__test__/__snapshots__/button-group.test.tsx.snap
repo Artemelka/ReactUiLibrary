@@ -4,27 +4,36 @@ exports[`Test ButtonGroup Rendering Snapshot 1`] = `
 <div
   className="Button-group"
 >
-  <Button
-    label="test 1"
-    onClick={[MockFunction]}
-    type="button"
-  />
   <span
-    className="Button-group__separator Button-group__separator--small"
-  />
-  <Button
-    label="test 2"
-    onClick={[MockFunction]}
-    type="button"
-  />
+    className="Button-group__item Button-group__item--separator-small"
+    key="0"
+  >
+    <Button
+      label="test 1"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
   <span
-    className="Button-group__separator Button-group__separator--small"
-  />
-  <Button
-    label="test 2"
-    onClick={[MockFunction]}
-    type="button"
-  />
+    className="Button-group__item Button-group__item--separator-small"
+    key="1"
+  >
+    <Button
+      label="test 2"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
+  <span
+    className="Button-group__item"
+    key="2"
+  >
+    <Button
+      label="test 2"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
 </div>
 `;
 
@@ -32,26 +41,35 @@ exports[`Test ButtonGroup Rendering Snapshot with separator 1`] = `
 <div
   className="Button-group"
 >
-  <Button
-    label="test 1"
-    onClick={[MockFunction]}
-    type="button"
-  />
   <span
-    className="Button-group__separator Button-group__separator--medium"
-  />
-  <Button
-    label="test 2"
-    onClick={[MockFunction]}
-    type="button"
-  />
+    className="Button-group__item Button-group__item--separator-medium"
+    key="0"
+  >
+    <Button
+      label="test 1"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
   <span
-    className="Button-group__separator Button-group__separator--medium"
-  />
-  <Button
-    label="test 2"
-    onClick={[MockFunction]}
-    type="button"
-  />
+    className="Button-group__item Button-group__item--separator-medium"
+    key="1"
+  >
+    <Button
+      label="test 2"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
+  <span
+    className="Button-group__item"
+    key="2"
+  >
+    <Button
+      label="test 2"
+      onClick={[MockFunction]}
+      type="button"
+    />
+  </span>
 </div>
 `;

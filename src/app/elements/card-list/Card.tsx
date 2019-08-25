@@ -26,7 +26,7 @@ export class Card extends Component<CardProps> {
 
     render() {
         const { buttonLabel, content, light, positionIndex, title } = this.props;
-        const contentFinaly = `${content.slice(0, 100)}...`;
+        const formattedContent = `${content.slice(0, 100)}...`;
 
         return (
             <div className={cn('Card', {'Card--light': light})}>
@@ -39,7 +39,7 @@ export class Card extends Component<CardProps> {
                             {title}
                         </h3>
                         <p className={cn('Card__content')}>
-                            {contentFinaly}
+                            {formattedContent}
                         </p>
                         <div className={cn('Card__button')}>
                             <Button label={buttonLabel} accent={light}/>

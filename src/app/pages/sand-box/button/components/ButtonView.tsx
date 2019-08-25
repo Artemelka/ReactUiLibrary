@@ -1,45 +1,52 @@
-import React, { ComponentClass, Fragment } from 'react';
+import React, { Component, ComponentClass, Fragment } from 'react';
 import { Button, IconModule } from '../../../../elements';
+import { TranslateComponent } from '../../../../elements/translate';
 import { SandboxLayout } from '../../../../components';
 import { logger } from '../../utils';
 import { ButtonProps } from '../../../../elements/buttons/button';
 import { ButtonIconProps } from '../../../../elements/buttons/ButtonIcon';
 import { ButtonIconLabelProps } from '../../../../elements/buttons/ButtonIconLabel';
 
+const { BlockItems, Item } = SandboxLayout;
+const { IconNames } = IconModule;
+
+interface ExampleButtonIconProps extends ButtonIconProps {
+    label?: string;
+}
 interface ExampleParams {
     heading: string;
-    props: Array<ButtonProps | ButtonIconProps | ButtonIconLabelProps>;
-    prefix: string;
+    props: Array<ButtonProps | ExampleButtonIconProps | ButtonIconLabelProps>;
     type?: string;
 }
 
-const { BlockItems, Item } = SandboxLayout;
-const { IconNames } = IconModule;
+const getButtonType = (type: string) => type === 'Icon' ? Button.Icon : Button.IconLabel;
 const buttonProps: Array<ButtonProps> = [
+    { label: 'button' },
     {
-        label: 'Button'
-    }, {
         disabled: true,
-        label: 'Button disabled'
+        label: 'button-disabled'
     }, {
         accent: true,
-        label: 'Button with onClick',
+        label: 'button-with-onClick',
         onClick: logger('buttonClick')
     }, {
         accent: true,
         disabled: true,
-        label: 'Button with disable onClick',
+        label: 'button-with-disable-onClick',
         onClick: logger('buttonClick disable')
     }
 ];
 const buttonSizeProps: Array<ButtonProps> = [
     {
-        label: 'Button big',
+        label: 'button-big',
+        onClick: logger('buttonClick big'),
         size: 'big'
     }, {
-        label: 'Button default'
+        label: 'button-default',
+        onClick: logger('buttonClick default')
     }, {
-        label: 'Button small',
+        label: 'button-small',
+        onClick: logger('buttonClick small'),
         size: 'small'
     }
 ];
@@ -59,16 +66,16 @@ const buttonIconProps: Array<ButtonIconProps> = [
 const buttonIconLabelProps: Array<ButtonIconLabelProps> = [
     {
         iconName: IconNames.PLUS,
-        label: 'Button.IconLabel',
+        label: 'button-icon-label-plus',
         onClick: logger('button IconLabel Click plus'),
         size: 'big'
     }, {
         iconName: IconNames.TRASH_ALT,
-        label: 'Button.IconLabel trash',
+        label: 'button-icon-label-trash',
         onClick: logger('button IconLabel Click trash-alt')
     }, {
         iconName: IconNames.TRASH_ALT,
-        label: 'Button.IconLabel disabled',
+        label: 'button-icon-label-disabled',
         disabled: true,
         onClick: logger('button IconLabel Click trash-alt'),
         size: 'small'
@@ -76,39 +83,45 @@ const buttonIconLabelProps: Array<ButtonIconLabelProps> = [
 ];
 const examplesParams: Array<ExampleParams> = [
     {
-        heading: 'Button default & accent',
-        props: buttonProps,
-        prefix: 'a'
+        heading: 'button-default-accent',
+        props: buttonProps
     }, {
-        heading: 'Button sizes',
-        props: buttonSizeProps,
-        prefix: 'b'
+        heading: 'button-sizes',
+        props: buttonSizeProps
     }, {
-        heading: 'Button.Icon',
+        heading: 'button-sizes-accent',
+        props: buttonSizeProps.map(props => ({...props, accent: true}))
+    }, {
+        heading: 'button-icon',
         props: buttonIconProps,
-        prefix: 'c',
         type: 'Icon'
     }, {
-        heading: 'Button.IconLabel',
+        heading: 'button-icon-label',
         props: buttonIconLabelProps,
-        prefix: 'd',
+        type: 'IconLabel'
+    }, {
+        heading: 'button-icon-label-accent',
+        props: buttonIconLabelProps.map(props => ({...props, accent: true})),
         type: 'IconLabel'
     }
 ];
 
-const getButtonType = (type: string) => type === 'Icon' ? Button.Icon : Button.IconLabel;
-
 export const ButtonView = () => (
     <Fragment>
-        {examplesParams.map(({ heading, prefix, props, type }: ExampleParams, index: number) => (
-            <BlockItems key={`${index}_${prefix}`}>
-                <h3>{heading}</h3>
-                {props.map((prop, index) => {
+        {examplesParams.map(({ heading, props, type }: ExampleParams, index: number) => (
+            <BlockItems key={`${index}_${heading}`}>
+                <h3>
+                    <TranslateComponent translateKey={heading}/>
+                </h3>
+                {props.map(({label, ...prop}, innerIndex) => {
                     const Component: ComponentClass<any> = type ? getButtonType(type) : Button;
 
                     return (
-                        <Item inline key={index + prefix}>
-                            <Component {...prop} />
+                        <Item inline key={`${index}_${heading}_${innerIndex}`}>
+                            <Component
+                                {...prop}
+                                {...(label ? { label: <TranslateComponent translateKey={label}/> } : {})}
+                            />
                         </Item>
                     );
                 })}

@@ -6,6 +6,11 @@ const style = require('./Anchor.less');
 const cn = classNames.bind(style);
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
+const ROLE_BUTTON = 'button';
+const LinkTargetAttr = {
+    BLANK: '_blank',
+    SELF: '_self'
+};
 
 interface Props {
     active?: boolean;
@@ -20,12 +25,7 @@ interface CustomEvent extends SyntheticEvent {
     which: number;
 }
 
-const LinkTargetAttr = {
-    BLANK: '_blank',
-    SELF: '_self'
-};
-
-export class Anchor extends React.Component<Props> {
+export class Anchor extends Component<Props> {
     static defaultProps = {
         onClick: () => false
     };
@@ -53,26 +53,27 @@ export class Anchor extends React.Component<Props> {
             'Anchor--active': active,
             'Anchor--disabled': disabled
         });
+        const baseProps = {
+            className: anchorClasses,
+            onClick: this.handleClick,
+            onKeyPress: this.handleKeyPress
+        };
 
         return (
             Boolean(href) && !disabled
                 ? (
                     <a
+                        {...baseProps}
                         href={href}
-                        className={anchorClasses}
-                        onClick={this.handleClick}
-                        onKeyPress={this.handleKeyPress}
                         target={newPage ? LinkTargetAttr.BLANK : LinkTargetAttr.SELF}
                     >
                         {children}
                     </a>
                 ) : (
                     <span
-                        className={anchorClasses}
-                        onClick={this.handleClick}
-                        onKeyPress={this.handleKeyPress}
+                        {...baseProps}
                         tabIndex={disabled ? -1 : 0}
-                        role="button"
+                        role={ROLE_BUTTON}
                     >
                         {children}
                     </span>
