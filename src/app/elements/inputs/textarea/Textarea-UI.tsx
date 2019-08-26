@@ -1,11 +1,4 @@
-import React, {
-    Component,
-    ComponentType,
-    KeyboardEvent,
-    MouseEvent,
-    RefObject,
-    SyntheticEvent
-} from 'react';
+import React, { Component, ComponentType, KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { Button } from '../../buttons/Button';
@@ -121,6 +114,10 @@ export class TextareaUI extends Component<TextareaProps> {
                         {`${value.length}`}
                     </span>
                 </div>
+                <span className={cn('Textarea__border', 'Textarea__border--top')}/>
+                <span className={cn('Textarea__border', 'Textarea__border--left')}/>
+                <span className={cn('Textarea__border', 'Textarea__border--bottom')}/>
+                <span className={cn('Textarea__border', 'Textarea__border--right')}/>
             </div>
         );
     }
