@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { Anchor } from '../../elements';
 
-
-
 interface Props extends RouteComponentProps {
     index?: string;
     name: string;

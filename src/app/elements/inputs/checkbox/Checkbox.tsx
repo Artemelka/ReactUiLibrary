@@ -17,7 +17,7 @@ export interface CheckboxProps {
     onChange?: () => void;
     radio?: boolean;
     toggle?: boolean;
-    withRef?: (ref: HTMLElement) => void;
+    withRef?: (ref: HTMLInputElement) => void;
 }
 interface State {
     isActive: boolean;
@@ -41,16 +41,12 @@ export class Checkbox extends Component<CheckboxProps, State> {
         isActive: false
     };
 
-    componentDidMount() {
-        this.props.withRef(this.input.current);
-    }
-
     setActive = () => {
         this.setState({isActive: true});
-        this.input.current.focus();
+        this.input.focus();
     };
 
-    input: RefObject<HTMLInputElement> = createRef();
+    input: HTMLInputElement;
 
     handleBlur = () => this.setState({isActive: false});
 
@@ -72,6 +68,12 @@ export class Checkbox extends Component<CheckboxProps, State> {
         }
     };
 
+    handleRef = (ref: HTMLInputElement) => {
+        this.input = ref;
+        this.props.withRef(this.input);
+
+    };
+
     render() {
         const { checked, disabled, id, indeterminate, name, radio, toggle } = this.props;
         const { isActive } = this.state;
@@ -86,7 +88,9 @@ export class Checkbox extends Component<CheckboxProps, State> {
             'Toggle--disabled': disabled,
             'Toggle--focused': isActive
         });
-        const inputClasses = toggle ? toggleClassNames('Toggle__input') : checkboxClassNames('Checkbox__input');
+        const inputClasses = toggle
+            ? toggleClassNames('Toggle__input')
+            : checkboxClassNames('Checkbox__input');
         const inputType = radio ? 'radio' : 'checkbox';
         const hasIcon = !toggle && checked;
 
@@ -104,7 +108,7 @@ export class Checkbox extends Component<CheckboxProps, State> {
                     name={name}
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
-                    ref={this.input}
+                    ref={this.handleRef}
                     type={inputType}
                     value={id}
                 />

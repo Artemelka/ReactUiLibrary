@@ -12,6 +12,7 @@ interface CheckboxContainerProps {
     onChange: () => void;
 }
 
+const INDETERMINATE = 'indeterminate';
 const { BlockItems, Item } = SandboxLayout;
 const checkboxProps: Array<CheckboxContainerProps> = [
     {
@@ -21,7 +22,7 @@ const checkboxProps: Array<CheckboxContainerProps> = [
         onChange: logger('checkbox Click disabled')
     }, {
         checked: true,
-        heading: 'indeterminate',
+        heading: INDETERMINATE,
         indeterminate: true,
         onChange: logger('checkbox Click')
     }, {
@@ -33,14 +34,25 @@ const renderCheckbox = (toggle?: boolean) => checkboxProps.map(
     ({heading, ...props}: CheckboxContainerProps, index: number) => {
         const uniqId = `${index}_${heading}`;
         const name = `test_${uniqId}`;
+        const toggleIndeterminate = heading === INDETERMINATE && toggle;
+        const newProps = {
+            ...props,
+            id: name,
+            name,
+            toggle
+        };
 
         return (
-            <Item key={uniqId}>
-                <Text.H6>{heading}</Text.H6>
-                <CheckboxContainer {...props} id={name} name={name} toggle={toggle}/>
-            </Item>
+            !toggleIndeterminate
+                ? (
+                    <Item key={uniqId}>
+                        <Text.H6>{heading}</Text.H6>
+                        <CheckboxContainer {...newProps} />
+                    </Item>
+                ) : null
         );
-});
+    }
+);
 
 export const CheckboxView = () => (
     <Fragment>

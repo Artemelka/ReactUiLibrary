@@ -25,14 +25,11 @@ const pages: Array<RouteProps> = [
     }
 ];
 
-export class App extends Component {
-    render() {
-        return (
-            <div className={cn('App')}>
-                {pages.map((pageProps, index) =>
-                    <Route {...pageProps} key={`${index}_${pageProps.path}`} />
-                )}
-            </div>
-        );
-    }
-}
+export const App = () => (
+    <div className={cn('App')}>
+        {
+            pages.map((pageProps, index) =>
+                <Route {...pageProps} key={`${index}_${pageProps.path}`} />)
+        }
+    </div>
+);

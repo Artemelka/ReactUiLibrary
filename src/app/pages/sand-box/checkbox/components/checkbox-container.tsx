@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Checkbox } from '../../../../elements/inputs';
 import { CheckboxProps } from '../../../../elements/inputs/checkbox/Checkbox';
 
@@ -6,10 +6,16 @@ interface State {
     checked: boolean;
 }
 
+const ignoreKey = ['checked', 'onChange'];
+
 export class CheckboxContainer extends Component<CheckboxProps, State> {
-    state = {
-        checked: this.props.checked
-    };
+    constructor(props: CheckboxProps) {
+        super(props);
+
+        this.state = {
+            checked: props.checked
+        };
+    }
 
     handleChange = () => {
         this.setState(({checked}) => ({checked: !checked}));
@@ -17,12 +23,9 @@ export class CheckboxContainer extends Component<CheckboxProps, State> {
     };
 
     render() {
-        const { checked, disabled, onChange, ...restProps} = this.props;
-
         return (
             <Checkbox
-                {...restProps}
-                disabled={disabled}
+                {...this.props}
                 onChange={this.handleChange}
                 checked={this.state.checked}
             />

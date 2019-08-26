@@ -1,6 +1,9 @@
-interface Data {
+type Data = {
     [key: string]: string;
-}
+};
+type Props = {
+    [key: string]: any
+};
 type Classes = Array<Data>;
 
 const setError = (classes: Classes, props: Array<string>) => {
@@ -33,4 +36,12 @@ export const mapPropsToClasses = (classes: Classes, props: Array<string>) => {
 
             return;
         });
+};
+
+export const getOmitProps = (props: Props, ignorePropKeys: Array<string>): Props => {
+    const omitProps = {...props};
+
+    ignorePropKeys.forEach(key => { delete  omitProps[key]; });
+
+    return omitProps;
 };
