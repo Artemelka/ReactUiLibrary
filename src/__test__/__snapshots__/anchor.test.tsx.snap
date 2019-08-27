@@ -7,7 +7,9 @@ exports[`Anchor test Render snapshot anchor 1`] = `
   onClick={[Function]}
   onKeyPress={[Function]}
   target="_self"
-/>
+>
+  test
+</a>
 `;
 
 exports[`Anchor test Render snapshot pseudoLink 1`] = `
@@ -17,5 +19,7 @@ exports[`Anchor test Render snapshot pseudoLink 1`] = `
   onKeyPress={[Function]}
   role="button"
   tabIndex={0}
-/>
+>
+  test
+</span>
 `;
