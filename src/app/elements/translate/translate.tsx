@@ -6,15 +6,19 @@ type Store = {[key: string]: any};
 export interface TranslateProps {
     dictionary?: DictionaryData;
     locale?: string;
+    maxSymbol?: number;
     translateKey: string;
 }
 
 export class TranslateComponent extends Component<TranslateProps> {
     render() {
-        const { dictionary, locale = 'en', translateKey } = this.props;
-        const translatedText = dictionary[locale][translateKey];
+        const { dictionary, locale = 'en', maxSymbol, translateKey } = this.props;
+        const translatedText: string = dictionary[locale][translateKey];
+        const formattedText: string = translatedText && maxSymbol
+            ? `${translatedText.slice(0, maxSymbol)}...`
+            : translatedText;
 
-        return <Fragment key={locale}>{translatedText || translateKey}</Fragment>;
+        return <Fragment key={locale}>{formattedText || translateKey}</Fragment>;
     }
 }
 

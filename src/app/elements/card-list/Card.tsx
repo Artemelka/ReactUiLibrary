@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames/bind';
-import { Button } from '../index';
+import { Button, TranslateComponent } from '../index';
 
 const style = require('./Card.less');
 const cn = classNames.bind(style);
 
 export interface CardProps {
-    buttonLabel?: string;
-    content?: string;
+    buttonLabel?: string | ReactNode;
+    content?: string | ReactNode;
     id: number;
+    onClick: () => void;
     light?: boolean;
     positionIndex?: number;
-    title?: string;
+    title?: string | ReactNode;
 }
 
 const formatIndex = (index: string) => index.length === 1 ? `0${index}` : index;
 
 export class Card extends Component<CardProps> {
     static defaultProps = {
-        buttonLabel: 'More...',
         content: '',
         positionIndex: 1,
         title: ''
     };
 
     render() {
-        const { buttonLabel, content, light, positionIndex, title } = this.props;
-        const formattedContent = `${content.slice(0, 100)}...`;
+        const { buttonLabel, content, onClick, light, positionIndex, title } = this.props;
+        // const formattedContent = `${content.slice(0, 100)}...`;
+        const label = buttonLabel || <TranslateComponent translateKey="more"/>;
 
         return (
             <div className={cn('Card', {'Card--light': light})}>
@@ -39,10 +40,10 @@ export class Card extends Component<CardProps> {
                             {title}
                         </h3>
                         <p className={cn('Card__content')}>
-                            {formattedContent}
+                            {content}
                         </p>
                         <div className={cn('Card__button')}>
-                            <Button label={buttonLabel} accent={light}/>
+                            <Button accent={light} onClick={onClick} label={label}/>
                         </div>
                     </div>
                 </div>

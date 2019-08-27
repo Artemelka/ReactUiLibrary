@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent, KeyboardEvent, RefObject } from 'react';
+import React, { Component, MouseEvent, KeyboardEvent, RefObject, ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
@@ -26,7 +26,7 @@ export interface ButtonNotRequiredProps {
     type?: 'button' | 'submit' | 'reset';
 }
 export interface ButtonProps extends ButtonNotRequiredProps {
-    label: string;
+    label: string | ReactNode;
 }
 interface State {
     isActive: boolean;
@@ -84,7 +84,7 @@ export class Button extends Component<ButtonProps, State> {
             'Button--round-left': roundLeft,
             'Button--round-right': roundRight,
             'Button--small': size === ButtonSize.SMALL,
-            'Button--big': size === ButtonSize.BIG,
+            'Button--big': size === ButtonSize.BIG
         });
 
         return (

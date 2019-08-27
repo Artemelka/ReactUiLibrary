@@ -1,43 +1,52 @@
 import React from 'react';
 import { SandboxLayout } from '../../../../components';
-import { CardList } from '../../../../elements';
+import { CardList, TranslateComponent } from '../../../../elements';
+import { CardProps } from '../../../../elements/card-list/Card';
+import { logger } from '../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
-const LONG_TEXT = 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является ' +
-    'стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал ' +
-    'большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.';
-const cardItems = [
+const LONG_TEXT = <TranslateComponent translateKey="lorem-long" maxSymbol={100}/>;
+const cardItems: Array<CardProps> = [
     {
         content: LONG_TEXT,
         id: 1,
-        title: 'Card one'
+        onClick: logger('click card one'),
+        title: <TranslateComponent translateKey="card-one"/>
     }, {
         content: LONG_TEXT,
         id: 2,
-        title: 'Card two'
+        onClick: logger('click card two'),
+        title: <TranslateComponent translateKey="card-two"/>
     }, {
         content: LONG_TEXT,
         id: 3,
-        title: 'Card three'
+        onClick: logger('click card three'),
+        title: <TranslateComponent translateKey="card-three"/>
     }, {
         content: LONG_TEXT,
         id: 4,
-        title: 'Card four'
+        onClick: logger('click card four'),
+        title: <TranslateComponent translateKey="card-four"/>
     }, {
         content: LONG_TEXT,
         id: 5,
-        title: 'Card five'
+        onClick: logger('click card five'),
+        title: <TranslateComponent translateKey="card-five"/>
     }
 ];
 
 export const CardListView = () => (
     <BlockItems>
         <Item>
-            <h3>Card list</h3>
+            <h3>
+                <TranslateComponent translateKey="card-list"/>
+            </h3>
             <CardList cardItems={cardItems} />
         </Item>
         <Item>
-            <h3>Card list with prop light</h3>
+            <h3>
+                <TranslateComponent translateKey="card-list-with-light"/>
+            </h3>
             <CardList cardItems={cardItems} light/>
         </Item>
     </BlockItems>
