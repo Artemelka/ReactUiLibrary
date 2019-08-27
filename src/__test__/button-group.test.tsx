@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ButtonGroup } from '../app/elements';
+import { ButtonGroup, Button } from '../app/elements';
 
+const GROUP_ITEM_MODIFIER = 'Button-group__item--separator-medium';
 const testMockFirstButton = jest.fn();
 const testMockSecondtButton = jest.fn();
 const testMockThirdButton = jest.fn();
@@ -13,29 +14,41 @@ const buttonsProps = [
         label: 'test 2',
         onClick: testMockSecondtButton
     }, {
-        label: 'test 2',
+        label: 'test 3',
         onClick: testMockThirdButton
     }
 ];
 
 describe('Test ButtonGroup', () => {
     test('Rendering Snapshot', () => {
-        const wrapper = shallow(<ButtonGroup.Component buttons={buttonsProps} />);
+        const wrapper = shallow(
+            <ButtonGroup.Component>
+                {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
+            </ButtonGroup.Component>
+        );
+        const groupItemCollection = wrapper.find('.Button-group__item');
 
         expect(wrapper).toMatchSnapshot();
+        expect(groupItemCollection.at(1).hasClass(GROUP_ITEM_MODIFIER)).toBe(false);
     });
     test('Rendering Snapshot with separator', () => {
         const wrapper = shallow(
-            <ButtonGroup.Component
-                buttons={buttonsProps}
-                separatorSize={ButtonGroup.SeparatorSize.MEDIUM}
-            />
+            <ButtonGroup.Component separatorSize={ButtonGroup.SeparatorSize.MEDIUM}>
+                {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
+            </ButtonGroup.Component>
         );
+        const groupItemCollection = wrapper.find('.Button-group__item');
 
         expect(wrapper).toMatchSnapshot();
+        expect(groupItemCollection.at(0).hasClass(GROUP_ITEM_MODIFIER)).toBe(false);
+        expect(groupItemCollection.at(1).hasClass(GROUP_ITEM_MODIFIER)).toBe(true);
     });
     test('expect round style in Button with prop round', () => {
-        const wrapper = shallow(<ButtonGroup.Component buttons={buttonsProps} round/>);
+        const wrapper = shallow(
+            <ButtonGroup.Component round>
+                {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
+            </ButtonGroup.Component>
+        );
         const buttonCollection = wrapper.find('Button');
 
         expect(buttonCollection.at(0).prop('roundLeft')).toBe(true);

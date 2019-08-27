@@ -1,45 +1,78 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { SandboxLayout } from '../../../../components';
-import { Button, ButtonGroup, IconModule, Text } from '../../../../elements';
+import { Button, ButtonGroup, IconModule, Text, TranslateComponent } from '../../../../elements';
+import { ButtonProps } from '../../../../elements/buttons/Button';
+import { ButtonIconLabelProps } from '../../../../elements/buttons/ButtonIconLabel';
+import { logger } from '../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
-const buttons = [
+
+type Props = {
+    buttonComponent: ComponentType<any>,
+    separatorSize?: Symbol,
+    round?: boolean
+};
+type ButtonGroupItems = {
+    props: Props,
+    title: string
+};
+
+const buttonsProps: Array<ButtonProps | ButtonIconLabelProps> = [
     {
-        label: 'first button',
+        label: 'first-button',
         iconName: IconModule.IconNames.PLUS
     }, {
-        label: 'second button',
+        accent: true,
+        label: 'second-button',
         iconName: IconModule.IconNames.PHONE
     }, {
-        label: 'third button',
+        label: 'third-button',
         iconName: IconModule.IconNames.TRASH
     }
 ];
-const buttonGroupItems = [
+const buttonGroupItems: Array<ButtonGroupItems> = [
     {
-        props: {},
-        title: 'Button group'
+        props: { buttonComponent: Button },
+        title: 'button-group'
     }, {
-        props: {separatorSize: ButtonGroup.SeparatorSize.MEDIUM},
-        title: 'Button group with separator medium'
+        props: { buttonComponent: Button, separatorSize: ButtonGroup.SeparatorSize.MEDIUM },
+        title: 'button-group-separator-medium'
     }, {
-        props: {round: true},
-        title: 'Button group rounded'
+        props: { buttonComponent: Button, round: true },
+        title: 'button-group-rounded'
     }, {
         props: {buttonComponent: Button.IconLabel},
-        title: 'Button group IconLabel'
+        title: 'button-group-icon-label'
     }, {
         props: {buttonComponent: Button.Icon},
-        title: 'Button group Icon'
+        title: 'button-group-icon'
     }
 ];
 
 export const ButtonGroupView = () => (
     <BlockItems>
-        {buttonGroupItems.map(({props, title}, index) => (
+        {buttonGroupItems.map((
+            { props: { buttonComponent: Component, ...restProps }, title }: ButtonGroupItems,
+            index: number
+        ) => (
             <Item key={title + index}>
-                <Text.H5>{title}</Text.H5>
-                <ButtonGroup.Component buttons={buttons} {...props} />
+                <Text.H5>
+                    <TranslateComponent translateKey={title}/>
+                </Text.H5>
+                <ButtonGroup.Component {...restProps}>
+                    {buttonsProps.map(({label, ...rest}, index) => {
+                        const text = <TranslateComponent translateKey={label}/>;
+
+                        return (
+                            <Component
+                                key={index + title}
+                                {...rest}
+                                label={text}
+                                onClick={logger(`click ${text.props.translateKey}`)}
+                            />
+                        );
+                    })}
+                </ButtonGroup.Component>
             </Item>
         ))}
     </BlockItems>

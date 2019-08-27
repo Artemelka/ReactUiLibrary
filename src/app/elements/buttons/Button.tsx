@@ -23,7 +23,7 @@ export interface ButtonNotRequiredProps {
     roundLeft?: boolean;
     roundRight?: boolean;
     size?: string;
-    type?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 export interface ButtonProps extends ButtonNotRequiredProps {
     label: string;

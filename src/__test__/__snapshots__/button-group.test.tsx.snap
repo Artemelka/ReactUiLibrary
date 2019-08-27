@@ -5,10 +5,11 @@ exports[`Test ButtonGroup Rendering Snapshot 1`] = `
   className="Button-group"
 >
   <span
-    className="Button-group__item Button-group__item--separator-small"
+    className="Button-group__item"
     key="0"
   >
     <Button
+      key=".$0"
       label="test 1"
       onClick={[MockFunction]}
       type="button"
@@ -19,17 +20,19 @@ exports[`Test ButtonGroup Rendering Snapshot 1`] = `
     key="1"
   >
     <Button
+      key=".$1"
       label="test 2"
       onClick={[MockFunction]}
       type="button"
     />
   </span>
   <span
-    className="Button-group__item"
+    className="Button-group__item Button-group__item--separator-small"
     key="2"
   >
     <Button
-      label="test 2"
+      key=".$2"
+      label="test 3"
       onClick={[MockFunction]}
       type="button"
     />
@@ -42,10 +45,11 @@ exports[`Test ButtonGroup Rendering Snapshot with separator 1`] = `
   className="Button-group"
 >
   <span
-    className="Button-group__item Button-group__item--separator-medium"
+    className="Button-group__item"
     key="0"
   >
     <Button
+      key=".$0"
       label="test 1"
       onClick={[MockFunction]}
       type="button"
@@ -56,17 +60,19 @@ exports[`Test ButtonGroup Rendering Snapshot with separator 1`] = `
     key="1"
   >
     <Button
+      key=".$1"
       label="test 2"
       onClick={[MockFunction]}
       type="button"
     />
   </span>
   <span
-    className="Button-group__item"
+    className="Button-group__item Button-group__item--separator-medium"
     key="2"
   >
     <Button
-      label="test 2"
+      key=".$2"
+      label="test 3"
       onClick={[MockFunction]}
       type="button"
     />

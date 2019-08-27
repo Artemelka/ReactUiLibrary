@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames/bind';
-import { Button, ButtonProps } from '../buttons/Button';
+import { Button } from '../index';
 
 const style = require('./ButtonGroup.less');
 const cn = classNames.bind(style);
@@ -10,8 +10,7 @@ const SeparatorSize = {
 };
 
 interface Props {
-    buttons: Array<ButtonProps>;
-    buttonComponent?: React.ComponentType;
+    children: Array<ReactNode>;
     round?: boolean;
     separatorSize?: Symbol;
 }
@@ -23,20 +22,20 @@ class ButtonGroupComponent extends Component<Props> {
     };
 
     render() {
-        const { buttons, buttonComponent: ButtonComponent, round, separatorSize } = this.props;
+        const { children, round, separatorSize } = this.props;
+        const buttons: Array<ReactElement | ReactNode> = Children.toArray(children);
         const lastButtonIndex = buttons.length - 1;
         const hasSeparator = separatorSize && (buttons.length > 1);
 
         return (
             <div className={cn('Button-group')}>
-                {buttons.map((buttonProps: {[key: string]: any}, index) => {
-                    const nextProps: {[key: string]: any} = {
-                        ...buttonProps,
-                        roundLeft: round && (index === 0),
+                {buttons.map((button: ReactElement, index) => {
+                    const nextProps = {
+                        roundLeft: round && !index,
                         roundRight: round && (index === lastButtonIndex)
                     };
                     const separatorClasses = cn('Button-group__item', {
-                        ...(hasSeparator && (lastButtonIndex !== index)
+                        ...(hasSeparator && index
                             ? {
                                 'Button-group__item--separator-medium': separatorSize === SeparatorSize.MEDIUM,
                                 'Button-group__item--separator-small': separatorSize === SeparatorSize.SMALL
@@ -45,7 +44,7 @@ class ButtonGroupComponent extends Component<Props> {
 
                     return (
                         <span className={separatorClasses} key={index}>
-                            <ButtonComponent {...nextProps} />
+                            {cloneElement(button, nextProps)}
                         </span>
                     );
                 })}
