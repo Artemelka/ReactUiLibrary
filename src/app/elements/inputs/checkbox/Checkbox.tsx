@@ -1,4 +1,4 @@
-import React, { Component, createRef, KeyboardEvent, RefObject } from 'react';
+import React, { Component, KeyboardEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';

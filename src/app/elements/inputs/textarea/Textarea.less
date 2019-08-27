@@ -5,6 +5,49 @@
     position: relative;
     width: 100%;
 
+    &__border {
+        background-color: @secondDarkColor;
+        position: absolute;
+        transition: width 0.2s, height 0.2s;
+
+        &--bottom,
+        &--top {
+            height: 1px;
+            width: 0;
+        }
+
+        &--bottom {
+            bottom: 24px;
+            right: 0;
+        }
+
+        &--left,
+        &--right {
+            height: 0;
+            width: 1px;
+        }
+
+        &--left {
+            left: 0;
+            top: 0;
+        }
+
+        &--right {
+            right: 0;
+            top: 0;
+        }
+
+        &--right,
+        &--top {
+            transition: width 0.2s 0.2s, height 0.2s 0.2s;
+        }
+
+        &--top {
+            right: 0;
+            top: 0;
+        }
+    }
+
     &__value-counter {
         &--error {
             color: @gradientRed;
@@ -42,12 +85,28 @@
         font-size: 18px;
         outline: none;
         padding: 8px;
-        //resize: none;
-        transition: border 0.3s;
         width: 100%;
 
         &:focus {
-            border: 1px solid @secondDarkColor;
+            & ~ .Textarea__border--bottom,
+            & ~ .Textarea__border--top {
+                width: 100%;
+            }
+
+            & ~ .Textarea__border--left,
+            & ~ .Textarea__border--right {
+                height: calc(100% - 24px);
+            }
+
+            & ~ .Textarea__border--bottom,
+            & ~ .Textarea__border--left {
+                transition: width 0.2s 0.2s, height 0.2s 0.2s;
+            }
+
+            & ~ .Textarea__border--top,
+            & ~ .Textarea__border--right {
+                transition: width 0.2s, height 0.2s;
+            }
         }
 
         &:disabled,
@@ -58,15 +117,15 @@
 
         &--dark {
             border-color: @accentColor;
-
-            &:focus {
-                border-color: @accentDarkColor;
-            }
         }
 
         &--error,
         &--error:focus {
             border-color: @gradientRed;
+
+            & ~ .Textarea__border {
+                background-color: @gradientRed;
+            }
         }
     }
 

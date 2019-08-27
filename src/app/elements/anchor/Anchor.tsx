@@ -1,4 +1,4 @@
-import React, { Component, ReactElement, SyntheticEvent } from 'react';
+import React, { Component, ReactElement, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { keyCodes } from '../../../services';
 
@@ -14,6 +14,7 @@ const LinkTargetAttr = {
 
 interface Props {
     active?: boolean;
+    anchorRef?: RefObject<HTMLAnchorElement>;
     children?: string | ReactElement;
     disabled?: boolean;
     href?: string;
@@ -48,7 +49,7 @@ export class Anchor extends Component<Props> {
     };
 
     render() {
-        const { active, children, disabled, href, newPage } = this.props;
+        const { active, anchorRef, children, disabled, href, newPage } = this.props;
         const anchorClasses = cn('Anchor', {
             'Anchor--active': active,
             'Anchor--disabled': disabled
@@ -65,6 +66,7 @@ export class Anchor extends Component<Props> {
                     <a
                         {...baseProps}
                         href={href}
+                        ref={anchorRef}
                         target={newPage ? LinkTargetAttr.BLANK : LinkTargetAttr.SELF}
                     >
                         {children}
