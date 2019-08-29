@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import classNames from 'classnames/bind';
-import { Text, TranslateComponent } from '../../elements';
+import { Text } from '../../elements';
+import { TranslateComponent } from '../../../services/translate';
 import { SandboxPanel } from '../sandbox-panel/SandboxPanel';
 import { SandboxPropsTable } from '../sandbox-props-table/SandboxPropsTable';
 

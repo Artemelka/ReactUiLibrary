@@ -1,6 +1,6 @@
 import React, { Component, ComponentClass, Fragment } from 'react';
 import { Button, IconModule } from '../../../../elements';
-import { TranslateComponent } from '../../../../elements/translate';
+import { TranslateComponent, translate } from '../../../../../services/translate';
 import { SandboxLayout } from '../../../../components';
 import { logger } from '../../utils';
 import { ButtonProps } from '../../../../elements/buttons/button';
@@ -120,7 +120,7 @@ export const ButtonView = () => (
                         <Item inline key={`${index}_${heading}_${innerIndex}`}>
                             <Component
                                 {...prop}
-                                {...(label ? { label: <TranslateComponent translateKey={label}/> } : {})}
+                                {...(label ? { label: translate(label) } : {})}
                             />
                         </Item>
                     );

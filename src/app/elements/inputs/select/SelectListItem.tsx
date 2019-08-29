@@ -1,6 +1,6 @@
 import React, { Component, FocusEvent, KeyboardEvent } from 'react';
 import { keyCodes } from '../../../../services';
-import { TranslateComponent } from '../../translate';
+import { TranslateComponent } from '../../../../services/translate';
 
 const { DOWN, ENTER, SPACE, TAB, UP } = keyCodes;
 const targetClickKey = [ ENTER, SPACE ];

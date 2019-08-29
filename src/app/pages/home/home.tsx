@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import classNames from 'classnames/bind';
-import { Button, changeLocale, Select } from '../../elements';
+import { Button, Select } from '../../elements';
+import { changeLocale, NavigatorLanguage, translateLocaleSelector, DictionaryStore } from '../../../services/translate';
 import { getPostConfig, requestWrapper, requestGetParams } from './utils';
-import { TranslateState } from '../../elements/translate/reducer';
 
 const style = require('./home.less');
 const cn = classNames.bind(style);
 
-interface AppPropsType {
-    changeLocale: (locale: string) => (dispatch: Dispatch) => void;
-    routing: any;
-    translateDictionary: TranslateState;
+interface AppPropsType extends RouteComponentProps {
+    changeLocale: (locale: string) => void;
+    locale: string;
 }
-interface MapStateType {
-    translateDictionary: TranslateState;
-}
+
 interface Buttons {
     onClick: () => void;
     label: string;
@@ -40,37 +37,32 @@ const buttonRequestSettings = [
 ];
 const selectOptions = [
     {
-        value: 'ru',
+        value: NavigatorLanguage.RU,
         title: 'russian-language'
     }, {
-        value: 'en',
+        value: NavigatorLanguage.EN,
         title: 'english-language'
     }
 ];
 
-@(connect(
-    (state: MapStateType, routing) => ({
-        routing,
-        translateDictionary: state.translateDictionary
-    }),
-    {
-        changeLocale
-    }
-) as any)
-export class TestHomePage extends Component<AppPropsType> {
+export class TestHomePageComponent extends Component<AppPropsType> {
     handleLangChange = (value: string) => this.props.changeLocale(value);
 
-    handleLinkClick = (method: string, url?: string) => () => this.props.routing.history[method](url);
+    handleLibraryClick = () => this.props.history.push('/library');
+
+    handleLayoutClick = () => this.props.history.push('/layout');
+
+    handleGoBackClick = () => this.props.history.goBack();
 
     buttonLinkExample = [
         {
-            onClick: this.handleLinkClick('push', '/library'),
+            onClick: this.handleLibraryClick,
             label: 'library'
         }, {
-            onClick: this.handleLinkClick('push', '/layout'),
+            onClick: this.handleLayoutClick,
             label: 'layout'
         }, {
-            onClick: this.handleLinkClick('goBack'),
+            onClick: this.handleGoBackClick,
             label: 'link-back'
         }
     ];
@@ -85,7 +77,7 @@ export class TestHomePage extends Component<AppPropsType> {
     ));
 
     render() {
-        const { translateDictionary: {locale} } = this.props;
+        const { locale } = this.props;
 
         return (
             <div className={cn('Test-page')}>
@@ -111,3 +103,13 @@ export class TestHomePage extends Component<AppPropsType> {
         );
     }
 }
+
+export const TestHomePage = connect(
+    (state: DictionaryStore, routing: RouteComponentProps) => ({
+        ...routing,
+        locale: translateLocaleSelector(state)
+    }),
+    {
+        changeLocale
+    }
+)(TestHomePageComponent);

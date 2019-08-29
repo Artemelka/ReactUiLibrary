@@ -26,7 +26,7 @@ export interface ButtonNotRequiredProps {
     type?: 'button' | 'submit' | 'reset';
 }
 export interface ButtonProps extends ButtonNotRequiredProps {
-    label: string | ReactNode;
+    label: string;
 }
 interface State {
     isActive: boolean;

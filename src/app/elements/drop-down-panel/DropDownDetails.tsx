@@ -14,8 +14,10 @@ export class DropDownDetails extends Component<Props> {
         let childHeight = 0;
         // correct height after render children
         setTimeout(() => {
-            childHeight = [...this.ref.current.children].reduce((result, el) => result + el.clientHeight, 0);
-            this.height = `${childHeight}px`;
+            if (this.ref.current) {
+                childHeight = [...this.ref.current.children].reduce((result, el) => result + el.clientHeight, 0);
+                this.height = `${childHeight}px`;
+            }
         }, 500);
     }
 

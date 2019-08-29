@@ -1,11 +1,12 @@
 import React from 'react';
 import { SandboxLayout } from '../../../../components';
-import { CardList, TranslateComponent } from '../../../../elements';
+import { CardList } from '../../../../elements';
+import { TranslateComponent } from '../../../../../services/translate';
 import { CardProps } from '../../../../elements/card-list/Card';
 import { logger } from '../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
-const LONG_TEXT = <TranslateComponent translateKey="lorem-long" maxSymbol={100}/>;
+const LONG_TEXT = <TranslateComponent translateKey="lorem-long" />;
 const cardItems: Array<CardProps> = [
     {
         content: LONG_TEXT,

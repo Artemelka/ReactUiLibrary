@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react';
 import { SandboxLayout } from '../../../../components';
-import { Button, ButtonGroup, IconModule, Text, TranslateComponent } from '../../../../elements';
+import { Button, ButtonGroup, IconModule, Text } from '../../../../elements';
+import { TranslateComponent, translate } from '../../../../../services/translate';
 import { ButtonProps } from '../../../../elements/buttons/Button';
 import { ButtonIconLabelProps } from '../../../../elements/buttons/ButtonIconLabel';
 import { logger } from '../../utils';
@@ -60,18 +61,14 @@ export const ButtonGroupView = () => (
                     <TranslateComponent translateKey={title}/>
                 </Text.H5>
                 <ButtonGroup.Component {...restProps}>
-                    {buttonsProps.map(({label, ...rest}, index) => {
-                        const text = <TranslateComponent translateKey={label}/>;
-
-                        return (
-                            <Component
-                                key={index + title}
-                                {...rest}
-                                label={text}
-                                onClick={logger(`click ${text.props.translateKey}`)}
-                            />
-                        );
-                    })}
+                    {buttonsProps.map(({label, ...rest}, index) => (
+                        <Component
+                            key={index + title}
+                            {...rest}
+                            label={translate(label)}
+                            onClick={logger(`click ${label}`)}
+                        />
+                    ))}
                 </ButtonGroup.Component>
             </Item>
         ))}

@@ -1,45 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router';
 import classNames from 'classnames/bind';
-import { Anchor, changeLocale, Select, TranslateComponent } from '../../../elements';
-import { TranslateState } from '../../../elements/translate/reducer';
+import { Anchor, Select } from '../../../elements';
+import {
+    changeLocale, TranslateComponent, NavigatorLanguage, translateLocaleSelector, DictionaryStore
+} from '../../../../services/translate';
 import { PROJECT_LINK, HOME_URL } from '../../../constants';
-import { Dispatch } from 'redux';
 
 const style = require('./Footer.less');
 const cn = classNames.bind(style);
 
-
 const SELECT_WIDTH = 70;
 const selectOptions = [
     {
-        value: 'ru',
+        value: NavigatorLanguage.RU,
         title: 'russian-language'
     }, {
-        value: 'en',
+        value: NavigatorLanguage.EN,
         title: 'english-language'
     }
 ];
 
-interface Props {
-    changeLocale?: (locale: string) => (dispatch: Dispatch) => void;
-    history?: {push: (url: string) => void};
-    translateDictionary?: TranslateState;
+interface Props extends RouteComponentProps {
+    changeLocale?: (locale: string) => void;
+    locale?: string;
 }
 
-@(withRouter as any)
-@(connect(
-    (state: {[key: string]: any}) => ({ translateDictionary: state.translateDictionary }),
-    { changeLocale }
-) as any)
-export class Footer extends Component<Props> {
+export class FooterComponent extends Component<Props> {
     handleClick = () => this.props.history.push(HOME_URL);
 
-    handleLangChange = (value: string) => this.props.changeLocale(value);
+    handleLanguageChange = (value: string) => this.props.changeLocale(value);
 
     render() {
-        const { children, translateDictionary } = this.props;
+        const { children, locale } = this.props;
+
         return (
             <footer className={cn('Footer')}>
                 <div className={cn('Footer__aside')}>
@@ -57,9 +52,9 @@ export class Footer extends Component<Props> {
                     <div className={cn('Footer__select')}>
                         <Select
                             listOpenTop
-                            onChange={this.handleLangChange}
+                            onChange={this.handleLanguageChange}
                             options={selectOptions}
-                            value={translateDictionary.locale}
+                            value={locale}
                             inputWidth={SELECT_WIDTH}
                         />
                     </div>
@@ -68,3 +63,8 @@ export class Footer extends Component<Props> {
         );
     }
 }
+
+export const Footer = connect(
+    (state: DictionaryStore) => ({ locale: translateLocaleSelector(state) }),
+    { changeLocale }
+)(withRouter(FooterComponent));

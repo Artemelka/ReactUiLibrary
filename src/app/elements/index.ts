@@ -9,4 +9,3 @@ export { DropDownSummary } from './drop-down-panel/DropDownSummary';
 export { IconModule } from './icon';
 export { Progress } from './progress';
 export { Text } from './text';
-export { changeLocale, TranslateComponent, translateReducer } from './translate';

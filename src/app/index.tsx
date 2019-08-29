@@ -1,4 +1,4 @@
-import React, { Component, ComponentClass } from 'react';
+import React, { ComponentType } from 'react';
 import classNames from 'classnames/bind';
 import { Route } from 'react-router';
 import { TestHomePage, LayoutPage, LibraryPage } from './pages';
@@ -7,7 +7,7 @@ const style = require('./app.less');
 const cn = classNames.bind(style);
 
 interface RouteProps {
-    component: ComponentClass;
+    component: ComponentType;
     exact?: boolean;
     path: string;
 }

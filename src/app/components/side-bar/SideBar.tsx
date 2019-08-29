@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { SideBarLink } from './SideBarLink';
-import { Checkbox, Text, TranslateComponent } from '../../elements';
+import { Checkbox, Text } from '../../elements';
+import { TranslateComponent } from '../../../services/translate';
 
 const style = require('./SideBar.less');
 const cn = classNames.bind(style);

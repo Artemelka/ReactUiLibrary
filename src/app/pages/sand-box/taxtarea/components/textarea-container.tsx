@@ -1,5 +1,6 @@
 import React, { Component, SyntheticEvent } from 'react';
-import { Textarea, TranslateComponent } from '../../../../elements';
+import { Textarea } from '../../../../elements';
+import { TranslateComponent } from '../../../../../services/translate';
 
 const ERROR_MESSAGE_KEY = 'input-error-no-empty';
 interface Props {

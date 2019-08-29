@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames/bind';
-import { Button, TranslateComponent } from '../index';
+import { Button } from '../index';
+import { TranslateComponent } from '../../../services/translate';
 
 const style = require('./Card.less');
 const cn = classNames.bind(style);

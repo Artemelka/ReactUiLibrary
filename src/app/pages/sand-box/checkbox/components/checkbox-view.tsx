@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { SandboxLayout } from '../../../../components';
-import { Text, TranslateComponent } from '../../../../elements';
+import { Text } from '../../../../elements';
+import { TranslateComponent } from '../../../../../services/translate';
 import { CheckboxContainer } from './checkbox-container';
 import { logger } from '../../utils';
 

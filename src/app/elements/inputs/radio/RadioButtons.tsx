@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Checkbox } from '../checkbox/Checkbox';
-import { TranslateComponent } from '../../translate';
+import { TranslateComponent } from '../../../../services/translate';
 
 const style = require('./RadioButtons.less');
 const cn = classNames.bind(style);

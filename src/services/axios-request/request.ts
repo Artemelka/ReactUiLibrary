@@ -7,7 +7,7 @@ interface RequestOptionsType {
 
 const { GET, POST } = REQUEST_METHOD;
 
-export const request = (url: string, config: RequestOptionsType = {}) => {
+export const request = (url: string, config: RequestOptionsType = {}): Promise<any> => {
     const {
         method = GET,
         data,

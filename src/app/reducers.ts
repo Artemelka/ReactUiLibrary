@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { translateReducer } from './elements';
+import { translateReducer, TRANSLATE_STORE_KEY } from '../services/translate';
 
 export const reducers = combineReducers({
     routing: routerReducer,
-    translateDictionary: translateReducer
+    [TRANSLATE_STORE_KEY]: translateReducer
 });

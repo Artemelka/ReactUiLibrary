@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Anchor, TranslateComponent } from '../../../../elements';
+import { Anchor } from '../../../../elements';
+import { TranslateComponent } from '../../../../../services/translate';
 import { SandboxLayout } from '../../../../components';
 import { logger } from '../../utils';
 import { PROJECT_LINK } from '../../../../constants';
