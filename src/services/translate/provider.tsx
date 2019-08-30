@@ -7,7 +7,7 @@ import { DictionaryProviderProps, DictionaryStore } from './types';
 class Provider extends Component<DictionaryProviderProps> {
     componentDidMount() {
         const { fetchDictionary, initializeDictionary, locale } = this.props;
-        console.log('mount');
+
         initializeDictionary(fetchDictionary, locale);
     }
 
