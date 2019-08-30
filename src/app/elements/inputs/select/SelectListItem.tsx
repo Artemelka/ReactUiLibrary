@@ -1,23 +1,12 @@
-import React, { Component, FocusEvent, KeyboardEvent } from 'react';
+import React, { Component, KeyboardEvent } from 'react';
 import { keyCodes } from '../../../../services';
-import { TranslateComponent } from '../../../../services/translate';
+import { SelectListItemProps } from './types';
 
 const { DOWN, ENTER, SPACE, TAB, UP } = keyCodes;
 const targetClickKey = [ ENTER, SPACE ];
 const targetPressKey = [ DOWN, TAB, UP ];
 
-interface Props {
-    className: string;
-    disabled?: boolean;
-    index: number;
-    listItemRef?: (ref: HTMLLIElement, index: number) => void;
-    onBlur?: (event: FocusEvent) => void;
-    onClick: (value: string) => void;
-    onKeyPress?: (index: number, keyCode: number, shiftKey: boolean) => void;
-    title: string;
-    value: string;
-}
-export class SelectListItem extends Component<Props> {
+export class SelectListItem extends Component<SelectListItemProps> {
     static defaultProps = {
         listItemRef: () => false,
         onBlur: () => false
@@ -72,7 +61,7 @@ export class SelectListItem extends Component<Props> {
                 role="button"
                 tabIndex={tabIndex}
             >
-                <TranslateComponent translateKey={title}/>
+                {title}
             </li>
         );
     }

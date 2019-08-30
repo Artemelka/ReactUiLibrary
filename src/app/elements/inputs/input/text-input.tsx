@@ -1,10 +1,7 @@
 import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
-import { Input, InputProps } from './Input';
+import { Input } from './Input';
 import { IconModule } from '../../index';
-
-interface TextInputProps extends InputProps {
-    onRef?: (ref: HTMLInputElement) => void;
-}
+import { TextInputProps } from './types';
 
 export class TextInput extends Component<TextInputProps> {
     static defaultProps = {
@@ -32,7 +29,7 @@ export class TextInput extends Component<TextInputProps> {
     input: RefObject<HTMLInputElement> = createRef();
 
     render() {
-        const { icon, onChange, onRef, value, ...restProps } = this.props;
+        const { icon: omitIcon, onChange: omitOnChange, onRef: omitRef, value, ...restProps } = this.props;
         const iconProps = {
             name: IconModule.IconNames.BACKSPACE,
             onClick: this.handleClearClick
@@ -40,11 +37,11 @@ export class TextInput extends Component<TextInputProps> {
 
         return (
             <Input
+                {...restProps}
                 icon={value && iconProps}
                 inputRef={this.handleRef()}
                 value={value}
                 onChange={this.handleChange}
-                {...restProps}
             />
         );
     }

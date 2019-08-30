@@ -1,6 +1,7 @@
 import React, { Component, Children, cloneElement, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import { Button } from '../index';
+import { ButtonGroupProps } from './types';
 
 const style = require('./ButtonGroup.less');
 const cn = classNames.bind(style);
@@ -9,13 +10,7 @@ const SeparatorSize = {
     SMALL: Symbol('small')
 };
 
-interface Props {
-    children: Array<ReactNode>;
-    round?: boolean;
-    separatorSize?: Symbol;
-}
-
-class ButtonGroupComponent extends Component<Props> {
+class ButtonGroupComponent extends Component<ButtonGroupProps> {
     static defaultProps = {
         buttonComponent: Button,
         separatorSize: SeparatorSize.SMALL

@@ -1,39 +1,13 @@
-import React, { Component, KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
+import React, { Component, KeyboardEvent, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
-import { Button } from '../../index';
+import { Button } from '../../buttons/Button';
 import { keyCodes } from '../../../../services';
+import { InputProps, InputState } from './types';
 
 const style = require('./Input.less');
 const cn = classNames.bind(style);
 
-type IconProps = {
-    alwaysVisible?: boolean;
-    name: string;
-    onClick: () => void;
-};
-export interface InputProps {
-    cursorPointer?: boolean;
-    defaultValue?: string;
-    disabled?: boolean;
-    icon?: IconProps;
-    id: string;
-    InputIconRef?: RefObject<HTMLButtonElement>;
-    inputRef?: RefObject<HTMLInputElement>;
-    name?: string;
-    onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
-    onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
-    onClick?: (event: MouseEvent<HTMLInputElement> | KeyboardEvent) => void;
-    onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
-    onKeyPress?: (event: KeyboardEvent) => void;
-    readOnly?: boolean;
-    value?: string;
-    width?: number;
-}
-interface State {
-    focused: boolean;
-}
-
-export class Input extends Component<InputProps, State> {
+export class Input extends Component<InputProps, InputState> {
     static defaultProps = {
         onBlur: () => false,
         onClick: () => false,
@@ -59,30 +33,26 @@ export class Input extends Component<InputProps, State> {
         const { keyCode, which } = event;
         const { onClick, onKeyPress } = this.props;
         const { ENTER } = keyCodes;
+        const actionMethod = (keyCode === ENTER || which === ENTER) ? onClick : onKeyPress;
 
-        if (keyCode === ENTER || which === ENTER) {
-            onClick(event);
-            return;
-        }
-
-        onKeyPress(event);
+        actionMethod(event);
     };
 
     render() {
         const { focused } = this.state;
         const {
             cursorPointer,
-            defaultValue,
+            defaultValue: omitValue,
             disabled,
             icon,
             id,
             InputIconRef,
             inputRef,
             name,
-            onBlur,
+            onBlur: omitOnBlur,
             onChange,
             onClick,
-            onFocus,
+            onFocus: omitOnFocus,
             value,
             width,
             ...restProps

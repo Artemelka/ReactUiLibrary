@@ -1,36 +1,23 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 import {
     getComponentText,
     getHeading,
-    Heading,
-    Paragraph,
+    HeadingComponent,
+    ParagraphComponent,
     Span,
 } from './components';
 import { ComponentType, HeadingType } from './constants';
+import { TextProps } from './types';
 
 const style = require('./Text.less');
 const cn = classNames.bind(style);
-
-interface Props {
-    align?: string;
-    bold?: boolean;
-    children: string | ReactElement;
-    headingType?: symbol;
-    light?: boolean;
-    size?: number;
-    type?: symbol;
-    upper?: boolean;
-}
-
-export type TextProps = Props;
-
 const WarningMessages = {
     TEXT: '!!!!!TextParagraph style expected two font-weight "bold & light"!!!',
     STATUS: '!!!!!Used font-weight: LIGHT'
 };
 
-export class TextComponent extends React.Component<Props> {
+export class TextComponent extends React.Component<TextProps> {
     static defaultProps = {
         headingType: HeadingType.H1,
         type: ComponentType.PARAGRAPH
@@ -48,9 +35,9 @@ export class TextComponent extends React.Component<Props> {
     selectComponent = () => {
         switch (this.props.type) {
             case ComponentType.HEADING:
-                return Heading;
+                return HeadingComponent;
             case ComponentType.PARAGRAPH:
-                return Paragraph;
+                return ParagraphComponent;
             case ComponentType.SPAN:
                 return Span;
         }

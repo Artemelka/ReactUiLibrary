@@ -1,11 +1,7 @@
 import React, { Component, createRef, RefObject } from 'react';
+import { DropDownDetailsProps } from './types';
 
-interface Props {
-    className?: string;
-    opened?: boolean;
-}
-
-export class DropDownDetails extends Component<Props> {
+export class DropDownDetails extends Component<DropDownDetailsProps> {
     state = {
         height: 'auto'
     };

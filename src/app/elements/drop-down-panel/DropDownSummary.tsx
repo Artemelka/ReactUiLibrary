@@ -1,8 +1,9 @@
-import React, {Component, createRef, KeyboardEvent, RefObject, SyntheticEvent} from 'react';
+import React, { Component, createRef, KeyboardEvent, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
-import { Button } from '..';
+import { Button } from '../buttons/Button';
 import { keyCodes } from '../../../services';
+import { DropDownSummaryProps } from './types';
 
 const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
@@ -10,29 +11,10 @@ const { ANGLE } = IconModule.IconNames;
 const { ENTER, SPACE } = keyCodes;
 const TargetKeyCode = [ENTER, SPACE];
 
-interface Props {
-    actionIcon?: {
-        iconName: string;
-        onClick: () => void;
-    };
-    className?: string;
-    onChange?: () => void;
-    opened?: boolean;
-    openingByIcon?: boolean;
-}
-
-export class DropDownSummary extends Component<Props> {
+export class DropDownSummary extends Component<DropDownSummaryProps> {
     handleActionClick = (event: SyntheticEvent<HTMLButtonElement>) => {
         event.stopPropagation();
         this.props.actionIcon.onClick();
-    };
-
-    handleClick = () => {
-        const { onChange, openingByIcon} = this.props;
-
-        if (!openingByIcon) {
-            onChange();
-        }
     };
 
     handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
@@ -42,7 +24,7 @@ export class DropDownSummary extends Component<Props> {
 
         if (TargetKeyCode.includes(code) && document.activeElement === this.panel.current) {
             event.preventDefault();
-            this.handleClick();
+            this.props.onChange();
         }
     };
 
@@ -50,14 +32,12 @@ export class DropDownSummary extends Component<Props> {
 
     render() {
         const { actionIcon, children, className, onChange, opened, openingByIcon } = this.props;
-        const iconName = opened ? ANGLE.UP : ANGLE.DOWN;
         const summaryTabIndex = openingByIcon ? -1 : 0;
-
 
         return (
             <div
                 className={className}
-                onClick={this.handleClick}
+                onClick={openingByIcon ? () => false : onChange}
                 onKeyPress={this.handleKeyPress}
                 tabIndex={summaryTabIndex}
                 ref={this.panel}
@@ -65,7 +45,7 @@ export class DropDownSummary extends Component<Props> {
             >
                 {openingByIcon &&
                     <div className={cn('Drop-down-panel__summary-icon')}>
-                        <Button.Icon iconName={iconName} onClick={onChange}/>
+                        <Button.Icon iconName={opened ? ANGLE.UP : ANGLE.DOWN} onClick={onChange}/>
                     </div>
                 }
                 <div className={cn('Drop-down-panel__summary-content')}>

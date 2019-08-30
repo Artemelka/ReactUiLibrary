@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { Button, ButtonSize } from './Button';
-import { ButtonIconProps } from './ButtonIcon';
-import { IconModule } from '../';
-import { ICON_SIZE } from './constants';
+import { Button } from './Button';
+import { IconModule } from '../icon';
+import { ICON_SIZE, ICON_SIZE_SMALL, ICON_SIZE_MEDIUM, ButtonSize } from './constants';
+import { ButtonIconLabelProps } from './types';
 
 const style = require('./Button.less');
 const cn = classNames.bind(style);
-const ICON_SIZE_SMALL = 10;
-const ICON_SIZE_MEDIUM = 12;
-
-export interface ButtonIconLabelProps extends ButtonIconProps {
-    label: string;
-}
 
 export class ButtonIconLabel extends Component<ButtonIconLabelProps> {
     constructor(props: ButtonIconLabelProps) {

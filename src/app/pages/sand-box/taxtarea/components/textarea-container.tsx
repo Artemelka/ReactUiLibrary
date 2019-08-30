@@ -1,8 +1,9 @@
 import React, { Component, SyntheticEvent } from 'react';
 import { Textarea } from '../../../../elements';
-import { TranslateComponent } from '../../../../../services/translate';
+import { translate } from '../../../../../services/translate';
 
 const ERROR_MESSAGE_KEY = 'input-error-no-empty';
+const ERROR_DEFAULT_MESSAGE_KEY = 'input-error-max-length';
 interface Props {
     darkTheme?: boolean;
     disabled?: boolean;
@@ -35,7 +36,7 @@ export class TextareaContainer extends Component<Props, State> {
 
     setErrorState = () => this.setState({
         error: true,
-        errorMessage: ERROR_MESSAGE_KEY
+        errorMessage: translate(ERROR_MESSAGE_KEY)
     });
 
     changeState = (value: string) => this.setState((state) => ({
@@ -64,13 +65,13 @@ export class TextareaContainer extends Component<Props, State> {
         return (
             <Textarea
                 {...restProps}
+                defaultErrorMessage={translate(ERROR_DEFAULT_MESSAGE_KEY)}
                 error={error}
                 errorMessage={errorMessage}
                 id={id}
                 name={id}
                 onBlur={this.handleBlur}
                 onChange={this.handleChange}
-                translateComponent={TranslateComponent}
                 value={value}
             />
         );

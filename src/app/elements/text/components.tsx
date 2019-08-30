@@ -1,15 +1,7 @@
-import React, { ReactElement } from 'react';
-import { TextComponent, TextProps } from './Text';
+import React from 'react';
+import { TextComponent } from './Text';
 import { ComponentType, HeadingType } from './constants';
-
-interface Paragraph {
-    className: string;
-    style: {[key: string]: string | number};
-    text: string | ReactElement;
-}
-interface Heading extends Paragraph {
-    type: symbol;
-}
+import { TextProps, Paragraph, Heading } from './types';
 
 export const getComponentText = (type: symbol, headingType?: symbol) => (props: TextProps) => {
     const { children, ...restProps } = props;
@@ -26,7 +18,7 @@ export const getComponentText = (type: symbol, headingType?: symbol) => (props: 
 
 export const getHeading = (type: symbol) => getComponentText(ComponentType.HEADING, type);
 
-export const Heading = ({className, style, text, type}: Heading) => {
+export const HeadingComponent = ({className, style, text, type}: Heading) => {
     switch (type) {
         case HeadingType.H1:
             return <h1 className={className} style={style}>{text}</h1>;
@@ -44,6 +36,6 @@ export const Heading = ({className, style, text, type}: Heading) => {
     }
 };
 
-export const Paragraph = ({className, style, text}: Paragraph) => <p className={className} style={style}>{text}</p>;
+export const ParagraphComponent = ({className, style, text}: Paragraph) => <p className={className} style={style}>{text}</p>;
 
 export const Span = ({className, style, text}: Paragraph) => <span className={className} style={style}>{text}</span>;

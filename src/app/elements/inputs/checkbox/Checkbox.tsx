@@ -2,26 +2,12 @@ import React, { Component, KeyboardEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';
+import { CheckboxProps, CheckboxState } from './types';
 
 const checkboxStyle = require('./Checkbox.less');
 const toggleStyle = require('./Toggle.less');
 const checkboxClassNames = classNames.bind(checkboxStyle);
 const toggleClassNames = classNames.bind(toggleStyle);
-
-export interface CheckboxProps {
-    checked?: boolean;
-    disabled?: boolean;
-    id: string;
-    indeterminate?: boolean;
-    name: string;
-    onChange?: () => void;
-    radio?: boolean;
-    toggle?: boolean;
-    withRef?: (ref: HTMLInputElement) => void;
-}
-interface State {
-    isActive: boolean;
-}
 
 const iconProps = {
     fontSize: 18,
@@ -30,7 +16,7 @@ const iconProps = {
     stack: 'fas'
 };
 
-export class Checkbox extends Component<CheckboxProps, State> {
+export class Checkbox extends Component<CheckboxProps, CheckboxState> {
     static defaultProps = {
         checked: false,
         onChange: () => false,

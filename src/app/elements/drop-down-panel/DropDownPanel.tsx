@@ -1,24 +1,9 @@
 import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames/bind';
+import { DropDownPropsWithChildren } from './types';
 
 const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
-
-export interface DropDownPanelProps {
-    actionIcon?: {
-        iconName: string;
-        onClick: () => void;
-    };
-    darkColor?: boolean;
-    emptyStyle?: boolean;
-    onChange?: () => void;
-    onlyBorder?: boolean;
-    opened: boolean;
-    openingByIcon?: boolean;
-}
-interface DropDownPropsWithChildren extends DropDownPanelProps {
-    children: Array<{[key: string]: any}>;
-}
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
     getUpdatedChildren = () => {
