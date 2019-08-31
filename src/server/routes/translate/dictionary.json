@@ -1,6 +1,7 @@
 {
   "ru-RU": {
     "accepted-parameters": "Принемаемые параметры",
+    "add-progress": "Увеличить прогресс",
     "anchor-description": "Компонент для реализации гиперссылок и псевдоссылок",
     "button": "Кнопка",
     "button-disabled": "Кнопка отключена",
@@ -42,6 +43,7 @@
     "english-language": "Английский",
     "example": "Пример",
     "first-button": "первая кнопка",
+    "progress-description": "Компонент для отображения индикации прогресса",
     "second-button": "вторая кнопка",
     "third-button": "третья кнопка",
     "input-error-max-length": "Достигнута максимальная длинна сообщения",
@@ -59,6 +61,7 @@
     "more": "Подробнее...",
     "no": "нет",
     "prop-name": "Имя параметра",
+    "reset-progress": "Сбросить прогресс",
     "required": "Обязательный",
     "russian-language": "Русский",
     "test": "тест",
@@ -67,6 +70,7 @@
   },
   "en-EN": {
     "accepted-parameters": "Accepted parameters",
+    "add-progress": "Add progress",
     "anchor-description": "Component for implementing hyperlinks and pseudo links",
     "button": "Button",
     "button-disabled": "Button disabled",
@@ -108,6 +112,7 @@
     "english-language": "English",
     "example": "Examples",
     "first-button": "first button",
+    "progress-description": "Component for displaying progress indicators",
     "second-button": "second button",
     "third-button": "third button",
     "input-error-max-length": "Maximum message length reached",
@@ -125,6 +130,7 @@
     "more": "More...",
     "no": "no",
     "prop-name": "Prop name",
+    "reset-progress": "Reset progress",
     "required": "Required",
     "russian-language": "Russian",
     "test": "test",
