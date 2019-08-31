@@ -78,6 +78,7 @@ export class Select extends Component<SelectProps, SelectState> {
             name: opened ? UP : DOWN,
             onClick: this.handleOpenClick
         };
+        const inputValue = options.find(item => item.value === value).title;
 
         return (
             <div
@@ -95,7 +96,7 @@ export class Select extends Component<SelectProps, SelectState> {
                     name={name}
                     onClick={this.handleOpenClick}
                     readOnly
-                    value={value}
+                    value={inputValue}
                     width={inputWidth}
                 />
                 {opened &&
