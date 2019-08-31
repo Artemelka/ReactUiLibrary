@@ -1,22 +1,17 @@
-import { ReactElement } from 'react';
-
-export interface TextProps {
+export interface TextBaseProps {
     align?: string;
     bold?: boolean;
-    children: string | ReactElement;
-    headingType?: symbol;
+    children: string;
     light?: boolean;
-    size?: number;
-    type?: symbol;
     upper?: boolean;
 }
 
-export interface Paragraph {
-    className: string;
-    style: {[key: string]: string | number};
-    text: string | ReactElement;
+export interface TextProps extends TextBaseProps {
+    type: symbol;
 }
 
-export interface Heading extends Paragraph {
+export interface TagComponentProps {
+    className: string;
+    children: string;
     type: symbol;
 }
