@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { PageLayout } from '../../layouts';
+import { FooterAside, LanguageSelect } from '../../components';
 
 const style = require('./LayoutPage.less');
 const cn = classNames.bind(style);
@@ -61,7 +62,7 @@ export class LayoutPage extends Component<null, State> {
                     <p style={contentStyle} >Content 2</p>
                     <p style={contentStyle} >Content 3</p>
                 </Main>
-                <Footer>
+                <Footer footerAside={!asideHidden && FooterAside} rightContent={LanguageSelect}>
                     <div className={cn('Content-filler')}>footer</div>
                 </Footer>
             </Page>

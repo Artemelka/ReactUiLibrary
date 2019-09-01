@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Checkbox, Text } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
+import { getUniqId } from '../../../services/utils/uniq-id';
 import { LibrarySideBarLink } from './LibrarySideBarLink';
 import { formatterComponentName, formatterIndex } from './utils';
 import { SideBarData, SideBarState, SideBarProps } from './types';
@@ -39,7 +40,7 @@ export class LibrarySideBar extends Component<SideBarProps, SideBarState> {
                     </div>
                     <ul className={cn('SideBar__list')}>
                         {this.itemsWithoutMenuItem.map(({name, url}, index) => (
-                            <li className={cn('SideBar__list-item')} key={index}>
+                            <li className={cn('SideBar__list-item')} key={getUniqId()}>
                                 <LibrarySideBarLink
                                     index={formatterIndex(index + 1)}
                                     name={formatterComponentName(name)}
