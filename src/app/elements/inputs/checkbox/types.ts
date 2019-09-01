@@ -5,9 +5,9 @@ export interface CheckboxProps {
     indeterminate?: boolean;
     name: string;
     onChange?: () => void;
+    onCreateRef?: (ref: HTMLInputElement) => void;
     radio?: boolean;
     toggle?: boolean;
-    withRef?: (ref: HTMLInputElement) => void;
 }
 
 export interface CheckboxState {

@@ -4,6 +4,7 @@ import { SandboxLayout } from '../../../../../components';
 import { TranslateComponent } from '../../../../../../services/translate';
 import { logger } from '../../../../../../services/utils/utils';
 import { RadioButtonsContainer } from './radio-container';
+import { getUniqId } from '../../../../../../services/utils/uniq-id';
 import { RadioButtonBaseProps } from '../../../../../elements/inputs/radio/types';
 import { ItemsHeading } from './types';
 
@@ -51,14 +52,24 @@ const itemsHeading: Array<ItemsHeading> = [
 export const RadioView = () => (
     <Fragment>
         <BlockItems>
-            {itemsHeading.map(({title, props}, index) => () =>  (
-                <Item key={index + title}>
-                    <Text.H4>
-                        <TranslateComponent translateKey={title}/>
-                    </Text.H4>
-                    <RadioButtonsContainer {...props}/>
-                </Item>
-            ))}
+            {itemsHeading.map(({title, props}, index) => {
+                const nextProps = {
+                    ...props,
+                    items: props.items.map(item => ({
+                        ...item,
+                        id: `${item.id}_${getUniqId()}`
+                    }))
+                };
+
+                return (
+                    <Item key={index + title}>
+                        <Text.H4>
+                            <TranslateComponent translateKey={title}/>
+                        </Text.H4>
+                        <RadioButtonsContainer {...nextProps}/>
+                    </Item>
+                );
+            })}
         </BlockItems>
     </Fragment>
 );

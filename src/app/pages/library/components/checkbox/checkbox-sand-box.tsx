@@ -10,10 +10,10 @@ const checkboxProps = [
     ['id', 'string', 'id element', 'yes'],
     ['indeterminate', 'boolean', 'indeterminate style'],
     ['name', 'string', 'name element', 'yes'],
-    ['onChange', 'Function', 'callback for change event'],
+    ['onChange', '() =>', 'callback for change event'],
+    ['onCreateRef', '(ref) =>', 'callback for create ref'],
     ['radio', 'boolean', 'radio style'],
-    ['toggle', 'boolean', 'toggle style'],
-    ['withRef', 'Function', 'callback for create ref'],
+    ['toggle', 'boolean', 'toggle style']
 ];
 
 export const CheckboxSandBox = () => (

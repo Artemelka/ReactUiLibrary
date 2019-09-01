@@ -24,9 +24,14 @@ export const RadioButtons = ({ column, items, onChange, value, name }: RadioButt
                         />
 
                         { label &&
-                            <span className={cn('Radio-buttons__item-label')}>
+                            <label
+                                className={cn('Radio-buttons__item-label', {
+                                    'Radio-buttons__item-label--disabled': disabled
+                                })}
+                                htmlFor={id}
+                            >
                                 {label}
-                            </span>
+                            </label>
                         }
                     </div>
                 );

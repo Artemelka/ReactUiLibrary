@@ -20,7 +20,7 @@ export class Checkbox extends Component<CheckboxProps, CheckboxState> {
     static defaultProps = {
         checked: false,
         onChange: () => false,
-        withRef: () => false
+        onCreateRef: () => false
     };
 
     state = {
@@ -56,7 +56,7 @@ export class Checkbox extends Component<CheckboxProps, CheckboxState> {
 
     handleRef = (ref: HTMLInputElement) => {
         this.input = ref;
-        this.props.withRef(this.input);
+        this.props.onCreateRef(this.input);
 
     };
 
