@@ -18,6 +18,8 @@ const setWarning = (value: string, classMap: Data) => {
     console.warn(message);
 };
 
+export const logger = (text: string) => () => console.log(text);
+
 export const mapPropsToClasses = (classes: Classes, props: Array<string>) => {
     if (props === undefined || props === null) {
         return;

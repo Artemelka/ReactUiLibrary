@@ -1,15 +1,18 @@
-export interface SingleRadioButtonProps {
-    checked: boolean;
+export type RadioButtonBaseProps = {
     disabled?: boolean;
     id: string;
-    name: string;
     label?: string;
-    onChange?: (value: string) => void;
     value: string;
+};
+
+export interface SingleRadioButtonProps extends RadioButtonBaseProps {
+    checked: boolean;
+    name: string;
+    onChange?: (value: string) => void;
 }
 export interface RadioButtonsProps {
     column?: boolean;
-    items: Array<SingleRadioButtonProps>;
+    items: Array<RadioButtonBaseProps>;
     value: string;
     name: string;
     onChange?: (value: string) => void;

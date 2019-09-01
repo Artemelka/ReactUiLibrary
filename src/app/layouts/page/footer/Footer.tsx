@@ -1,39 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { withRouter } from 'react-router';
 import classNames from 'classnames/bind';
 import { Anchor, Select } from '../../../elements';
-import {
-    changeLocale, translate, TranslateComponent, NavigatorLanguage, translateLocaleSelector, DictionaryStore
-} from '../../../../services/translate';
+import { changeLocale, TranslateComponent, translateLocaleSelector, DictionaryStore } from '../../../../services/translate';
 import { PROJECT_LINK, HOME_URL } from '../../../constants';
-import { SelectOptions } from '../../../elements/inputs/select/types';
+import { SELECT_WIDTH, selectOptions } from './constants';
+import { getTranslatedOptions } from './utils';
+import { FooterProps } from '../types';
 
 const style = require('./Footer.less');
 const cn = classNames.bind(style);
 
-const SELECT_WIDTH = 70;
-const selectOptions: Array<SelectOptions> = [
-    {
-        value: NavigatorLanguage.RU,
-        title: 'russian-language'
-    }, {
-        value: NavigatorLanguage.EN,
-        title: 'english-language'
-    }
-];
-const getTranslatedOptions = (options: Array<SelectOptions>) =>
-    options.map((item: SelectOptions) => ({
-        ...item,
-        title: translate(item.title)
-    }));
-
-interface Props extends RouteComponentProps {
-    changeLocale?: (locale: string) => void;
-    locale?: string;
-}
-
-export class FooterComponent extends Component<Props> {
+export class FooterComponent extends Component<FooterProps> {
     handleClick = () => this.props.history.push(HOME_URL);
 
     handleLanguageChange = (value: string) => this.props.changeLocale(value);

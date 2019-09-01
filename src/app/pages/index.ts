@@ -1,5 +1,18 @@
-export { ComponentsCollection } from './constants';
-export { LibraryPage } from './library/LibraryPage';
-export { LayoutPage } from './layout/LayoutPage';
-export { SandBoxPage } from './sand-box/sand-box-page';
-export { TestHomePage } from './home/home';
+import { LibraryPage } from './library/LibraryPage';
+import { LayoutPage } from './layout/LayoutPage';
+import { TestHomePage } from './home/home';
+import { RouteProps } from './types';
+
+export const pages: Array<RouteProps> = [
+    {
+        component: TestHomePage,
+        exact: true,
+        path: '/'
+    }, {
+        component: LibraryPage,
+        path: '/library'
+    }, {
+        component: LayoutPage,
+        path: '/layout'
+    }
+];

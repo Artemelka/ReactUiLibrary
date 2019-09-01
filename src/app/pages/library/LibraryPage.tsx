@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageLayout } from '../../layouts';
 import { SideBar } from '../../components';
-import { SandBoxPage } from '../index';
-import { ComponentsCollection } from '../constants';
+import { SandBoxPage } from './components/sand-box-page/sand-box-page';
+import { ComponentsPages } from './component-pages';
 import { LibraryFooter } from './LibraryFooter';
 
 const { Aside, Footer, Header, Main, Page } = PageLayout;
@@ -13,7 +13,7 @@ export const LibraryPage = () => (
     <Page>
         {/*<Header />*/}
         <Aside heading={ASIDE_HEADING} footerText={ASIDE_TEXT} withoutHeader>
-            <SideBar items={ComponentsCollection}/>
+            <SideBar items={ComponentsPages}/>
         </Aside>
         <Main withoutHeader>
             <SandBoxPage />

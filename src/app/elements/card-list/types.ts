@@ -1,14 +1,18 @@
-export interface CardProps {
+export type CardItem = {
     buttonLabel?: string;
     content: string;
     id: number;
     onClick: () => void;
     light?: boolean;
-    positionIndex: number;
     title: string;
+};
+
+export interface CardProps extends CardItem {
+    positionIndex: number;
 }
+export type CardItems = Array<CardItem>;
 
 export interface CardListProps {
-    cardItems: Array<CardProps>;
+    cardItems: Array<CardItem>;
     light?: boolean;
 }

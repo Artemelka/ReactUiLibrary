@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
-interface Props {
-
-}
-
-export class LibraryFooter extends Component<Props> {
+export class LibraryFooter extends Component {
 
     render() {
         return (

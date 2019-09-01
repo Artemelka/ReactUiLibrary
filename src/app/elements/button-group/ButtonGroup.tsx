@@ -1,6 +1,5 @@
 import React, { Component, Children, cloneElement, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames/bind';
-import { Button } from '../index';
 import { ButtonGroupProps } from './types';
 
 const style = require('./ButtonGroup.less');
@@ -12,7 +11,6 @@ const SeparatorSize = {
 
 class ButtonGroupComponent extends Component<ButtonGroupProps> {
     static defaultProps = {
-        buttonComponent: Button,
         separatorSize: SeparatorSize.SMALL
     };
 
@@ -48,7 +46,7 @@ class ButtonGroupComponent extends Component<ButtonGroupProps> {
     }
 }
 
-export const ButtonGroup = {
+export const ButtonsGroup = {
     Component: ButtonGroupComponent,
     SeparatorSize
 };

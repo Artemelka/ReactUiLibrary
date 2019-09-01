@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { MainProps } from '../types';
 
 const style = require('./Main.less');
 const cn = classNames.bind(style);
 
-interface Props {
-    fullWidth?: boolean;
-    withoutHeader?: boolean;
-}
-
-export class Main extends Component<Props> {
+export class Main extends Component<MainProps> {
     render() {
         const { children, fullWidth, withoutHeader } = this.props;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ButtonGroup, Button } from '../app/elements';
+import { ButtonsGroup, Button } from '../app/elements';
 
 const GROUP_ITEM_MODIFIER = 'Button-group__item--separator-medium';
 const testMockFirstButton = jest.fn();
@@ -22,9 +22,9 @@ const buttonsProps = [
 describe('Test ButtonGroup', () => {
     test('Rendering Snapshot', () => {
         const wrapper = shallow(
-            <ButtonGroup.Component>
+            <ButtonsGroup.Component>
                 {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
-            </ButtonGroup.Component>
+            </ButtonsGroup.Component>
         );
         const groupItemCollection = wrapper.find('.Button-group__item');
 
@@ -33,9 +33,9 @@ describe('Test ButtonGroup', () => {
     });
     test('Rendering Snapshot with separator', () => {
         const wrapper = shallow(
-            <ButtonGroup.Component separatorSize={ButtonGroup.SeparatorSize.MEDIUM}>
+            <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
                 {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
-            </ButtonGroup.Component>
+            </ButtonsGroup.Component>
         );
         const groupItemCollection = wrapper.find('.Button-group__item');
 
@@ -45,9 +45,9 @@ describe('Test ButtonGroup', () => {
     });
     test('expect round style in Button with prop round', () => {
         const wrapper = shallow(
-            <ButtonGroup.Component round>
+            <ButtonsGroup.Component round>
                 {buttonsProps.map((props, index) => <Button key={index} {...props}/>)}
-            </ButtonGroup.Component>
+            </ButtonsGroup.Component>
         );
         const buttonCollection = wrapper.find('Button');
 

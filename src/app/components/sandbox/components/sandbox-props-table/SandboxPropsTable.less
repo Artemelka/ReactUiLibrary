@@ -1,0 +1,34 @@
+@import '../../../../styles/constants';
+
+.Sandbox-props-table {
+    padding: 15px 25px;
+    text-align: center;
+    width: 100%;
+
+    &__heading {
+        padding: 20px;
+        text-align: center;
+    }
+
+    &__column {
+        border-bottom: 1px solid @textActive;
+        color: @textDark;
+        padding: 10px 20px;
+        text-align: left;
+
+        &--required {
+            color: @gradientRed;
+        }
+
+        &--type {
+            color: @gradientBlue;
+            text-align: center;
+            width: 60px;
+        }
+
+        &--small {
+            text-align: center;
+            width: 30px;
+        }
+    }
+}

@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { Text } from '../../../elements';
 import classNames from 'classnames/bind';
+import { Text } from '../../../elements';
+import { AsideProps } from '../types';
 
 const style = require('./Aside.less');
 const cn = classNames.bind(style);
 
-interface Props {
-    footerText?: string;
-    heading: string;
-    withoutHeader?: boolean;
-}
-
-export class Aside extends Component<Props> {
+export class Aside extends Component<AsideProps> {
     render() {
         const { children, footerText, heading, withoutHeader } = this.props;
 

@@ -1,30 +1,17 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { SideBarLink } from './SideBarLink';
 import { Checkbox, Text } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
+import { SideBarLink } from './SideBarLink';
+import { formatterComponentName, formatterIndex } from './utils';
+import { SideBarData, SideBarState, SideBarProps } from './types';
 
 const style = require('./SideBar.less');
 const cn = classNames.bind(style);
-const SAND_BOX = 'SandBox';
 const CHECKBOX_ID = 'sidebar-toggle';
-const formatterComponentName = (fullName: string): string => {
-    const endIndex = fullName.indexOf(SAND_BOX);
 
-    return endIndex !== -1 ? fullName.substring(0, endIndex) : fullName;
-};
-const formatterIndex = (index: number): string => (index < 10) ? `0${index}` : `${index}`;
-
-type Data = {[key: string]: any};
-type State = {
-    withIndex: boolean;
-};
-interface Props {
-    items: Array<Data>;
-}
-
-export class SideBar extends Component<Props, State> {
-    constructor(props: Props) {
+export class SideBar extends Component<SideBarProps, SideBarState> {
+    constructor(props: SideBarProps) {
         super(props);
         const { items } = props;
 
@@ -32,11 +19,11 @@ export class SideBar extends Component<Props, State> {
             withIndex: false
         };
         this.menuItem = items[0];
-        this.itemsWithoutMenuItem = [...items.filter((item: Data) => item !== this.menuItem)];
+        this.itemsWithoutMenuItem = [...items.filter((item: SideBarData) => item !== this.menuItem)];
     }
 
-    menuItem: Data;
-    itemsWithoutMenuItem: Array<Data>;
+    menuItem: SideBarData;
+    itemsWithoutMenuItem: Array<SideBarData>;
 
     handleToggle = () => this.setState(({ withIndex }) => ({withIndex: !withIndex}));
 
