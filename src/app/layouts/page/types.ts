@@ -1,13 +1,12 @@
-import { RouteComponentProps } from 'react-router';
-
+import { ComponentType } from 'react';
 export interface MainProps {
     fullWidth?: boolean;
     withoutHeader?: boolean;
 }
 
-export interface FooterProps extends RouteComponentProps {
-    changeLocale?: (locale: string) => void;
-    locale?: string;
+export interface FooterProps {
+    footerAside: ComponentType;
+    rightContent?: ComponentType;
 }
 
 export interface AsideProps {

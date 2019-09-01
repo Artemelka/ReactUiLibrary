@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Checkbox, Text } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
-import { SideBarLink } from './SideBarLink';
+import { LibrarySideBarLink } from './LibrarySideBarLink';
 import { formatterComponentName, formatterIndex } from './utils';
 import { SideBarData, SideBarState, SideBarProps } from './types';
 
-const style = require('./SideBar.less');
+const style = require('./LibrarySideBar.less');
 const cn = classNames.bind(style);
 const CHECKBOX_ID = 'sidebar-toggle';
 
-export class SideBar extends Component<SideBarProps, SideBarState> {
+export class LibrarySideBar extends Component<SideBarProps, SideBarState> {
     constructor(props: SideBarProps) {
         super(props);
         const { items } = props;
@@ -35,12 +35,12 @@ export class SideBar extends Component<SideBarProps, SideBarState> {
             <div className={cn('SideBar')}>
                 <div className={cn('SideBar__scroll-wrapper')}>
                     <div className={cn('SideBar__menu-link')}>
-                        <SideBarLink name={formatterComponentName(name)} url={url}/>
+                        <LibrarySideBarLink name={formatterComponentName(name)} url={url}/>
                     </div>
                     <ul className={cn('SideBar__list')}>
                         {this.itemsWithoutMenuItem.map(({name, url}, index) => (
                             <li className={cn('SideBar__list-item')} key={index}>
-                                <SideBarLink
+                                <LibrarySideBarLink
                                     index={formatterIndex(index + 1)}
                                     name={formatterComponentName(name)}
                                     url={url}

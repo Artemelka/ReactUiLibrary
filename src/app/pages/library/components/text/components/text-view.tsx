@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { SandboxLayout } from '../../../../../components';
 import { Text } from '../../../../../elements';
+import { getUniqId } from '../../../../../../services/utils/uniq-id';
 import { Collection, Params } from './types';
 
 const { BlockItems, Item } = SandboxLayout;
@@ -48,10 +49,10 @@ const textCollection: Array<Collection> = [
 export const TextView = () => (
     <Fragment>
         {textCollection.map(({element: Component, params}: Collection) => (
-            <BlockItems>
+            <BlockItems key={getUniqId()}>
                 {
-                    params.map((props: Params, index: number) => (
-                        <Item key={index}>
+                    params.map((props: Params) => (
+                        <Item key={getUniqId()}>
                             <Component {...props}/>
                             {Component === Text.Span && <br/>}
                         </Item>

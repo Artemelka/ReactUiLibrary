@@ -30,4 +30,4 @@ export class SideBarLinkContainer extends Component<Props> {
     }
 }
 
-export const SideBarLink = withRouter(SideBarLinkContainer);
+export const LibrarySideBarLink = withRouter(SideBarLinkContainer);
