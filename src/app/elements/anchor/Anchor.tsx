@@ -1,6 +1,7 @@
-import React, { Component, ReactElement, RefObject, SyntheticEvent } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { keyCodes } from '../../../services';
+import { AnchorProps, CustomEvent } from './types';
 
 const style = require('./Anchor.less');
 const cn = classNames.bind(style);
@@ -12,21 +13,7 @@ const LinkTargetAttr = {
     SELF: '_self'
 };
 
-interface Props {
-    active?: boolean;
-    anchorRef?: RefObject<HTMLAnchorElement>;
-    children?: string | ReactElement;
-    disabled?: boolean;
-    href?: string;
-    newPage?: boolean;
-    onClick?: (event: SyntheticEvent) => void;
-}
-interface CustomEvent extends SyntheticEvent {
-    keyCode: number;
-    which: number;
-}
-
-export class Anchor extends Component<Props> {
+export class Anchor extends Component<AnchorProps> {
     static defaultProps = {
         onClick: () => false
     };
