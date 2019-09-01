@@ -1,28 +1,20 @@
 import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
-import { SelectOptions } from './Select';
 import { SelectListItem } from './SelectListItem';
 import { keyCodes } from '../../../../services';
+import { SelectListProps } from './types';
 
 const style = require('./SelectList.less');
 const cn = classNames.bind(style);
 const { DOWN, TAB, UP } = keyCodes;
 
-interface Props {
-    items: Array<SelectOptions>;
-    onBlur?: (event: FocusEvent) => void;
-    onClick?: (item: any) => void;
-    selectedItemValue: string;
-    style?: {[key: string]: string | number};
-}
-
-export class SelectList extends Component<Props> {
+export class SelectList extends Component<SelectListProps> {
     static defaultProps = {
         onBlur: () => false,
         onClick: () => false
     };
 
-    constructor(props: Props) {
+    constructor(props: SelectListProps) {
         super(props);
 
         this.firstItemIndex = props.items[0].disabled ? 1 : 0;
@@ -109,10 +101,7 @@ export class SelectList extends Component<Props> {
         const { items, onClick, selectedItemValue, style } = this.props;
 
         return (
-            <ul
-                className={cn('Select-list')}
-                style={style}
-            >
+            <ul className={cn('Select-list')} style={style}>
                 {
                     items.map(({disabled, title, value}, index) => (
                             <SelectListItem

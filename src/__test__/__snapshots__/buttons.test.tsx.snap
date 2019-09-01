@@ -25,7 +25,7 @@ exports[`Test Buttons Icon Rendering snapshot 1`] = `
   onClick={[Function]}
   type="button"
 >
-  <Icon
+  <Component
     fontSize={12}
     name="plus"
   />
@@ -42,7 +42,7 @@ exports[`Test Buttons IconLabel Rendering snapshot 1`] = `
   <span
     className="Button__icon-content"
   >
-    <Icon
+    <Component
       fontSize={12}
       name="plus"
     />

@@ -1,30 +1,32 @@
 import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
-import { TextareaUI, TextareaProps } from './Textarea-UI';
+import { TextareaUI } from './Textarea-UI';
+import { TextareaContainerProps, TextareaContainerState, ErrorParams } from './types';
 
 const TEXTAREA_MAX_LENGTH = 255;
-const ERROR_MESSAGE_TRANSLATE_KEY = 'input-error-max-length';
-const errorParams = {
-    error: true,
-    errorMessage: ERROR_MESSAGE_TRANSLATE_KEY
-};
 
-type State = {
-    error: boolean,
-    errorMessage: string
-};
-
-export class Textarea extends Component<TextareaProps, State> {
+export class Textarea extends Component<TextareaContainerProps, TextareaContainerState> {
     static defaultProps = {
         maxlength: TEXTAREA_MAX_LENGTH
     };
 
-    state = {
-        error: false,
-        errorMessage: ''
-    };
+    constructor(props: TextareaContainerProps) {
+        super(props);
+
+        this.state = {
+            error: false,
+            errorMessage: ''
+        };
+
+        this.errorParams = {
+            error: true,
+            errorMessage: this.props.defaultErrorMessage
+        };
+    }
+
+    errorParams: ErrorParams;
 
     setErrorState = (event: SyntheticEvent<HTMLTextAreaElement>, value: string) => {
-        this.setState(errorParams);
+        this.setState(this.errorParams);
         this.props.onChange(event, value.slice(0, this.props.maxlength));
     };
 

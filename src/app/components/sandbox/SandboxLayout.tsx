@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import classNames from 'classnames/bind';
 import { Text } from '../../elements';
-import { TranslateComponent } from '../../../services/translate';
+import { translate } from '../../../services/translate';
 import { SandboxPanel } from '../sandbox-panel/SandboxPanel';
 import { SandboxPropsTable } from '../sandbox-props-table/SandboxPropsTable';
 
@@ -48,11 +48,11 @@ export const SandboxContainer = ({
     <div className={cn('Sandbox')}>
         <Text.H1 align="center">{name}</Text.H1>
         <Text.H2>
-            <TranslateComponent translateKey={'description-header'} />
+            {translate('description-header')}
         </Text.H2>
         <SandboxBlockItems>
             <Text.Paragraph>
-                <TranslateComponent translateKey={description} />
+                {translate(description)}
             </Text.Paragraph>
         </SandboxBlockItems>
         <SandboxBlockItems>
@@ -64,15 +64,15 @@ export const SandboxContainer = ({
                 detailsComponent={acceptedParameters}
                 summaryComponent={Text.H5}
             >
-                <TranslateComponent translateKey={'accepted-parameters'} />
+                {translate('accepted-parameters')}
             </SandboxPanel>
         </SandboxBlockItems>
         <Text.H2>
-            <TranslateComponent translateKey={'example'} />
+            {translate('example')}
         </Text.H2>
         <View/>
         <Text.H2>
-            <TranslateComponent translateKey={'usage-example'} />
+            {translate('usage-example')}
         </Text.H2>
         <SandboxBlockItems>
             <Example/>

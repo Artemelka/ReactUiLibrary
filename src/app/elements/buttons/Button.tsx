@@ -1,38 +1,17 @@
-import React, { Component, MouseEvent, KeyboardEvent, RefObject, ReactNode } from 'react';
+import React, { Component, MouseEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
 import { keyCodes } from '../../../services';
+import { ButtonSize } from './constants';
+import { ButtonState, ButtonProps } from './types';
 
 const style = require('./Button.less');
 const cn = classNames.bind(style);
-export const ButtonSize = {
-    SMALL: 'small',
-    BIG: 'big'
-};
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];
 
-export interface ButtonNotRequiredProps {
-    accent?: boolean;
-    buttonRef?: RefObject<HTMLButtonElement>;
-    disabled?: boolean;
-    icon?: boolean;
-    iconLabel?: boolean;
-    onClick?: (event: React.SyntheticEvent) => void;
-    roundLeft?: boolean;
-    roundRight?: boolean;
-    size?: string;
-    type?: 'button' | 'submit' | 'reset';
-}
-export interface ButtonProps extends ButtonNotRequiredProps {
-    label: string;
-}
-interface State {
-    isActive: boolean;
-}
-
-export class Button extends Component<ButtonProps, State> {
+export class Button extends Component<ButtonProps, ButtonState> {
     static Icon = ButtonIcon;
     static IconLabel = ButtonIconLabel;
     static defaultProps = {

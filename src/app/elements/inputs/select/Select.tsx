@@ -1,34 +1,15 @@
 import React, { Component, createRef, RefObject, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
-import { Input, InputProps } from '../input/Input';
+import { Input } from '../input/Input';
 import { SelectList } from './SelectList';
 import { IconModule } from '../../icon';
+import { SelectProps, SelectState } from './types';
 
 const style = require('./Select.less');
 const cn = classNames.bind(style);
+const { DOWN, UP } = IconModule.IconNames.ANGLE;
 
-export interface SelectOptions {
-    disabled?: boolean;
-    title: string;
-    value: string;
-}
-export interface SelectProps {
-    disabled?: boolean;
-    inputWidth?: number;
-    listOpenTop?: boolean;
-    multiple?: boolean;
-    maxListHeight?: number;
-    name?: string;
-    onChange?: (value: string) => void;
-    options: Array<SelectOptions>;
-    value: string;
-}
-interface State {
-    canOpenDown: boolean;
-    opened: boolean;
-}
-
-export class Select extends Component<SelectProps, State> {
+export class Select extends Component<SelectProps, SelectState> {
     static defaultProps = {
         maxListHeight: 100,
         onChange: () => false
@@ -78,16 +59,26 @@ export class Select extends Component<SelectProps, State> {
 
     render() {
         const {
-            disabled, inputWidth, listOpenTop, maxListHeight, multiple, onChange, options, value, ...restProps
+            disabled,
+            id,
+            inputWidth,
+            listOpenTop,
+            maxListHeight,
+            multiple: omitMultiple,
+            name,
+            onChange: omitOnChange,
+            options,
+            value,
+            ...restProps
         } = this.props;
         const { canOpenDown, opened } = this.state;
         const optionListStyle = {maxHeight: `${maxListHeight}px`};
-        const { DOWN, UP } = IconModule.IconNames.ANGLE;
         const iconProps = {
             alwaysVisible: true,
             name: opened ? UP : DOWN,
             onClick: this.handleOpenClick
         };
+        const inputValue = options.find(item => item.value === value).title;
 
         return (
             <div
@@ -99,11 +90,13 @@ export class Select extends Component<SelectProps, State> {
                     cursorPointer
                     disabled={disabled}
                     icon={iconProps}
+                    id={id}
                     InputIconRef={this.inputIconRef}
                     inputRef={this.inputRef}
+                    name={name}
                     onClick={this.handleOpenClick}
-                    value={value}
                     readOnly
+                    value={inputValue}
                     width={inputWidth}
                 />
                 {opened &&

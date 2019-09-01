@@ -3,7 +3,6 @@
 exports[`Test TextParagraph element Rendering snapshot H1 1`] = `
 <h1
   className="Text Text--heading-h1 Text--heading"
-  style={Object {}}
 >
   test text
 </h1>
@@ -12,7 +11,6 @@ exports[`Test TextParagraph element Rendering snapshot H1 1`] = `
 exports[`Test TextParagraph element Rendering snapshot H2 1`] = `
 <h2
   className="Text Text--heading-h2 Text--heading"
-  style={Object {}}
 >
   test text
 </h2>
@@ -21,7 +19,6 @@ exports[`Test TextParagraph element Rendering snapshot H2 1`] = `
 exports[`Test TextParagraph element Rendering snapshot H3 1`] = `
 <h3
   className="Text Text--heading-h3 Text--heading"
-  style={Object {}}
 >
   test text
 </h3>
@@ -30,7 +27,6 @@ exports[`Test TextParagraph element Rendering snapshot H3 1`] = `
 exports[`Test TextParagraph element Rendering snapshot H4 1`] = `
 <h4
   className="Text Text--heading-h4 Text--heading"
-  style={Object {}}
 >
   test text
 </h4>
@@ -39,7 +35,6 @@ exports[`Test TextParagraph element Rendering snapshot H4 1`] = `
 exports[`Test TextParagraph element Rendering snapshot H5 1`] = `
 <h5
   className="Text Text--heading-h5 Text--heading"
-  style={Object {}}
 >
   test text
 </h5>
@@ -48,7 +43,6 @@ exports[`Test TextParagraph element Rendering snapshot H5 1`] = `
 exports[`Test TextParagraph element Rendering snapshot H6 1`] = `
 <h6
   className="Text Text--heading-h6 Text--heading"
-  style={Object {}}
 >
   test text
 </h6>
@@ -57,7 +51,6 @@ exports[`Test TextParagraph element Rendering snapshot H6 1`] = `
 exports[`Test TextParagraph element Rendering snapshot Paragraph 1`] = `
 <p
   className="Text Text--paragraph"
-  style={Object {}}
 >
   test text
 </p>
@@ -66,7 +59,6 @@ exports[`Test TextParagraph element Rendering snapshot Paragraph 1`] = `
 exports[`Test TextParagraph element Rendering snapshot Span 1`] = `
 <span
   className="Text Text--span"
-  style={Object {}}
 >
   test text
 </span>
