@@ -14,6 +14,7 @@ export const IconNames = {
     BACKSPACE: 'backspace',
     BAN: 'ban',
     CALENDAR_ALT: 'calendar-alt',
+    CLOSE: 'times',
     PHONE: 'phone',
     PLUS: 'plus',
     PLUS_SQUARE: 'plus-square',

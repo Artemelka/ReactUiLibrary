@@ -7,5 +7,6 @@ export { DropDownPanel } from './drop-down-panel/DropDownPanel';
 export { DropDownDetails } from './drop-down-panel/DropDownDetails';
 export { DropDownSummary } from './drop-down-panel/DropDownSummary';
 export { IconModule } from './icon';
+export { Modal, ModalSize } from './modal/Modal';
 export { Progress } from './progress';
 export { Text } from './text';
