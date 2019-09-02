@@ -6,7 +6,7 @@ import { TestModals, TestRequest, TestRouter } from './components';
 const style = require('./home.less');
 const cn = classNames.bind(style);
 
-export class TestHomePage extends Component {
+class HomePage extends Component {
     render() {
         return (
             <div className={cn('Test-page')}>
@@ -31,3 +31,5 @@ export class TestHomePage extends Component {
         );
     }
 }
+
+export default HomePage;

@@ -1,11 +1,16 @@
-import { LibraryPage } from './library/LibraryPage';
-import { LayoutPage } from './layout/LayoutPage';
-import { TestHomePage } from './home/home';
+import { lazy } from 'react';
+import LibraryPage from './library/LibraryPage';
+import LayoutPage from './layout/LayoutPage';
+import HomePage from './home/HomePage';
 import { RouteProps } from './types';
+
+// const HomePage = lazy(() => import('./home/HomePage'));
+// const LibraryPage = lazy(() => import('./library/LibraryPage'));
+// const LayoutPage = lazy(() => import('./layout/LayoutPage'));
 
 export const pages: Array<RouteProps> = [
     {
-        component: TestHomePage,
+        component: HomePage,
         exact: true,
         path: '/'
     }, {

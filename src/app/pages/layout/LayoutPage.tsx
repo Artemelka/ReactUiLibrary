@@ -20,7 +20,7 @@ interface State {
     headerHidden: boolean;
 }
 
-export class LayoutPage extends Component<null, State> {
+class LayoutPage extends Component<null, State> {
     state = {
         asideHidden: false,
         headerHidden: false
@@ -69,3 +69,5 @@ export class LayoutPage extends Component<null, State> {
         );
     }
 }
+
+export default LayoutPage;

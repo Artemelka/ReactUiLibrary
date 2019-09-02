@@ -48,9 +48,8 @@ export class TestModals extends Component {
                     title="My first modal window"
                 >
                     12345
-                    <br/>
+                    <br/><br/><br/>
                     <Button
-                        accent
                         onClick={this.closeFirstModal}
                         label="close"
                     />
@@ -69,6 +68,11 @@ export class TestModals extends Component {
                     title="My third modal window"
                 >
                     12345
+                    <br/><br/><br/>
+                    <Button
+                        onClick={this.showFirstModal}
+                        label="show 1 modal"
+                    />
                 </Modal>
             </Fragment>
         );

@@ -9,7 +9,7 @@ const ASIDE_HEADING = 'React UI Library';
 const ASIDE_TEXT = '123456789';
 const LibraryFooter = () => <div>123456789</div>;
 
-export const LibraryPage = () => (
+const LibraryPage = () => (
     <Page>
         {/*<Header />*/}
         <Aside heading={ASIDE_HEADING} footerText={ASIDE_TEXT} withoutHeader>
@@ -23,3 +23,5 @@ export const LibraryPage = () => (
         </Footer>
     </Page>
 );
+
+export default LibraryPage;
