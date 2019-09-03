@@ -1,27 +1,44 @@
 import React, { Component, Fragment } from 'react';
-import { Button, ButtonsGroup, Modal, ModalSize } from '../../../elements';
+import { Button, ButtonsGroup, ModalModule } from '../../../elements';
+
+const { ModalDialog, ModalPanel, ModalSize } = ModalModule;
 
 export class TestModals extends Component {
     state = {
         firstModal: false,
+        firstPanel: false,
         secondModal: false,
-        thirdModal: false
+        secondPanel: false,
+        thirdModal: false,
+        thirdPanel: false
     };
 
     showFirstModal = () => this.setState({ firstModal: true });
 
+    showFirstPanel = () => this.setState({ firstPanel: true });
+
     showSecondModal = () => this.setState({ secondModal: true });
+
+    showSecondPanel = () => this.setState({ secondPanel: true });
 
     showThirdModal = () => this.setState({ thirdModal: true });
 
+    showThirdPanel = () => this.setState({ thirdPanel: true });
+
     closeFirstModal = () => this.setState({ firstModal: false });
+
+    closeFirstPanel = () => this.setState({ firstPanel: false });
 
     closeSecondModal = () => this.setState({ secondModal: false });
 
+    closeSecondPanel = () => this.setState({ secondPanel: false });
+
     closeThirdModal = () => this.setState({ thirdModal: false });
 
+    closeThirdPanel = () => this.setState({ thirdPanel: false });
+
     render() {
-        const { firstModal, secondModal, thirdModal } = this.state;
+        const { firstModal, firstPanel, secondModal, secondPanel, thirdModal, thirdPanel } = this.state;
 
         return (
             <Fragment>
@@ -42,7 +59,24 @@ export class TestModals extends Component {
                         label="show 3 modal"
                     />
                 </ButtonsGroup.Component>
-                <Modal
+                <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
+                    <Button
+                        accent
+                        onClick={this.showFirstPanel}
+                        label="show 1 panel"
+                    />
+                    <Button
+                        accent
+                        onClick={this.showSecondPanel}
+                        label="show 2 panel"
+                    />
+                    <Button
+                        accent
+                        onClick={this.showThirdPanel}
+                        label="show 3 panel"
+                    />
+                </ButtonsGroup.Component>
+                <ModalDialog
                     opened={firstModal}
                     size={ModalSize.LARGE}
                     title="My first modal window"
@@ -53,15 +87,15 @@ export class TestModals extends Component {
                         onClick={this.closeFirstModal}
                         label="close"
                     />
-                </Modal>
-                <Modal
+                </ModalDialog>
+                <ModalDialog
                     onClose={this.closeSecondModal}
                     opened={secondModal}
                     title="My second modal window"
                 >
                     12345
-                </Modal>
-                <Modal
+                </ModalDialog>
+                <ModalDialog
                     onClose={this.closeThirdModal}
                     opened={thirdModal}
                     size={ModalSize.SMALL}
@@ -73,7 +107,38 @@ export class TestModals extends Component {
                         onClick={this.showFirstModal}
                         label="show 1 modal"
                     />
-                </Modal>
+                    <Button
+                        onClick={this.showSecondModal}
+                        label="show 2 modal"
+                    />
+                </ModalDialog>
+                <ModalPanel
+                    onClose={this.closeFirstPanel}
+                    opened={firstPanel}
+                    size={ModalSize.LARGE}
+                    title="My first modal panel"
+                >
+                    67890
+                </ModalPanel>
+                <ModalPanel
+                    opened={secondPanel}
+                    title="My second modal panel"
+                >
+                    67890
+                    <br/><br/><br/>
+                    <Button
+                        onClick={this.closeSecondPanel}
+                        label="close"
+                    />
+                </ModalPanel>
+                <ModalPanel
+                    onClose={this.closeThirdPanel}
+                    opened={thirdPanel}
+                    size={ModalSize.SMALL}
+                    title="My third modal panel"
+                >
+                    67890
+                </ModalPanel>
             </Fragment>
         );
     }
