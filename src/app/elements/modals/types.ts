@@ -12,3 +12,11 @@ export interface ModalDialogProps {
     size?: symbol;
     title: string;
 }
+
+export interface ModalPortalAdapterProps {
+    children: any;
+    opened: boolean;
+}
+export type ModalPortalAdapterState = {
+    opened: boolean
+};

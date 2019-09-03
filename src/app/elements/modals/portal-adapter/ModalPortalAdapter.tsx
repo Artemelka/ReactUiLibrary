@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { Portal } from '../../index';
 import { MODAL_ROOT, PAGE_MODAL_CONTAINER_CLASS_NAME } from '../../../constants';
+import { ModalPortalAdapterProps, ModalPortalAdapterState } from '../types';
 
 const modalRootElement = document.getElementById(MODAL_ROOT);
 
-interface ModalPortalAdapterProps {
-    children: any;
-    opened: boolean;
-}
-type State = {
-    opened: boolean
-};
-
-export class ModalPortalAdapter extends Component<ModalPortalAdapterProps, State> {
+export class ModalPortalAdapter extends Component<ModalPortalAdapterProps, ModalPortalAdapterState> {
     static getDerivedStateFromProps(nextProps: Readonly<ModalPortalAdapterProps>) {
         return !nextProps.opened ? false : nextProps;
     }
