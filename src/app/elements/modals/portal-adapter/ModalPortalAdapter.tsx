@@ -43,7 +43,7 @@ export class ModalPortalAdapter extends Component<ModalPortalAdapterProps, Modal
                     containerClassName={PAGE_MODAL_CONTAINER_CLASS_NAME}
                     rootElement={modalRootElement}
                 >
-                    {this.props.children({onCreateRef: this.handleRef})}
+                    {this.props.children({ onCreateRef: this.handleRef })}
                 </Portal>
             ) : null
         );

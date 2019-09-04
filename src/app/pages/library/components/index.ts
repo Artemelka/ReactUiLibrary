@@ -6,6 +6,7 @@ export { CheckboxSandBox } from './checkbox/checkbox-sand-box';
 export { DropDownPanelSandBox } from './drop-down-panel/drop-down-panel-sand-box';
 export { IconSandBox } from './icon/icon-sand-box';
 export { InputSandBox } from './input/input-sand-box';
+export { ModalSandBox } from './modal/modal-sand-box';
 export { ProgressSandBox } from './progress/progress-sand-box';
 export { RadioButtonsSandBox } from './radio/radio-sand-box';
 export { SelectSandBox } from './select/select-sand-box';

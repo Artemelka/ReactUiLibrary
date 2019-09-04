@@ -8,6 +8,7 @@ import {
     DropDownPanelSandBox,
     IconSandBox,
     InputSandBox,
+    ModalSandBox,
     ProgressSandBox,
     RadioButtonsSandBox,
     SelectSandBox,
@@ -67,6 +68,11 @@ export const ComponentsPages = [
         exact: true,
         name: InputSandBox.name,
         url: '/library/input'
+    },  {
+        component: ModalSandBox,
+        exact: true,
+        name: ModalSandBox.name,
+        url: '/library/modal'
     }, {
         component: ProgressSandBox,
         exact: true,

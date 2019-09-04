@@ -1,35 +1,30 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { LanguageSelect } from '../../components';
-import { TestModals, TestRequest, TestRouter } from './components';
+import { TestRequest, TestRouter } from './components';
 
-const style = require('./home.less');
+const style = require('./HomePage.less');
 const cn = classNames.bind(style);
 
-class HomePage extends Component {
+export default class HomePage extends Component {
     render() {
         return (
             <div className={cn('Test-page')}>
-                <h1>Test page</h1>
-                <h3>Test request</h3>
                 <div className={cn('Test-page__item')}>
-                    <TestRequest/>
+                    <h1>Test home page</h1>
                 </div>
-                <h3>Test router</h3>
                 <div className={cn('Test-page__item')}>
+                    <h3>Test router</h3>
                     <TestRouter />
                 </div>
-                <h3>Test Change language</h3>
                 <div className={cn('Test-page__item')}>
-                    <LanguageSelect/>
+                    <h3>Test request</h3>
+                    <TestRequest/>
                 </div>
-                <h3>Test modals</h3>
                 <div className={cn('Test-page__item')}>
-                    <TestModals/>
+                    <h3>Test ...</h3>
+                    ...
                 </div>
             </div>
         );
     }
 }
-
-export default HomePage;

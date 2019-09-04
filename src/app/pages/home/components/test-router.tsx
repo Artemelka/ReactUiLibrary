@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { Button, ButtonsGroup } from '../../../elements';
 
@@ -33,6 +32,4 @@ export class TestRouterComponent extends Component<RouteComponentProps> {
     }
 }
 
-export const TestRouter = connect(
-    (state, routing: RouteComponentProps) => ({...routing})
-)(withRouter(TestRouterComponent));
+export const TestRouter = withRouter(TestRouterComponent);
