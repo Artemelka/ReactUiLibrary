@@ -31,11 +31,12 @@
         border: none;
 
         & .@{ClassName}__summary {
+            padding: 0;
+
             &--clickable {
                 &:hover,
                 &:focus {
                     background: none;
-                    color: @secondColor;
                 }
             }
         }
@@ -46,7 +47,6 @@
         & .@{ClassName}__summary,
         & .@{ClassName}__details {
             background: none;
-            color: @textMain;
         }
     }
 
@@ -65,7 +65,6 @@
         align-items: center;
         background-color: @secondColor;
         border-bottom: 1px solid rgba(@secondColor, 0);
-        color: @baseDarkColor;
         display: flex;
         justify-content: flex-start;
         outline: none;
@@ -100,7 +99,6 @@
     &__details {
         background-color: @textMain;
         box-sizing: border-box;
-        color: @textActive;
         height: 0;
         overflow: hidden;
         transition: height 0.5s;

@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { Anchor } from '../../elements';
+import { withRouter } from 'react-router';
+import { Anchor } from '../../../../elements';
+import { SideBarLinkProps } from '../../types';
 
-interface Props extends RouteComponentProps {
-    index?: string;
-    name: string;
-    url: string;
-    withIndex?: boolean;
-}
-
-export class SideBarLinkContainer extends Component<Props> {
+export class SideBarLinkContainer extends Component<SideBarLinkProps> {
     handleClick = () => {
         const { history: { push }, url } = this.props;
 
@@ -30,4 +24,4 @@ export class SideBarLinkContainer extends Component<Props> {
     }
 }
 
-export const LibrarySideBarLink = withRouter(SideBarLinkContainer);
+export const SideBarLink = withRouter(SideBarLinkContainer);

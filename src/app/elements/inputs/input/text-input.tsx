@@ -1,6 +1,6 @@
 import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
 import { Input } from './Input';
-import { IconModule } from '../../index';
+import { IconModule } from '../../icon';
 import { TextInputProps } from './types';
 
 export class TextInput extends Component<TextInputProps> {

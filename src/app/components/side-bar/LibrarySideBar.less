@@ -1,5 +1,3 @@
-@import '../../styles/constants';
-
 .SideBar {
     overflow: hidden;
     padding: 15px 0;
@@ -11,36 +9,15 @@
         width: calc(100% + 20px);
     }
 
-    &__menu-link {
+    &__link {
         text-align: center;
     }
 
-    &__list {
-        list-style: none;
-        margin: 20px 0 0;
-        padding-left: 0;
-
-        &-item {
-            padding: 5px;
-            text-align: left;
-        }
+    &__menu {
+        margin-top: 20px;
     }
 
     &__toggle {
-        &-wrapper {
-            align-items: center;
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        &-label {
-            cursor: pointer;
-            margin-left: 20px;
-
-            &:hover {
-                color: @accentDarkColor;
-            }
-        }
+        margin-top: 20px;
     }
 }
