@@ -7,7 +7,7 @@ export class SideBarLinkContainer extends Component<SideBarLinkProps> {
     handleClick = () => {
         const { history: { push }, url } = this.props;
 
-        push(`${url}/ `);
+        push(url);
     };
 
     render() {

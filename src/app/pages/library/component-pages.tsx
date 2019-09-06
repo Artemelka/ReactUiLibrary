@@ -27,7 +27,7 @@ export const ComponentsPages = [
         url: LIBRARY_URL
     }, {
         component: AnchorSandBox,
-        // exact: true,
+        exact: true,
         name: AnchorSandBox.name,
         url: `${LIBRARY_URL}/anchor`
     }, {
@@ -84,12 +84,11 @@ export const ComponentsPages = [
         }
     ], {
         component: ModalSandBox,
-        exact: true,
+        exact: false,
         name: ModalSandBox.name,
         url: `${LIBRARY_URL}/modal`
     }, {
         component: ProgressSandBox,
-        exact: true,
         name: ProgressSandBox.name,
         url: `${LIBRARY_URL}/progress`
     }, {

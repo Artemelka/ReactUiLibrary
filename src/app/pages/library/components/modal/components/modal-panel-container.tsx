@@ -1,81 +1,47 @@
-import React, { Component, Fragment } from 'react';
-import { Button, ButtonsGroup, ModalModule } from '../../../../../elements';
+import React, { Component } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { Button, ButtonsGroup } from '../../../../../elements';
 import { getUniqId } from '../../../../../../services/utils/uniq-id';
 import { translate } from '../../../../../../services/translate';
+import { PanelName } from '../../../../../modals';
 
-const { ModalPanel, ModalSize } = ModalModule;
-const PanelName = {
-    FIRST: 'firstPanel',
-    SECOND: 'secondPanel',
-    THIRD: 'thirdPanel'
-};
+export class ModalPanelContainerComponent extends Component<RouteComponentProps> {
+    handleShowPanel = (name: string) => () => {
+        const { history, location: { pathname } } = this.props;
 
-export class ModalPanelContainer extends Component {
-    state = {
-        [PanelName.FIRST]: false,
-        [PanelName.SECOND]: false,
-        [PanelName.THIRD]: false
+        history.push(`${pathname}/${name}`);
     };
-
-    handleShowPanel = (name: string) => () => this.setState({ [name]: true });
-
-    handleClosePanel = (name: string) => () => this.setState({ [name]: false });
 
     buttons = [
         {
-            onClick: this.handleShowPanel(PanelName.FIRST),
-            label: translate('show-first-panel')
+            id: getUniqId(),
+            label: translate('show-first-panel'),
+            onClick: this.handleShowPanel(PanelName.FIRST)
         }, {
-            onClick: this.handleShowPanel(PanelName.SECOND),
-            label: translate('show-second-panel')
+            id: getUniqId(),
+            label: translate('show-second-panel'),
+            onClick: this.handleShowPanel(PanelName.SECOND)
         }, {
-            onClick: this.handleShowPanel(PanelName.THIRD),
-            label: translate('show-third-panel')
+            id: getUniqId(),
+            label: translate('show-third-panel'),
+            onClick: this.handleShowPanel(PanelName.THIRD)
         }
     ];
 
     render() {
-        const { firstPanel, secondPanel, thirdPanel } = this.state;
 
         return (
-            <Fragment>
-                <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
-                    {this.buttons.map(({ onClick, label }) => (
-                        <Button
-                            accent
-                            key={getUniqId()}
-                            label={label}
-                            onClick={onClick}
-                        />))}
-                </ButtonsGroup.Component>
-                <ModalPanel
-                    onClose={this.handleClosePanel(PanelName.FIRST)}
-                    opened={firstPanel}
-                    size={ModalSize.LARGE}
-                    title={translate('first-modal-panel')}
-                >
-                    Content
-                </ModalPanel>
-                <ModalPanel
-                    opened={secondPanel}
-                    title={translate('second-modal-panel')}
-                >
-                    Content
-                    <br/><br/><br/>
+            <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
+                {this.buttons.map(({ id, label, onClick }) => (
                     <Button
-                        onClick={this.handleClosePanel(PanelName.SECOND)}
-                        label={translate('close')}
-                    />
-                </ModalPanel>
-                <ModalPanel
-                    onClose={this.handleClosePanel(PanelName.THIRD)}
-                    opened={thirdPanel}
-                    size={ModalSize.SMALL}
-                    title={translate('third-modal-panel')}
-                >
-                    Content
-                </ModalPanel>
-            </Fragment>
+                        accent
+                        key={id}
+                        label={label}
+                        onClick={onClick}
+                    />))}
+            </ButtonsGroup.Component>
         );
     }
 }
+
+export const ModalPanelContainer = withRouter(ModalPanelContainerComponent);

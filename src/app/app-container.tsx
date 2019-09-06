@@ -12,10 +12,11 @@ import { request } from '../services';
 import { App } from './index';
 
 const history = createBrowserHistory();
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(
-    routerMiddleware(history),
-    translateMiddleware,
-    thunk
+const store = createStore(reducers, composeWithDevTools(
+    applyMiddleware(
+        routerMiddleware(history),
+        translateMiddleware,
+        thunk
 )));
 
 export class AppContainer extends Component {

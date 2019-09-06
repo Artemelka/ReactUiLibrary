@@ -4,7 +4,6 @@ import { ComponentsPages } from '../../component-pages';
 import { getUniqId } from '../../../../../services/utils/uniq-id';
 
 const keyId = getUniqId();
-const concatUrl = (url: string) => `${url}/:query`;
 
 export class SandBoxPage extends Component {
     render() {
@@ -14,7 +13,7 @@ export class SandBoxPage extends Component {
                     (component, index) => Array.isArray(component)
                         ? (component.map((item, secondIndex) => (
                             <Route
-                                path={concatUrl(item.url)}
+                                path={item.url}
                                 key={`${index}${keyId}${secondIndex}`}
                                 exact={item.exact}
                                 component={item.component}
@@ -22,9 +21,10 @@ export class SandBoxPage extends Component {
                         )))
                         : (
                             <Route
-                                path={concatUrl(component.url)}
+                                path={component.url}
                                 key={`${index}${keyId}`}
                                 exact={component.exact}
+                                sensitive
                                 component={component.component}
                             />
                         )
