@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { Button, ButtonsGroup, ModalModule } from '../../../../../elements';
 import { getUniqId } from '../../../../../../services/utils/uniq-id';
 import { translate } from '../../../../../../services/translate';
@@ -10,16 +11,18 @@ const ModalName = {
     THIRD: 'thirdModal'
 };
 
-export class ModalDialogContainer extends Component {
+export class ModalDialogContainerComponent extends Component<RouteComponentProps> {
     state = {
         [ModalName.FIRST]: false,
         [ModalName.SECOND]: false,
         [ModalName.THIRD]: false
     };
 
-    handleShowModal = (name: string) => () => this.setState({ [name]: true });
+    // handleShowModal = (name: string) => () => this.setState({ [name]: true });
+    handleShowModal = (name: string) => () => this.props.history.push(`${name}`);
 
-    handleCloseModal = (name: string) => () => this.setState({ [name]: false });
+    // handleCloseModal = (name: string) => () => this.setState({ [name]: false });
+    handleCloseModal = (name: string) => () => this.props.history.push(` `);
 
     buttons = [
         {
@@ -36,7 +39,8 @@ export class ModalDialogContainer extends Component {
 
     render() {
         const { firstModal, secondModal, thirdModal } = this.state;
-
+        const { history, match } = this.props;
+        console.log('this.props', this.props);
         return (
             <Fragment>
                 <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
@@ -89,3 +93,5 @@ export class ModalDialogContainer extends Component {
         );
     }
 }
+
+export const ModalDialogContainer = withRouter(ModalDialogContainerComponent);

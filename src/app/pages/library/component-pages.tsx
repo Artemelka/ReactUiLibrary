@@ -27,7 +27,7 @@ export const ComponentsPages = [
         url: LIBRARY_URL
     }, {
         component: AnchorSandBox,
-        exact: true,
+        // exact: true,
         name: AnchorSandBox.name,
         url: `${LIBRARY_URL}/anchor`
     }, {
