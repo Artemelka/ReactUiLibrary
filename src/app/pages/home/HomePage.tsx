@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { TestRequest, TestRouter } from './components';
+import { Notification } from '../../elements/notification/Notification';
+import { NotificationType } from '../../elements/notification/constants';
 
 const style = require('./HomePage.less');
 const cn = classNames.bind(style);
@@ -22,7 +24,9 @@ export default class HomePage extends Component {
                 </div>
                 <div className={cn('Test-page__item')}>
                     <h3>Test ...</h3>
-                    ...
+                    <Notification type={NotificationType.ERROR} title={'ERROR'}/>
+                    <Notification type={NotificationType.WARNING} title={'WARNING'}/>
+                    <Notification type={NotificationType.SUCCESS} title={'SUCCESS'}/>
                 </div>
             </div>
         );

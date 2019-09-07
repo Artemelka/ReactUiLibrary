@@ -1,16 +1,12 @@
 export const IconNames = {
-    ANGLE: {
-        DOWN: 'angle-down',
-        LEFT: 'angle-left',
-        RIGHT: 'angle-right',
-        UP: 'angle-up',
-    },
-    ARROW_ALT_CIRCLE: {
-        DOWN: 'arrow-alt-circle-down',
-        LEFT: 'arrow-alt-circle-left',
-        RIGHT: 'arrow-alt-circle-right',
-        UP: 'arrow-alt-circle-up'
-    },
+    ANGLE_DOWN: 'angle-down',
+    ANGLE_LEFT: 'angle-left',
+    ANGLE_RIGHT: 'angle-right',
+    ANGLE_UP: 'angle-up',
+    ARROW_ALT_CIRCLE_DOWN: 'arrow-alt-circle-down',
+    ARROW_ALT_CIRCLE_LEFT: 'arrow-alt-circle-left',
+    ARROW_ALT_CIRCLE_RIGHT: 'arrow-alt-circle-right',
+    ARROW_ALT_CIRCLE_UP: 'arrow-alt-circle-up',
     BACKSPACE: 'backspace',
     BAN: 'ban',
     CALENDAR_ALT: 'calendar-alt',
@@ -22,5 +18,8 @@ export const IconNames = {
     SYNC: 'sync',
     SYNC_ALT: 'sync-alt',
     TRASH: 'trash',
-    TRASH_ALT: 'trash-alt'
+    TRASH_ALT: 'trash-alt',
+    ERROR: 'exclamation-circle',
+    WARNING: 'exclamation-triangle',
+    SUCCESS: 'check-circle'
 };

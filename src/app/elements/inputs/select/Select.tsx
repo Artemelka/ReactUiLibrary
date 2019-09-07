@@ -7,7 +7,7 @@ import { SelectProps, SelectState } from './types';
 
 const style = require('./Select.less');
 const cn = classNames.bind(style);
-const { DOWN, UP } = IconModule.IconNames.ANGLE;
+const { ANGLE_DOWN, ANGLE_UP } = IconModule.IconNames;
 
 export class Select extends Component<SelectProps, SelectState> {
     static defaultProps = {
@@ -75,7 +75,7 @@ export class Select extends Component<SelectProps, SelectState> {
         const optionListStyle = {maxHeight: `${maxListHeight}px`};
         const iconProps = {
             alwaysVisible: true,
-            name: opened ? UP : DOWN,
+            name: opened ? ANGLE_UP : ANGLE_DOWN,
             onClick: this.handleOpenClick
         };
         const inputValue = options.find(item => item.value === value).title;

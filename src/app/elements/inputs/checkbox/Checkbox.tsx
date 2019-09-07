@@ -11,7 +11,7 @@ const toggleClassNames = classNames.bind(toggleStyle);
 
 const iconProps = {
     fontSize: 18,
-    name: IconModule.IconNames.ANGLE.DOWN,
+    name: IconModule.IconNames.ANGLE_DOWN,
     size: '2x',
     stack: 'fas'
 };
