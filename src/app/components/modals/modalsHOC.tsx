@@ -1,15 +1,20 @@
 import React, { Component, ComponentType } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { withRouter } from 'react-router';
+import { getModalNamesFromUrl } from './utils';
+
+const START_INDEX = 0;
+const SEPARATOR = '/';
 
 export const modalHOC = (Component: ComponentType<any>) =>
-    withRouter((props: RouteComponentProps) => {
+    withRouter((props: any) => {
+        const { history: { push },  match: { url }, location: { pathname } } = props;
         const handleCloseModal = () => {
-            const { location: { pathname } } = props;
-            const nextUrl = pathname.slice(0, pathname.lastIndexOf('/'));
+            const nextUrl = pathname.slice(START_INDEX, pathname.lastIndexOf(SEPARATOR));
 
-            props.history.push(nextUrl);
+            push(nextUrl);
         };
+        const modalsUrl = getModalNamesFromUrl(pathname, url);
 
-        return <Component {...props} onClose={handleCloseModal}/>;
+        return <Component {...props} modalsUrl={modalsUrl} onClose={handleCloseModal}/>;
     }
 );

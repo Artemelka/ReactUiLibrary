@@ -13,6 +13,11 @@ export interface ModalDialogProps {
     title: string;
 }
 
+export type ModalWithHocProps = {
+    onClose?: () => void,
+    modalsUrl: Array<string>
+};
+
 export interface ModalPortalAdapterProps {
     children: any;
     opened: boolean;

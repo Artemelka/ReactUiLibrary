@@ -60,7 +60,10 @@ export class Input extends Component<InputProps, InputState> {
         const visibleIcon = Boolean(icon) && (!disabled || icon.alwaysVisible);
 
         return (
-            <div className={cn('Input', {'Input--focused': focused})}>
+            <div
+                className={cn('Input', {'Input--focused': focused})}
+                style={width ? {width: `${width}px`} : {}}
+            >
                 <input
                     {...restProps}
                     className={cn('Input__element', {
@@ -77,7 +80,6 @@ export class Input extends Component<InputProps, InputState> {
                     onKeyPress={this.handleKeyPress}
                     ref={inputRef}
                     value={value}
-                    style={{width: `${width}px`}}
                 />
                 {visibleIcon &&
                     <div

@@ -5,13 +5,14 @@
 .@{Input} {
     display: inline-block;
     position: relative;
+    width: 100%;
 
     &::before,
     &::after {
         background-color: @secondDarkColor;
         bottom: 0;
         content: '';
-        height: 2px;
+        height: 1px;
         position: absolute;
         transition: width 0.2s;
         width: 0;
@@ -35,13 +36,15 @@
     &__element {
         background: none;
         border: none;
-        border-bottom: 2px solid @secondColor;
+        border-bottom: 1px solid @secondColor;
+        box-sizing: border-box;
         color: @textMain;
         display: inline-block;
         font-size: 16px;
         outline: none;
         padding: 8px 40px 8px  15px;
         vertical-align: middle;
+        width: 100%;
 
         &--disabled,
         &:disabled {

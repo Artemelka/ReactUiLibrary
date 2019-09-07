@@ -1,4 +1,4 @@
-import React, { Component, createRef, RefObject } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Button, IconModule, Text } from '../../index';
 import { ModalContainerProps } from '../types';
@@ -19,9 +19,7 @@ export class ModalContainer extends Component<ModalContainerProps> {
                 className={cn('Modal', {
                     'Modal--panel': panelMode,
                     'Modal--small': size === ModalSize.SMALL,
-                    'Modal--large': size === ModalSize.LARGE,
-                    'Modal--closed': false,
-                    'Modal--open': true
+                    'Modal--large': size === ModalSize.LARGE
                 })}
                 ref={onCreateRef}
             >

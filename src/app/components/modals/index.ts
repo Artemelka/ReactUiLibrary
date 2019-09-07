@@ -1,7 +1,9 @@
-export { FirstDialogComponent } from './FirstDialog';
-export { FirstPanelComponent } from './FirstPanel';
-export { SecondDialogComponent } from './SecondDialog';
-export { SecondPanelComponent } from './SecondPanel';
-export { ThirdDialogComponent } from './ThirdDialog';
-export { ThirdPanelComponent } from './ThirdPanel';
-export { modalHOC } from './modalsHOC';
+export { FirstDialog } from './dialogs/FirstDialog';
+export { SecondDialog } from './dialogs/SecondDialog';
+export { ThirdDialog } from './dialogs/ThirdDialog';
+export { ModalDialogName } from './dialogs/constants';
+export { FirstPanel } from './panels/FirstPanel';
+export { SecondPanel } from './panels/SecondPanel';
+export { ThirdPanel } from './panels/ThirdPanel';
+export { ModalPanelName } from './panels/constants';
+export { ButtonShowModal } from './button-show-modal';
