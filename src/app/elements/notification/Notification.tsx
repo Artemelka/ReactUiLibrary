@@ -12,7 +12,7 @@ const { Icon, IconNames } = IconModule;
 
 export class Notification extends Component<NotificationProps> {
     render() {
-        const { onClose, message, title, type } = this.props;
+        const { elementRef, onClose, message, title, type } = this.props;
 
         return (
             <div
@@ -21,6 +21,7 @@ export class Notification extends Component<NotificationProps> {
                     'Notification--success': type === NotificationType.SUCCESS,
                     'Notification--warning': type === NotificationType.WARNING
                 })}
+                ref={elementRef}
             >
                 <div className={cn('Notification__header')}>
                     <div className={cn('Notification__icon')}>

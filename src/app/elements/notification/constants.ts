@@ -3,3 +3,5 @@ export enum NotificationType {
     SUCCESS = 'SUCCESS',
     WARNING = 'WARNING',
 }
+
+export const NOTIFICATION_DELAY = 3000;

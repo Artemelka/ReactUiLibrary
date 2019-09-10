@@ -7,7 +7,7 @@ import { DropDownSummaryProps } from './types';
 
 const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
-const { ANGLE } = IconModule.IconNames;
+const { ANGLE_UP, ANGLE_DOWN } = IconModule.IconNames;
 const { ENTER, SPACE } = keyCodes;
 const TargetKeyCode = [ENTER, SPACE];
 
@@ -45,7 +45,7 @@ export class DropDownSummary extends Component<DropDownSummaryProps> {
             >
                 {openingByIcon &&
                     <div className={cn('Drop-down-panel__summary-icon')}>
-                        <Button.Icon iconName={opened ? ANGLE.UP : ANGLE.DOWN} onClick={onChange}/>
+                        <Button.Icon iconName={opened ? ANGLE_UP : ANGLE_DOWN} onClick={onChange}/>
                     </div>
                 }
                 <div className={cn('Drop-down-panel__summary-content')}>
