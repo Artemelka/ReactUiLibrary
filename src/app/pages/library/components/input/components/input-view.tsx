@@ -1,6 +1,5 @@
 import React, { Fragment, SyntheticEvent } from 'react';
 import { SandboxLayout } from '../../../../../components';
-import { Input } from '../../../../../elements';
 import { TextInputContainer } from './input-container';
 
 const { BlockItems } = SandboxLayout;

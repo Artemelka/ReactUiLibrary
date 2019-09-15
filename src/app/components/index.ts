@@ -14,3 +14,4 @@ export {
     ThirdPanel,
     ModalPanelName
 } from './modals';
+export { TextArea } from './inputs';

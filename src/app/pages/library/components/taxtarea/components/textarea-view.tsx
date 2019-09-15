@@ -1,7 +1,6 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../../components';
 import { Text } from '../../../../../elements';
-import { TextareaContainer } from './textarea-container';
+import { SandboxLayout, TextArea } from '../../../../../components';
 import { logger } from '../../../../../../services/utils/utils';
 
 const { BlockItems, Item } = SandboxLayout;
@@ -54,7 +53,7 @@ export const TextareaView = () => (
         {textareaConfigs.map(({title, props}, index) => (
             <Item key={`${props.id}_${index}`}>
                 <Text.H4>{title}</Text.H4>
-                <TextareaContainer
+                <TextArea
                     {...props}
                     onChange={logger('onChange')}
                 />

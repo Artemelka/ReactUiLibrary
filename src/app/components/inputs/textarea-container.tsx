@@ -1,6 +1,6 @@
 import React, { Component, SyntheticEvent } from 'react';
-import { Textarea } from '../../../../../elements';
-import { translate } from '../../../../../../services/translate';
+import { Textarea } from '../../elements';
+import { translate } from '../../../services/translate';
 
 const ERROR_MESSAGE_KEY = 'input-error-no-empty';
 const ERROR_DEFAULT_MESSAGE_KEY = 'input-error-max-length';
