@@ -4,26 +4,26 @@ exports[`Test App component Rendering snapshot 1`] = `
 <div
   className="App"
 >
-  <Switch>
-    <Route
-      component={[Function]}
-      exact={true}
-      key="0_/"
-      path="/"
-    />
-    <Route
-      component={[Function]}
-      key="1_/library"
-      path="/library"
-    />
-    <Route
-      component={[Function]}
-      key="2_/layout"
-      path="/layout"
-    />
-    <Route
-      component={[Function]}
-    />
-  </Switch>
+  <Route
+    component={[Function]}
+    exact={true}
+    key="0_/"
+    path="/"
+  />
+  <Route
+    component={[Function]}
+    key="1_/library"
+    path="/library"
+  />
+  <Route
+    component={[Function]}
+    key="2_/layout"
+    path="/layout"
+  />
+  <Route
+    component={[Function]}
+    key="3_/translate-editor"
+    path="/translate-editor"
+  />
 </div>
 `;

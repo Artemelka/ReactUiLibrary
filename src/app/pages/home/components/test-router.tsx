@@ -5,6 +5,7 @@ import { Button, ButtonsGroup } from '../../../elements';
 
 export const LIBRARY = 'library';
 export const LAYOUT = 'layout';
+export const TRANSLATE_EDITOR = 'translate-editor';
 
 interface TestRouterProps {
     goBack: () => void;
@@ -18,6 +19,8 @@ export class TestRouterComponent extends Component<TestRouterProps> {
 
     handleGoBackClick = () => this.props.goBack();
 
+    handleEditorClick = () => this.props.push(`/${TRANSLATE_EDITOR}`);
+
     render() {
         return (
             <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
@@ -28,6 +31,10 @@ export class TestRouterComponent extends Component<TestRouterProps> {
                 <Button
                     onClick={this.handleLayoutClick}
                     label={LAYOUT}
+                />
+                <Button
+                    onClick={this.handleEditorClick}
+                    label={TRANSLATE_EDITOR}
                 />
                 <Button
                     onClick={this.handleGoBackClick}

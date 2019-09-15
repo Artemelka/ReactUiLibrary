@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { ModalModule, Input } from '../../../elements';
 import { TextArea } from '../../../components';
 import { translate } from '../../../../services/translate';
@@ -16,7 +16,7 @@ interface EditorModalProps {
 const INPUT_UID = getUniqId();
 
 export class EditorModal extends Component<EditorModalProps> {
-    handleChange = (e, val) => console.log('val', val);
+    handleChange = (event: SyntheticEvent, val: string) => console.log('val', val);
 
     render() {
         const { editRowData, fieldLabels, onClose, opened } = this.props;
@@ -31,16 +31,22 @@ export class EditorModal extends Component<EditorModalProps> {
                 <div style={{padding: '30px'}}>
                     {
                         fieldLabels.map((value, index) => (
-                            <div key={`editor-key-${index}_${INPUT_UID}`}>
-                                <label htmlFor={`editor-key-${index}_${INPUT_UID}`}>{value}</label>
+                            <div key={`editor-${value}-${index}_${INPUT_UID}`}>
+                                <label htmlFor={`editor-${value}-${index}_${INPUT_UID}`}>{value}</label>
                                 {
                                     index === 0
-                                        ? <Input.Text value={editRowData[index] || ''} id={`editor-key-${index}`}/>
-                                        : (
+                                        ? (
+                                            <Input.Text
+                                                value={editRowData[index] || ''}
+                                                id={`editor-${value}-${index}_${INPUT_UID}`}
+                                                name={`editor-${value}-${index}_${INPUT_UID}`}
+                                            />
+                                        ) : (
                                             <TextArea
                                                 value={editRowData[index] || ''}
-                                                id={`editor-key-${index}`}
+                                                id={`editor-${value}-${index}_${INPUT_UID}`}
                                                 onChange={this.handleChange}
+                                                rows={4}
                                             />
                                         )
                                 }
