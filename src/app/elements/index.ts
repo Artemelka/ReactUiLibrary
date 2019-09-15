@@ -11,4 +11,5 @@ export { ModalModule } from './modals';
 export { Overlay } from './overlay/Overlay';
 export { Portal } from './portal/Portal';
 export { Progress } from './progress';
+export { Table } from './table/Table';
 export { Text } from './text';

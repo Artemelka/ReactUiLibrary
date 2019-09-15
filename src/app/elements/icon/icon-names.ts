@@ -15,6 +15,7 @@ export const IconNames = {
     BAN: 'ban',
     CALENDAR_ALT: 'calendar-alt',
     CLOSE: 'times',
+    EDIT: 'edit',
     PHONE: 'phone',
     PLUS: 'plus',
     PLUS_SQUARE: 'plus-square',
