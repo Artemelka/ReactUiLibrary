@@ -9,7 +9,7 @@ const cn = classNames.bind(style);
 
 export class Table extends Component<TableProps> {
     render() {
-        const { headerRow, onRowClick, onRemoveRow, rows } = this.props;
+        const { headerRow, onEditRow, onRemoveRow, rows } = this.props;
         const width = TableWidth.COLUMN * headerRow.length + TableWidth.BUTTON_COLUMN + TableWidth.BODY_PADDING_RIGHT;
         const minRowWidth = `${width}px`;
 
@@ -23,7 +23,7 @@ export class Table extends Component<TableProps> {
                         <TableRow
                             columns={row}
                             editable
-                            onClick={onRowClick}
+                            onEdit={onEditRow}
                             onRemove={onRemoveRow}
                             key={index + row[0]}
                         />

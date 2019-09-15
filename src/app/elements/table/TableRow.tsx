@@ -9,10 +9,10 @@ const cn = classNames.bind(style);
 
 export class TableRow extends Component<TableRowProps> {
     static defaultProps = {
-        onClick: () => false
+        onEdit: () => false
     };
 
-    handleClick = () => this.props.onClick(this.props.columns);
+    handleClick = () => this.props.onEdit(this.props.columns);
 
     handleRemove = () => this.props.onRemove(this.props.columns);
 
