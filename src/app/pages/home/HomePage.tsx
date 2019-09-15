@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { TranslateEditor } from '../../components';
 import { TestRequest, TestRouter } from './components';
 
 const style = require('./HomePage.less');
@@ -21,8 +22,8 @@ export default class HomePage extends Component {
                     <TestRequest/>
                 </div>
                 <div className={cn('Test-page__item')}>
-                    <h3>Test ...</h3>
-                    ...
+                    <h3>Test Translate Editor</h3>
+                    <TranslateEditor/>
                 </div>
             </div>
         );

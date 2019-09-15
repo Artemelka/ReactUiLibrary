@@ -5,5 +5,6 @@ export { ModalDialogName } from './dialogs/constants';
 export { FirstPanel } from './panels/FirstPanel';
 export { SecondPanel } from './panels/SecondPanel';
 export { ThirdPanel } from './panels/ThirdPanel';
+export { EditorModal } from './panels/EditorModal';
 export { ModalPanelName } from './panels/constants';
 export { ButtonShowModal } from './button-show-modal';
