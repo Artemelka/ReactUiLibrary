@@ -1,0 +1,70 @@
+@import '../../styles/constants';
+
+.Table {
+    border: 1px solid @secondDarkColor;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    text-align: left;
+
+    &__header {
+        background-color: @secondDarkColor;
+        display: block;
+    }
+
+    &__body {
+        display: block;
+        height: 450px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    &__row {
+        align-items: center;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        outline: none;
+        padding-right: 20px;
+
+        &:hover,
+        &:focus {
+            background-color: rgba(@secondColor, 0.1);
+        }
+
+        &--header {
+            cursor: default;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    &__col {
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 15px 20px;
+
+        &:first-child {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &--header {
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+
+    &__button-col {
+        padding: 0;
+        text-align: center;
+    }
+}
