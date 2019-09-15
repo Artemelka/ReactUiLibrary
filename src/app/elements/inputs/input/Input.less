@@ -4,13 +4,14 @@
 
 .@{Input} {
     display: inline-block;
+    padding-bottom: 20px;
     position: relative;
     width: 100%;
 
     &::before,
     &::after {
         background-color: @secondDarkColor;
-        bottom: 0;
+        bottom: 20px;
         content: '';
         height: 1px;
         position: absolute;
@@ -30,6 +31,17 @@
         &::before,
         &::after {
             width: 50%;
+        }
+    }
+
+    &--error {
+        & .@{Input}__element {
+            border-color: @gradientRed;
+        }
+
+        &::before,
+        &::after {
+            background-color: @gradientRed;
         }
     }
 
@@ -70,5 +82,15 @@
     &:hover .@{Input}__clear-button {
         opacity: 1;
         visibility: visible;
+    }
+
+    &__error-container {
+        bottom: 5px;
+        color: @gradientRed;
+        font-size: 12px;
+        left: 0;
+        line-height: 12px;
+        padding-left: 10px;
+        position: absolute;
     }
 }

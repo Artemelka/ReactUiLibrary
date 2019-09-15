@@ -21,7 +21,13 @@ const inputProps = [
         label: 'Input.Text with default value & custom width',
         name: 'test3',
         value: 'defaultValue',
-        width: 100
+        width: 200
+    }, {
+        error: true,
+        errorMessage: 'Error text',
+        id: 'test4',
+        label: 'Input.Text with error',
+        name: 'test4'
     }
 ];
 

@@ -7,23 +7,33 @@ type IconProps = {
 };
 export type InputState = { focused: boolean };
 
-export interface InputProps {
+interface InputBaseProps {
     cursorPointer?: boolean;
-    defaultValue?: string;
     disabled?: boolean;
-    icon?: IconProps;
+    error?: boolean;
+    errorMessage?: string;
     id: string;
     InputIconRef?: RefObject<HTMLButtonElement>;
     inputRef?: RefObject<HTMLInputElement>;
-    name?: string;
+    name: string;
     onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
     onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
     onClick?: (event: MouseEvent<HTMLInputElement> | KeyboardEvent) => void;
     onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
     onKeyPress?: (event: KeyboardEvent) => void;
-    readOnly?: boolean;
-    value?: string;
+    value: string;
     width?: number;
+}
+
+export interface InputUiProps extends InputBaseProps {
+    focused?: boolean;
+    iconProps?: IconProps;
+}
+
+export interface InputProps extends InputBaseProps{
+    defaultValue?: string;
+    icon?: IconProps;
+    readOnly?: boolean;
 }
 
 export interface TextInputProps extends InputProps {
