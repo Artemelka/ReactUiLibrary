@@ -4,11 +4,14 @@ import { Button, ButtonsGroup } from '../../../elements';
 
 export const LIBRARY = 'library';
 export const LAYOUT = 'layout';
+export const TRANSLATE_EDITOR = 'translate-editor';
 
 export class TestRouterComponent extends Component<RouteComponentProps> {
     handleLibraryClick = () => this.props.history.push(`/${LIBRARY}`);
 
     handleLayoutClick = () => this.props.history.push(`/${LAYOUT}`);
+
+    handleEditorClick = () => this.props.history.push(`/${TRANSLATE_EDITOR}`);
 
     handleGoBackClick = () => this.props.history.goBack();
 
@@ -22,6 +25,10 @@ export class TestRouterComponent extends Component<RouteComponentProps> {
                 <Button
                     onClick={this.handleLayoutClick}
                     label={LAYOUT}
+                />
+                <Button
+                    onClick={this.handleEditorClick}
+                    label={TRANSLATE_EDITOR}
                 />
                 <Button
                     onClick={this.handleGoBackClick}
