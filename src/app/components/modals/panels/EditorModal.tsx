@@ -1,6 +1,5 @@
-import React, { Component, SyntheticEvent } from 'react';
-import { ModalModule, Input } from '../../../elements';
-import { TextArea } from '../../../components';
+import React, { Component } from 'react';
+import { ModalModule, Input, Textarea } from '../../../elements';
 import { translate } from '../../../../services/translate';
 import { getUniqId } from '../../../../services/utils/uniq-id';
 
@@ -16,8 +15,6 @@ interface EditorModalProps {
 const INPUT_UID = getUniqId();
 
 export class EditorModal extends Component<EditorModalProps> {
-    handleChange = (event: SyntheticEvent, val: string) => console.log('val', val);
-
     render() {
         const { editRowData, fieldLabels, onClose, opened } = this.props;
 
@@ -31,22 +28,17 @@ export class EditorModal extends Component<EditorModalProps> {
                 <div style={{padding: '30px'}}>
                     {
                         fieldLabels.map((value, index) => (
-                            <div key={`editor-${value}-${index}_${INPUT_UID}`}>
-                                <label htmlFor={`editor-${value}-${index}_${INPUT_UID}`}>{value}</label>
+                            <div key={`editor-key-${index}_${INPUT_UID}`}>
+                                <label htmlFor={`editor-key-${index}_${INPUT_UID}`}>{value}</label>
                                 {
                                     index === 0
-                                        ? (
-                                            <Input.Text
+                                        ? <Input.Text value={editRowData[index] || ''} id={`editor-key-${index}`}/>
+                                        : (
+                                            <Textarea
                                                 value={editRowData[index] || ''}
-                                                id={`editor-${value}-${index}_${INPUT_UID}`}
-                                                name={`editor-${value}-${index}_${INPUT_UID}`}
-                                            />
-                                        ) : (
-                                            <TextArea
-                                                value={editRowData[index] || ''}
-                                                id={`editor-${value}-${index}_${INPUT_UID}`}
-                                                onChange={this.handleChange}
-                                                rows={4}
+                                                id={`editor-key-${index}`}
+                                                name="editor-locale"
+                                                defaultErrorMessage="error"
                                             />
                                         )
                                 }

@@ -1,6 +1,6 @@
 export interface TableProps {
     headerRow: Array<string>;
-    onEditRow?: (columns: Array<string>) => void;
+    onRowClick?: (columns: Array<string>) => void;
     onRemoveRow?: (columns: Array<string>) => void;
     rows: Array<Array<string>>;
 }
@@ -9,6 +9,6 @@ export interface TableRowProps {
     columns: Array<string>;
     editable?: boolean;
     header?: boolean;
-    onEdit?: (columns: Array<string>) => void;
+    onClick?: (columns: Array<string>) => void;
     onRemove?: (columns: Array<string>) => void;
 }

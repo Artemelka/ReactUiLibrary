@@ -6,25 +6,35 @@ import { translate, translateDictionarySelector, translateLocaleSelector } from 
 import { Dictionary, DictionaryStore } from '../../../services/translate/types';
 
 export interface TranslateEditorProps {
-    activeRow: Array<string>;
     dictionary: Dictionary;
     locale: string;
-    onCloseModal: () => void;
-    onRemoveRow: (row: Array<string>) => void;
-    onEditRow: (row: Array<string>) => void;
-    opened: boolean;
 }
+export type TranslateEditorState = {
+    activeRow: Array<any>,
+    opened: boolean
+};
 
-export class TranslateEditorComponent extends Component<TranslateEditorProps> {
+export class TranslateEditorComponent extends Component<TranslateEditorProps, TranslateEditorState> {
     constructor(props: TranslateEditorProps) {
         super(props);
         this.locales = Object.keys(props.dictionary);
+        this.state = {
+            activeRow: [],
+            opened: false
+        };
     }
 
     locales: Array<string>;
 
+    handleCloseModal = () => this.setState({opened: false});
+
+    handleRemoveRow = (row: Array<string>) => console.log('handleRemoveRow', row);
+
+    handleRowClick = (rowData: Array<string>) => this.setState({ activeRow: rowData, opened: true});
+
     render() {
-        const { activeRow, dictionary, locale, onCloseModal, onRemoveRow, onEditRow, opened } = this.props;
+        const { activeRow, opened } = this.state;
+        const { dictionary, locale } = this.props;
         const headerRow = [translate('key'), ...this.locales];
         const rows = Object.keys(dictionary[locale]).map(key => [
             key,
@@ -35,15 +45,15 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
             <Fragment>
                 <Table
                     headerRow={headerRow}
-                    onEditRow={onEditRow}
-                    onRemoveRow={onRemoveRow}
+                    onRowClick={this.handleRowClick}
+                    onRemoveRow={this.handleRemoveRow}
                     rows={rows}
                 />
                 <EditorModal
                     editRowData={activeRow}
                     fieldLabels={headerRow}
                     opened={opened}
-                    onClose={onCloseModal}
+                    onClose={this.handleCloseModal}
                 />
             </Fragment>
         );
