@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ModalModule, Input, Textarea } from '../../../elements';
+import { ModalModule, Input } from '../../../elements';
+import { TextArea } from '../../../components';
 import { translate } from '../../../../services/translate';
 import { getUniqId } from '../../../../services/utils/uniq-id';
 
@@ -15,6 +16,8 @@ interface EditorModalProps {
 const INPUT_UID = getUniqId();
 
 export class EditorModal extends Component<EditorModalProps> {
+    handleChange = (e, val) => console.log('val', val);
+
     render() {
         const { editRowData, fieldLabels, onClose, opened } = this.props;
 
@@ -34,11 +37,10 @@ export class EditorModal extends Component<EditorModalProps> {
                                     index === 0
                                         ? <Input.Text value={editRowData[index] || ''} id={`editor-key-${index}`}/>
                                         : (
-                                            <Textarea
+                                            <TextArea
                                                 value={editRowData[index] || ''}
                                                 id={`editor-key-${index}`}
-                                                name="editor-locale"
-                                                defaultErrorMessage="error"
+                                                onChange={this.handleChange}
                                             />
                                         )
                                 }
