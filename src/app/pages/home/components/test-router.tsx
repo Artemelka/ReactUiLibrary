@@ -17,6 +17,8 @@ export class TestRouterComponent extends Component<TestRouterProps> {
 
     handleLayoutClick = () => this.props.push(`/${LAYOUT}`);
 
+    handleEditorClick = () => this.props.push(`/${TRANSLATE_EDITOR}`);
+
     handleGoBackClick = () => this.props.goBack();
 
     handleEditorClick = () => this.props.push(`/${TRANSLATE_EDITOR}`);
