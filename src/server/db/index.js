@@ -1,15 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const DB_USER = 'reactKitAdmin';
-const DB_PASSWORD = '61406140';
-const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0-ahlbz.gcp.mongodb.net/test?retryWrites=true&w=majority`;
+const keySchema = new Schema({
+    key: String,
+    locale: {
+        ru_RU: Schema.ObjectId,
+        en_EN: Schema.ObjectId
+    }
+});
 
-mongoose.connect(DB_URL, { useNewUrlParser: true })
-    .then((db) => {
-        console.log('we\'re connected!', db.models.language);
-    })
-    .catch(error => console.error(error));
+const ruLocaleSchema = new Schema({
+    key: String
+});
 
-export const dictionaryDB = mongoose.connection;
+export const DictionaryKey = mongoose.model('Key', keySchema);
+export const RuLocale = mongoose.model('ru_RU', ruLocaleSchema);
 
 
