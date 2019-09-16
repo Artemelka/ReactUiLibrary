@@ -22,6 +22,7 @@
     "connected-react-router": "^6.5.2",
     "express-fileupload": "^1.1.1-alpha.3",
     "history": "^4.7.2",
+    "mongoose": "^5.7.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^6.0.1",
