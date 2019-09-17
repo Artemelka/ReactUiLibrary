@@ -11,14 +11,15 @@ export const ProxyParams = {
     SERVER: `http://localhost:${ServerParams.PORT}`
 };
 
-export const DbUserParams = {
-    USER: 'reactKitAdmin',
-    PASSWORD: '61406140'
-};
+const DB_USER = 'reactKitAdmin';
+const DB_PASSWORD = '61406140';
 const DB_URL_PARAMS = 'retryWrites=true&w=majority';
 const DB_HOST = '@cluster0-ahlbz.gcp.mongodb.net';
 const DB_NAME = 'language';
-// const DB_NAME = 'test';
 
-export const DB_URL = `mongodb+srv://${DbUserParams.USER}:${DbUserParams.PASSWORD}${DB_HOST}/${DB_NAME}?${DB_URL_PARAMS}`;
-export const DB_URL_CUT = `mongodb://${DbUserParams.USER}:${DbUserParams.PASSWORD}${DB_HOST}/${DB_NAME}`;
+export const DB_URI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}${DB_HOST}/${DB_NAME}?${DB_URL_PARAMS}`;
+
+export const DbConnectParams = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+};
