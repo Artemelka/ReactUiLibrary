@@ -1,18 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
-const keySchema = new Schema({
-    key: String,
-    locale: {
-        ru_RU: Schema.ObjectId,
-        en_EN: Schema.ObjectId
-    }
-});
-
-const ruLocaleSchema = new Schema({
+const { ObjectId } = Schema;
+const data = {
+    id: ObjectId,
     key: String
-});
+};
 
-export const DictionaryKey = mongoose.model('Key', keySchema);
-export const RuLocale = mongoose.model('ru_RU', ruLocaleSchema);
+const keySchema = new Schema(data);
+
+export const DictionaryKey = mongoose.model('key', keySchema, 'key');
+
 
 
