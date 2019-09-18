@@ -118,6 +118,11 @@ export class TestRequest extends Component {
                     disabled
                 />
                 <Button
+                    onClick={this.handleAddDictionary}
+                    label="ADD DICTIONARY"
+                    disabled
+                />
+                <Button
                     onClick={this.handleAddDictionaryKey}
                     label="ADD DICTIONARY KEY"
                     disabled
