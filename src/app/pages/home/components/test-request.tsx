@@ -13,6 +13,14 @@ export class TestRequest extends Component {
 
     handleRequestErrorPost = () => requestWrapper(getPostConfig(''));
 
+    handleAddDictionary = () => requestWrapper({
+        url: '/api/translate/dictionary',
+        config: {
+            data: { userName: ''},
+            method: 'POST'
+        }
+    });
+
     render() {
         return (
             <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
@@ -31,6 +39,11 @@ export class TestRequest extends Component {
                 <Button
                     onClick={this.handleRequestErrorPost}
                     label="REQUEST POST ERROR"
+                />
+                <Button
+                    onClick={this.handleAddDictionary}
+                    label="ADD DICTIONARY"
+                    disabled
                 />
             </ButtonsGroup.Component>
         );
