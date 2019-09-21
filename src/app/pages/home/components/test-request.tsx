@@ -3,6 +3,28 @@ import { Button, ButtonsGroup } from '../../../elements';
 import { getPostConfig, requestWrapper, requestGetParams } from '../utils';
 
 const USER_PARAMS = 'name=tim';
+const TRANSLATE_URL = '/api/translate';
+const testDictionaryCollections = {
+    ['test-RU']: {
+        testKey: 'тест ключ',
+        first: 'первый',
+        second: 'второй'
+    },
+    ['test-EN']: {
+        testKey: 'test-key',
+        first: 'first',
+        second: 'second'
+    },
+};
+const newKeyData = [{
+    keyName: 'key-test-add',
+    locales: {
+        ['test-RU']: 'тест ру',
+        ['test-EN']: 'test en',
+        ['ru-RU']: 'ру',
+        ['en-EN']: 'en'
+    }
+}];
 
 export class TestRequest extends Component {
     handleRequestGet = () => requestWrapper(requestGetParams, USER_PARAMS);
@@ -14,9 +36,19 @@ export class TestRequest extends Component {
     handleRequestErrorPost = () => requestWrapper(getPostConfig(''));
 
     handleAddDictionary = () => requestWrapper({
-        url: '/api/translate/dictionary',
+        url: `${TRANSLATE_URL}/dictionary`,
         config: {
-            data: { userName: ''},
+            data: testDictionaryCollections,
+            method: 'POST'
+        }
+    });
+
+    handleAddDictionaryKey = () => requestWrapper({
+        url: `${TRANSLATE_URL}/key`,
+        config: {
+            data: {
+                keys: newKeyData
+            },
             method: 'POST'
         }
     });
@@ -43,7 +75,12 @@ export class TestRequest extends Component {
                 <Button
                     onClick={this.handleAddDictionary}
                     label="ADD DICTIONARY"
-                    disabled
+                    // disabled
+                />
+                <Button
+                    onClick={this.handleAddDictionaryKey}
+                    label="ADD DICTIONARY KEY"
+                    // disabled
                 />
             </ButtonsGroup.Component>
         );
