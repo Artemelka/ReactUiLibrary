@@ -112,7 +112,7 @@
     ]
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run dev\" \"npm run server\"",
+    "start": "concurrently --kill-others \"npm run client\" \"npm run server\"",
     "client": "webpack-dev-server --history-api-fallback --open --mode development",
     "server": "node src/server/index.js",
     "stylelint": "stylelint \"src/**/*.less\"",
