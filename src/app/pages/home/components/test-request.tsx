@@ -25,6 +25,20 @@ const newKeyData = [{
         ['en-EN']: 'en'
     }
 }];
+const updateKeyData = [{
+    keyName: 'key-test-add',
+    locales: {
+        ['test-RU']: 'тест ру update 3',
+        ['test-EN']: 'test en update 3',
+        ['ru-RU']: 'ру update 3',
+        ['en-EN']: 'en update 3'
+    }
+}];
+const changeLocale = {
+    _id: '5d88ccebb1195b4ccccac4f6',
+    enabled: false,
+    name: 'test-RU'
+};
 
 export class TestRequest extends Component {
     handleRequestGet = () => requestWrapper(requestGetParams, USER_PARAMS);
@@ -53,6 +67,32 @@ export class TestRequest extends Component {
         }
     });
 
+    handleUpdateDictionaryKey = () => requestWrapper({
+        url: `${TRANSLATE_URL}/key`,
+        config: {
+            data: {
+                keys: updateKeyData
+            },
+            method: 'PUT'
+        }
+    });
+
+    handleGetLocale = () => requestWrapper({
+        url: `${TRANSLATE_URL}/locales`,
+        config: {
+            data: {},
+            method: 'GET'
+        }
+    });
+
+    handleChangeLocale = () => requestWrapper({
+        url: `${TRANSLATE_URL}/locales`,
+        config: {
+            data: changeLocale,
+            method: 'PUT'
+        }
+    });
+
     render() {
         return (
             <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
@@ -75,11 +115,26 @@ export class TestRequest extends Component {
                 <Button
                     onClick={this.handleAddDictionary}
                     label="ADD DICTIONARY"
-                    // disabled
+                    disabled
                 />
                 <Button
                     onClick={this.handleAddDictionaryKey}
                     label="ADD DICTIONARY KEY"
+                    disabled
+                />
+                <Button
+                    onClick={this.handleUpdateDictionaryKey}
+                    label="UPDATE DICTIONARY KEY"
+                    disabled
+                />
+                <Button
+                    onClick={this.handleGetLocale}
+                    label="GET LOCALE"
+                    // disabled
+                />
+                <Button
+                    onClick={this.handleChangeLocale}
+                    label="CHANGE LOCALE"
                     // disabled
                 />
             </ButtonsGroup.Component>
