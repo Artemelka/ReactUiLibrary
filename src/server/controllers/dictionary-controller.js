@@ -1,85 +1,90 @@
-import { LocaleKeyModel, LocaleModel, LocaleValueModel } from '../models';
-import dictionary from '../routes/translate/dictionary.json';
+import { LocaleKeyModel as KeyModel, LocaleModel, LocaleValueModel as ValueModel } from '../models';
+import { createNewValues, getAllDictionaryData, getDictionaryValues } from './dictionary-utils';
+import { handleErrorCreator } from '../handlers';
 
-const getDictionaryValues = (dbLocaleCollection, keysCollection, dictionary) =>
-    dbLocaleCollection.reduce((result, dbLocale) => {
-        keysCollection.map(key => {result.push({
-            localeId: dbLocale._id,
-            keyId: key._id,
-            value: dictionary[dbLocale.name][key.name]
-        })});
-        return result;
-    }, []);
-
-const getAllDictionary = (localeCollection, keyCollection, valueCollection) =>
-    localeCollection.reduce((result, locale) => {
-         keyCollection.map(key => {
-             result[locale.name][key.name] = valueCollection.filter((item) => {
-                 return item.localeId.toString() === locale._id.toString() && item.keyId.toString() === key._id.toString();
-             }).value;
-         });
-
-        return result;
-}, {});
-
-const handleErrorCreator = (text, response) => error => {
-    console.error(text, error);
-    response.sendStatus(503)
+const updateOptions = {
+    new: true,
+    useFindAndModify: false
 };
 
 const DictionaryController = {
     addLocales: (request, response) => {
-        // const dictionary = request.body.data;
+        const { data: dictionary } = request.body;
         const locales = Object.keys(dictionary);
-        const arrLocales = locales.map(locale => ({ enabled: true, name: locale }));
-        const dictionaryKeys = Object.keys(dictionary[locales[0]]).map(keyName => ({ name: keyName}));
+        const dictionaryKeys = Object.keys(dictionary[locales[0]]).map(name => ({ name }));
 
-        LocaleModel.insertMany(arrLocales)
-            .then(dbLocaleCollection => LocaleKeyModel.insertMany(dictionaryKeys)
-                .then(keysCollection => {
-                    LocaleValueModel.insertMany(
-                        getDictionaryValues(dbLocaleCollection, keysCollection, dictionary)
-                    )
-                        .then(dbValues =>
-                            response.json(getAllDictionary(dbLocaleCollection, keysCollection, dbValues))
-                        ).catch(handleErrorCreator('error insert values', response))
-                }).catch(handleErrorCreator('error insert keys', response))
-        ).catch(handleErrorCreator('error insert locales', response))
+        LocaleModel.insertMany(locales.map(locale => ({ enabled: true, name: locale })))
+            .then(dbLocale => KeyModel.insertMany(dictionaryKeys)
+                .then(dbKeys => ValueModel.insertMany(getDictionaryValues(dbLocale, dbKeys, dictionary))
+                    .then(dbValues => response.json(getAllDictionaryData(dbLocale, dbKeys, dbValues)))
+                    .catch(handleErrorCreator('error insert values', response)))
+                .catch(
+                    handleErrorCreator('error insert keys', response)
+                ))
+            .catch(
+                handleErrorCreator('error insert locales', response)
+            )
     },
     addKeys: (request, response) => {
-        request.body.data.keys.map(({keyName, locales}) => {
-            LocaleKeyModel.insertMany([{ name: keyName}])
-                .then(([dbKey]) => {
-                    LocaleModel.find({}).then( dbLocales => {
-                        LocaleValueModel.insertMany(
-                            Object.entries(locales).map(([localeName, value]) => ({
-                                localeId: dbLocales.filter(locale => locale.name === localeName)[0]._id,
-                                keyId: dbKey._id,
-                                value
-                            }))
-                        )
-                        .then(nextValues => response.json([keyName, nextValues]))
-                        .catch(handleErrorCreator('error update value', response));
-
-                    })
-                })
-                .catch(handleErrorCreator('error find key', response))
+        request.body.data.keys.forEach(({keyName, locales}) => { KeyModel.insertMany([{ name: keyName}])
+            .then(([dbKey]) => { LocaleModel.find({})
+                .then( dbLocales => { ValueModel.insertMany(createNewValues(locales, dbLocales, dbKey._id))
+                    .then(nextValues => response.json([keyName, nextValues.map(value => ({ value }))]))
+                    .catch(handleErrorCreator('error update value', response));
+                }).catch(handleErrorCreator('error find value', response))
+            }).catch(handleErrorCreator('error find key', response))
         })
     },
-    getAll: (request, response) => {
+    changeLocaleStatus: (request, response) => {
+        const { data } = request.body;
+
+        LocaleModel.findOneAndUpdate(
+            { _id: data._id },
+            {
+                enabled: data.enabled,
+                name: data.name
+            },
+            updateOptions
+        )
+            .then(locale => response.json(locale))
+            .catch(handleErrorCreator('error find locale', response))
+
+    },
+    getAll: (request, response) => { LocaleModel.find({ enabled: true })
+        .then(dbLocales => { KeyModel.find({})
+            .then(dbKeys => { ValueModel.find({})
+                .then(dbValues => { response.json(getAllDictionaryData(dbLocales, dbKeys, dbValues)) })
+                .catch(handleErrorCreator('error get values', response))
+            }).catch(handleErrorCreator('error get keys', response))
+        }).catch(handleErrorCreator('error get locales', response))
+    },
+    getAllLocales: (request, response) => {
         LocaleModel.find({})
-            .then(dbLocales => {
-                LocaleKeyModel.find({})
-                    .then(dbKeys => {
-                        LocaleValueModel.find({})
-                            .then(dbValues => {
-                                response.json(getAllDictionary(dbLocales, dbKeys, dbValues))
-                            })
-                            .catch(handleErrorCreator('error get values', response))
-                    })
-                    .catch(handleErrorCreator('error get keys', response))
-            })
-            .catch(handleErrorCreator('error get locales', response))
+            .then(dbLocales => response.json(dbLocales))
+            .catch(handleErrorCreator('error find locales', response))
+    },
+    updateKey: (request, response) => {
+        const { data } = request.body;
+
+        data.keys.forEach(({keyName, locales}) => {
+            KeyModel.find({ name: keyName})
+                .then(([dbKey]) => {
+                    Promise.all(
+                        Object.entries(locales).map(([name, value]) =>
+                            LocaleModel.find({ name })
+                                .then(([dbLocale]) =>
+                                    ValueModel.findOneAndUpdate({
+                                        keyId: dbKey._id,
+                                        localeId: dbLocale._id
+                                    },
+                                    { value },
+                                    updateOptions))
+                                .catch(handleErrorCreator('error find locale', response)))
+                    )
+                        .then(result => response.json(result.map(({ value }) => ({ keyName, value }))))
+                        .catch(handleErrorCreator('error update values', response));
+                }).catch(handleErrorCreator('error find key', response))
+        });
     }
 };
 

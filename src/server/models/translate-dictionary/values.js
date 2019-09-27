@@ -2,20 +2,19 @@ import mongoose, { Schema } from 'mongoose';
 
 const { ObjectId } = Schema.Types;
 const VALUE_COLLECTION_NAME = 'Value';
-
 const localesSchema = new Schema({
-    localeId: {
-        type: ObjectId,
-        require: true
-    },
     keyId: {
-        type: ObjectId,
-        require: true
+        require: true,
+        type: ObjectId
+    },
+    localeId: {
+        require: true,
+        type: ObjectId
     },
     value: {
-        type: String,
-        require: true
-    },
+        require: true,
+        type: String
+    }
 });
 
 const LocaleValueModel = mongoose.model(VALUE_COLLECTION_NAME, localesSchema);
