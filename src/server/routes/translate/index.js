@@ -1,17 +1,19 @@
 import express from 'express';
-import {
-    getDictionaryController,
-    addDictionaryController,
-    addDictionaryKeyController
-} from '../../controllers';
+import { DictionaryController } from '../../controllers';
 
 export const translate = express.Router();
 
-translate.get('/', getDictionaryController);
+translate.get('/', DictionaryController.getAll);
 
-translate.post('/dictionary', addDictionaryController);
+translate.get('/locales', DictionaryController.getAllLocales);
 
-translate.post('/key', addDictionaryKeyController);
+translate.put('/locales', DictionaryController.changeLocaleStatus);
+
+translate.post('/dictionary', DictionaryController.addLocales);
+
+translate.post('/key', DictionaryController.addKeys);
+
+translate.put('/key', DictionaryController.updateKey);
 
 translate.delete('/', (request, response) => {
 

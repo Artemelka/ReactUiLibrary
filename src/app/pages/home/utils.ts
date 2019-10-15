@@ -5,7 +5,7 @@ interface RequestData {
 }
 interface Config {
     method: string;
-    data: RequestData;
+    data: RequestData | {[key: string]: any};
 }
 interface RequestParams {
     url: string;

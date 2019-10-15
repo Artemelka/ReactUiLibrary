@@ -1,1 +1,1 @@
-export { addDictionaryController, addDictionaryKeyController, getDictionaryController } from './translate-dictionary';
+export DictionaryController from './dictionary-controller';
