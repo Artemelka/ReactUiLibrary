@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { connect } from 'react-redux';
+import { push, goBack } from 'react-router-redux';
 import { Button, ButtonsGroup } from '../../../elements';
 
 export const LIBRARY = 'library';
 export const LAYOUT = 'layout';
 
-export class TestRouterComponent extends Component<RouteComponentProps> {
-    handleLibraryClick = () => this.props.history.push(`/${LIBRARY}`);
+interface TestRouterProps {
+    goBack: () => void;
+    push: (path: string) => void;
+}
 
-    handleLayoutClick = () => this.props.history.push(`/${LAYOUT}`);
+export class TestRouterComponent extends Component<TestRouterProps> {
+    handleLibraryClick = () => this.props.push(`/${LIBRARY}`);
 
-    handleGoBackClick = () => this.props.history.goBack();
+    handleLayoutClick = () => this.props.push(`/${LAYOUT}`);
+
+    handleGoBackClick = () => this.props.goBack();
 
     render() {
         return (
@@ -32,4 +38,4 @@ export class TestRouterComponent extends Component<RouteComponentProps> {
     }
 }
 
-export const TestRouter = withRouter(TestRouterComponent);
+export const TestRouter = connect(null, { push, goBack })(TestRouterComponent);

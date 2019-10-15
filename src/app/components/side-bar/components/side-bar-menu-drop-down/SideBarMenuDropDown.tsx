@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import { Anchor, DropDownPanel, DropDownDetails, DropDownSummary } from '../../../../elements';
 import { SideBarMenu } from '../side-bar-menu/SibeBarMenu';
 import { MenuDropDownState, MenuDropDownProps } from '../../types';
 
-export class SideBarMenuDropDownContainer extends Component<MenuDropDownProps, MenuDropDownState> {
+export class SideBarMenuDropDown extends Component<MenuDropDownProps, MenuDropDownState> {
     state = {
         opened: false
     };
@@ -32,6 +31,4 @@ export class SideBarMenuDropDownContainer extends Component<MenuDropDownProps, M
         );
     }
 }
-
-export const SideBarMenuDropDown = withRouter(SideBarMenuDropDownContainer);
 

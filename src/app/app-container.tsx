@@ -4,19 +4,19 @@ import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import { routerMiddleware } from 'react-router-redux';
-import { reducers } from './reducers';
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
+import { createRootReducer } from './reducers';
 import { TranslateProvider, translateMiddleware } from '../services/translate';
 import { request } from '../services';
 import { App } from './index';
 
 const history = createBrowserHistory();
-const store = createStore(reducers, composeWithDevTools(
-    applyMiddleware(
-        routerMiddleware(history),
-        translateMiddleware,
-        thunk
+const store = createStore(
+    createRootReducer(history),
+    composeWithDevTools(applyMiddleware(
+            routerMiddleware(history),
+            translateMiddleware,
+            thunk
 )));
 
 export class AppContainer extends Component {
@@ -26,9 +26,9 @@ export class AppContainer extends Component {
         return (
             <Provider store={store}>
                 <TranslateProvider fetchDictionary={this.fetchDictionary}>
-                    <Router history={history}>
+                    <ConnectedRouter history={history}>
                         <App />
-                    </Router>
+                    </ConnectedRouter>
                 </TranslateProvider>
             </Provider>
         );

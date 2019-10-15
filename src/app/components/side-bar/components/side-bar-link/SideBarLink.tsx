@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { Anchor } from '../../../../elements';
+import { routerLocationSelector } from './selectors';
 import { SideBarLinkProps } from '../../types';
 
 export class SideBarLinkContainer extends Component<SideBarLinkProps> {
     handleClick = () => {
-        const { history: { push }, url } = this.props;
+        const { push, url } = this.props;
 
         push(url);
     };
 
     render() {
-        const { index, location: { pathname }, name, url, withIndex } = this.props;
+        const { index, router: { pathname }, name, url, withIndex } = this.props;
 
         return (
             <Anchor
@@ -24,4 +26,7 @@ export class SideBarLinkContainer extends Component<SideBarLinkProps> {
     }
 }
 
-export const SideBarLink = withRouter(SideBarLinkContainer);
+export const SideBarLink = connect(
+    store => ({ router: routerLocationSelector(store)}),
+    { push }
+    )(SideBarLinkContainer);

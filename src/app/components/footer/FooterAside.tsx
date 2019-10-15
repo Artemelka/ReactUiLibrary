@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { History } from 'history';
 import { Anchor } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
 import { PROJECT_LINK, HOME_URL } from '../../constants';
 
-export class FooterAsideComponent extends Component<RouteComponentProps> {
-    handleClick = () => this.props.history.push(HOME_URL);
+export class FooterAsideComponent extends Component<History> {
+    handleClick = () => this.props.push(HOME_URL);
 
     render() {
         return (
@@ -21,4 +23,4 @@ export class FooterAsideComponent extends Component<RouteComponentProps> {
     }
 }
 
-export const FooterAside = withRouter(FooterAsideComponent);
+export const FooterAside = connect(null, { push })(FooterAsideComponent);

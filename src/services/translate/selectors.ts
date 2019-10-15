@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 import { DictionaryStore } from './types';
 import { TRANSLATE_STORE_KEY, TRANSLATE_STORE_DICTIONARY_KEY, TRANSLATE_STORE_LOCALE_KEY } from './constants';
 

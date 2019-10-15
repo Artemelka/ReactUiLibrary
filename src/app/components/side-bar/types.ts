@@ -1,4 +1,4 @@
-import { RouteComponentProps } from 'react-router';
+import { Location } from 'history';
 
 export type SideBarData = {[key: string]: any};
 
@@ -20,10 +20,12 @@ export interface SideBarListProps extends SideBarProps {
     withIndex: boolean;
 }
 
-export interface SideBarLinkProps extends RouteComponentProps {
+export interface SideBarLinkProps {
     index?: string;
     name: string;
     url: string;
+    push: (path: string) => void;
+    router: Location;
     withIndex?: boolean;
 }
 
@@ -32,7 +34,7 @@ export interface ToggleProps {
     onChange: () => void;
 }
 
-export interface MenuDropDownProps extends RouteComponentProps {
+export interface MenuDropDownProps {
     items: Array<SideBarData>;
     index: string;
     indexPrefix?: string;
