@@ -1,11 +1,8 @@
 import { request } from '../../../services';
 
-interface RequestData {
-    userName: string;
-}
 interface Config {
     method: string;
-    data: RequestData | {[key: string]: any};
+    data: {[key: string]: any};
 }
 interface RequestParams {
     url: string;
