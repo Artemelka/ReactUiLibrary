@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { ComponentsPages } from '../../component-pages';
+import { PageNotFound } from '../../../index';
 import { getUniqId } from '../../../../../services/utils/uniq-id';
 
 const keyId = getUniqId();
@@ -29,6 +30,7 @@ export class SandBoxPage extends Component {
                             />
                         )
                 )}
+                <Route component={PageNotFound} />
             </Switch>
         );
     }

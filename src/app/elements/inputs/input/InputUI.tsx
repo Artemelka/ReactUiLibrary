@@ -26,6 +26,7 @@ export class InputUi extends Component<InputUiProps> {
             onKeyPress,
             value,
             width,
+            withoutError,
             ...restProps
         } = this.props;
         const visibleIcon = Boolean(iconProps) && (!disabled || iconProps.alwaysVisible);
@@ -34,7 +35,8 @@ export class InputUi extends Component<InputUiProps> {
             <div
                 className={cn('Input', {
                     'Input--focused': focused,
-                    'Input--error': error
+                    'Input--error': error,
+                    'Input--without-error': withoutError
                 })}
                 style={width ? {width: `${width}px`} : {}}
             >

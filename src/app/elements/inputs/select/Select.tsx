@@ -98,6 +98,7 @@ export class Select extends Component<SelectProps, SelectState> {
                     readOnly
                     value={inputValue}
                     width={inputWidth}
+                    withoutError
                 />
                 {opened &&
                     <div className={cn('Select__options')}>

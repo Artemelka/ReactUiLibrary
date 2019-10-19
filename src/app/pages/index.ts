@@ -1,7 +1,9 @@
 import { lazy } from 'react';
+import NotFoundPage from './not-found/NotFound';
 import LibraryPage from './library/LibraryPage';
 import LayoutPage from './layout/LayoutPage';
 import HomePage from './home/HomePage';
+
 import { RouteProps } from './types';
 
 // const HomePage = lazy(() => import('./home/HomePage'));
@@ -21,3 +23,5 @@ export const pages: Array<RouteProps> = [
         path: '/layout'
     }
 ];
+
+export const PageNotFound = NotFoundPage;

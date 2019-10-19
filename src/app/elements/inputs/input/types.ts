@@ -23,6 +23,7 @@ interface InputBaseProps {
     onKeyPress?: (event: KeyboardEvent) => void;
     value: string;
     width?: number;
+    withoutError?: boolean;
 }
 
 export interface InputUiProps extends InputBaseProps {
@@ -30,7 +31,7 @@ export interface InputUiProps extends InputBaseProps {
     iconProps?: IconProps;
 }
 
-export interface InputProps extends InputBaseProps{
+export interface InputProps extends InputBaseProps {
     defaultValue?: string;
     icon?: IconProps;
     readOnly?: boolean;
