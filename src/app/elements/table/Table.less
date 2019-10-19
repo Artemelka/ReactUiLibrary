@@ -29,15 +29,24 @@
         outline: none;
         padding-right: 20px;
 
-        &:hover,
+        &:hover {
+            background-color: rgba(@secondColor, 0.3);
+        }
+
         &:focus {
             background-color: rgba(@secondColor, 0.1);
+
+            &:hover {
+                background-color: rgba(@secondColor, 0.2);
+            }
         }
 
         &--header {
             cursor: default;
 
-            &:hover {
+            &:hover,
+            &:focus,
+            &:focus:hover {
                 background: none;
             }
         }

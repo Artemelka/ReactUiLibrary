@@ -6,7 +6,5 @@ export const addDictionaryKey = (keysData) => Promise.all(
             TranslateDictionaryModel.findOneAndUpdate({locale: localeName})
                 .then(dictionary => {
                     dictionary.dictionary.push({ [keyName]: value });
-                })
-        )
-));
-
+                })))
+);

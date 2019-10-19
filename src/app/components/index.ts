@@ -15,4 +15,7 @@ export {
     ModalPanelName
 } from './modals';
 export { TranslateEditor } from './translate-editor/TranslateEditor';
-export { TextArea } from './inputs';
+export {
+    TextArea,
+    TextInput
+} from './inputs';
