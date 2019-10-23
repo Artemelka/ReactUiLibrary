@@ -16,12 +16,13 @@ export interface ActionType {
 export interface TranslateState {
     dictionary: Dictionary;
     locale: string;
+    isLoading: boolean;
 }
 
 export interface DictionaryProviderProps {
     children: ReactElement;
     fetchDictionary: Action;
-    initializeDictionary: (fetch: Action, locale: string) => (dispatch: Dispatch) => void;
+    initializeDictionary: (fetch: Action) => (dispatch: Dispatch) => void;
     locale?: string;
     storeDictionary: Dictionary;
 }

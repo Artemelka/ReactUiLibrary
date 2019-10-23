@@ -1,4 +1,5 @@
 export interface TableProps {
+    isLoading?: boolean;
     headerRow: Array<string>;
     onEditRow?: (columns: Array<string>) => void;
     onRemoveRow?: (columns: Array<string>) => void;

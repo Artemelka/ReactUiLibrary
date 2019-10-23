@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { History } from 'history';
-import { translateReducer, TRANSLATE_STORE_KEY } from '../services/translate';
 import { connectRouter } from 'connected-react-router';
+import { translateReducer, TRANSLATE_STORE_KEY } from '../services/translate';
+import { history } from './app-history';
 
-export const createRootReducer = (history: History) => combineReducers({
+export const appReducer = combineReducers({
     router: connectRouter(history),
     [TRANSLATE_STORE_KEY]: translateReducer
 });
+

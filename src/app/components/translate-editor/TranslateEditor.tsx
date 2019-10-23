@@ -2,12 +2,15 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Table } from '../../elements';
 import { EditorModal } from '../modals';
-import { translate, translateDictionarySelector, translateLocaleSelector } from '../../../services/translate';
+import {
+    translate, translateDictionarySelector, translateLocaleSelector, translateLoaderSelector
+} from '../../../services/translate';
 import { Dictionary, DictionaryStore } from '../../../services/translate/types';
 
 export interface TranslateEditorProps {
     activeRow: Array<string>;
     dictionary: Dictionary;
+    isLoading: boolean;
     locale: string;
     onCloseModal: () => void;
     onRemoveRow: (row: Array<string>) => void;
@@ -24,7 +27,7 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
     locales: Array<string>;
 
     render() {
-        const { activeRow, dictionary, locale, onCloseModal, onRemoveRow, onEditRow, opened } = this.props;
+        const { activeRow, dictionary, isLoading, locale, onCloseModal, onRemoveRow, onEditRow, opened } = this.props;
         const headerRow = [translate('key'), ...this.locales];
         const rows = Object.keys(dictionary[locale]).map(key => [
             key,
@@ -34,6 +37,7 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
         return (
             <Fragment>
                 <Table
+                    isLoading={isLoading}
                     headerRow={headerRow}
                     onEditRow={onEditRow}
                     onRemoveRow={onRemoveRow}
@@ -53,6 +57,7 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
 export const TranslateEditor = connect(
     (store: DictionaryStore)  => ({
         dictionary: translateDictionarySelector(store),
-        locale: translateLocaleSelector(store)
+        locale: translateLocaleSelector(store),
+        isLoading: translateLoaderSelector(store)
     })
 )(TranslateEditorComponent);
