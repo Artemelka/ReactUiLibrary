@@ -1,6 +1,10 @@
 import { ActionType, Dictionary, TranslateState } from './types';
 import {
-    INITIAL_STATE, TranslateActions, TRANSLATE_STORE_DICTIONARY_KEY, TRANSLATE_STORE_LOCALE_KEY
+    INITIAL_STATE,
+    TranslateActions,
+    TRANSLATE_STORE_DICTIONARY_KEY,
+    TRANSLATE_STORE_LOCALE_KEY,
+    TRANSLATE_STORE_LOADING_KEY
 } from './constants';
 
 const addDictionary = (state: TranslateState, payload: Dictionary) => ({
@@ -13,10 +17,9 @@ const changeLang = (state: TranslateState, payload: string) => ({
     [TRANSLATE_STORE_LOCALE_KEY]: payload
 });
 
-const changeStore = (state: TranslateState, {dictionary, locale}: TranslateState) => ({
+const changeLoadingState = (state: TranslateState, payload: boolean) => ({
     ...state,
-    [TRANSLATE_STORE_DICTIONARY_KEY]: dictionary,
-    [TRANSLATE_STORE_LOCALE_KEY]: locale
+    [TRANSLATE_STORE_LOADING_KEY]: payload
 });
 
 export const translateReducer = (state = INITIAL_STATE, {type, payload}: ActionType) => {
@@ -25,8 +28,8 @@ export const translateReducer = (state = INITIAL_STATE, {type, payload}: ActionT
             return changeLang(state, payload);
         case TranslateActions.ADD_DICTIONARY:
             return addDictionary(state, payload);
-        case TranslateActions.CHANGE_STORE:
-            return changeStore(state, payload);
+        case TranslateActions.CHANGE_LOADING_STATE:
+            return changeLoadingState(state, payload);
         default: return state;
     }
 };

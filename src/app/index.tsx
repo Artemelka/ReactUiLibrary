@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
-import { Route, Switch } from 'react-router';
-import { pages, PageNotFound } from './pages';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route } from 'react-router';
+import { pages } from './pages';
+import { TranslateProvider } from '../services/translate';
+import { appStore } from './store';
+import { history } from './app-history';
+import { request } from '../services';
 
 const style = require('./app.less');
 const cn = classNames.bind(style);
+const fetchDictionary = () => request('/api/translate');
 
-export class App extends Component {
-    render() {
-        return (
-            <div className={cn('App')}>
-                <Switch>
-                    {
-                        pages.map((pageProps, index) =>
-                            <Route {...pageProps} key={`${index}_${pageProps.path}`} />)
-                    }
-                    <Route component={PageNotFound} />
-                </Switch>
-            </div>
-        );
-    }
-}
+export const App = () => (
+    <Provider store={appStore}>
+        <TranslateProvider fetchDictionary={fetchDictionary}>
+            <ConnectedRouter history={history}>
+                <div className={cn('App')}>
+                    {pages.map(pageProps => <Route {...pageProps} key={pageProps.path} />)}
+                </div>
+            </ConnectedRouter>
+        </TranslateProvider>
+    </Provider>
+);
+

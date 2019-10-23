@@ -1,29 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test App component Rendering snapshot 1`] = `
-<div
-  className="App"
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
 >
-  <Route
-    component={[Function]}
-    exact={true}
-    key="0_/"
-    path="/"
-  />
-  <Route
-    component={[Function]}
-    key="1_/library"
-    path="/library"
-  />
-  <Route
-    component={[Function]}
-    key="2_/layout"
-    path="/layout"
-  />
-  <Route
-    component={[Function]}
-    key="3_/translate-editor"
-    path="/translate-editor"
-  />
-</div>
+  <Connect(Provider)
+    fetchDictionary={[Function]}
+  >
+    <Connect(ConnectedRouterWithContext)
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <div
+        className="App"
+      >
+        <Route
+          component={[Function]}
+          exact={true}
+          key="/"
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          key="/library"
+          path="/library"
+        />
+        <Route
+          component={[Function]}
+          key="/layout"
+          path="/layout"
+        />
+        <Route
+          component={[Function]}
+          key="/translate-editor"
+          path="/translate-editor"
+        />
+      </div>
+    </Connect(ConnectedRouterWithContext)>
+  </Connect(Provider)>
+</Provider>
 `;

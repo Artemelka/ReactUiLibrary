@@ -6,7 +6,12 @@ export { translateReducer } from './reducer';
 export { TRANSLATE_STORE_KEY, NavigatorLanguage } from './constants';
 export { changeLocale } from './actions';
 export { TranslateComponent } from './component';
-export { translateDictionarySelector, translateLocaleSelector, translateStoreSelector } from './selectors';
+export {
+    translateDictionarySelector,
+    translateLocaleSelector,
+    translateStoreSelector,
+    translateLoaderSelector
+} from './selectors';
 export { DictionaryStore } from './types';
 
 export const translate = (key: string) => {
