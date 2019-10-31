@@ -1,4 +1,5 @@
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'connected-react-router';
@@ -9,7 +10,11 @@ import { translateMiddleware } from '../services/translate';
 const middleWares = [
     routerMiddleware(history),
     translateMiddleware,
-    thunk
+    thunk,
+    logger
 ];
 
-export const appStore = createStore(appReducer, composeWithDevTools(applyMiddleware(...middleWares)));
+export const appStore = createStore(
+    appReducer(history),
+    composeWithDevTools(applyMiddleware(...middleWares))
+);

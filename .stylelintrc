@@ -19,8 +19,7 @@
         "IE >= 11",
         "last 2 Chrome versions",
         "Safari >= 9",
-        "last 2 Firefox versions",
-        "last 2 Opera versions"
+        "last 2 Firefox versions"
       ],
       "ignore": ["outline", "viewport-units", "flexbox", "css-gradients", "css-initial-value", "calc"],
       "severity": "error"

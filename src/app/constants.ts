@@ -13,3 +13,8 @@ export const PROJECT_LINK = 'https://github.com/Artemelka/ReactUiLibrary';
 export const HOME_URL = '/';
 export const LIBRARY_URL = '/library';
 export const INPUT_SUB_URL = '/inputs';
+
+// Store keys
+export const STORE_KEY = {
+    ROUTER: 'router'
+};

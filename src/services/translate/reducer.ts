@@ -30,6 +30,7 @@ export const translateReducer = (state = INITIAL_STATE, {type, payload}: ActionT
             return addDictionary(state, payload);
         case TranslateActions.CHANGE_LOADING_STATE:
             return changeLoadingState(state, payload);
-        default: return state;
+        default:
+            return state;
     }
 };
