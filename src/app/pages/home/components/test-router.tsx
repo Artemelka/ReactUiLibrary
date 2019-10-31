@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push, goBack } from 'react-router-redux';
+import { push, goBack } from 'connected-react-router';
 import { Button, ButtonsGroup } from '../../../elements';
 
 export const LIBRARY = 'library';

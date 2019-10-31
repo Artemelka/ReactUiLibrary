@@ -14,9 +14,7 @@
     },
     "boolean-trivia": true,
     "class-name": true,
-    "comment-format": [true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly":[true, "ignore-same-line"],
     "debug-assert": true,
     "indent": [true, "spaces"],

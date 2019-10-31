@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { History } from 'history';
 import { Anchor } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
