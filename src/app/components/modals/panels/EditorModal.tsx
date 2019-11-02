@@ -1,4 +1,4 @@
-import React, { Component, createRef, RefObject, SyntheticEvent, Fragment } from 'react';
+import React, { Component, SyntheticEvent, Fragment } from 'react';
 import { Button, ModalModule } from '../../../elements';
 import { EditorFormField } from '../../editor-form-fields/EditorFormField';
 import { translate } from '../../../../services/translate';
@@ -14,51 +14,13 @@ interface EditorModalProps {
     opened: boolean;
 }
 
-const validationTranslateEditorFields = (formData: { [key: string]: any }): boolean => {
-    const fieldsValues = Object.values(formData);
-    const result = fieldsValues.map(value => Boolean(value)).filter(Boolean);
-
-    console.log('=== result ===', result);
-    return fieldsValues.length === result.length;
-};
-
 export class EditorModal extends Component<EditorModalProps, { [key: string]: string | boolean }> {
-    constructor(props: EditorModalProps) {
-        super(props);
-        const { fieldLabels, editRowData } = props;
-        const initialState = fieldLabels.reduce(
-            (acc, fieldName, index) => ({ ...acc, [fieldName]: editRowData[index] }), {});
-
-        this.state = {
-            ...initialState,
-            disableButton: true
-        };
-    }
-
-    checkButtonStatus = () => {
-        const { disableButton, ...restState } = this.state;
-
-        if (disableButton && validationTranslateEditorFields(restState)) {
-            this.setState({disableButton: false});
-        }
-
-        if (!(disableButton || validationTranslateEditorFields(restState))) {
-            this.setState({disableButton: true});
-        }
-    };
-
-    handleChange = (value: string, name: string) => this.setState({ [name]: value }, this.checkButtonStatus);
+    handleChange = (value: string, name: string) => this.setState({ [name]: value });
 
     handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const { disableButton, ...restState } = this.state;
-
-        if (validationTranslateEditorFields(restState)) {
-            console.log('=== go!! ===');
-        }
+        console.log('=== submit ===');
     };
-
-    form: RefObject<HTMLFormElement> = createRef();
 
     render() {
         const { editRowData, fieldLabels, onClose, opened } = this.props;
@@ -70,7 +32,7 @@ export class EditorModal extends Component<EditorModalProps, { [key: string]: st
                 size={ModalSize.SMALL}
                 title={translate('editor')}
             >
-                <form style={{padding: '30px'}} onSubmit={this.handleSubmit} ref={this.form}>
+                <form style={{padding: '30px'}} onSubmit={this.handleSubmit}>
                     {
                         fieldLabels.map((value, index) => (
                             <Fragment key={`editor-${value}-${index}_${INPUT_UID}`}>
@@ -87,7 +49,7 @@ export class EditorModal extends Component<EditorModalProps, { [key: string]: st
                     }
                     <div>
                         <Button
-                            disabled={this.state.disableButton}
+                            disabled
                             label={'submit'}
                             type="submit"
                         />
