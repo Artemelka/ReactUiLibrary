@@ -1,14 +1,9 @@
-import { lazy } from 'react';
-import NotFoundPage from './not-found/NotFound';
 import LibraryPage from './library/LibraryPage';
+import NotFoundPage from './not-found/NotFound';
 import LayoutPage from './layout/LayoutPage';
 import HomePage from './home/HomePage';
-
+import TranslateEditorPage from './translate-editor/TranslateEditorPage';
 import { RouteProps } from './types';
-
-// const HomePage = lazy(() => import('./home/HomePage'));
-// const LibraryPage = lazy(() => import('./library/LibraryPage'));
-// const LayoutPage = lazy(() => import('./layout/LayoutPage'));
 
 export const pages: Array<RouteProps> = [
     {
@@ -21,6 +16,9 @@ export const pages: Array<RouteProps> = [
     }, {
         component: LayoutPage,
         path: '/layout'
+    }, {
+        component: TranslateEditorPage,
+        path: '/translate-editor'
     }
 ];
 

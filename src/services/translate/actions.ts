@@ -1,13 +1,9 @@
 import { Dispatch } from 'redux';
 import { ErrorMessages, TranslateActions } from './constants';
-import { Dictionary, TranslateState } from './types';
+import { Dictionary } from './types';
 
-const { ADD_DICTIONARY, CHANGE_LANG, CHANGE_STORE } = TranslateActions;
+const { ADD_DICTIONARY, CHANGE_LANG, CHANGE_LOADING_STATE } = TranslateActions;
 
-const changeTranslateStore = (nextStore: TranslateState) => ({
-    type: CHANGE_STORE,
-    payload: nextStore
-});
 export const addDictionary = (dictionary: Dictionary) => ({
     type: ADD_DICTIONARY,
     payload: dictionary
@@ -16,19 +12,21 @@ export const changeLocale = (locale: string) => ({
     type: CHANGE_LANG,
     payload: locale
 });
+export const changeTranslateLoadingState = (isLoading: boolean) => ({
+    type: CHANGE_LOADING_STATE,
+    payload: isLoading
+});
 
-export const initializeDictionary = (fetch: () => Promise<any>, locale: string) =>
+export const initializeDictionary = (fetch: () => Promise<any>) =>
     (dispatch: Dispatch) => {
-        fetch().then((dictionary: Dictionary) => {
-            const userLocale = navigator ? navigator.language : '';
-
-            if (userLocale !== locale) {
-                dispatch(changeTranslateStore({locale: userLocale, dictionary}));
-            } else {
+        dispatch(changeTranslateLoadingState(true));
+        fetch()
+            .then((dictionary: Dictionary) => {
                 dispatch(addDictionary(dictionary));
-            }
-        }).catch((error) => {
-            console.error(ErrorMessages.REQUEST_ERROR, error);
-        });
+                dispatch(changeTranslateLoadingState(false));
+            }).catch((error) => {
+                console.error(ErrorMessages.REQUEST_ERROR, error);
+                dispatch(changeTranslateLoadingState(false));
+            });
     };
 

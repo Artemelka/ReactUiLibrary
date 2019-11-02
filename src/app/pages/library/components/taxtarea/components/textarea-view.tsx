@@ -7,35 +7,43 @@ const { BlockItems, Item } = SandboxLayout;
 const textareaConfigs = [
     {
         title: 'default',
-        props: {id: 'textarea-default'}
+        props: {
+            id: 'textarea-default',
+            name: 'textarea-default',
+        }
     }, {
         title: 'dark Theme',
         props: {
             darkTheme: true,
-            id: 'textarea-darkTheme'
+            id: 'textarea-darkTheme',
+            name: 'textarea-darkTheme',
         }
     }, {
         title: 'disabled',
         props: {
             disabled: true,
-            id: 'textarea-disabled'
+            id: 'textarea-disabled',
+            name: 'textarea-disabled',
         }
     }, {
         title: 'maxlength',
         props: {
             id: 'textarea-maxlength',
+            name: 'textarea-maxlength',
             maxlength: 10
         }
     }, {
         title: 'with placeholder',
         props: {
             id: 'textarea-placeholder',
+            name: 'textarea-placeholder',
             placeholder: 'placeholder'
         }
     }, {
         title: 'readonly',
         props: {
             id: 'textarea-readonly',
+            name: 'textarea-readonly',
             readonly: true,
             value: 'read only'
         }
@@ -43,6 +51,7 @@ const textareaConfigs = [
         title: 'with rows = 5',
         props: {
             id: 'textarea',
+            name: 'textarea',
             rows: 5
         }
     }

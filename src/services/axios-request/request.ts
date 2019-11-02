@@ -14,7 +14,7 @@ export const request = (url: string, config: RequestOptionsType = {}): Promise<a
         timeout = DEFAULT_TIMEOUT,
         ...restConfig
     } = config;
-    const requestData = method === POST ? {data} : {};
+    const requestData = method !== GET ? {data} : {};
 
     const options = {
         url,

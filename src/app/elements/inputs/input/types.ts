@@ -21,12 +21,14 @@ interface InputBaseProps {
     onClick?: (event: MouseEvent<HTMLInputElement> | KeyboardEvent) => void;
     onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
     onKeyPress?: (event: KeyboardEvent) => void;
+    required?: boolean;
     value: string;
     width?: number;
     withoutError?: boolean;
 }
 
 export interface InputUiProps extends InputBaseProps {
+    defaultErrorMessage?: string;
     focused?: boolean;
     iconProps?: IconProps;
 }

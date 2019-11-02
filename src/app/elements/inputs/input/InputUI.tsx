@@ -11,6 +11,7 @@ export class InputUi extends Component<InputUiProps> {
         const {
             cursorPointer,
             disabled,
+            defaultErrorMessage: omitDefaultErrorMessage,
             error,
             errorMessage,
             focused,

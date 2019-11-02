@@ -44,6 +44,7 @@ export class Input extends Component<InputProps, InputState> {
             onChange,
             onClick,
             onFocus: omitOnFocus,
+            required: omitRequired,
             value,
             ...restProps
         } = this.props;

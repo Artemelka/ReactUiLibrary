@@ -1,22 +1,32 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import reload from 'express-reload';
-import { ServerParams, KEEP_ALIVE_TIMEOUT } from './constants';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import { handleServerStart, handleDbConnection, handleDbConnectionError} from './handlers';
+import { API_PATH, DB_URI, DbConnectParams, KEEP_ALIVE_TIMEOUT, RELOAD_API_PATH, ServerParams } from './constants';
 
-const app = express();
 const { PORT, HOST } = ServerParams;
-const path = __dirname + '/routes/';
-const listenCallback = error => error
-    ? console.log('something bad happened', error)
-    : console.log(`Listening on port ${PORT}!`);
+const app = express();
+const startServer = () => Promise.resolve(app.listen(PORT, HOST, handleServerStart));
+const setKeepAliveTimeout = server => {
+    server.keepAliveTimeout = KEEP_ALIVE_TIMEOUT;
+    return Promise.resolve(server);
+};
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(fileUpload());
-app.use(express.static("dist"));
-app.use('/api', reload(path));
+app.use(express.static('dist'));
+app.use(API_PATH, reload(RELOAD_API_PATH));
 
-const appServer = app.listen(PORT, HOST, listenCallback);
+mongoose.connect(DB_URI, DbConnectParams)
+    .then(handleDbConnection)
+    .then(startServer)
+    .then(setKeepAliveTimeout)
+    .catch(handleDbConnectionError);
 
-appServer.keepAliveTimeout = KEEP_ALIVE_TIMEOUT;
+
+
+
+
