@@ -8,3 +8,4 @@ export const appReducer = (history: History) => combineReducers({
     [STORE_KEY.ROUTER]: connectRouter(history),
     [TRANSLATE_STORE_KEY]: translateReducer
 });
+
