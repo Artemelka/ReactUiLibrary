@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { TestRequest, TestRouter } from './components';
+import {
+    // insertReducer,
+    insertWithRemoveReducer
+} from '../../store';
 
 const style = require('./HomePage.less');
 const cn = classNames.bind(style);
 
-export default class HomePage extends Component {
+export class HomePage extends Component {
     render() {
         return (
             <div className={cn('Test-page')}>
@@ -28,3 +32,12 @@ export default class HomePage extends Component {
         );
     }
 }
+
+const HomePageReducer = {
+    name: 'HomePageReducer',
+    reducer: (state: any) => ({ ...state, test: 'ok' })
+};
+const injectedReducers = [HomePageReducer];
+
+export default insertWithRemoveReducer(injectedReducers)(HomePage);
+// export default insertReducer(injectedReducers)(HomePage);
