@@ -1,31 +1,91 @@
 import React, { Component, ComponentType, FC } from 'react';
-import { createStore, Reducer, Store, StoreEnhancer } from 'redux';
+import { Reducer, Store, StoreEnhancer, StoreCreator } from 'redux';
 
+// type DeepPartial<T> = {
+//     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K]
+// };
+//
+// type Action<T = any> = {
+//     type: T
+// };
+//
+// type AnyAction = Action & {
+//     [extraProps: string]: any
+// };
+//
+// type Dispatch<A extends Action = AnyAction> = <T extends A>(action: T) => T;
+//
+// type Unsubscribe = () => void;
+//
+// type Observer<T> = {
+//     next?(value: T): void
+// };
+//
+// type Observable<T> = {
+//     subscribe: (observer: Observer<T>) => { unsubscribe: Unsubscribe }
+//     [Symbol.observable](): Observable<T>
+// };
+//
+// type Store<S = any, A extends Action = AnyAction> = {
+//     dispatch: Dispatch<A>;
+//     getState(): S;
+//     subscribe(listener: () => void): Unsubscribe;
+//     replaceReducer(nextReducer: Reducer<S, A>): void;
+//     [Symbol.observable](): Observable<S>;
+// };
+//
+// type Reducer<S = any, A extends Action = AnyAction> = (
+//     state: S | undefined,
+//     action: A
+// ) => S;
+//
+// type StoreEnhancerStoreCreator<Ext = {}, StateExt = {}> = <
+//     S = any,
+//     A extends Action = AnyAction
+//     >(
+//     reducer: Reducer<S, A>,
+//     preloadedState?: DeepPartial<S>
+// ) => Store<S & StateExt, A> & Ext;
+//
+// type StoreEnhancer<Ext = {}, StateExt = {}> = (
+//     next: StoreEnhancerStoreCreator
+// ) => StoreEnhancerStoreCreator<Ext, StateExt>;
+//
+// type StoreCreator = {
+//     <S, A extends Action, Ext, StateExt>(
+//         reducer: Reducer<S, A>,
+//         enhancer?: StoreEnhancer<Ext, StateExt>
+//     ): Store<S & StateExt, A> & Ext
+//     <S, A extends Action, Ext, StateExt>(
+//         reducer: Reducer<S, A>,
+//         preloadedState?: DeepPartial<S>,
+//         enhancer?: StoreEnhancer<Ext>
+//     ): Store<S & StateExt, A> & Ext
+// };
 
-type HocComponent = (RenderComponent: ComponentType | FC) => ComponentType | FC;
-type InsertWithRemoveReducer = (asyncReducers: Array<AsyncReducerItem>) => HocComponent;
-type AsyncReducer = Record<string, Reducer>;
-type InsertReducer = (asyncReducers: Array<AsyncReducerItem>) => HocComponent;
-type ExtendedStore = Store & {
-    asyncReducers?: AsyncReducer;
-    insertReducer?: InsertReducer;
-    insertWithRemoveReducer?: InsertWithRemoveReducer;
-};
+type AsyncReducerMap = Record<string, Reducer>;
+type CreateReducer = (asyncReducers?: AsyncReducerMap) => Reducer;
 type AsyncReducerItem = {
     name: string,
     reducer: Reducer,
-    replaced?: boolean
+    rewritable?: boolean
 };
 
-export const createdStoreWithInsertAndDeleteReducer = (reducer: (asyncReducers?: AsyncReducer) => Reducer, middleWares: StoreEnhancer) => {
-    const createdStore: ExtendedStore = createStore(reducer(), middleWares);
+export const createStoreWithInsertReducer = (
+    reduxCreateStore: StoreCreator,
+    createReducer: CreateReducer,
+    middleWares: StoreEnhancer,
+    withRemove?: boolean
+) => {
+    const createdStore: Store = reduxCreateStore(createReducer(), middleWares);
+    const asyncReducersMap: AsyncReducerMap = {};
 
-    const injectReducer = (store: ExtendedStore, asyncReducers: Array<AsyncReducerItem>) => {
-        let isReplace = false;
+    const injectReducer = (asyncReducers: Array<AsyncReducerItem>) => {
+        const replacedReducerNames: Array<string> = [];
 
-        asyncReducers.forEach(({ name, reducer, replaced }) => {
-            if (createdStore.asyncReducers[name]) {
-                if (!replaced) {
+        asyncReducers.forEach(({ name, reducer, rewritable }: AsyncReducerItem) => {
+            if (asyncReducersMap[name]) {
+                if (!rewritable) {
                     return;
                 }
 
@@ -33,47 +93,52 @@ export const createdStoreWithInsertAndDeleteReducer = (reducer: (asyncReducers?:
                 console.warn(`The reducer ${name} is being replaced with a new async reducer`);
             }
 
-            createdStore.asyncReducers[name] = reducer;
-            isReplace = true;
+            asyncReducersMap[name] = reducer;
+            replacedReducerNames.push(name);
         });
 
-        if (isReplace) {
-            createdStore.dispatch({ type: 'INJECT_ASYNC_REDUCER' });
-            createdStore.replaceReducer(reducer(createdStore.asyncReducers));
-            isReplace = false;
+        if (replacedReducerNames.length) {
+            createdStore.replaceReducer(createReducer(asyncReducersMap));
+            createdStore.dispatch({ type: 'INJECT_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            replacedReducerNames.length = 0;
         }
     };
 
-    const deleteReducer = (store: ExtendedStore, asyncReducers: Array<AsyncReducerItem>) => {
+    const deleteReducer = (asyncReducers: Array<AsyncReducerItem>) => {
+        const replacedReducerNames: Array<string> = [];
+
         asyncReducers.forEach(({ name }) => {
-            if (createdStore.asyncReducers[name]) {
-                delete createdStore.asyncReducers[name];
+            if (asyncReducersMap[name]) {
+                delete asyncReducersMap[name];
+                replacedReducerNames.push(name);
             } else {
                 console.warn(`The reducer ${name} is not found in asyncReducers`);
             }
         });
 
-        createdStore.replaceReducer(reducer(createdStore.asyncReducers));
+        if (replacedReducerNames.length) {
+            createdStore.replaceReducer(createReducer(asyncReducersMap));
+            createdStore.dispatch({ type: 'REMOVE_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            replacedReducerNames.length = 0;
+        }
     };
 
-    createdStore.asyncReducers = {};
-
-    createdStore.insertReducer = (asyncReducers: Array<AsyncReducerItem>) =>
+    const insertReducer = (asyncReducers: Array<AsyncReducerItem>) =>
         (RenderComponent: ComponentType | FC) => {
-            injectReducer(createdStore, asyncReducers);
+            injectReducer(asyncReducers);
 
             return RenderComponent;
         };
 
-    createdStore.insertWithRemoveReducer = (asyncReducers: Array<AsyncReducerItem>) =>
+    const insertWithRemoveReducer = (asyncReducers: Array<AsyncReducerItem>) =>
         (RenderComponent: ComponentType | FC) => (
             class InsertReducerContainer extends Component {
                 componentDidMount(): void {
-                    injectReducer(createdStore, asyncReducers);
+                    injectReducer(asyncReducers);
                 }
 
                 componentWillUnmount(): void {
-                    deleteReducer(createdStore, asyncReducers);
+                    deleteReducer(asyncReducers);
                 }
 
                 render () {
@@ -82,5 +147,8 @@ export const createdStoreWithInsertAndDeleteReducer = (reducer: (asyncReducers?:
             }
         );
 
-    return createdStore;
+    return ({
+        store: createdStore,
+        insertReducer: withRemove ? insertWithRemoveReducer : insertReducer
+    });
 };

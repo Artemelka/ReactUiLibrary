@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { TestRequest, TestRouter } from './components';
-import {
-    // insertReducer,
-    insertWithRemoveReducer
-} from '../../store';
+import { insertReducer } from '../../store';
 
 const style = require('./HomePage.less');
 const cn = classNames.bind(style);
@@ -35,9 +32,9 @@ export class HomePage extends Component {
 
 const HomePageReducer = {
     name: 'HomePageReducer',
-    reducer: (state: any) => ({ ...state, test: 'ok' })
+    reducer: (state: any) => ({ ...state, test: 'ok' }),
+    rewritable: true
 };
 const injectedReducers = [HomePageReducer];
 
-export default insertWithRemoveReducer(injectedReducers)(HomePage);
-// export default insertReducer(injectedReducers)(HomePage);
+export default insertReducer(injectedReducers)(HomePage);
