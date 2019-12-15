@@ -4,8 +4,11 @@ exports[`Test App component Rendering snapshot 1`] = `
 <Provider
   store={
     Object {
+      "asyncReducers": Object {},
       "dispatch": [Function],
       "getState": [Function],
+      "insertReducer": [Function],
+      "insertWithRemoveReducer": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
       Symbol(observable): [Function],
