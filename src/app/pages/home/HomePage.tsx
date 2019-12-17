@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { TestRequest, TestRouter } from './components';
+import style from './HomePage.less';
 
-const style = require('./HomePage.less');
 const cn = classNames.bind(style);
 
 export default class HomePage extends Component {

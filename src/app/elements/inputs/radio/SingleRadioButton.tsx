@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Checkbox } from '../checkbox/Checkbox';
+import { Checkbox } from '../checkbox';
 import { SingleRadioButtonProps } from './types';
 
 export class SingleRadioButton extends Component<SingleRadioButtonProps> {

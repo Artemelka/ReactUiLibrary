@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import style from './Table.less';
 
-const style = require('./Table.less');
 const cn = classNames.bind(style);
 
 export class TableLoader extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Overlay } from '../../index';
+import { Overlay } from '../../overlay';
 import { ModalPortalAdapter } from '../portal-adapter/ModalPortalAdapter';
 import { ModalContainer } from '../container/ModalContainer';
 import { ModalDialogProps } from '../types';

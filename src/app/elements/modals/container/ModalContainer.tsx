@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Button, IconModule, Text } from '../../index';
 import { ModalContainerProps } from '../types';
+import style from './ModalContainer.less';
 
-const style = require('./ModalContainer.less');
 const cn = classNames.bind(style);
 export const ModalSize = {
     SMALL: Symbol('small'),

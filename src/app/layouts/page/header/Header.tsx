@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import style from './Header.less';
 
-const style = require('./Header.less');
 const cn = classNames.bind(style);
 
 export class Header extends Component {

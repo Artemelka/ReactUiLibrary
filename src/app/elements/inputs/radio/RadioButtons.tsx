@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { SingleRadioButton } from './SingleRadioButton';
 import { RadioButtonsProps } from './types';
+import style from './RadioButtons.less';
 
-const style = require('./RadioButtons.less');
 const cn = classNames.bind(style);
 
 export const RadioButtons = ({ column, items, onChange, value, name }: RadioButtonsProps) => (

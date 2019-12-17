@@ -4,8 +4,8 @@ import { Button, ButtonsGroup, IconModule } from '../index';
 import { keyCodes } from '../../../services';
 import { TableWidth } from './constants';
 import { TableRowProps } from './types';
+import style from './Table.less';
 
-const style = require('./Table.less');
 const cn = classNames.bind(style);
 
 export class TableRow extends Component<TableRowProps, { hovered: boolean }> {

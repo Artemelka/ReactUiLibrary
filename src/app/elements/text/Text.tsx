@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import { TagComponent } from './components';
 import { TextComponentType, WarningMessages } from './constants';
 import { TextProps } from './types';
+import style from './Text.less';
 
-const style = require('./Text.less');
 const cn = classNames.bind(style);
 
 export class TextComponent extends PureComponent<TextProps> {

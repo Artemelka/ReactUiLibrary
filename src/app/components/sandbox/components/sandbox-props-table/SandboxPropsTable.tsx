@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { TranslateComponent } from '../../../../../services/translate';
+import style from './SandboxPropsTable.less';
 
-const style = require('./SandboxPropsTable.less');
 const cn = classNames.bind(style);
 const TABLE_HEADINGS = ['prop-name', 'type', 'description', 'required'];
 

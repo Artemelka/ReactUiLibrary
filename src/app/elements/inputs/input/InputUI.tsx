@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { Button } from '../../buttons/Button';
+import { Button } from '../../buttons';
 import { InputUiProps } from './types';
+import style from './Input.less';
 
-const style = require('./Input.less');
 const cn = classNames.bind(style);
 
 export class InputUi extends Component<InputUiProps> {

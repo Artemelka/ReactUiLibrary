@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import { SideBarLink, SideBarMenu, SideBarToggle } from './components';
 import { formatterComponentName } from './utils';
 import { SideBarData, SideBarState, SideBarProps } from './types';
+import style from './LibrarySideBar.less';
 
-const style = require('./LibrarySideBar.less');
 const cn = classNames.bind(style);
 
 export class LibrarySideBar extends Component<SideBarProps, SideBarState> {

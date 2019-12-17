@@ -3,9 +3,9 @@ import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { keyCodes } from '../../../../services';
 import { CheckboxProps, CheckboxState } from './types';
+import checkboxStyle from './Checkbox.less';
+import toggleStyle from './Toggle.less';
 
-const checkboxStyle = require('./Checkbox.less');
-const toggleStyle = require('./Toggle.less');
 const checkboxClassNames = classNames.bind(checkboxStyle);
 const toggleClassNames = classNames.bind(toggleStyle);
 

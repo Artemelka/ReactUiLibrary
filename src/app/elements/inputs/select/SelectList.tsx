@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import { SelectListItem } from './SelectListItem';
 import { keyCodes } from '../../../../services';
 import { SelectListProps } from './types';
+import style from './SelectList.less';
 
-const style = require('./SelectList.less');
 const cn = classNames.bind(style);
 const { DOWN, TAB, UP } = keyCodes;
 

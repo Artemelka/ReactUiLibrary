@@ -4,8 +4,8 @@ import { Input } from '../input/Input';
 import { SelectList } from './SelectList';
 import { IconModule } from '../../icon';
 import { SelectProps, SelectState } from './types';
+import style from './Select.less';
 
-const style = require('./Select.less');
 const cn = classNames.bind(style);
 const { DOWN, UP } = IconModule.IconNames.ANGLE;
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { Button } from '../buttons/Button';
+import { Button } from '../buttons';
 import { CardProps } from './types';
+import style from './Card.less';
 
-const style = require('./Card.less');
 const cn = classNames.bind(style);
 const formatIndex = (index: string) => index.length === 1 ? `0${index}` : index;
 
