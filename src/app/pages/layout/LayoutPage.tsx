@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { PageLayout } from '../../layouts';
 import { FooterAside, LanguageSelect } from '../../components';
+import style from './LayoutPage.less';
 
-const style = require('./LayoutPage.less');
 const cn = classNames.bind(style);
 const { Aside, Footer, Header, Main, Page } = PageLayout;
 
@@ -35,17 +35,17 @@ class LayoutPage extends Component<null, State> {
 
         return (
             <Page>
-                {!headerHidden &&
+                {!headerHidden && (
                     <Header>
                         <p className={cn('Content-filler')} >header</p>
                     </Header>
-                }
+                )}
 
-                {!asideHidden &&
+                {!asideHidden && (
                     <Aside heading={''} footerText={''} withoutHeader={headerHidden}>
                         <p className={cn('Content-filler')}>aside</p>
                     </Aside>
-                }
+                )}
                 <Main fullWidth={asideHidden} withoutHeader={headerHidden} >
                     <div style={contentStyle} >
                         <p>Content 1</p>

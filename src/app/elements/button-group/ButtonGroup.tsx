@@ -1,8 +1,8 @@
 import React, { Component, Children, cloneElement, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonGroupProps } from './types';
+import style from './ButtonGroup.less';
 
-const style = require('./ButtonGroup.less');
 const cn = classNames.bind(style);
 const SeparatorSize = {
     MEDIUM: Symbol('medium'),

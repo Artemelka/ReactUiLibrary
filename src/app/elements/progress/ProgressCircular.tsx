@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { getValidPercent } from './utils';
 import { ProgressCircularProps } from './types';
+import style from './Progress.less';
 
-const style = require('./Progress.less');
 const cn = classNames.bind(style);
 const textProps = {
     dy: '.3em',

@@ -4,8 +4,8 @@ import { Button } from './Button';
 import { IconModule } from '../icon';
 import { ICON_SIZE, ICON_SIZE_SMALL, ICON_SIZE_MEDIUM, ButtonSize } from './constants';
 import { ButtonIconLabelProps } from './types';
+import style from './Button.less';
 
-const style = require('./Button.less');
 const cn = classNames.bind(style);
 
 export class ButtonIconLabel extends Component<ButtonIconLabelProps> {

@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import { Button, IconModule, Text } from '../../elements';
 import { TranslateEditor } from '../../components';
 import { translate } from '../../../services/translate';
+import style from './TranslateEditorPage.less';
 
-const style = require('./TranslateEditorPage.less');
 const cn = classNames.bind(style);
 
 export type TranslateEditorPageState = {

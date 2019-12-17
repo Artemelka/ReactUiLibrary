@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { MainProps } from '../types';
+import style from './Main.less';
 
-const style = require('./Main.less');
 const cn = classNames.bind(style);
 
 export class Main extends Component<MainProps> {

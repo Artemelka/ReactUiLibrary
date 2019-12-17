@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import { Checkbox, Text } from '../../../../elements';
 import { TranslateComponent } from '../../../../../services/translate';
 import { ToggleProps } from '../../types';
+import style from './SideBarToggle.less';
 
-const style = require('./SideBarToggle.less');
 const cn = classNames.bind(style);
 const CHECKBOX_ID = 'sidebar-toggle';
 

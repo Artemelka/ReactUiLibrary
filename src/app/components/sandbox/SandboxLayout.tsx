@@ -4,8 +4,8 @@ import { Text } from '../../elements';
 import { TranslateComponent } from '../../../services/translate';
 import { SandboxPanel, SandboxPropsTable, SandboxBlockItems } from './components';
 import { SandboxContainerProps } from './types';
+import style from './sandbox.less';
 
-const style = require('./sandbox.less');
 export const cn = classNames.bind(style);
 
 export const SandboxContainer = ({

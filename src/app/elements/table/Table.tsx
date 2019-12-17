@@ -4,8 +4,8 @@ import { TableRow } from './TableRow';
 import { TableLoader } from './TableLoader';
 import { TableWidth } from './constants';
 import { TableProps } from './types';
+import style from './Table.less';
 
-const style = require('./Table.less');
 const cn = classNames.bind(style);
 
 export class Table extends Component<TableProps> {

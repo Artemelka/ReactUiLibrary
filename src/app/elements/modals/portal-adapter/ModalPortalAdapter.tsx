@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Portal } from '../../index';
+import { Portal } from '../../';
 import { MODAL_ROOT, PAGE_MODAL_CONTAINER_CLASS_NAME } from '../../../constants';
 import { ModalPortalAdapterProps, ModalPortalAdapterState } from '../types';
 

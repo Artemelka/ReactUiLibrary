@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { Text } from '../../../elements';
 import { AsideProps } from '../types';
+import style from './Aside.less';
 
-const style = require('./Aside.less');
 const cn = classNames.bind(style);
 
 export class Aside extends Component<AsideProps> {

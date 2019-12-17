@@ -1,11 +1,11 @@
 import React, { Component, createRef, KeyboardEvent, RefObject, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
-import { Button } from '../buttons/Button';
+import { Button } from '../buttons';
 import { keyCodes } from '../../../services';
 import { DropDownSummaryProps } from './types';
+import style from './DropDownPanel.less';
 
-const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
 const { ANGLE } = IconModule.IconNames;
 const { ENTER, SPACE } = keyCodes;

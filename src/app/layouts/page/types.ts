@@ -5,8 +5,8 @@ export interface MainProps {
 }
 
 export interface FooterProps {
-    footerAside: ComponentType;
-    rightContent?: ComponentType;
+    footerAside?: ComponentType<any>;
+    rightContent?: ComponentType<any>;
 }
 
 export interface AsideProps {

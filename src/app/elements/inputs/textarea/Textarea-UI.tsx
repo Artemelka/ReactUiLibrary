@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
-import { Button } from '../../buttons/Button';
+import { Button } from '../../buttons';
 import { TextareaProps } from './types';
+import style from './Textarea.less';
 
-const style = require('./Textarea.less');
 const cn = classNames.bind(style);
 const { IconNames: { BACKSPACE } } = IconModule;
 

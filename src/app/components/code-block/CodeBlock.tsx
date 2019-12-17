@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classNames from 'classnames/bind';
+import style from './CodeBlock.less';
 
-const style = require('./CodeBlock.less');
 const cn = classNames.bind(style);
 const OPEN_QUOTE = '<';
 const CLOSE_QUOTE = '</';

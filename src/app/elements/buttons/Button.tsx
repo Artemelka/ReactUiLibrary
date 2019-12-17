@@ -5,8 +5,8 @@ import { ButtonIconLabel } from './ButtonIconLabel';
 import { keyCodes } from '../../../services';
 import { ButtonSize } from './constants';
 import { ButtonState, ButtonProps } from './types';
+import style from './Button.less';
 
-const style = require('./Button.less');
 const cn = classNames.bind(style);
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];

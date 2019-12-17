@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import style from './Overlay.less';
 
-const style = require('./Overlay.less');
 const cn = classNames.bind(style);
 
 interface OverlayProps {

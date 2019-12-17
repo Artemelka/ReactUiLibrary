@@ -8,8 +8,8 @@ import { TranslateProvider } from '../services/translate';
 import { appStore } from './store';
 import { history } from './app-history';
 import { request } from '../services';
+import style from './app.less';
 
-const style = require('./app.less');
 const cn = classNames.bind(style);
 const fetchDictionary = () => request('/api/translate');
 

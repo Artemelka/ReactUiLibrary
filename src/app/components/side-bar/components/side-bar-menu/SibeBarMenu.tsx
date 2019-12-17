@@ -4,8 +4,8 @@ import { SideBarLink } from '../side-bar-link/SideBarLink';
 import { SideBarMenuDropDown } from '../side-bar-menu-drop-down/SideBarMenuDropDown';
 import { formatterComponentName, formatterIndex } from '../../utils';
 import { SideBarListProps } from '../../types';
+import style from './SideBarMenu.less';
 
-const style = require('./SideBarMenu.less');
 const cn = classNames.bind(style);
 
 export class SideBarMenu extends Component<SideBarListProps> {

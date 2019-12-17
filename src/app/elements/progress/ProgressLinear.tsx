@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { getValidPercent } from './utils';
 import { ProgressProps } from './types';
+import style from './Progress.less';
 
-const style = require('./Progress.less');
 const cn = classNames.bind(style);
 
 export const ProgressLinear = ({ percent }: ProgressProps) => {

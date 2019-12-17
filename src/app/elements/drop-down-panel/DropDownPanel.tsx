@@ -1,8 +1,8 @@
-import React, { Component, Children, cloneElement } from 'react';
+import React, { Component, Children, cloneElement, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import { DropDownPropsWithChildren } from './types';
+import style from './DropDownPanel.less';
 
-const style = require('./DropDownPanel.less');
 const cn = classNames.bind(style);
 
 export class DropDownPanel extends Component<DropDownPropsWithChildren> {
@@ -20,7 +20,8 @@ export class DropDownPanel extends Component<DropDownPropsWithChildren> {
             openingByIcon
         };
 
-        return Children.toArray(children).map(childElement => {
+        return Children.toArray(children).map((childElement: ReactElement) => {
+            // @ts-ignore
             switch (childElement.type.name) {
                 case 'DropDownSummary':
                     return cloneElement(childElement, summaryProps);

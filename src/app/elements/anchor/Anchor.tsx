@@ -2,8 +2,8 @@ import React, { Component, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { keyCodes } from '../../../services';
 import { AnchorProps, CustomEvent } from './types';
+import style from './Anchor.less';
 
-const style = require('./Anchor.less');
 const cn = classNames.bind(style);
 const {ENTER, SPACE} = keyCodes;
 const targetKeyCodes = [ENTER, SPACE];

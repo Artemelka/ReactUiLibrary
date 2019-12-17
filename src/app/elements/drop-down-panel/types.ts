@@ -1,3 +1,5 @@
+import { ReactChildren } from 'react';
+
 export interface DropDownPanelProps {
     actionIcon?: {
         iconName: string;
@@ -12,7 +14,7 @@ export interface DropDownPanelProps {
 }
 
 export interface DropDownPropsWithChildren extends DropDownPanelProps {
-    children: Array<{[key: string]: any}>;
+    children: ReactChildren;
 }
 
 export interface DropDownSummaryProps {
