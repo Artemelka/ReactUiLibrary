@@ -1,24 +1,24 @@
-import { Dispatch } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
 import { ErrorMessages, TranslateActions } from './constants';
 import { Dictionary } from './types';
 
 const { ADD_DICTIONARY, CHANGE_LANG, CHANGE_LOADING_STATE } = TranslateActions;
 
-export const addDictionary = (dictionary: Dictionary) => ({
+export const addDictionary = (dictionary: Dictionary): AnyAction => ({
     type: ADD_DICTIONARY,
     payload: dictionary
 });
-export const changeLocale = (locale: string) => ({
+export const changeLocale = (locale: string): AnyAction => ({
     type: CHANGE_LANG,
     payload: locale
 });
-export const changeTranslateLoadingState = (isLoading: boolean) => ({
+export const changeTranslateLoadingState = (isLoading: boolean): AnyAction => ({
     type: CHANGE_LOADING_STATE,
     payload: isLoading
 });
 
 export const initializeDictionary = (fetch: () => Promise<any>) =>
-    (dispatch: Dispatch) => {
+    (dispatch: Dispatch): void => {
         dispatch(changeTranslateLoadingState(true));
         fetch()
             .then((dictionary: Dictionary) => {

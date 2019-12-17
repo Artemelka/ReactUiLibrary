@@ -1,9 +1,10 @@
 import { getTranslateState } from './store';
+import { TranslateState } from './types';
 
 export { TranslateProvider } from './provider';
 export { translateMiddleware } from './store';
 export { translateReducer } from './reducer';
-export { TRANSLATE_STORE_KEY, NavigatorLanguage } from './constants';
+export { TRANSLATE_REDUCER, NavigatorLanguage } from './constants';
 export { changeLocale } from './actions';
 export { TranslateComponent } from './component';
 export {
@@ -12,10 +13,10 @@ export {
     translateStoreSelector,
     translateLoaderSelector
 } from './selectors';
-export { DictionaryStore } from './types';
+export type TranslateStore = TranslateState;
 
 export const translate = (key: string) => {
-    const { dictionary, locale } = getTranslateState();
+    const { dictionary, locale }: TranslateState = getTranslateState();
 
     return dictionary[locale][key] || key;
 };

@@ -1,28 +1,23 @@
-import { ActionType, Dictionary, TranslateState } from './types';
-import {
-    INITIAL_STATE,
-    TranslateActions,
-    TRANSLATE_STORE_DICTIONARY_KEY,
-    TRANSLATE_STORE_LOCALE_KEY,
-    TRANSLATE_STORE_LOADING_KEY
-} from './constants';
+import { AnyAction } from 'redux';
+import { Dictionary, StoreKeys, TranslateState } from './types';
+import { INITIAL_STATE, TranslateActions } from './constants';
 
-const addDictionary = (state: TranslateState, payload: Dictionary) => ({
+const addDictionary = (state: TranslateState, payload: Dictionary): TranslateState => ({
     ...state,
-    [TRANSLATE_STORE_DICTIONARY_KEY]: payload
+    [StoreKeys.DICTIONARY]: payload
 });
 
-const changeLang = (state: TranslateState, payload: string) => ({
+const changeLang = (state: TranslateState, payload: string): TranslateState => ({
     ...state,
-    [TRANSLATE_STORE_LOCALE_KEY]: payload
+    [StoreKeys.LOCALE]: payload
 });
 
-const changeLoadingState = (state: TranslateState, payload: boolean) => ({
+const changeLoadingState = (state: TranslateState, payload: boolean): TranslateState => ({
     ...state,
-    [TRANSLATE_STORE_LOADING_KEY]: payload
+    [StoreKeys.IS_LOADING]: payload
 });
 
-export const translateReducer = (state = INITIAL_STATE, {type, payload}: ActionType) => {
+export const translateReducer = (state: TranslateState = INITIAL_STATE, {type, payload}: AnyAction) => {
     switch (type) {
         case TranslateActions.CHANGE_LANG:
             return changeLang(state, payload);

@@ -1,23 +1,18 @@
 import { ReactElement } from 'react';
-import { Dispatch } from 'redux';
+import { Dispatch, Store } from 'redux';
+import { StringData } from '../../types';
 
-export type DictionaryData = { [key: string]: string };
 export type Action = () => Promise<any>;
 
 export type Dictionary = {
-    [key: string]: DictionaryData;
+    [key: string]: StringData;
 };
 
-export interface ActionType {
-    type: string;
-    payload?: any;
-}
-
-export interface TranslateState {
-    dictionary: Dictionary;
-    locale: string;
-    isLoading: boolean;
-}
+export type TranslateState = {
+    dictionary: Dictionary,
+    locale: string,
+    isLoading: boolean
+};
 
 export interface DictionaryProviderProps {
     children: ReactElement;
@@ -27,8 +22,14 @@ export interface DictionaryProviderProps {
     storeDictionary: Dictionary;
 }
 
-export type DictionaryStore = { translate: TranslateState };
+export type DictionaryStore = Store & { translate: TranslateState };
 
 export interface TranslateProps { translateKey: string; }
+
+export enum StoreKeys {
+    DICTIONARY = 'dictionary',
+    LOCALE = 'locale',
+    IS_LOADING = 'isLoading'
+}
 
 
