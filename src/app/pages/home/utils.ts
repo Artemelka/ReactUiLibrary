@@ -1,4 +1,4 @@
-import { request } from '../../../services';
+import { request } from '../../utils';
 
 interface Config {
     method: string;

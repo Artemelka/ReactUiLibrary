@@ -1,6 +1,6 @@
 import React, { Component, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
-import { keyCodes } from '../../../services';
+import { keyCodes } from '../../constants';
 import { AnchorProps, CustomEvent } from './types';
 import style from './Anchor.less';
 

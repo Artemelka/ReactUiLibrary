@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Button } from '../app/elements';
-import { keyCodes } from '../services';
+import { keyCodes } from '../app/constants';
 
 const BUTTON_TEXT = 'test button';
 

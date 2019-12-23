@@ -3,7 +3,7 @@ import { SandboxLayout } from '../../../../../components';
 import { CardList } from '../../../../../elements';
 import { TranslateComponent, translate } from '../../../../../../services/translate';
 import { CardItems, CardItem } from '../../../../../elements/card-list/types';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
 const LONG_TEXT = 'lorem-long';

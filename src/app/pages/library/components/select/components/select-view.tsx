@@ -4,7 +4,7 @@ import { SandboxLayout } from '../../../../../components';
 import { SelectList } from '../../../../../elements/inputs/select/SelectList';
 import { TranslateComponent } from '../../../../../../services/translate';
 import { SelectContainer } from './select-container';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 import { SelectOptions, SelectProps } from '../../../../../elements/inputs/select/types';
 
 type SelectExampleProps = SelectProps & { label: string };

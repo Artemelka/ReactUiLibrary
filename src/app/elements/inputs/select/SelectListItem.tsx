@@ -1,5 +1,5 @@
 import React, { Component, KeyboardEvent } from 'react';
-import { keyCodes } from '../../../../services';
+import { keyCodes } from '../../../constants';
 import { SelectListItemProps } from './types';
 
 const { DOWN, ENTER, SPACE, TAB, UP } = keyCodes;

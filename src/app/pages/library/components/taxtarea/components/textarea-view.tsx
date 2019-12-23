@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '../../../../../elements';
 import { SandboxLayout, TextArea } from '../../../../../components';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
 const textareaConfigs = [

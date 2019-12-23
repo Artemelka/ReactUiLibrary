@@ -2,9 +2,8 @@ import React, { Fragment } from 'react';
 import { Text } from '../../../../../elements/text';
 import { SandboxLayout } from '../../../../../components';
 import { TranslateComponent } from '../../../../../../services/translate';
-import { logger } from '../../../../../../services/utils/utils';
+import { getUniqId, logger } from '../../../../../utils';
 import { RadioButtonsContainer } from './radio-container';
-import { getUniqId } from '../../../../../../services/utils/uniq-id';
 import { RadioButtonBaseProps } from '../../../../../elements/inputs/radio/types';
 import { ItemsHeading } from './types';
 

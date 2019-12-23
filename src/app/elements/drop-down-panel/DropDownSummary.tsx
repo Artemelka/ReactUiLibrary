@@ -2,7 +2,7 @@ import React, { Component, createRef, KeyboardEvent, RefObject, SyntheticEvent }
 import classNames from 'classnames/bind';
 import { IconModule } from '../icon';
 import { Button } from '../buttons';
-import { keyCodes } from '../../../services';
+import { keyCodes } from '../../constants';
 import { DropDownSummaryProps } from './types';
 import style from './DropDownPanel.less';
 

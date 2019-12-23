@@ -12,7 +12,7 @@ const changeLang = (state: TranslateState, payload: string): TranslateState => (
     [StoreKeys.LOCALE]: payload
 });
 
-const changeLoadingState = (state: TranslateState, payload: boolean): TranslateState => ({
+const changeLoading = (state: TranslateState, payload: boolean): TranslateState => ({
     ...state,
     [StoreKeys.IS_LOADING]: payload
 });
@@ -24,7 +24,7 @@ export const translateReducer = (state: TranslateState = INITIAL_STATE, {type, p
         case TranslateActions.ADD_DICTIONARY:
             return addDictionary(state, payload);
         case TranslateActions.CHANGE_LOADING_STATE:
-            return changeLoadingState(state, payload);
+            return changeLoading(state, payload);
         default:
             return state;
     }

@@ -1,2 +1,2 @@
-export { request } from './axios-request/request';
-export { keyCodes, mapPropsToClasses, setNameSpaceCreator, getUniqId } from './utils';
+export { mapPropsToClasses } from './map-props-to-classes/map-props-to-classes';
+export { nameSpaceCreator } from './name-spase-creator';

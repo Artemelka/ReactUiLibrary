@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
-import { request } from '../services';
+import { request } from '../app/utils';
 
 const GET_URL_RESOLVE = 'https://api.com/success';
 const GET_URL_REJECT = 'https://api.com/reject';

@@ -3,7 +3,7 @@ import { SandboxLayout } from '../../../../../components';
 import { Text } from '../../../../../elements';
 import { TranslateComponent } from '../../../../../../services/translate';
 import { CheckboxContainer } from './checkbox-container';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 import { CheckboxContainerProps } from './types';
 
 const { BlockItems, Item } = SandboxLayout;

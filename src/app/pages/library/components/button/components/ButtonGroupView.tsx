@@ -2,7 +2,7 @@ import React from 'react';
 import { SandboxLayout } from '../../../../../components';
 import { ButtonsGroup, Text } from '../../../../../elements';
 import { TranslateComponent, translate } from '../../../../../../services/translate';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 import { buttonsGroupProps, buttonGroupItems } from './constants';
 import { ButtonGroupItems } from './types';
 

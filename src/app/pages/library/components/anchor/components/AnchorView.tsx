@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Anchor } from '../../../../../elements';
 import { SandboxLayout } from '../../../../../components';
 import { TranslateComponent } from '../../../../../../services/translate';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 import { PROJECT_LINK } from '../../../../../constants';
 
 const { BlockItems, Item } = SandboxLayout;

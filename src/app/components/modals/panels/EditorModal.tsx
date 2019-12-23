@@ -2,7 +2,7 @@ import React, { Component, SyntheticEvent, Fragment } from 'react';
 import { Button, ModalModule } from '../../../elements';
 import { EditorFormField } from '../../editor-form-fields/EditorFormField';
 import { translate } from '../../../../services/translate';
-import { getUniqId } from '../../../../services/utils/uniq-id';
+import { getUniqId } from '../../../utils';
 
 const { ModalPanel, ModalSize } = ModalModule;
 const INPUT_UID = getUniqId();

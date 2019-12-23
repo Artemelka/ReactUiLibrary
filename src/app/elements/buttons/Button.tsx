@@ -2,7 +2,7 @@ import React, { Component, MouseEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames/bind';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonIconLabel } from './ButtonIconLabel';
-import { keyCodes } from '../../../services';
+import { keyCodes } from '../../constants';
 import { ButtonSize } from './constants';
 import { ButtonState, ButtonProps } from './types';
 import style from './Button.less';

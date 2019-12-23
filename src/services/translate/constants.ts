@@ -1,4 +1,4 @@
-import { setNameSpaceCreator } from '../utils';
+import { nameSpaceCreator } from '../index';
 import { StoreKeys } from './types';
 
 export const NavigatorLanguage = {
@@ -18,12 +18,12 @@ export const INITIAL_STATE = {
     [StoreKeys.IS_LOADING]: false
 };
 
-const setNameSpace = setNameSpaceCreator('@@translate');
+const setNameSpace = nameSpaceCreator('@@translate');
 export const TranslateActions = setNameSpace([
     'ADD_DICTIONARY',
     'CHANGE_LANG',
     'CHANGE_STORE',
-    'CHANGE_LOADING_STATE'
+    'CHANGE_LOADING'
 ]);
 
 export const ErrorMessages = {

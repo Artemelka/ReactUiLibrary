@@ -1,7 +1,7 @@
 import React, { Component, SyntheticEvent } from 'react';
 import classNames from 'classnames/bind';
 import { Button, ButtonsGroup, IconModule } from '../index';
-import { keyCodes } from '../../../services';
+import { keyCodes } from '../../constants';
 import { TableWidth } from './constants';
 import { TableRowProps } from './types';
 import style from './Table.less';

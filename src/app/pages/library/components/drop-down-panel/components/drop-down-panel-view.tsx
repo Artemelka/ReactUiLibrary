@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { SandboxLayout } from '../../../../../components';
 import { IconModule } from '../../../../../elements';
 import { DropDownPanelContainer } from './drop-down-panel-container';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 import { DropDownPanelProps } from '../../../../../elements/drop-down-panel/types';
 
 const { BlockItems, Item } = SandboxLayout;

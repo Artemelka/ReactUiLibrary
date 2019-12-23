@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { ComponentsPages } from '../../component-pages';
 import { PageNotFound } from '../../../index';
-import { getUniqId } from '../../../../../services/utils/uniq-id';
+import { getUniqId } from '../../../../utils';
 
 const keyId = getUniqId();
 

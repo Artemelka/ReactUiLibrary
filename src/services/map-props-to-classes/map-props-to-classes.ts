@@ -1,26 +1,16 @@
-type Data = {
-    [key: string]: string;
-};
-type Props = {
-    [key: string]: any
-};
-type Classes = Array<Data>;
-
-const setError = (classes: Classes, props: Array<string>) => {
+const setError = (classes: Array<Record<string, string>>, props: Array<string>) => {
     const errorMessage = `Arguments type is incorrect: class ${JSON.stringify(classes)}, prop: ${JSON.stringify(props)}`;
 
     throw new TypeError(errorMessage);
 };
 
-const setWarning = (value: string, classMap: Data) => {
+const setWarning = (value: string, classMap: Record<string, string>) => {
     const message = `ClassName ${value} not found in provided map ${JSON.stringify(classMap)}`;
 
     console.warn(message);
 };
 
-export const logger = (text: string) => () => console.log(text);
-
-export const mapPropsToClasses = (classes: Classes, props: Array<string>) => {
+export const mapPropsToClasses = (classes: Array<Record<string, string>>, props: Array<string>) => {
     if (props === undefined || props === null) {
         return;
     }
@@ -38,12 +28,4 @@ export const mapPropsToClasses = (classes: Classes, props: Array<string>) => {
 
             return;
         });
-};
-
-export const getOmitProps = (props: Props, ignorePropKeys: Array<string>): Props => {
-    const omitProps = {...props};
-
-    ignorePropKeys.forEach(key => { delete  omitProps[key]; });
-
-    return omitProps;
 };

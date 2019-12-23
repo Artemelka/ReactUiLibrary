@@ -1,7 +1,7 @@
 import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames/bind';
 import { SelectListItem } from './SelectListItem';
-import { keyCodes } from '../../../../services';
+import { keyCodes } from '../../../constants';
 import { SelectListProps } from './types';
 import style from './SelectList.less';
 

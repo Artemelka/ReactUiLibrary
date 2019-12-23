@@ -1,7 +1,7 @@
 import { Button, ButtonsGroup, IconModule } from '../../../../../elements';
 import { ButtonIconLabelProps, ButtonIconProps, ButtonProps } from '../../../../../elements/buttons/types';
 import { ButtonGroupItems, ExampleParams } from './types';
-import { logger } from '../../../../../../services/utils/utils';
+import { logger } from '../../../../../utils';
 
 const { IconNames } = IconModule;
 

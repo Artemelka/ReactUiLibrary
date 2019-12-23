@@ -3,7 +3,7 @@ import { ButtonsGroup } from '../../../../../elements';
 import {
     FirstDialog, SecondDialog, ThirdDialog, ModalDialogName, ButtonShowModal
 } from '../../../../../components/modals';
-import { getUniqId } from '../../../../../../services/utils/uniq-id';
+import { getUniqId } from '../../../../../utils';
 import { translate } from '../../../../../../services/translate';
 
 const buttonsProps = [

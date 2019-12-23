@@ -4,7 +4,7 @@ import { Button, ButtonsGroup } from '../../../../../elements';
 import {
     FirstPanel, SecondPanel, ThirdPanel, ModalPanelName, ButtonShowModal
 } from '../../../../../components/modals';
-import { getUniqId } from '../../../../../../services/utils/uniq-id';
+import { getUniqId } from '../../../../../utils';
 import { translate } from '../../../../../../services/translate';
 
 const buttonsProps = [

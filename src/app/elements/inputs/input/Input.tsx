@@ -1,6 +1,6 @@
 import React, { Component, KeyboardEvent, SyntheticEvent } from 'react';
 import { InputUi } from './InputUI';
-import { keyCodes } from '../../../../services';
+import { keyCodes } from '../../../constants';
 import { InputProps, InputState } from './types';
 
 export class Input extends Component<InputProps, InputState> {
