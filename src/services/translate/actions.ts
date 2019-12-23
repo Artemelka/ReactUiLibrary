@@ -2,7 +2,7 @@ import { Dispatch, AnyAction } from 'redux';
 import { ErrorMessages, TranslateActions } from './constants';
 import { Dictionary } from './types';
 
-const { ADD_DICTIONARY, CHANGE_LANG, CHANGE_LOADING_STATE } = TranslateActions;
+const { ADD_DICTIONARY, CHANGE_LANG, CHANGE_LOADING } = TranslateActions;
 
 export const addDictionary = (dictionary: Dictionary): AnyAction => ({
     type: ADD_DICTIONARY,
@@ -13,7 +13,7 @@ export const changeLocale = (locale: string): AnyAction => ({
     payload: locale
 });
 export const changeTranslateLoadingState = (isLoading: boolean): AnyAction => ({
-    type: CHANGE_LOADING_STATE,
+    type: CHANGE_LOADING,
     payload: isLoading
 });
 
