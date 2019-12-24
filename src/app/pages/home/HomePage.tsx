@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { LanguageSelect } from '../../components';
 import { TestRequest, TestRouter } from './components';
 import style from './HomePage.less';
 
@@ -19,6 +20,10 @@ export default class HomePage extends Component {
                 <div className={cn('Test-page__item')}>
                     <h3>Test request</h3>
                     <TestRequest/>
+                </div>
+                <div className={cn('Test-page__item')}>
+                    <h3>Test Localization</h3>
+                    <LanguageSelect/>
                 </div>
                 <div className={cn('Test-page__item')}>
                     <h3>Test ...</h3>

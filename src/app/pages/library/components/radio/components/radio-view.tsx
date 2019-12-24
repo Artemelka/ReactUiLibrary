@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Text } from '../../../../../elements/text';
 import { SandboxLayout } from '../../../../../components';
-import { TranslateComponent } from '../../../../../../services/translate';
+import { LocalizationState } from '../../../../../../services/localization/types';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
 import { getUniqId, logger } from '../../../../../utils';
 import { RadioButtonsContainer } from './radio-container';
 import { RadioButtonBaseProps } from '../../../../../elements/inputs/radio/types';
@@ -48,7 +50,7 @@ const itemsHeading: Array<ItemsHeading> = [
     }
 ];
 
-export const RadioView = () => (
+export const RadioViewComponent = ({ labels }: { labels: Record<string, string> }) => (
     <Fragment>
         <BlockItems>
             {itemsHeading.map(({title, props}, index) => {
@@ -62,9 +64,7 @@ export const RadioView = () => (
 
                 return (
                     <Item key={index + title}>
-                        <Text.H4>
-                            <TranslateComponent translateKey={title}/>
-                        </Text.H4>
+                        <Text.H4>{labels[title]}</Text.H4>
                         <RadioButtonsContainer {...nextProps}/>
                     </Item>
                 );
@@ -72,3 +72,7 @@ export const RadioView = () => (
         </BlockItems>
     </Fragment>
 );
+
+export const RadioView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(RadioViewComponent);

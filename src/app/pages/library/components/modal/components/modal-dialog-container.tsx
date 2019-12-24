@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { ButtonsGroup } from '../../../../../elements';
 import {
     FirstDialog, SecondDialog, ThirdDialog, ModalDialogName, ButtonShowModal
 } from '../../../../../components/modals';
 import { getUniqId } from '../../../../../utils';
-import { translate } from '../../../../../../services/translate';
 
 const buttonsProps = [
     {
@@ -22,23 +21,24 @@ const buttonsProps = [
     }
 ];
 
-export class ModalDialogContainer extends Component {
-    render() {
-        return (
-            <Fragment>
-                <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
-                    {buttonsProps.map(({ id, label, modalName }) => (
-                        <ButtonShowModal
-                            accent
-                            key={id}
-                            label={translate(label)}
-                            modalName={modalName}
-                        />))}
-                </ButtonsGroup.Component>
-                <FirstDialog/>
-                <SecondDialog/>
-                <ThirdDialog/>
-            </Fragment>
-        );
-    }
-}
+export const ModalDialogContainer = ({ labels }: { labels: Record<string, string> }) => (
+    <Fragment>
+        <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
+            {buttonsProps.map(({ id, label, modalName }) => (
+                <ButtonShowModal
+                    accent
+                    key={id}
+                    label={labels[label]}
+                    modalName={modalName}
+                />
+            ))}
+        </ButtonsGroup.Component>
+        <FirstDialog title={labels['first-modal-window']} label={labels.close} />
+        <SecondDialog title={labels['second-modal-window']} />
+        <ThirdDialog
+            title={labels['third-modal-window']}
+            label={labels['show-first-modal']}
+            secondLabel={labels['show-second-modal']}
+        />
+    </Fragment>
+);

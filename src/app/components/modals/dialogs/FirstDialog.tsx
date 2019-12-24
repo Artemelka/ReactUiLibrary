@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, ModalModule } from '../../../elements';
-import { translate } from '../../../../services/translate';
 import { modalHOC } from '../modalsHOC';
 import { ModalDialogName } from '../dialogs/constants';
 import { ModalWithHocProps } from '../../../elements/modals/types';
@@ -9,19 +8,19 @@ const { ModalDialog, ModalSize } = ModalModule;
 
 export class FirstDialogComponent extends Component<ModalWithHocProps> {
     render() {
-        const { onClose, modalsUrl } = this.props;
+        const { label, onClose, modalsUrl, title } = this.props;
 
         return (
             <ModalDialog
                 opened={modalsUrl.includes(ModalDialogName.FIRST)}
                 size={ModalSize.LARGE}
-                title={translate('first-modal-window')}
+                title={title}
             >
                 Content
                 <br/><br/><br/>
                 <Button
                     onClick={onClose}
-                    label={translate('close')}
+                    label={label}
                 />
             </ModalDialog>
         );

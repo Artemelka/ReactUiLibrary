@@ -1,14 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { SandboxLayout } from '../../../../../components';
 import { ButtonsGroup, Text } from '../../../../../elements';
-import { TranslateComponent, translate } from '../../../../../../services/translate';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { LocalizationState } from '../../../../../../services/localization/types';
 import { logger } from '../../../../../utils';
 import { buttonsGroupProps, buttonGroupItems } from './constants';
 import { ButtonGroupItems } from './types';
 
 const { BlockItems, Item } = SandboxLayout;
 
-export const ButtonGroupView = () => (
+export const ButtonGroupViewComponent = ({ labels }: { labels: Record<string, string> }) => (
     <BlockItems>
         {buttonGroupItems.map((
             { props: { buttonComponent: Component, ...restProps }, title }: ButtonGroupItems,
@@ -16,14 +18,14 @@ export const ButtonGroupView = () => (
         ) => (
             <Item key={title + index}>
                 <Text.H5>
-                    <TranslateComponent translateKey={title}/>
+                    {labels[title]}
                 </Text.H5>
                 <ButtonsGroup.Component {...restProps}>
                     {buttonsGroupProps.map(({label, ...rest}, index) => (
                         <Component
                             key={index + title}
                             {...rest}
-                            label={translate(label)}
+                            label={labels[label]}
                             onClick={logger(`click ${label}`)}
                         />
                     ))}
@@ -32,3 +34,7 @@ export const ButtonGroupView = () => (
         ))}
     </BlockItems>
 );
+
+export const ButtonGroupView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(ButtonGroupViewComponent);

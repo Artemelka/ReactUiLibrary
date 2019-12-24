@@ -12,57 +12,61 @@ exports[`Test App component Rendering snapshot 1`] = `
     }
   }
 >
-  <Connect(Provider)
-    fetchDictionary={[Function]}
-  >
-    <Connect(ConnectedRouterWithContext)
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "length": 1,
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "/",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
+  <Connect(ConnectedRouterWithContext)
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
       }
+    }
+  >
+    <div
+      className="App"
     >
-      <div
-        className="App"
-      >
-        <Route
-          component={[Function]}
-          exact={true}
-          key="/"
-          path="/"
-        />
-        <Route
-          component={[Function]}
-          key="/library"
-          path="/library"
-        />
-        <Route
-          component={[Function]}
-          key="/layout"
-          path="/layout"
-        />
-        <Route
-          component={[Function]}
-          key="/translate-editor"
-          path="/translate-editor"
-        />
-      </div>
-    </Connect(ConnectedRouterWithContext)>
-  </Connect(Provider)>
+      <Route
+        component={[Function]}
+        exact={true}
+        key="/"
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        key="/library"
+        path="/library"
+      />
+      <Route
+        component={[Function]}
+        key="/layout"
+        path="/layout"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(TranslateEditorPage)",
+            "type": [Function],
+          }
+        }
+        key="/translate-editor"
+        path="/translate-editor"
+      />
+    </div>
+  </Connect(ConnectedRouterWithContext)>
 </Provider>
 `;

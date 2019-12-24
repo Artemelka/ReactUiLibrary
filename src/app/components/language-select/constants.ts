@@ -1,13 +1,9 @@
-import { SelectOptions } from '../../elements/inputs/select/types';
-import { NavigatorLanguage } from '../../../services/translate';
+import { NavigatorLanguage } from '../../../services/localization';
 
 export const SELECT_WIDTH = 150;
-export const selectOptions: Array<SelectOptions> = [
-    {
-        value: NavigatorLanguage.RU,
-        title: 'russian-language'
-    }, {
-        value: NavigatorLanguage.EN,
-        title: 'english-language'
-    }
-];
+export const SELECT_ID = 'test-localization';
+export const selectOptions = {
+    [NavigatorLanguage.RU]: 'russian-language',
+    [NavigatorLanguage.EN]: 'english-language'
+};
+

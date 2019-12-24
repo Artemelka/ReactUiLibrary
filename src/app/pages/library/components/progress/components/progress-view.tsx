@@ -50,24 +50,27 @@ export const ProgressView = () => (
     <Fragment>
         <BlockItems>
             <Text.H3>Circular</Text.H3>
-            {progressCircularProps.map(({id, ...props}) =>
+            {progressCircularProps.map(({id, ...props}) => (
                 <Item key={id}>
                     <ProgressComponent {...props} type="Circular"/>
-                </Item>)}
+                </Item>
+            ))}
         </BlockItems>
         <BlockItems>
             <Text.H3>Linear</Text.H3>
-            {progressProps.map(({id, ...props}) =>
+            {progressProps.map(({id, ...props}) => (
                 <Item key={id}>
                     <ProgressComponent {...props} type="Linear"/>
-                </Item>)}
+                </Item>
+            ))}
         </BlockItems>
         <BlockItems>
             <Text.H3>String</Text.H3>
-            {progressProps.map(({id, ...props}, index) =>
+            {progressProps.map(({id, ...props}, index) => (
                 <Item key={`${id}_${index}`}>
                     <ProgressComponent {...props} type="String"/>
-                </Item>)}
+                </Item>
+            ))}
         </BlockItems>
     </Fragment>
 );

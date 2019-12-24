@@ -3,35 +3,45 @@ import { connect } from 'react-redux';
 import { Table } from '../../elements';
 import { EditorModal } from '../modals';
 import {
-    translate, translateDictionarySelector, translateLocaleSelector, translateLoaderSelector
-} from '../../../services/translate';
-import { Dictionary, DictionaryStore } from '../../../services/translate/types';
+    localizationActiveLocaleSelector,
+    localizationDictionarySelector,
+    localizationIsLoadingSelector,
+    localizationLabelsSelector,
+    localizationLocalesSelector
+} from '../../../services/localization';
+import { LocalizationState } from '../../../services/localization/types';
 
 export interface TranslateEditorProps {
     activeRow: Array<string>;
-    dictionary: Dictionary;
+    dictionary: Record<string, Record<string, string>>;
     isLoading: boolean;
+    labels: Record<string, string>;
     locale: string;
+    locales: Array<string>;
     onCloseModal: () => void;
-    onRemoveRow: (row: Array<string>) => void;
     onEditRow: (row: Array<string>) => void;
+    onRemoveRow: (row: Array<string>) => void;
     opened: boolean;
 }
 
 export class TranslateEditorComponent extends Component<TranslateEditorProps> {
-    constructor(props: TranslateEditorProps) {
-        super(props);
-        this.locales = Object.keys(props.dictionary);
-    }
-
-    locales: Array<string>;
-
     render() {
-        const { activeRow, dictionary, isLoading, locale, onCloseModal, onRemoveRow, onEditRow, opened } = this.props;
-        const headerRow = [translate('key'), ...this.locales];
+        const {
+            activeRow,
+            dictionary,
+            isLoading,
+            labels,
+            locale,
+            locales,
+            onCloseModal,
+            onEditRow,
+            onRemoveRow,
+            opened
+        } = this.props;
+        const headerRow = [labels.key || 'key', ...locales];
         const rows = Object.keys(dictionary[locale]).map(key => [
             key,
-            ...this.locales.map(locale => dictionary[locale][key])
+            ...locales.map(locale => dictionary[locale][key])
         ]);
 
         return (
@@ -48,16 +58,17 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
                     fieldLabels={headerRow}
                     opened={opened}
                     onClose={onCloseModal}
+                    title={labels.editor}
                 />
             </Fragment>
         );
     }
 }
 
-export const TranslateEditor = connect(
-    (store: DictionaryStore)  => ({
-        dictionary: translateDictionarySelector(store),
-        locale: translateLocaleSelector(store),
-        isLoading: translateLoaderSelector(store)
-    })
-)(TranslateEditorComponent);
+export const TranslateEditor = connect((store: Record<string, any> & LocalizationState)  => ({
+    dictionary: localizationDictionarySelector(store),
+    labels: localizationLabelsSelector(store),
+    locale: localizationActiveLocaleSelector(store),
+    locales: localizationLocalesSelector(store),
+    isLoading: localizationIsLoadingSelector(store)
+}))(TranslateEditorComponent);

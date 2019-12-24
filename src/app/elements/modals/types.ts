@@ -14,8 +14,11 @@ export interface ModalDialogProps {
 }
 
 export type ModalWithHocProps = {
+    label: string,
     onClose?: () => void,
-    modalsUrl: Array<string>
+    modalsUrl: Array<string>,
+    secondLabel?: string,
+    title: string
 };
 
 export interface ModalPortalAdapterProps {

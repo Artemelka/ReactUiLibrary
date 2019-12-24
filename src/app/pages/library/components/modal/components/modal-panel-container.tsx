@@ -5,7 +5,6 @@ import {
     FirstPanel, SecondPanel, ThirdPanel, ModalPanelName, ButtonShowModal
 } from '../../../../../components/modals';
 import { getUniqId } from '../../../../../utils';
-import { translate } from '../../../../../../services/translate';
 
 const buttonsProps = [
     {
@@ -38,8 +37,9 @@ type FirstPanelData = {
 type ModalPanelContainerState = {
     firstPanelData: FirstPanelData
 };
+type Props = RouteComponentProps & { labels: Record<string, string> };
 
-export class ModalPanelContainerComponent extends Component<RouteComponentProps, ModalPanelContainerState> {
+export class ModalPanelContainerComponent extends Component<Props, ModalPanelContainerState> {
     state = {
         firstPanelData: {
             title: '',
@@ -62,28 +62,31 @@ export class ModalPanelContainerComponent extends Component<RouteComponentProps,
     };
 
     render() {
+        const { labels } = this.props;
+
         return (
             <Fragment>
                 <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>
                     <Button
                         onClick={this.handleClickShowFirstFilled}
-                        label={translate('show-first-panel-filled')}
+                        label={labels['show-first-panel-filled']}
                     />
                     <Button
                         onClick={this.handleClickShowFirstEmpty}
-                        label={translate('show-first-panel-empty')}
+                        label={labels['show-first-panel-empty']}
                     />
                     {buttonsProps.map(({ id, label, modalName }) => (
                         <ButtonShowModal
                             accent
                             key={id}
-                            label={translate(label)}
+                            label={labels[label]}
                             modalName={modalName}
-                        />))}
+                        />
+                    ))}
                 </ButtonsGroup.Component>
-                <FirstPanel modalData={this.state.firstPanelData} />
-                <SecondPanel/>
-                <ThirdPanel/>
+                <FirstPanel modalData={this.state.firstPanelData} title={labels['first-modal-panel']} />
+                <SecondPanel title={labels['second-modal-panel']} label={labels.close} />
+                <ThirdPanel title={labels['third-modal-panel']} />
             </Fragment>
         );
     }
