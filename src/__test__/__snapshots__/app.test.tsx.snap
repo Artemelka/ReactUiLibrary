@@ -34,39 +34,8 @@ exports[`Test App component Rendering snapshot 1`] = `
       }
     }
   >
-    <div
-      className="App"
-    >
-      <Route
-        component={[Function]}
-        exact={true}
-        key="/"
-        path="/"
-      />
-      <Route
-        component={[Function]}
-        key="/library"
-        path="/library"
-      />
-      <Route
-        component={[Function]}
-        key="/layout"
-        path="/layout"
-      />
-      <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(TranslateEditorPage)",
-            "type": [Function],
-          }
-        }
-        key="/translate-editor"
-        path="/translate-editor"
-      />
-    </div>
+    <Connect(AppContainerComponent) />
+    <Connect(Component) />
   </Connect(ConnectedRouterWithContext)>
 </Provider>
 `;

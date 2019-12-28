@@ -2,6 +2,25 @@ import { handleErrorCreator } from '../handlers';
 import { KeyModel, LocaleModel } from '../models';
 
 export const LocalizationController = {
+    getAllDictionary: (request, response) => {
+        LocaleModel.find().then(locales => {
+            KeyModel.find().then(keys => {
+                response.json(keys.reduce((dictionary = {},{ name, value }) => {
+                    const values = JSON.parse(value);
+
+                    locales.forEach(locale => {
+                        if (!dictionary[locale.name]) {
+                            dictionary[locale.name] = {};
+                        }
+
+                        dictionary[locale.name][name] = values[locale.name]
+                    });
+
+                    return dictionary;
+                }, {}));
+            }).catch(handleErrorCreator('error get labels', response, 411))
+        }).catch(handleErrorCreator('error get locales', response, 412))
+    },
     getLabels: (request, response) => {
         const { activeLocale } = request.query;
 

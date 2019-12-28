@@ -6,5 +6,5 @@ export const languageSelectOptionsSelector = createSelector(
     localizationLabelsSelector,
     localizationLocalesSelector,
     (labels: Record<string, string>, locales: Array<string>) =>
-        locales.map(locale => ({ value: locale, title: labels[selectOptions[locale]] }))
+        locales.map(locale => ({ value: locale, title: labels[selectOptions[locale]] || locale }))
 );

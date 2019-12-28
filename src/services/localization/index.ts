@@ -3,7 +3,8 @@ export {
     addLocalizationLabels,
     addLocalizationLocales,
     changeLocalizationActiveLocale,
-    changeLocalizationLoading
+    changeLocalizationLoading,
+    initLocalizationState
 } from './actions';
 export { ErrorMessages, LOCALIZATION_REDUCER_KEY, NavigatorLanguage } from './constants';
 export { localizationReducer } from './reducer';
@@ -15,3 +16,4 @@ export {
     localizationLocalesSelector,
     localizationStateSelector
 } from './selectors';
+export { StoreKeys, LocalizationState } from './types';

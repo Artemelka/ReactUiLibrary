@@ -1,3 +1,4 @@
+export { AppLoader } from './app-loader/AppLoader';
 export { CodeBlock } from './code-block/CodeBlock';
 export { FooterAside } from './footer/FooterAside';
 export { LanguageSelect } from './language-select';
@@ -14,7 +15,7 @@ export {
     ThirdPanel,
     ModalPanelName
 } from './modals';
-export { TranslateEditor } from './translate-editor/TranslateEditor';
+export { TranslateEditor } from './translate-editor';
 export {
     TextArea,
     TextInput

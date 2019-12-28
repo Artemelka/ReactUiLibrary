@@ -9,9 +9,9 @@ export enum StoreKeys {
 export type LocalizationState = {
     [StoreKeys.ACTIVE_LOCALE]: string,
     [StoreKeys.DICTIONARY]: Record<string, Record<string, string>>,
-    [StoreKeys.LOCALES]: Array<string>,
     [StoreKeys.IS_LOADING]: boolean,
     [StoreKeys.LABELS]: Record<string, string>
+    [StoreKeys.LOCALES]: Array<string>,
 };
 
 export type LocalizationAction<T> = { type: string, payload: T };

@@ -22,6 +22,10 @@ const changeLoading = (state: LocalizationState, payload: boolean): Localization
     ...state,
     [StoreKeys.IS_LOADING]: payload
 });
+const initStore = (state: LocalizationState, payload: LocalizationState): LocalizationState => ({
+    ...state,
+    ...payload
+});
 
 export const localizationReducer = (state: Record<string, any> & LocalizationState = initialState, { payload, type}: AnyAction) => {
     switch (type) {
@@ -35,6 +39,8 @@ export const localizationReducer = (state: Record<string, any> & LocalizationSta
             return addLocales(state, payload);
         case LOCALIZATION_ACTIONS.ADD_LABELS:
             return addLabels(state, payload);
+        case LOCALIZATION_ACTIONS.INIT_STORE:
+            return initStore(state, payload);
         default:
             return state;
     }
