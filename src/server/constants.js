@@ -17,7 +17,6 @@ export const ProxyParams = {
 
 // DB CONST
 
-// const DB_USER = 'reactKitAdmin';
 const DB_USER = 'reactHomeAdmin';
 const DB_PASSWORD = '61406140';
 const DB_URL_PARAMS = 'retryWrites=true&w=majority';
