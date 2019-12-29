@@ -54,11 +54,11 @@ export class SandboxPanel extends Component<Props, State> {
                         {children}
                     </Header>
                 </DropDownSummary>
-                {Content &&
+                {Content && (
                     <DropDownDetails>
                         <Content {...detailsProps}/>
                     </DropDownDetails>
-                }
+                )}
             </DropDownPanel>
         );
     }

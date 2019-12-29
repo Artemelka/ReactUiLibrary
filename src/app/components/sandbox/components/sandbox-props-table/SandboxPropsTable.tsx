@@ -39,7 +39,7 @@ export class SandboxPropsTable extends Component<Props> {
                                     })}
                                     key={`${key}_${index}_${param}`}
                                 >
-                                    {labels[param]}
+                                    {labels[param] || param}
                                 </td>
                             ))}
                             {!params[3] && (
