@@ -1,9 +1,14 @@
 import React, { Component, Fragment, SyntheticEvent } from 'react';
+import { connect } from 'react-redux';
 import { Input } from '../../../../../elements';
-import { TranslateComponent } from '../../../../../../services/translate';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { LocalizationState } from '../../../../../../services/localization/types';
 import { InputProps } from '../../../../../elements/inputs/input/types';
 
-export class TextInputContainer extends Component<InputProps, { counter: number, value: string }> {
+type Props = InputProps & { labels: Record<string, string>};
+type State = { counter: number, value: string };
+
+export class TextInputContainerComponent extends Component<Props, State> {
     static defaultProps = {
         value: ''
     };
@@ -31,15 +36,19 @@ export class TextInputContainer extends Component<InputProps, { counter: number,
     };
 
     render() {
-        const { value: omitValue, onChange: omitOnChange, ...restProps} = this.props;
+        const { value: omitValue, onChange: omitOnChange, labels, ...restProps} = this.props;
 
         return (
             <Fragment>
                 <Input.Text {...restProps} onChange={this.handleChange} value={this.state.value} />
                 <button onClick={this.handleClick}>
-                    <TranslateComponent translateKey="change-value"/>
+                    {labels['change-value']}
                 </button>
             </Fragment>
         );
     }
 }
+
+export const TextInputContainer = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(TextInputContainerComponent);

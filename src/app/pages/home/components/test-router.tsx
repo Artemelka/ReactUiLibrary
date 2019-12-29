@@ -21,8 +21,6 @@ export class TestRouterComponent extends Component<TestRouterProps> {
 
     handleGoBackClick = () => this.props.goBack();
 
-    handleEditorClick = () => this.props.push(`/${TRANSLATE_EDITOR}`);
-
     render() {
         return (
             <ButtonsGroup.Component separatorSize={ButtonsGroup.SeparatorSize.MEDIUM}>

@@ -31,6 +31,7 @@ export interface SideBarLinkProps {
 
 export interface ToggleProps {
     checked: boolean;
+    labels: Record<string, string>;
     onChange: () => void;
 }
 

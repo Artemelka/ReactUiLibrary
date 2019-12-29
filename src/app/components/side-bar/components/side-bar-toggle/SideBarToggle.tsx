@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
+import { localizationLabelsSelector } from '../../../../../services/localization';
+import { LocalizationState } from '../../../../../services/localization/types';
 import { Checkbox, Text } from '../../../../elements';
-import { TranslateComponent } from '../../../../../services/translate';
 import { ToggleProps } from '../../types';
 import style from './SideBarToggle.less';
 
 const cn = classNames.bind(style);
 const CHECKBOX_ID = 'sidebar-toggle';
 
-export class SideBarToggle extends Component<ToggleProps> {
+export class SideBarToggleComponent extends Component<ToggleProps> {
     render() {
-        const { checked, onChange } = this.props;
+        const { checked, labels, onChange } = this.props;
 
         return (
             <div className={cn('Side-bar-toggle')}>
@@ -23,10 +25,14 @@ export class SideBarToggle extends Component<ToggleProps> {
                 />
                 <label className={cn('Side-bar-toggle__label')} htmlFor={CHECKBOX_ID}>
                     <Text.Paragraph>
-                        <TranslateComponent translateKey={'Show index'}/>
+                        {labels['Show index'] || 'Show index'}
                     </Text.Paragraph>
                 </label>
             </div>
         );
     }
 }
+
+export const SideBarToggle = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(SideBarToggleComponent);

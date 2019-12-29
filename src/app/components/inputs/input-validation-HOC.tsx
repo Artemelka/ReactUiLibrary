@@ -1,5 +1,5 @@
-import React, { Component, ComponentType, KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
-import { translate } from '../../../services/translate';
+import React, { Component, ComponentType, SyntheticEvent } from 'react';
+import { log } from 'util';
 
 const ERROR_MESSAGE_KEY = 'input-error-no-empty';
 const ERROR_DEFAULT_MESSAGE_KEY = 'input-error-max-length';
@@ -31,7 +31,7 @@ export const InputValidationHoc = (WrappedComponent: ComponentType<any>) => {
 
         setErrorState = () => this.setState({
             error: true,
-            errorMessage: translate(ERROR_MESSAGE_KEY)
+            errorMessage: this.props.labels[ERROR_MESSAGE_KEY]
         });
 
         changeState = (value: string) => this.setState((state) => ({
@@ -60,13 +60,13 @@ export const InputValidationHoc = (WrappedComponent: ComponentType<any>) => {
         };
 
         render() {
-            const { onChange: omitOnChange, onFocus: omitOnFocus, value: omitValue, ...restProps } = this.props;
+            const { labels, onChange: omitOnChange, onFocus: omitOnFocus, value: omitValue, ...restProps } = this.props;
             const { error, errorMessage, value } = this.state;
 
             return (
                 <WrappedComponent
                     {...restProps}
-                    defaultErrorMessage={translate(ERROR_DEFAULT_MESSAGE_KEY)}
+                    defaultErrorMessage={labels[ERROR_DEFAULT_MESSAGE_KEY]}
                     error={error}
                     errorMessage={errorMessage}
                     onBlur={this.handleBlur}

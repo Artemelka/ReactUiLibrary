@@ -1,7 +1,6 @@
 import React, { Component, SyntheticEvent, Fragment } from 'react';
 import { Button, ModalModule } from '../../../elements';
 import { EditorFormField } from '../../editor-form-fields/EditorFormField';
-import { translate } from '../../../../services/translate';
 import { getUniqId } from '../../../utils';
 
 const { ModalPanel, ModalSize } = ModalModule;
@@ -12,6 +11,7 @@ interface EditorModalProps {
     fieldLabels: Array<string>;
     onClose: () => void;
     opened: boolean;
+    title: string;
 }
 
 export class EditorModal extends Component<EditorModalProps, { [key: string]: string | boolean }> {
@@ -23,14 +23,14 @@ export class EditorModal extends Component<EditorModalProps, { [key: string]: st
     };
 
     render() {
-        const { editRowData, fieldLabels, onClose, opened } = this.props;
+        const { editRowData, fieldLabels, onClose, opened, title } = this.props;
 
         return (
             <ModalPanel
                 onClose={onClose}
                 opened={opened}
                 size={ModalSize.SMALL}
-                title={translate('editor')}
+                title={title}
             >
                 <form style={{padding: '30px'}} onSubmit={this.handleSubmit}>
                     {

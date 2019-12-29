@@ -1,38 +1,37 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 import { Table } from '../../elements';
 import { EditorModal } from '../modals';
-import {
-    translate, translateDictionarySelector, translateLocaleSelector, translateLoaderSelector
-} from '../../../services/translate';
-import { Dictionary, DictionaryStore } from '../../../services/translate/types';
 
 export interface TranslateEditorProps {
     activeRow: Array<string>;
-    dictionary: Dictionary;
+    getDictionary: () => void;
+    headerRow: Array<string>;
     isLoading: boolean;
-    locale: string;
+    labels: Record<string, string>;
     onCloseModal: () => void;
-    onRemoveRow: (row: Array<string>) => void;
     onEditRow: (row: Array<string>) => void;
+    onRemoveRow: (row: Array<string>) => void;
     opened: boolean;
+    rows: Array<Array<string>>;
 }
 
 export class TranslateEditorComponent extends Component<TranslateEditorProps> {
-    constructor(props: TranslateEditorProps) {
-        super(props);
-        this.locales = Object.keys(props.dictionary);
+    componentDidMount(): void {
+        this.props.getDictionary();
     }
 
-    locales: Array<string>;
-
     render() {
-        const { activeRow, dictionary, isLoading, locale, onCloseModal, onRemoveRow, onEditRow, opened } = this.props;
-        const headerRow = [translate('key'), ...this.locales];
-        const rows = Object.keys(dictionary[locale]).map(key => [
-            key,
-            ...this.locales.map(locale => dictionary[locale][key])
-        ]);
+        const {
+            activeRow,
+            isLoading,
+            headerRow,
+            labels,
+            onCloseModal,
+            onEditRow,
+            onRemoveRow,
+            opened,
+            rows
+        } = this.props;
 
         return (
             <Fragment>
@@ -48,16 +47,11 @@ export class TranslateEditorComponent extends Component<TranslateEditorProps> {
                     fieldLabels={headerRow}
                     opened={opened}
                     onClose={onCloseModal}
+                    title={labels.editor}
                 />
             </Fragment>
         );
     }
 }
 
-export const TranslateEditor = connect(
-    (store: DictionaryStore)  => ({
-        dictionary: translateDictionarySelector(store),
-        locale: translateLocaleSelector(store),
-        isLoading: translateLoaderSelector(store)
-    })
-)(TranslateEditorComponent);
+

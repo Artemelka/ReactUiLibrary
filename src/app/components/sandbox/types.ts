@@ -8,6 +8,7 @@ export interface SandboxContainerProps {
     acceptedParametersProps?: {[key: string]: any};
     description: string;
     example: ComponentType;
+    labels: Record<string, string>;
     name: string;
     view: ComponentType;
 }

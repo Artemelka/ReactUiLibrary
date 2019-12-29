@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Text } from '../../../../../elements';
 import { SandboxLayout, TextArea } from '../../../../../components';
+import { LocalizationState } from '../../../../../../services/localization/types';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
 import { logger } from '../../../../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
@@ -57,16 +60,21 @@ const textareaConfigs = [
     }
 ];
 
-export const TextareaView = () => (
+export const TextareaViewComponent = ({ labels }: { labels: Record<string, string> }) => (
     <BlockItems>
         {textareaConfigs.map(({title, props}, index) => (
             <Item key={`${props.id}_${index}`}>
                 <Text.H4>{title}</Text.H4>
                 <TextArea
                     {...props}
+                    labels={labels}
                     onChange={logger('onChange')}
                 />
             </Item>
         ))}
     </BlockItems>
 );
+
+export const TextareaView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(TextareaViewComponent);

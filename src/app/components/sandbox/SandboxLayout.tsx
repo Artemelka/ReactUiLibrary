@@ -1,52 +1,59 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Text } from '../../elements';
-import { TranslateComponent } from '../../../services/translate';
+import { localizationLabelsSelector } from '../../../services/localization';
+import { LocalizationState } from '../../../services/localization/types';
 import { SandboxPanel, SandboxPropsTable, SandboxBlockItems } from './components';
 import { SandboxContainerProps } from './types';
 import style from './sandbox.less';
 
 export const cn = classNames.bind(style);
 
-export const SandboxContainer = ({
+export const SandboxContainerComponent = ({
     acceptedParameters = SandboxPropsTable,
     acceptedParametersProps,
     description,
     example: Example,
+    labels,
     name,
     view: View
 }: SandboxContainerProps) => (
     <div className={cn('Sandbox')}>
         <Text.H1 align="center">{name}</Text.H1>
         <Text.H2>
-            <TranslateComponent translateKey={'description-header'}/>
+            {labels['description-header']}
         </Text.H2>
         <SandboxBlockItems>
             <Text.Paragraph>
-                <TranslateComponent translateKey={description}/>
+                {labels[description]}
             </Text.Paragraph>
         </SandboxBlockItems>
         <SandboxBlockItems>
             <SandboxPanel
                 dataProps={{
-                    detailsProps: acceptedParametersProps,
+                    detailsProps: { ...acceptedParametersProps, labels },
                     summaryProps: {align: 'center'}
                 }}
                 detailsComponent={acceptedParameters}
                 summaryComponent={Text.H5}
             >
-                <TranslateComponent translateKey={'accepted-parameters'}/>
+                {labels['accepted-parameters']}
             </SandboxPanel>
         </SandboxBlockItems>
         <Text.H2>
-            <TranslateComponent translateKey={'example'}/>
+            {labels.example}
         </Text.H2>
         <View/>
         <Text.H2>
-            <TranslateComponent translateKey={'usage-example'}/>
+            {labels['usage-example']}
         </Text.H2>
         <SandboxBlockItems>
             <Example/>
         </SandboxBlockItems>
     </div>
 );
+
+export const SandboxContainer = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(SandboxContainerComponent);

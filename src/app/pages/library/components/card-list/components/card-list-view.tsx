@@ -1,16 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { SandboxLayout } from '../../../../../components';
 import { CardList } from '../../../../../elements';
-import { TranslateComponent, translate } from '../../../../../../services/translate';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { LocalizationState } from '../../../../../../services/localization/types';
 import { CardItems, CardItem } from '../../../../../elements/card-list/types';
 import { logger } from '../../../../../utils';
 
 const { BlockItems, Item } = SandboxLayout;
 const LONG_TEXT = 'lorem-long';
-const getTranslatedItems = (items: CardItems) => items.map((item: CardItem) => ({
+const getTranslatedItems = (items: CardItems, labels: Record<string, string>) => items.map((item: CardItem) => ({
     ...item,
-    content: translate(item.content),
-    title: translate(item.title)
+    content: labels[item.content],
+    title: labels[item.title]
 }));
 const cardItems: CardItems = [
     {
@@ -41,23 +43,23 @@ const cardItems: CardItems = [
     }
 ];
 
-export const CardListView = () => {
-    const items = getTranslatedItems(cardItems);
+export const CardListViewComponent = ({ labels }: { labels: Record<string, string> }) => {
+    const items = getTranslatedItems(cardItems, labels);
 
     return (
         <BlockItems>
             <Item>
-                <h3>
-                    <TranslateComponent translateKey="card-list"/>
-                </h3>
+                <h3>{labels['card-list']}</h3>
                 <CardList cardItems={items} />
             </Item>
             <Item>
-                <h3>
-                    <TranslateComponent translateKey="card-list-with-light"/>
-                </h3>
+                <h3>{labels['card-list-with-light']}</h3>
                 <CardList cardItems={items} light/>
             </Item>
         </BlockItems>
     );
 };
+
+export const CardListView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(CardListViewComponent);

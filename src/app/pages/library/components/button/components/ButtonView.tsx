@@ -1,6 +1,8 @@
 import React, { Component, ComponentType, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Button } from '../../../../../elements';
-import { TranslateComponent, translate } from '../../../../../../services/translate';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { LocalizationState } from '../../../../../../services/localization/types';
 import { SandboxLayout } from '../../../../../components';
 import { examplesParams } from './constants';
 import { ExampleParams } from './types';
@@ -9,13 +11,11 @@ const { BlockItems, Item } = SandboxLayout;
 
 const getButtonType = (type: string) => type === 'Icon' ? Button.Icon : Button.IconLabel;
 
-export const ButtonView = () => (
+export const ButtonViewComponent = ({ labels }: { labels: Record<string, string> }) => (
     <Fragment>
         {examplesParams.map(({ heading, props, type }: ExampleParams, index: number) => (
             <BlockItems key={`${index}_${heading}`}>
-                <h3>
-                    <TranslateComponent translateKey={heading}/>
-                </h3>
+                <h3>{labels[heading]} </h3>
                 {props.map(({label, ...prop}, innerIndex) => {
                     const Component: ComponentType<any> = type ? getButtonType(type) : Button;
 
@@ -23,7 +23,7 @@ export const ButtonView = () => (
                         <Item inline key={`${index}_${heading}_${innerIndex}`}>
                             <Component
                                 {...prop}
-                                {...(label ? { label: translate(label) } : {})}
+                                {...(label ? { label: labels[label] } : {})}
                             />
                         </Item>
                     );
@@ -32,3 +32,7 @@ export const ButtonView = () => (
         ))}
     </Fragment>
 );
+
+export const ButtonView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(ButtonViewComponent);

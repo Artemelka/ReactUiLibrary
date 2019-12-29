@@ -5,6 +5,7 @@ export { CardList } from './card-list';
 export { Checkbox, Input, RadioButtons, Select, Textarea } from './inputs';
 export { DropDownPanel, DropDownDetails, DropDownSummary } from './drop-down-panel';
 export { IconModule } from './icon';
+export { Loader } from './loader/Loader';
 export { ModalModule } from './modals';
 export { Overlay } from './overlay';
 export { Portal } from './portal/Portal';

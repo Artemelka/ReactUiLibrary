@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { TranslateComponent } from '../../../../../services/translate';
 import style from './SandboxPropsTable.less';
 
 const cn = classNames.bind(style);
@@ -9,11 +8,12 @@ const TABLE_HEADINGS = ['prop-name', 'type', 'description', 'required'];
 type StringArray = Array<string>;
 interface Props {
     items: Array<StringArray>;
+    labels: Record<string, string>;
 }
 
 export class SandboxPropsTable extends Component<Props> {
     render() {
-        const { items } = this.props;
+        const { items, labels } = this.props;
 
         return (
             <table className={cn('Sandbox-props-table')}>
@@ -24,13 +24,13 @@ export class SandboxPropsTable extends Component<Props> {
                                 className={cn('Sandbox-props-table__heading')}
                                 key={`${index}_${heading}`}
                             >
-                                <TranslateComponent translateKey={heading}/>
+                                {labels[heading]}
                             </th>
                         ))}
                     </tr>
                     {items.map((params, key) => (
                         <tr className={cn('Sandbox-props-table__row')} key={`${key}_${params[0]}`}>
-                            {params.map((param, index) =>
+                            {params.map((param, index) => (
                                 <td
                                     className={cn('Sandbox-props-table__column', {
                                         'Sandbox-props-table__column--type': index === 1,
@@ -39,14 +39,14 @@ export class SandboxPropsTable extends Component<Props> {
                                     })}
                                     key={`${key}_${index}_${param}`}
                                 >
-                                    <TranslateComponent translateKey={param}/>
+                                    {labels[param]}
+                                </td>
+                            ))}
+                            {!params[3] && (
+                                <td className={cn('Sandbox-props-table__column', 'Sandbox-props-table__column--small')}>
+                                    {labels.no}
                                 </td>
                             )}
-                            {!params[3] &&
-                                <td className={cn('Sandbox-props-table__column', 'Sandbox-props-table__column--small')}>
-                                    <TranslateComponent translateKey={'no'}/>
-                                </td>
-                            }
                         </tr>
                     ))}
                 </tbody>

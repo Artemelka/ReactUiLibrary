@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { ModalModule } from '../../../elements';
-import { translate } from '../../../../services/translate';
 import { ModalDialogName } from '../dialogs/constants';
 import { modalHOC } from '../modalsHOC';
 import { ButtonShowModal } from '../button-show-modal';
@@ -11,24 +10,24 @@ const { ModalDialog, ModalSize } = ModalModule;
 
 export class ThirdDialogComponent extends Component<ModalWithHocProps & RouteComponentProps> {
     render() {
-        const { onClose, modalsUrl } = this.props;
+        const { label, onClose, modalsUrl, secondLabel, title } = this.props;
 
         return (
             <ModalDialog
                 onClose={onClose}
                 opened={modalsUrl.includes(ModalDialogName.THIRD)}
                 size={ModalSize.SMALL}
-                title={translate('third-modal-window')}
+                title={title}
             >
                 Content
                 <br/><br/><br/>
                 <ButtonShowModal
-                    label={translate('show-first-modal')}
+                    label={label}
                     modalName={ModalDialogName.FIRST}
                 />
                 <br/><br/><br/>
                 <ButtonShowModal
-                    label={translate('show-second-modal')}
+                    label={secondLabel}
                     modalName={ModalDialogName.SECOND}
                 />
             </ModalDialog>

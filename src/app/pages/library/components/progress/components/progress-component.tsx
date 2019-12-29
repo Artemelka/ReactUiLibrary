@@ -1,7 +1,9 @@
 import React, { Component, ComponentType } from 'react';
+import { connect } from 'react-redux';
 import { Progress } from '../../../../../elements';
 import { SandboxLayout } from '../../../../../components';
-import { TranslateComponent } from '../../../../../../services/translate';
+import { LocalizationState } from '../../../../../../services/localization/types';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
 import { ProgressProps } from '../../../../../elements/progress/types';
 import { ProgressState, ComponentProps, ComponentCircularProps } from './types';
 
@@ -17,8 +19,11 @@ const selectComponent = (type: string) => {
     }
 };
 
-export class ProgressComponent extends Component<ComponentProps | ComponentCircularProps, ProgressState> {
-    constructor(props: ComponentProps) {
+type BaseProps = ComponentProps | ComponentCircularProps;
+type Props = BaseProps & { labels: Record<string, string> };
+
+export class ProgressComponentContainer extends Component<Props, ProgressState> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -36,7 +41,7 @@ export class ProgressComponent extends Component<ComponentProps | ComponentCircu
 
     render() {
         const { value } = this.state;
-        const { percent: omitPercent, type: omitType, ...restProps } = this.props;
+        const { percent: omitPercent, type: omitType, labels, ...restProps } = this.props;
         const { component: Component } = this;
 
         return (
@@ -46,13 +51,17 @@ export class ProgressComponent extends Component<ComponentProps | ComponentCircu
                 </Item>
                 <Item>
                     <button onClick={this.handleAddClick} disabled={value === 100}>
-                        <TranslateComponent translateKey="add-progress"/>
+                        {labels['add-progress']}
                     </button>
                     <button onClick={this.handleResetClick} disabled={value === 0}>
-                        <TranslateComponent translateKey="reset-progress"/>
+                        {labels['reset-progress']}
                     </button>
                 </Item>
             </BlockItems>
         );
     }
 }
+
+export const ProgressComponent = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(ProgressComponentContainer);

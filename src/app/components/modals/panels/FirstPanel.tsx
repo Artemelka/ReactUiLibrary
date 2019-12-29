@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ModalModule, Input, Textarea } from '../../../elements';
-import { translate } from '../../../../services/translate';
 import { ModalPanelName } from '../panels/constants';
 import { modalHOC } from '../modalsHOC';
 import { ModalWithHocProps } from '../../../elements/modals/types';
@@ -17,17 +16,17 @@ interface FirstPanelComponentProps extends ModalWithHocProps {
 
 export class FirstPanelComponent extends Component<FirstPanelComponentProps> {
     render() {
-        const { modalData: { title = '', description = '' } = {}, onClose, modalsUrl } = this.props;
+        const { modalData: { title: inputTitle = '', description = '' } = {}, onClose, modalsUrl, title } = this.props;
 
         return (
             <ModalPanel
                 onClose={onClose}
                 opened={modalsUrl.includes(ModalPanelName.FIRST)}
                 size={ModalSize.LARGE}
-                title={translate('first-modal-panel')}
+                title={title}
             >
                 <div style={{padding: '30px'}}>
-                    <Input.Text value={title} id="first-panel-title"/>
+                    <Input.Text value={inputTitle} id="first-panel-title" name="first-panel-title"/>
                     <br/>
                     <br/>
                     <br/>

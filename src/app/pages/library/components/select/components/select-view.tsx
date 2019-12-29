@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Text } from '../../../../../elements/text';
 import { SandboxLayout } from '../../../../../components';
 import { SelectList } from '../../../../../elements/inputs/select/SelectList';
-import { TranslateComponent } from '../../../../../../services/translate';
-import { SelectContainer } from './select-container';
+import { LocalizationState } from '../../../../../../services/localization/types';
+import { localizationLabelsSelector } from '../../../../../../services/localization';
 import { logger } from '../../../../../utils';
+import { SelectContainer } from './select-container';
 import { SelectOptions, SelectProps } from '../../../../../elements/inputs/select/types';
 
 type SelectExampleProps = SelectProps & { label: string };
@@ -52,7 +54,7 @@ const selectExampleProps: Array<SelectExampleProps> = [
     },
 ];
 
-export const SelectView = () => (
+export const SelectViewComponent = ({ labels }: { labels: Record<string, string> }) => (
     <Fragment>
         <BlockItems>
             <Text.H4>
@@ -70,12 +72,14 @@ export const SelectView = () => (
         <BlockItems>
             {selectExampleProps.map(({ label, ...restProps}: SelectExampleProps, index: number) => (
                 <Item key={index}>
-                    <Text.H4>
-                        <TranslateComponent translateKey={label}/>
-                    </Text.H4>
+                    <Text.H4>{labels[label]}</Text.H4>
                     <SelectContainer {...restProps} />
                 </Item>
             ))}
         </BlockItems>
     </Fragment>
 );
+
+export const SelectView = connect((state: Record<string, any> & LocalizationState) => ({
+    labels: localizationLabelsSelector(state)
+}))(SelectViewComponent);

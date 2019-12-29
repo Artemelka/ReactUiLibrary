@@ -10,14 +10,14 @@ export const request = (url: string, config: Record<string, any> = {}): Promise<
         timeout = DEFAULT_TIMEOUT,
         ...restConfig
     } = config;
-    const requestData = method !== GET ? {data} : {};
 
     const options = {
+        ...restConfig,
         url,
         method,
         timeout,
-        data: requestData,
-        ...restConfig
+        data: method !== GET ? data : {},
+        params: method === GET ? data : {}
     };
 
     return new Promise((resolve, reject) => {
