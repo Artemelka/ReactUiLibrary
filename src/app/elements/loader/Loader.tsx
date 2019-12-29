@@ -8,10 +8,11 @@ const { Icon, IconNames } = IconModule;
 
 interface LoaderProps {
     enabled?: boolean;
+    inContainer?: boolean;
 }
 
-export const Loader: FC<LoaderProps> = ({ enabled }: LoaderProps): JSX.Element => (
-    <div className={cn('Loader', { 'Loader--show': enabled })}>
+export const Loader: FC<LoaderProps> = ({ enabled, inContainer }: LoaderProps): JSX.Element => (
+    <div className={cn('Loader', { 'Loader--show': enabled, 'Loader--in-container': inContainer })}>
         <div className={cn('Loader__content')}>
             <Icon name={IconNames.SYNC} fontSize={40} spin/>
         </div>

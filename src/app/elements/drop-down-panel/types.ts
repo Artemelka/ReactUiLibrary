@@ -1,4 +1,4 @@
-import { ReactChildren } from 'react';
+import { ReactElement } from 'react';
 
 export interface DropDownPanelProps {
     actionIcon?: {
@@ -14,7 +14,7 @@ export interface DropDownPanelProps {
 }
 
 export interface DropDownPropsWithChildren extends DropDownPanelProps {
-    children: ReactChildren;
+    children: Array<ReactElement>;
 }
 
 export interface DropDownSummaryProps {
