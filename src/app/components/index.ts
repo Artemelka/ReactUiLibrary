@@ -1,4 +1,10 @@
-export { AppLoader } from './app-loader/AppLoader';
+export {
+    AppLoader,
+    APP_LOADER_REDUCER_KEY,
+    appLoaderIsLoadingSelector,
+    appLoaderReducer,
+    changeAppLoaderState
+} from './app-loader';
 export { CodeBlock } from './code-block/CodeBlock';
 export { FooterAside } from './footer/FooterAside';
 export { LanguageSelect } from './language-select';
