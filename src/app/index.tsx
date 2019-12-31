@@ -6,12 +6,15 @@ import { history } from './app-history';
 import { AppContainer } from './app';
 import { AppLoader } from './components';
 
-export const App = () => (
-    <Provider store={appStore}>
+export const App = () => {
+    console.log('=== process ===', process.env);
+    return (
+        <Provider store={appStore}>
             <ConnectedRouter history={history}>
                 <AppContainer />
                 <AppLoader />
             </ConnectedRouter>
-    </Provider>
-);
+        </Provider>
+    );
+};
 

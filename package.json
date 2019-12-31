@@ -113,7 +113,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run client\" \"npm run server\"",
-    "client": "webpack-dev-server --history-api-fallback --open --mode development",
+    "client": "webpack-dev-server --history-api-fallback --open --mode development --env.MOCK=true",
     "server": "node src/server/index.js",
     "stylelint": "stylelint \"src/**/*.less\"",
     "eslint": "eslint \"src/server/**/*.@(js|jsx)\"",
