@@ -2,14 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import { request } from '../app/utils';
+import { HTTP_STATUSES } from '../app/constants';
 
 const GET_URL_RESOLVE = 'https://api.com/success';
 const GET_URL_REJECT = 'https://api.com/reject';
 const POST_URL = 'https://api.com/post';
-const Statuses = {
-    OK: 200,
-    SERVER_ERROR: 500,
-};
 const errorData = {
     error: 'SERVER_ERROR',
     error_description: 'error_description'
@@ -24,14 +21,14 @@ const postConfig = {
     method: 'POST',
     data: { user: fakeUser.users[0] }
 };
-const callbackStatus = () => ([Statuses.OK, fakeUser]);
+const callbackStatus = () => ([HTTP_STATUSES.OK, fakeUser]);
 const MockAdapter = new AxiosMockAdapter(axios);
 
 describe('Test request', () => {
     beforeAll(() => {
         MockAdapter.onGet(GET_URL_RESOLVE).reply(callbackStatus);
-        MockAdapter.onGet(GET_URL_REJECT).reply(Statuses.SERVER_ERROR, errorData);
-        MockAdapter.onPost(POST_URL).reply(Statuses.OK, {user: fakeUser.users[0]});
+        MockAdapter.onGet(GET_URL_REJECT).reply(HTTP_STATUSES.INTERNAL_ERROR, errorData);
+        MockAdapter.onPost(POST_URL).reply(HTTP_STATUSES.OK, {user: fakeUser.users[0]});
     });
     test('Expect correct send GET', (done) => {
         request(GET_URL_RESOLVE)

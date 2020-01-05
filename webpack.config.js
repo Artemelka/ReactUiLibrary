@@ -3,7 +3,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
-module.exports = (env) => {
+module.exports = (env = {}) => {
     return ({
         entry: "./src/index.tsx",
         output: {

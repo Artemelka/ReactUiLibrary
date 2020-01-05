@@ -5,9 +5,13 @@ import { appStore } from './store';
 import { history } from './app-history';
 import { AppContainer } from './app';
 import { AppLoader } from './components';
+import { mockAllRequest } from './api';
 
 export const App = () => {
-    console.log('=== process ===', process.env);
+    if (process.env && process.env.MOCK) {
+        mockAllRequest();
+    }
+
     return (
         <Provider store={appStore}>
             <ConnectedRouter history={history}>
