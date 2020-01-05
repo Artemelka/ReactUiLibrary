@@ -3,6 +3,7 @@ import NotFoundPage from './not-found/NotFound';
 import LayoutPage from './layout/LayoutPage';
 import HomePage from './home/HomePage';
 import TranslateEditorPage from './translate-editor/TranslateEditorPage';
+import FinalFormPage from './final-form/FinalFormPage';
 import { RouteProps } from './types';
 
 export const pages: Array<RouteProps> = [
@@ -19,6 +20,9 @@ export const pages: Array<RouteProps> = [
     }, {
         component: TranslateEditorPage,
         path: '/translate-editor'
+    }, {
+        component: FinalFormPage,
+        path: '/final-form'
     }
 ];
 

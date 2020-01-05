@@ -59,7 +59,7 @@ export class Textarea extends Component<TextareaContainerProps, TextareaContaine
     render() {
         const { error, errorMessage, id, value, ...restProps } = this.props;
         const { error: innerError, errorMessage: innerMessage } = this.state;
-console.log('=== Textarea ===', value);
+
         return (
             <TextareaUI
                 {...restProps}
