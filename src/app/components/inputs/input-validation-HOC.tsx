@@ -47,6 +47,8 @@ export const InputValidationHoc = (WrappedComponent: ComponentType<any>) => {
             if (!(value.length || isPristine)) {
                 this.setErrorState();
             }
+
+            this.props.onBlur(this.props.name);
         };
 
         handleChange = (event: SyntheticEvent<HTMLTextAreaElement>, value: string) => {
@@ -56,7 +58,7 @@ export const InputValidationHoc = (WrappedComponent: ComponentType<any>) => {
 
         handleFocus = () => {
             this.setState({ isPristine: false });
-            this.props.onFocus();
+            this.props.onFocus(this.props.name);
         };
 
         render() {

@@ -3,13 +3,13 @@ import { Table } from '../../elements';
 import { EditorModal } from '../modals';
 
 export interface TranslateEditorProps {
-    activeRow: Array<string>;
+    activeRow: Array<Record<string, string>>;
     getDictionary: () => void;
     headerRow: Array<string>;
     isLoading: boolean;
     labels: Record<string, string>;
     onCloseModal: () => void;
-    onEditRow: (row: Array<string>) => void;
+    onEditRow: (row: Array<Record<string, string>>) => void;
     onRemoveRow: (row: Array<string>) => void;
     opened: boolean;
     rows: Array<Array<string>>;

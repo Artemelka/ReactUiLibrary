@@ -1,7 +1,7 @@
 export interface TableProps {
     isLoading?: boolean;
     headerRow: Array<string>;
-    onEditRow?: (columns: Array<string>) => void;
+    onEditRow?: (columns: Array<Record<string, string>>) => void;
     onRemoveRow?: (columns: Array<string>) => void;
     rows: Array<Array<string>>;
 }

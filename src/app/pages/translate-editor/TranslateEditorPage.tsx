@@ -11,13 +11,13 @@ const cn = classNames.bind(style);
 
 type Props = { labels: Record<string, string> };
 export type TranslateEditorPageState = {
-    activeRow: Array<string>,
+    activeRow: Array<Record<string, string>>,
     opened: boolean
 };
 
 export  class TranslateEditorPage extends Component<Props, TranslateEditorPageState> {
     state = {
-        activeRow: [''],
+        activeRow: [{}],
         opened: false
     };
 
@@ -25,9 +25,9 @@ export  class TranslateEditorPage extends Component<Props, TranslateEditorPageSt
 
     handleRemoveRow = (rowData: Array<string>) => console.log('handleRemoveRow', rowData);
 
-    handleEditRow = (rowData: Array<string>) => this.setState({ activeRow: rowData, opened: true});
+    handleEditRow = (rowData: Array<Record<string, string>>) => this.setState({ activeRow: rowData, opened: true});
 
-    handleAddKey = () => this.setState({ activeRow: [''], opened: true});
+    handleAddKey = () => this.setState({ activeRow: [{}], opened: true});
 
     render() {
         const { activeRow, opened } = this.state;

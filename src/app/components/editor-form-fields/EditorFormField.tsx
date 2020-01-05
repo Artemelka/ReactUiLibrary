@@ -5,7 +5,9 @@ interface EditorFormFieldProps {
     id: string;
     index: number;
     name: string;
+    onBlur: (name: string) => void;
     onChange: (value: string, name: string) => void;
+    onFocus: (name: string) => void;
     value: string;
 }
 

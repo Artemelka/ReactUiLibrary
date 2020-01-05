@@ -6,6 +6,7 @@ export {
     changeAppLoaderState
 } from './app-loader';
 export { CodeBlock } from './code-block/CodeBlock';
+export { EditorForm } from './editor-form/EditorForm';
 export { FooterAside } from './footer/FooterAside';
 export { LanguageSelect } from './language-select';
 export { SandboxPanel, SandboxPropsTable } from './sandbox/components';

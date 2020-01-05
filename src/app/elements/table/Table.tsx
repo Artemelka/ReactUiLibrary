@@ -9,8 +9,14 @@ import style from './Table.less';
 const cn = classNames.bind(style);
 
 export class Table extends Component<TableProps> {
+    handleEditRow = (columns: Array<string>) => {
+        const { headerRow, onEditRow } = this.props;
+
+        onEditRow(headerRow.map((value: string, index: number) => ({ [value]: columns[index] })));
+    };
+
     render() {
-        const { isLoading, headerRow, onEditRow, onRemoveRow, rows } = this.props;
+        const { isLoading, headerRow, onRemoveRow, rows } = this.props;
         const width = TableWidth.COLUMN * headerRow.length + TableWidth.BUTTON_COLUMN + TableWidth.BODY_PADDING_RIGHT;
         const rowMinWidth = `${width}px`;
 
@@ -24,7 +30,7 @@ export class Table extends Component<TableProps> {
                         <TableRow
                             columns={row}
                             editable
-                            onEdit={onEditRow}
+                            onEdit={this.handleEditRow}
                             onRemove={onRemoveRow}
                             key={index + row[0]}
                         />
