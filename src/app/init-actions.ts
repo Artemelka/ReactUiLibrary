@@ -1,9 +1,16 @@
 import { Dispatch } from 'redux';
-import { ErrorMessages, initLocalizationState, StoreKeys } from '../services/localization';
+import {
+    ErrorMessages,
+    initLocalizationState,
+    localizationIsLoadingSelector,
+    localizationLoadingCountSelector,
+    StoreKeys
+} from '../services/localization';
 import { changeAppLoaderState } from './components';
 import { API } from './api';
+import { LocalizationState } from '../services/localization/types';
 
-export const initLocalization = () => (dispatch: Dispatch) => {
+export const initLocalization = () => (dispatch: Dispatch, getState: () => Record<string, any> & LocalizationState): void => {
     dispatch(changeAppLoaderState(true));
 
     const userLanguage = window.navigator.language;
@@ -17,7 +24,8 @@ export const initLocalization = () => (dispatch: Dispatch) => {
                 [StoreKeys.LABELS]: response,
                 [StoreKeys.LOCALES]: locales,
                 [StoreKeys.ACTIVE_LOCALE]: activeLocale,
-                [StoreKeys.IS_LOADING]: false
+                [StoreKeys.IS_LOADING]: localizationIsLoadingSelector(getState()),
+                [StoreKeys.LOADING_COUNT]: localizationLoadingCountSelector(getState())
             }));
             dispatch(changeAppLoaderState(false));
         }).catch(error => {

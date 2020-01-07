@@ -12,7 +12,7 @@ export class Table extends Component<TableProps> {
     handleEditRow = (columns: Array<string>) => {
         const { headerRow, onEditRow } = this.props;
 
-        onEditRow(headerRow.map((value: string, index: number) => ({ [value]: columns[index] })));
+        onEditRow(headerRow.reduce((acc: Record<string, string>, value: string, index: number) => ({...acc, [value]: columns[index] }), {}));
     };
 
     render() {
@@ -26,16 +26,25 @@ export class Table extends Component<TableProps> {
                     <TableRow columns={headerRow} header/>
                 </thead>
                 <tbody className={cn('Table__body', { 'Table__body--loader': isLoading })} style={{ minWidth: rowMinWidth }}>
-                    {rows.map((row, index) => (
-                        <TableRow
-                            columns={row}
-                            editable
-                            onEdit={this.handleEditRow}
-                            onRemove={onRemoveRow}
-                            key={index + row[0]}
-                        />
-                    ))}
-                    <Loader enabled={isLoading} inContainer />
+                    {isLoading
+                        ? (
+                            <tr className={cn('Table__loader-row')}>
+                                <td className={cn('Table__loader-col')}>
+                                    <Loader enabled={isLoading} inContainer />
+                                </td>
+                            </tr>
+                        ) : (
+                            rows.map((row, index) => (
+                                <TableRow
+                                    columns={row}
+                                    editable
+                                    onEdit={this.handleEditRow}
+                                    onRemove={onRemoveRow}
+                                    key={index + row[0]}
+                                />
+                            )
+                        ))
+                    }
                 </tbody>
             </table>
         );

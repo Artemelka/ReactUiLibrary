@@ -1,6 +1,5 @@
 import { nameSpaceCreator } from '../index';
 import { StoreKeys } from './types';
-import dictionary from '../../server/routes/translate/dictionary.json';
 
 export const LOCALIZATION_REDUCER_KEY = 'localization';
 
@@ -19,6 +18,7 @@ export const initialState = {
     [StoreKeys.DICTIONARY]: {},
     [StoreKeys.IS_LOADING]: false,
     [StoreKeys.LABELS]: DEFAULT_DICTIONARY[NavigatorLanguage.RU],
+    [StoreKeys.LOADING_COUNT]: 0,
     [StoreKeys.LOCALES]: [NavigatorLanguage.RU, NavigatorLanguage.EN],
 };
 
@@ -27,7 +27,8 @@ export const LOCALIZATION_ACTIONS = nameSpaceCreator(`@@${LOCALIZATION_REDUCER_K
     'ADD_LABELS',
     'ADD_LOCALES',
     'CHANGE_LOCALE',
-    'CHANGE_LOADING',
+    'START_LOADING',
+    'STOP_LOADING',
     'INIT_STORE'
 ]);
 

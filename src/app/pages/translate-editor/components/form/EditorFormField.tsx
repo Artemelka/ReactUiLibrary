@@ -1,9 +1,6 @@
 import React, { ComponentType } from 'react';
-import { Textarea, Input } from '../../../elements';
-import { TextInputProps } from '../../../elements/inputs/input/types';
-import { TextareaContainerProps } from '../../../elements/inputs/textarea/types';
-
-type EditorFormFieldProps = (TextInputProps | TextareaContainerProps);
+import { Textarea, Input } from '../../../../elements';
+import { EditorFormFieldProps } from '../types';
 
 export const EditorFormField = (props: EditorFormFieldProps) => {
     const isKeyName = props.name === 'key';

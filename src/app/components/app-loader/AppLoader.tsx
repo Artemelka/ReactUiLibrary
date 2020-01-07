@@ -4,6 +4,6 @@ import { Loader } from '../../elements';
 import { appLoaderIsLoadingSelector } from './selectors';
 import { AppState, AppLoaderProps } from './types';
 
-export const AppLoader: FC<AppLoaderProps> = connect((state: AppState): AppLoaderProps => ({
+export const AppLoader = connect((state: AppState): AppLoaderProps => ({
     enabled: appLoaderIsLoadingSelector(state)
 }))(Loader);

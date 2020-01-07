@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { FooterAside, LanguageSelect } from '../../components';
 import { Button, IconModule, Text } from '../../elements';
+import { PageLayout } from '../../layouts';
 import { EditorTable, EditorModal } from './components';
 import style from './TranslateEditorPage.less';
 
 const cn = classNames.bind(style);
+const { Footer, Main, Page } = PageLayout;
 
 interface TranslateEditorPageProps {
     labels: Record<string, string>;
 }
 type TranslateEditorPageState = {
-    activeRow: Array<Record<string, string>>,
+    activeRow: Record<string, string>,
     opened: boolean
 };
 
 export class TranslateEditorPageComponent extends Component<TranslateEditorPageProps, TranslateEditorPageState> {
     state = {
-        activeRow: [{}],
+        activeRow: {},
         opened: false
     };
 
@@ -24,10 +27,13 @@ export class TranslateEditorPageComponent extends Component<TranslateEditorPageP
 
     handleRemoveRow = (rowData: Array<string>) => console.log('handleRemoveRow', rowData);
 
-    handleEditRow = (rowData: Array<Record<string, string>>) => this.setState({ activeRow: rowData, opened: true});
+    handleEditRow = (rowData: Record<string, string>) => this.setState({
+        activeRow: rowData,
+        opened: true
+    });
 
     handleAddKey = () => this.setState(({ activeRow }) => ({
-        activeRow: activeRow.map((fieldParams: Record<string, string>) => ({ [fieldParams.name]: '' })),
+        activeRow: Object.keys(activeRow).reduce((acc, name: string) => ({...acc, [name]: '' }), {}),
         opened: true
     }));
 
@@ -36,26 +42,31 @@ export class TranslateEditorPageComponent extends Component<TranslateEditorPageP
         const { labels } = this.props;
 
         return (
-            <div className={cn('Translate-editor-page')}>
-                <Text.H1>Translate editor</Text.H1>
-                <div className={cn('Translate-editor-page__action-bar')}>
-                    <Button.IconLabel
-                        iconName={IconModule.IconNames.PLUS}
-                        label={labels['add-key'] || 'add-key'}
-                        onClick={this.handleAddKey}
-                    />
-                </div>
-                <EditorTable
-                    onEditRow={this.handleEditRow}
-                    onRemoveRow={this.handleRemoveRow}
-                />
-                <EditorModal
-                    editRowData={activeRow}
-                    opened={opened}
-                    onClose={this.handleCloseModal}
-                    title={labels.editor}
-                />
-            </div>
+            <Page>
+                <Main withoutHeader fullWidth>
+                    <div className={cn('Translate-editor-page')}>
+                        <Text.H1>{labels['translate-editor']}</Text.H1>
+                        <div className={cn('Translate-editor-page__action-bar')}>
+                            <Button.IconLabel
+                                iconName={IconModule.IconNames.PLUS}
+                                label={labels['add-key'] || 'add-key'}
+                                onClick={this.handleAddKey}
+                            />
+                        </div>
+                        <EditorTable
+                            onEditRow={this.handleEditRow}
+                            onRemoveRow={this.handleRemoveRow}
+                        />
+                        <EditorModal
+                            editRowData={activeRow}
+                            opened={opened}
+                            onClose={this.handleCloseModal}
+                            title={labels.editor}
+                        />
+                    </div>
+                </Main>
+                <Footer footerAside={FooterAside} rightContent={LanguageSelect}/>
+            </Page>
         );
     }
 }

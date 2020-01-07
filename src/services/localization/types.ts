@@ -1,16 +1,18 @@
 export enum StoreKeys {
     ACTIVE_LOCALE = 'activeLocale',
-    LOCALES = 'locales',
     DICTIONARY = 'dictionary',
     IS_LOADING = 'isLoading',
-    LABELS = 'labels'
+    LABELS = 'labels',
+    LOADING_COUNT = 'loadingCount',
+    LOCALES = 'locales'
 }
 
 export type LocalizationState = {
     [StoreKeys.ACTIVE_LOCALE]: string,
     [StoreKeys.DICTIONARY]: Record<string, Record<string, string>>,
     [StoreKeys.IS_LOADING]: boolean,
-    [StoreKeys.LABELS]: Record<string, string>
+    [StoreKeys.LABELS]: Record<string, string>,
+    [StoreKeys.LOADING_COUNT]: number,
     [StoreKeys.LOCALES]: Array<string>,
 };
 

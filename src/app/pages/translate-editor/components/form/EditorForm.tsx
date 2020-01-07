@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '../../../elements';
-import { Form } from '../../../components';
-import { localizationLabelsSelector } from '../../../../services/localization';
+import { Button } from '../../../../elements';
+import { Form } from '../../../../components';
+import { localizationLabelsSelector } from '../../../../../services/localization';
 import { EditorFormField } from './EditorFormField';
-import { LocalizationState } from '../../../../services/localization/types';
+import { validate } from './validation';
+import { LocalizationState } from '../../../../../services/localization/types';
+import { EditorFormProps } from '../types';
 
 const subscription = {
     fields: {
@@ -18,16 +20,7 @@ const subscription = {
         values: true
     }
 };
-const validate = (values: Record<string, string>) => {
-    return {};
-};
 
-interface EditorFormProps {
-    editRowData: Array<Record<string, string>>;
-    fieldLabels: Array<string>;
-    labels: Record<string, string>;
-    onSubmit: (values: Record<string, string>) => void;
-}
 
 export class EditorFormComponent extends Component<EditorFormProps> {
     render() {
@@ -37,7 +30,7 @@ export class EditorFormComponent extends Component<EditorFormProps> {
             <Form
                 fieldsName={fieldLabels}
                 formConfig={{
-                    initialValues: editRowData.reduce((acc, item) => ({ ...acc, ...item}), {}),
+                    initialValues: editRowData,
                     onSubmit,
                     validate
                 }}

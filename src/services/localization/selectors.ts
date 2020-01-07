@@ -8,7 +8,10 @@ export const localizationDictionarySelector = (state: Record<string, any> & Loca
     state[LOCALIZATION_REDUCER_KEY][StoreKeys.DICTIONARY];
 
 export const localizationIsLoadingSelector = (state: Record<string, any> & LocalizationState): boolean =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.IS_LOADING];
+    state[LOCALIZATION_REDUCER_KEY][StoreKeys.IS_LOADING] || state[LOCALIZATION_REDUCER_KEY][StoreKeys.LOADING_COUNT] !== 0;
+
+export const localizationLoadingCountSelector = (state: Record<string, any> & LocalizationState): number =>
+    state[LOCALIZATION_REDUCER_KEY][StoreKeys.LOADING_COUNT];
 
 export const localizationLabelsSelector = (state: Record<string, any> & LocalizationState): Record<string, string> =>
     state[LOCALIZATION_REDUCER_KEY][StoreKeys.LABELS];

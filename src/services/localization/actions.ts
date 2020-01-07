@@ -1,7 +1,15 @@
 import { LOCALIZATION_ACTIONS } from './constants';
 import { LocalizationAction, LocalizationState } from './types';
 
-const { ADD_DICTIONARY, ADD_LABELS, ADD_LOCALES, CHANGE_LOCALE, CHANGE_LOADING, INIT_STORE } = LOCALIZATION_ACTIONS;
+const {
+    ADD_DICTIONARY,
+    ADD_LABELS,
+    ADD_LOCALES,
+    CHANGE_LOCALE,
+    START_LOADING,
+    STOP_LOADING,
+    INIT_STORE
+} = LOCALIZATION_ACTIONS;
 
 export const addLocalizationDictionary = (dictionary: Record<string, Record<string, string>>): LocalizationAction<Record<string, Record<string, string>>> => ({
     type: ADD_DICTIONARY,
@@ -23,9 +31,14 @@ export const changeLocalizationActiveLocale = (locale: string): LocalizationActi
     payload: locale
 });
 
-export const changeLocalizationLoading = (isLoading: boolean): LocalizationAction<boolean> => ({
-    type: CHANGE_LOADING,
-    payload: isLoading
+export const startLocalizationLoading = (): LocalizationAction<boolean> => ({
+    type: START_LOADING,
+    payload: true
+});
+
+export const stopLocalizationLoading = (): LocalizationAction<boolean> => ({
+    type: STOP_LOADING,
+    payload: false
 });
 
 export const initLocalizationState = (nextState: LocalizationState): LocalizationAction<LocalizationState> => ({

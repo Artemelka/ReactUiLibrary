@@ -1,19 +1,20 @@
 import { Dispatch } from 'redux';
 import {
     addLocalizationDictionary,
-    changeLocalizationLoading,
+    startLocalizationLoading,
+    stopLocalizationLoading,
     ErrorMessages
 } from '../../../../services/localization';
 import { API } from '../../../api';
 
 export const getAllDictionaryActionCreator = () => (dispatch: Dispatch): void => {
-    dispatch(changeLocalizationLoading(true));
+    dispatch(startLocalizationLoading());
 
     API.localization.getAllDictionary().then(dictionary => {
         dispatch(addLocalizationDictionary(dictionary));
-        dispatch(changeLocalizationLoading(false));
+        dispatch(stopLocalizationLoading());
     }).catch(error => {
         console.error(ErrorMessages.REQUEST_ERROR, error);
-        dispatch(changeLocalizationLoading(false));
+        dispatch(stopLocalizationLoading());
     });
 };

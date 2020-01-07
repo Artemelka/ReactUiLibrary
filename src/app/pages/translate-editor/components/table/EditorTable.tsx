@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from '../../../elements';
+import { Table } from '../../../../elements';
+import { EditorTableProps } from '../types';
 
-interface EditorTableProps {
-    getDictionary: () => void;
-    headerRow: Array<string>;
-    isLoading: boolean;
-    onEditRow: (row: Array<Record<string, string>>) => void;
-    onRemoveRow: (row: Array<string>) => void;
-    rows: Array<Array<string>>;
-}
 export class EditorTableComponent extends Component<EditorTableProps> {
     componentDidMount(): void {
         this.props.getDictionary();

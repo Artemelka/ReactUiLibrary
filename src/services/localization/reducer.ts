@@ -18,9 +18,15 @@ const changeLang = (state: LocalizationState, payload: string): LocalizationStat
     ...state,
     [StoreKeys.ACTIVE_LOCALE]: payload
 });
-const changeLoading = (state: LocalizationState, payload: boolean): LocalizationState => ({
+const startLoading = (state: LocalizationState, payload: boolean): LocalizationState => ({
     ...state,
-    [StoreKeys.IS_LOADING]: payload
+    [StoreKeys.IS_LOADING]: payload,
+    [StoreKeys.LOADING_COUNT]: state[StoreKeys.LOADING_COUNT] + 1
+});
+const stopLoading = (state: LocalizationState, payload: boolean): LocalizationState => ({
+    ...state,
+    [StoreKeys.IS_LOADING]: payload,
+    [StoreKeys.LOADING_COUNT]: state[StoreKeys.LOADING_COUNT] - 1
 });
 const initStore = (state: LocalizationState, payload: LocalizationState): LocalizationState => ({
     ...state,
@@ -33,8 +39,10 @@ export const localizationReducer = (state: Record<string, any> & LocalizationSta
             return changeLang(state, payload);
         case LOCALIZATION_ACTIONS.ADD_DICTIONARY:
             return addDictionary(state, payload);
-        case LOCALIZATION_ACTIONS.CHANGE_LOADING:
-            return changeLoading(state, payload);
+        case LOCALIZATION_ACTIONS.START_LOADING:
+            return startLoading(state, payload);
+        case LOCALIZATION_ACTIONS.STOP_LOADING:
+            return stopLoading(state, payload);
         case LOCALIZATION_ACTIONS.ADD_LOCALES:
             return addLocales(state, payload);
         case LOCALIZATION_ACTIONS.ADD_LABELS:

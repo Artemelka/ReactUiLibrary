@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { ModalModule } from '../../../elements';
-import { EditorForm } from './EditorForm';
+import { ModalModule } from '../../../../elements';
+import { EditorForm } from '../form/EditorForm';
+import { EditorModalProps } from '../types';
 
 const { ModalPanel, ModalSize } = ModalModule;
-
-interface EditorModalProps {
-    editRowData: Array<Record<string, string>>;
-    fieldLabels: Array<string>;
-    onClose: () => void;
-    opened: boolean;
-    title: string;
-}
 
 export class EditorModal extends Component<EditorModalProps, { [key: string]: string | boolean }> {
     handleChange = (value: string, name: string) => this.setState({ [name]: value });
