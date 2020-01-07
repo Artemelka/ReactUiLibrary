@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ModalModule } from '../../../elements';
-import { EditorForm } from '../../editor-form/EditorForm';
+import { EditorForm } from './EditorForm';
 
 const { ModalPanel, ModalSize } = ModalModule;
 

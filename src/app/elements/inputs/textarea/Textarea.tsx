@@ -1,74 +1,86 @@
-import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
+import React, { Component, createRef, KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
 import { TextareaUI } from './Textarea-UI';
-import { TextareaContainerProps, TextareaContainerState, ErrorParams } from './types';
+import { TextareaContainerProps } from './types';
 
-const TEXTAREA_MAX_LENGTH = 255;
-
-export class Textarea extends Component<TextareaContainerProps, TextareaContainerState> {
+export class Textarea extends Component<TextareaContainerProps> {
     static defaultProps = {
-        maxlength: TEXTAREA_MAX_LENGTH
+        maxlength: 255,
+        onBlur: () => false,
+        onChange: () => false,
+        onClick: () => false,
+        onFocus: () => false,
+        onKeyDown: () => false,
+        onKeyPress: () => false
     };
 
-    constructor(props: TextareaContainerProps) {
-        super(props);
+    handleBlur = (event: SyntheticEvent<HTMLTextAreaElement>) => {
+        const { value } = event.currentTarget;
+        const { name, onBlur } = this.props;
 
-        this.state = {
-            error: false,
-            errorMessage: ''
-        };
-
-        this.errorParams = {
-            error: true,
-            errorMessage: this.props.defaultErrorMessage
-        };
-    }
-
-    errorParams: ErrorParams;
-
-    setErrorState = (event: SyntheticEvent<HTMLTextAreaElement>, value: string) => {
-        this.setState(this.errorParams);
-        this.props.onChange(event, value.slice(0, this.props.maxlength));
-    };
-
-    changeState = (event: SyntheticEvent<HTMLTextAreaElement>, value: string) => {
-        this.setState((state) => ({error: state.error ? false : state.error}));
-        this.props.onChange(event, value);
+        onBlur(event, value, name);
     };
 
     handleChange = (event: SyntheticEvent<HTMLTextAreaElement>) => {
         const { value } = event.currentTarget;
-        const { maxlength } = this.props;
+        const { maxlength, name, onChange } = this.props;
 
         if (value.length <= maxlength) {
-            this.changeState(event, value);
+            onChange(event, value, name);
         }
+    };
 
-        if (value.length > maxlength) {
-            this.setErrorState(event, value);
-        }
+    handleClick = (event: MouseEvent<HTMLTextAreaElement>) => {
+        const { value } = event.currentTarget;
+        const { name, onClick } = this.props;
+
+        onClick(event, value, name);
     };
 
     handleClearClick = () => {
         this.ref.current.focus();
-        this.setState({error: false});
-        this.props.onChange(null, '');
+        this.props.onChange(null, '', this.props.name);
+    };
+
+    handleFocus = (event: SyntheticEvent<HTMLTextAreaElement>) => {
+        const { value } = event.currentTarget;
+        const { name, onFocus } = this.props;
+
+        onFocus(event, value, name);
+    };
+
+    handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        const { value } = event.currentTarget;
+        const { name, onKeyDown } = this.props;
+
+        onKeyDown(event, value, name);
+    };
+
+    handleKeyPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        const { value } = event.currentTarget;
+        const { name, onKeyPress } = this.props;
+
+        onKeyPress(event, value, name);
     };
 
     ref: RefObject<HTMLTextAreaElement> = createRef();
 
     render() {
         const { error, errorMessage, id, value, ...restProps } = this.props;
-        const { error: innerError, errorMessage: innerMessage } = this.state;
 
         return (
             <TextareaUI
                 {...restProps}
-                error={error || innerError}
-                errorMessage={errorMessage || innerMessage}
+                error={error}
+                errorMessage={errorMessage}
                 id={id}
                 name={id}
+                onBlur={this.handleBlur}
                 onChange={this.handleChange}
                 onClearClick={this.handleClearClick}
+                onClick={this.handleClick}
+                onFocus={this.handleFocus}
+                onKeyDown={this.handleKeyDown}
+                onKeyPress={this.handleKeyPress}
                 onRef={this.ref}
                 value={value}
             />

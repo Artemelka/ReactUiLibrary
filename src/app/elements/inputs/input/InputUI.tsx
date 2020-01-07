@@ -11,7 +11,6 @@ export class InputUi extends Component<InputUiProps> {
         const {
             cursorPointer,
             disabled,
-            defaultErrorMessage: omitDefaultErrorMessage,
             error,
             errorMessage,
             focused,
@@ -30,7 +29,6 @@ export class InputUi extends Component<InputUiProps> {
             withoutError,
             ...restProps
         } = this.props;
-        const visibleIcon = Boolean(iconProps) && (!disabled || iconProps.alwaysVisible);
 
         return (
             <div
@@ -58,7 +56,7 @@ export class InputUi extends Component<InputUiProps> {
                     ref={inputRef}
                     value={value}
                 />
-                {visibleIcon &&
+                {Boolean(iconProps) && (!disabled || iconProps.alwaysVisible) && (
                     <div
                         className={cn('Input__clear-button', {
                             'Input__clear-button--always-visible': iconProps.alwaysVisible
@@ -71,7 +69,7 @@ export class InputUi extends Component<InputUiProps> {
                             buttonRef={InputIconRef}
                         />
                     </div>
-                }
+                )}
                 {error && <div className={cn('Input__error-container')}>{errorMessage}</div>}
             </div>
         );

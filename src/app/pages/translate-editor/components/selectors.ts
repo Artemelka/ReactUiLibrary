@@ -3,7 +3,7 @@ import {
     localizationDictionarySelector,
     localizationLabelsSelector,
     localizationActiveLocaleSelector
-} from '../../../services/localization';
+} from '../../../../services/localization';
 
 export const editorTableRowSelector = createSelector(
     localizationDictionarySelector,

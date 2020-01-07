@@ -1,7 +1,7 @@
-import React, { Component, createRef, RefObject, SyntheticEvent } from 'react';
+import React, { Component, createRef, RefObject } from 'react';
 import { Input } from './Input';
 import { IconModule } from '../../icon';
-import { TextInputProps } from './types';
+import { IconProps, TextInputProps } from './types';
 
 export class TextInput extends Component<TextInputProps> {
     static defaultProps = {
@@ -9,14 +9,8 @@ export class TextInput extends Component<TextInputProps> {
         onChange: () => false
     };
 
-    handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-        const { value } = event.currentTarget;
-
-        this.props.onChange(event, value);
-    };
-
     handleClearClick = () => {
-        this.props.onChange(null, '');
+        this.props.onChange(null, '', this.props.name);
         this.input.current.focus();
     };
 
@@ -27,21 +21,20 @@ export class TextInput extends Component<TextInputProps> {
     };
 
     input: RefObject<HTMLInputElement> = createRef();
+    iconProps: IconProps = {
+        name: IconModule.IconNames.BACKSPACE,
+        onClick: this.handleClearClick
+    };
 
     render() {
-        const { icon: omitIcon, onChange: omitOnChange, onRef: omitRef, value, ...restProps } = this.props;
-        const iconProps = {
-            name: IconModule.IconNames.BACKSPACE,
-            onClick: this.handleClearClick
-        };
+        const { icon: omitIcon, onRef: omitRef, value, ...restProps } = this.props;
 
         return (
             <Input
                 {...restProps}
-                icon={value && iconProps}
+                {...(value ? { icon: this.iconProps } : {})}
                 inputRef={this.handleRef()}
                 value={value}
-                onChange={this.handleChange}
             />
         );
     }

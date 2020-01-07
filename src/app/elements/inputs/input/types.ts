@@ -1,6 +1,6 @@
-import { KeyboardEvent, MouseEvent, RefObject, SyntheticEvent } from 'react';
+import { KeyboardEvent, RefObject, SyntheticEvent } from 'react';
 
-type IconProps = {
+export type IconProps = {
     alwaysVisible?: boolean;
     name: string;
     onClick: () => void;
@@ -16,11 +16,6 @@ interface InputBaseProps {
     InputIconRef?: RefObject<HTMLButtonElement>;
     inputRef?: RefObject<HTMLInputElement>;
     name: string;
-    onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
-    onChange?: (event: SyntheticEvent<HTMLInputElement>, value?: string) => void;
-    onClick?: (event: MouseEvent<HTMLInputElement> | KeyboardEvent) => void;
-    onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
-    onKeyPress?: (event: KeyboardEvent) => void;
     required?: boolean;
     value: string;
     width?: number;
@@ -28,14 +23,23 @@ interface InputBaseProps {
 }
 
 export interface InputUiProps extends InputBaseProps {
-    defaultErrorMessage?: string;
     focused?: boolean;
     iconProps?: IconProps;
+    onBlur?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onChange?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onClick?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onFocus?: (event: SyntheticEvent<HTMLInputElement>) => void;
+    onKeyPress?: (event: KeyboardEvent) => void;
 }
 
 export interface InputProps extends InputBaseProps {
     defaultValue?: string;
     icon?: IconProps;
+    onBlur?: (event: SyntheticEvent<HTMLInputElement>, value: string, name: string) => void;
+    onChange?: (event: SyntheticEvent<HTMLInputElement>, value: string, name: string) => void;
+    onClick?: (event: SyntheticEvent<HTMLInputElement> | KeyboardEvent, value: string, name: string) => void;
+    onFocus?: (event: SyntheticEvent<HTMLInputElement>, value: string, name: string) => void;
+    onKeyPress?: (event: KeyboardEvent, value: string, name: string) => void;
     readOnly?: boolean;
 }
 

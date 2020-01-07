@@ -1,5 +1,5 @@
 import React, { Component, SyntheticEvent } from 'react';
-import { createForm, FormState, FormApi, FieldState } from 'final-form';
+import { FormApi, FieldState, FormState, createForm } from 'final-form';
 import { FormProps, State } from './types';
 
 export class Form extends Component<FormProps, State> {
@@ -43,13 +43,13 @@ export class Form extends Component<FormProps, State> {
         this.unsubscribeFields.forEach(unsubscribe => unsubscribe());
     }
 
-    handleBlur = (event: SyntheticEvent, name: string) => this.state[name].blur();
+    handleBlur = (event: SyntheticEvent, value: string, name: string) => this.state[name].blur();
 
     handleChange = (event: SyntheticEvent, value: string, name: string) => this.state[name].change(value);
 
     handleClearClick = () => this.form.reset();
 
-    handleFocus = (event: SyntheticEvent, name: string) => this.state[name].focus();
+    handleFocus = (event: SyntheticEvent, value: string, name: string) => this.state[name].focus();
 
     handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -58,7 +58,7 @@ export class Form extends Component<FormProps, State> {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className={this.props.className} onSubmit={this.handleSubmit}>
                 {this.props.children({
                     handleBlur: this.handleBlur,
                     handleChange: this.handleChange,

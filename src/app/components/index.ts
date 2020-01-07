@@ -6,8 +6,6 @@ export {
     changeAppLoaderState
 } from './app-loader';
 export { CodeBlock } from './code-block/CodeBlock';
-export { EditorForm } from './editor-form/EditorForm';
-export { Fields } from './fields';
 export { FooterAside } from './footer/FooterAside';
 export { Form } from './form';
 export { LanguageSelect } from './language-select';
@@ -24,8 +22,3 @@ export {
     ThirdPanel,
     ModalPanelName
 } from './modals';
-export { TranslateEditor } from './translate-editor';
-export {
-    TextArea,
-    TextInput
-} from './inputs';

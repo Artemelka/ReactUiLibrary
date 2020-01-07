@@ -3,8 +3,8 @@ import {
     addLocalizationDictionary,
     changeLocalizationLoading,
     ErrorMessages
-} from '../../../services/localization';
-import { API } from '../../api';
+} from '../../../../services/localization';
+import { API } from '../../../api';
 
 export const getAllDictionaryActionCreator = () => (dispatch: Dispatch): void => {
     dispatch(changeLocalizationLoading(true));

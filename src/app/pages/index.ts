@@ -2,7 +2,7 @@ import LibraryPage from './library/LibraryPage';
 import NotFoundPage from './not-found/NotFound';
 import LayoutPage from './layout/LayoutPage';
 import HomePage from './home/HomePage';
-import TranslateEditorPage from './translate-editor/TranslateEditorPage';
+import { TranslateEditorPage } from './translate-editor';
 import FinalFormPage from './final-form/FinalFormPage';
 import { RouteProps } from './types';
 

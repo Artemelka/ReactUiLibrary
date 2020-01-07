@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { IconModule } from '../../icon';
 import { Button } from '../../buttons';
-import { TextareaProps } from './types';
+import { TextareaUiProps } from './types';
 import style from './Textarea.less';
 
 const cn = classNames.bind(style);
@@ -19,7 +19,7 @@ export const TextareaUI = ({
    name,
    onBlur,
    onChange,
-   onClearClick = () => false,
+   onClearClick,
    onClick,
    onFocus,
    onKeyDown,
@@ -29,7 +29,7 @@ export const TextareaUI = ({
    readonly,
    rows = 8,
    value
-}: TextareaProps) => (
+}: TextareaUiProps) => (
     <div className={cn('Textarea', {'Textarea--disabled': disabled})}>
         <textarea
             className={cn('Textarea__input', {
@@ -40,7 +40,7 @@ export const TextareaUI = ({
             cols={cols}
             disabled={disabled}
             id={id}
-            // maxLength={maxlength}
+            maxLength={maxlength}
             name={name}
             onBlur={onBlur}
             onChange={onChange}
@@ -56,16 +56,16 @@ export const TextareaUI = ({
             style={{resize: 'none'}}
             value={value}
         />
-        {Boolean(value.length) && !(disabled || readonly) &&
+        {Boolean(value.length) && !(disabled || readonly) && (
             <div className={cn('Textarea__clear-button')}>
                 <Button.Icon iconName={BACKSPACE} onClick={onClearClick}/>
             </div>
-        }
-        {error &&
+        )}
+        {error && (
             <div className={cn('Textarea__error-container')}>
                 {errorMessage}
             </div>
-        }
+        )}
         <div className={cn('Textarea__counter-container')}>
             <span className={cn('Textarea__max-value')}>
                 {`${maxlength} / `}

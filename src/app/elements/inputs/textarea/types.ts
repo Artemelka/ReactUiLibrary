@@ -9,13 +9,6 @@ export interface TextareaProps {
     id: string;
     maxlength?: number;
     name: string;
-    onBlur?: (event: SyntheticEvent<HTMLTextAreaElement>) => void;
-    onChange?: (event: SyntheticEvent<HTMLTextAreaElement>, value?: string) => void;
-    onClearClick?: () => void;
-    onClick?: (event: MouseEvent<HTMLTextAreaElement> | KeyboardEvent) => void;
-    onFocus?: (event: SyntheticEvent<HTMLTextAreaElement>) => void;
-    onKeyDown?: (event: KeyboardEvent) => void;
-    onKeyPress?: (event: KeyboardEvent) => void;
     onRef?: RefObject<HTMLTextAreaElement>;
     placeholder?: string;
     readonly?: boolean;
@@ -23,16 +16,23 @@ export interface TextareaProps {
     value: string;
 }
 
-export type TextareaContainerState = {
-    error: boolean,
-    errorMessage: string
-};
-
 export interface TextareaContainerProps extends TextareaProps {
-    defaultErrorMessage: string;
+    defaultErrorMessage?: string;
+    onBlur?: (event: SyntheticEvent<HTMLTextAreaElement>, value: string, name: string) => void;
+    onChange?: (event: SyntheticEvent<HTMLTextAreaElement>, value: string, name: string) => void;
+    onClearClick?: () => void;
+    onClick?: (event: MouseEvent<HTMLTextAreaElement> | KeyboardEvent, value: string, name: string) => void;
+    onFocus?: (event: SyntheticEvent<HTMLTextAreaElement>, value: string, name: string) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLTextAreaElement>, value: string, name: string) => void;
+    onKeyPress?: (event: KeyboardEvent<HTMLTextAreaElement>, value: string, name: string) => void;
 }
 
-export type ErrorParams = {
-    error: boolean,
-    errorMessage: string
-};
+export interface TextareaUiProps extends TextareaProps {
+    onBlur?: (event: SyntheticEvent<HTMLTextAreaElement>) => void;
+    onChange?: (event: SyntheticEvent<HTMLTextAreaElement>) => void;
+    onClearClick?: () => void;
+    onClick?: (event: MouseEvent<HTMLTextAreaElement> | KeyboardEvent) => void;
+    onFocus?: (event: SyntheticEvent<HTMLTextAreaElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLTextAreaElement>) => void;
+    onKeyPress?: (event: KeyboardEvent<HTMLTextAreaElement>) => void;
+}

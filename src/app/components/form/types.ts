@@ -5,10 +5,10 @@ export type State = Record<string, any> & {
     formState?: FormState<Record<string, string>>
 };
 export type FormChildrenProps = {
-    handleBlur: (event: SyntheticEvent, name: string) => void,
-    handleChange: (event: SyntheticEvent, value: string, name: string) => void,
+    handleBlur: (event: SyntheticEvent<any>, value: string, name: string) => void,
+    handleChange: (event: SyntheticEvent<any>, value: string, name: string) => void,
     handleClearClick: () => void,
-    handleFocus: (event: SyntheticEvent, name: string) => void,
+    handleFocus: (event: SyntheticEvent<any>, value: string, name: string) => void,
     state: State
 };
 type Subscription = {
@@ -17,6 +17,7 @@ type Subscription = {
 };
 export interface FormProps {
     children: (props: FormChildrenProps) => JSX.Element;
+    className?: string;
     formConfig: Config;
     subscription: Subscription;
     fieldsName: Array<string>;
