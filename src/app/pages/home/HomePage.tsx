@@ -35,11 +35,11 @@ export class HomePage extends Component {
     }
 }
 
-const HomePageReducer = {
-    name: 'HomePageReducer',
+const homePageReducer = {
+    name: 'homePageReducer',
     reducer: (state: any) => ({ ...state, test: 'ok' }),
     rewritable: true
 };
-const injectedReducers = [HomePageReducer];
+const injectedReducers = [homePageReducer];
 
 export default insertReducer(injectedReducers)(HomePage);

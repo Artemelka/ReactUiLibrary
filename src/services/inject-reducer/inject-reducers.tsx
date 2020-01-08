@@ -27,7 +27,7 @@ export const createStoreWithInsertReducer = (
                     return;
                 }
 
-                createdStore.dispatch({ type: 'REWRITE_ASYNC_REDUCER', payload: name });
+                createdStore.dispatch({ type: '@@injectReducer/REWRITE_ASYNC_REDUCER', payload: name });
                 console.warn(`The reducer ${name} is being replaced with a new async reducer`);
             }
 
@@ -37,7 +37,7 @@ export const createStoreWithInsertReducer = (
 
         if (replacedReducerNames.length) {
             createdStore.replaceReducer(createReducer(asyncReducersMap));
-            createdStore.dispatch({ type: 'INJECT_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            createdStore.dispatch({ type: '@@injectReducer/INJECT_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
             replacedReducerNames.length = 0;
         }
     };
@@ -56,7 +56,7 @@ export const createStoreWithInsertReducer = (
 
         if (replacedReducerNames.length) {
             createdStore.replaceReducer(createReducer(asyncReducersMap));
-            createdStore.dispatch({ type: 'REMOVE_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            createdStore.dispatch({ type: '@@injectReducer/REMOVE_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
             replacedReducerNames.length = 0;
         }
     };
@@ -70,8 +70,9 @@ export const createStoreWithInsertReducer = (
 
     const insertWithRemoveReducer = (asyncReducers: Array<AsyncReducerItem>) =>
         (RenderComponent: ComponentType | FC) => (
-            class InsertReducerContainer extends Component {
-                componentDidMount(): void {
+            class InsertReducerContainer extends Component<null> {
+                constructor(props: null) {
+                    super(props);
                     injectReducer(asyncReducers);
                 }
 

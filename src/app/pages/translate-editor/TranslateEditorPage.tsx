@@ -10,36 +10,24 @@ const cn = classNames.bind(style);
 const { Footer, Main, Page } = PageLayout;
 
 interface TranslateEditorPageProps {
+    closeModal: () => void;
+    isOpenModal: boolean;
     labels: Record<string, string>;
+    modalData: Record<string, string>;
+    openModal: (data: Record<string, string>) => void;
 }
-type TranslateEditorPageState = {
-    activeRow: Record<string, string>,
-    opened: boolean
-};
 
-export class TranslateEditorPageComponent extends Component<TranslateEditorPageProps, TranslateEditorPageState> {
-    state = {
-        activeRow: {},
-        opened: false
-    };
-
-    handleCloseModal = () => this.setState({ opened: false });
-
+export class TranslateEditorPageComponent extends Component<TranslateEditorPageProps> {
     handleRemoveRow = (rowData: Array<string>) => console.log('handleRemoveRow', rowData);
 
-    handleEditRow = (rowData: Record<string, string>) => this.setState({
-        activeRow: rowData,
-        opened: true
-    });
+    handleAddKey = () => {
+        const { modalData, openModal } = this.props;
 
-    handleAddKey = () => this.setState(({ activeRow }) => ({
-        activeRow: Object.keys(activeRow).reduce((acc, name: string) => ({...acc, [name]: '' }), {}),
-        opened: true
-    }));
+        openModal(Object.keys(modalData).reduce((acc, name: string) => ({...acc, [name]: '' }), {}));
+    };
 
     render() {
-        const { activeRow, opened } = this.state;
-        const { labels } = this.props;
+        const { closeModal, isOpenModal, labels, modalData, openModal } = this.props;
 
         return (
             <Page>
@@ -54,13 +42,13 @@ export class TranslateEditorPageComponent extends Component<TranslateEditorPageP
                             />
                         </div>
                         <EditorTable
-                            onEditRow={this.handleEditRow}
+                            onEditRow={openModal}
                             onRemoveRow={this.handleRemoveRow}
                         />
                         <EditorModal
-                            editRowData={activeRow}
-                            opened={opened}
-                            onClose={this.handleCloseModal}
+                            editRowData={modalData}
+                            opened={isOpenModal}
+                            onClose={closeModal}
                             title={labels.editor}
                         />
                     </div>
