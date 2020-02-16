@@ -7,7 +7,7 @@ export {
     startLocalizationLoading,
     stopLocalizationLoading
 } from './actions';
-export { ErrorMessages, LOCALIZATION_REDUCER_KEY, NavigatorLanguage } from './constants';
+export { ErrorMessages, LOCALIZATION_REDUCER_KEY, NavigatorLanguage, StoreKeys } from './constants';
 export { localizationReducer } from './reducer';
 export {
     localizationActiveLocaleSelector,
@@ -18,4 +18,3 @@ export {
     localizationLocalesSelector,
     localizationStateSelector
 } from './selectors';
-export { StoreKeys } from './types';

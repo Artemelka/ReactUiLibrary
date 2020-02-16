@@ -25,7 +25,7 @@ export class Button extends Component<ButtonProps, ButtonState> {
 
     changeActive = (isActive: boolean, keyCode: number) => {
         if (targetKeyCodes.includes(keyCode)) {
-            this.setState(() => ({isActive}));
+            this.setState(() => ({ isActive }));
         }
     };
 

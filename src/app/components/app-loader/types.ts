@@ -11,5 +11,3 @@ export type AppLoaderAction<T> = { type: string, payload: T };
 export interface AppLoaderProps {
     enabled?: boolean;
 }
-
-export type AppState = Record<string, any> & AppLoaderState;

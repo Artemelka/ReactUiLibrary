@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { FooterAside, LanguageSelect } from '../../components';
-import { Button, IconModule, Text } from '../../elements';
+import { Button, IconModule, Text } from 'elements';
+import { FooterAside, LanguageSelect } from 'components';
 import { PageLayout } from '../../layouts';
 import { EditorTable, EditorModal } from './components';
 import style from './TranslateEditorPage.less';

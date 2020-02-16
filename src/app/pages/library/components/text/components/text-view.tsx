@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { SandboxLayout } from '../../../../../components';
-import { Text } from '../../../../../elements';
-import { getUniqId } from '../../../../../utils';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { getUniqId } from 'utils';
 import { Collection, Params } from './types';
 
 const { BlockItems, Item } = SandboxLayout;

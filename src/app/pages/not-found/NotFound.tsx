@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { History } from 'history';
-import { Anchor } from '../../elements';
-import { localizationLabelsSelector, LocalizationState } from '../../../services/localization';
+import { Anchor } from 'elements';
+import { localizationLabelsSelector } from 'services';
 import { HOME_URL } from '../../constants';
+import { AppState } from '../../types';
 
-class NotFoundPageComponent extends Component<History & { labels: Record<string, string>}> {
+interface NotFoundPageProps extends History {
+    labels: Record<string, string>;
+}
+
+class NotFoundPageComponent extends Component<NotFoundPageProps> {
     handleClick = () => this.props.push(HOME_URL);
 
     render() {
@@ -23,7 +28,7 @@ class NotFoundPageComponent extends Component<History & { labels: Record<string,
     }
 }
 
-export default connect((state: Record<string, any> & LocalizationState) => ({
+export default connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }), {
     push

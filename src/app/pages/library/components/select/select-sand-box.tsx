@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { SelectExample } from './components/select-example';
 import { SelectView } from './components/select-view';
 

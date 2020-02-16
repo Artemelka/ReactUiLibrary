@@ -87,7 +87,7 @@
     "jsx-wrap-multiline": true,
 
     // Config different from tslint:latest
-    "no-implicit-dependencies": [true, "dev"],
+    "no-implicit-dependencies": [true, ["app", "components", "services", "utils", "elements", "dev"]],
     "object-literal-key-quotes": [true, "consistent-as-needed"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames/bind';
-import { IconModule } from '../../../../../elements/icon';
-import { SandboxLayout } from '../../../../../components';
+import { IconModule } from 'elements';
+import { SandboxLayout } from 'components';
 
 const style = require('./icon-view.less');
 const cn = classNames.bind(style);

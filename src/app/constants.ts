@@ -15,16 +15,16 @@ export const LIBRARY_URL = '/library';
 export const INPUT_SUB_URL = '/inputs';
 
 // Store keys
-export const STORE_KEY = {
-    ROUTER: 'router'
-};
+export enum APP_STORE_KEY {
+    ROUTER = 'router'
+}
 
 // HTTP
 export const DEFAULT_TIMEOUT = 60000;
-export const REQUEST_METHOD = {
-    POST: 'POST',
-    GET: 'GET'
-};
+export enum REQUEST_METHOD {
+    POST = 'POST',
+    GET = 'GET'
+}
 
 export const HTTP_STATUSES = {
     PROCESSING: 102,

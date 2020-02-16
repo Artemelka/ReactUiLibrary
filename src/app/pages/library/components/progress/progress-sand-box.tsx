@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { ProgressExample } from './components/progress-example';
 import { ProgressView } from './components/progress-view';
 

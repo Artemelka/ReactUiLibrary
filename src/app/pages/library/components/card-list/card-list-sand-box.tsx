@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { CardListExample } from './components/card-list-example';
 import { CardListView } from './components/card-list-view';
 

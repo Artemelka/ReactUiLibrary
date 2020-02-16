@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { SandboxLayout } from '../../../../../components';
-import { Text } from '../../../../../elements';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { logger } from 'utils';
 import { CheckboxContainer } from './checkbox-container';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { logger } from '../../../../../utils';
 import { CheckboxContainerProps } from './types';
+import { AppState } from '../../../../../types';
 
 
 const { BlockItems, Item } = SandboxLayout;
@@ -63,6 +63,6 @@ export const CheckboxViewComponent = ({ labels }: { labels: Record<string, strin
     </Fragment>
 );
 
-export const CheckboxView = connect((state: Record<string, any> & LocalizationState) => ({
+export const CheckboxView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(CheckboxViewComponent);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckboxExample } from './components/checkbox-example';
 import { CheckboxView } from './components/checkbox-view';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 
 const { Sandbox } = SandboxLayout;
 const checkboxProps = [

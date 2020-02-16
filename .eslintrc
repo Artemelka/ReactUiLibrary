@@ -1,5 +1,18 @@
 {
   "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "alias": {
+          "app": "./src/app",
+          "components": "./src/app/components",
+          "utils": "./src/app/utils",
+          "services": "./src/services",
+          "elements": "./src/app/elements"
+        }
+      }
+    }
+  },
   "plugins": [
     "import"
   ],

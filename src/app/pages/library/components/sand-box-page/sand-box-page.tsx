@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
+import { getUniqId } from 'utils';
 import { ComponentsPages } from '../../component-pages';
 import { PageNotFound } from '../../../index';
-import { getUniqId } from '../../../../utils';
 
 const keyId = getUniqId();
 

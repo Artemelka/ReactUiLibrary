@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Text } from '../../../../../elements/text';
-import { SandboxLayout } from '../../../../../components';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { getUniqId, logger } from '../../../../../utils';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { getUniqId, logger } from 'utils';
 import { RadioButtonsContainer } from './radio-container';
+import { AppState } from '../../../../../types';
 import { RadioButtonBaseProps } from '../../../../../elements/inputs/radio/types';
 import { ItemsHeading } from './types';
 
@@ -73,6 +73,6 @@ export const RadioViewComponent = ({ labels }: { labels: Record<string, string> 
     </Fragment>
 );
 
-export const RadioView = connect((state: Record<string, any> & LocalizationState) => ({
+export const RadioView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(RadioViewComponent);

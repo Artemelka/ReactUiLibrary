@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, Textarea } from '../../../../../elements';
-import { SandboxLayout, Form } from '../../../../../components';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { Text, Textarea } from 'elements';
+import { SandboxLayout, Form } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 const ERROR_MESSAGE_KEY = 'input-error-no-empty';
@@ -116,6 +116,6 @@ export const TextareaViewComponent = ({ labels }: { labels: Record<string, strin
     </Form>
 );
 
-export const TextareaView = connect((state: Record<string, any> & LocalizationState) => ({
+export const TextareaView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(TextareaViewComponent);

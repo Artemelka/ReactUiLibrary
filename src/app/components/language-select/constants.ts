@@ -1,4 +1,4 @@
-import { NavigatorLanguage } from '../../../services/localization';
+import { NavigatorLanguage } from 'services/localization';
 
 export const SELECT_WIDTH = 150;
 export const SELECT_ID = 'test-localization';

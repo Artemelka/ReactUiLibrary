@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import { ButtonsGroup } from '../../../../../elements';
+import { ButtonsGroup } from 'elements';
+import { getUniqId } from 'utils';
 import {
     FirstDialog, SecondDialog, ThirdDialog, ModalDialogName, ButtonShowModal
 } from '../../../../../components/modals';
-import { getUniqId } from '../../../../../utils';
 
 const buttonsProps = [
     {

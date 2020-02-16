@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { SideBarLink } from '../side-bar-link/SideBarLink';
+import { SideBarLink } from '../side-bar-link';
 import { SideBarMenuDropDown } from '../side-bar-menu-drop-down/SideBarMenuDropDown';
 import { formatterComponentName, formatterIndex } from '../../utils';
 import { SideBarListProps } from '../../types';

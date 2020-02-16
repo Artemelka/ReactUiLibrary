@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs":  true,
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react",
@@ -14,7 +15,14 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "app": ["./app"],
+      "components": ["./app/components"],
+      "utils": ["./app/utils"],
+      "services": ["./services"],
+      "elements": ["./app/elements"]
+    }
   },
   "include": [
     "./src/**/*"

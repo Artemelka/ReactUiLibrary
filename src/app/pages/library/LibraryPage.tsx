@@ -1,6 +1,6 @@
 import React from 'react';
+import { FooterAside, LanguageSelect, LibrarySideBar } from 'components';
 import { PageLayout } from '../../layouts';
-import { FooterAside, LanguageSelect, LibrarySideBar } from '../../components';
 import { SandBoxPage } from './components/sand-box-page/sand-box-page';
 import { ComponentsPages } from './component-pages';
 

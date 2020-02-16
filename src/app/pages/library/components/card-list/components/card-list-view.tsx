@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SandboxLayout } from '../../../../../components';
-import { CardList } from '../../../../../elements';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { LocalizationState } from '../../../../../../services/localization/types';
+import { CardList } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { logger } from 'utils';
 import { CardItems, CardItem } from '../../../../../elements/card-list/types';
-import { logger } from '../../../../../utils';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 const LONG_TEXT = 'lorem-long';
@@ -60,6 +60,6 @@ export const CardListViewComponent = ({ labels }: { labels: Record<string, strin
     );
 };
 
-export const CardListView = connect((state: Record<string, any> & LocalizationState) => ({
+export const CardListView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(CardListViewComponent);

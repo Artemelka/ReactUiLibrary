@@ -1,12 +1,9 @@
-import { request } from '../../utils';
+import { request } from 'utils';
+import { RequestConfig } from '../../utils/axios-request/request';
 
-interface Config {
-    method: string;
-    data: {[key: string]: any};
-}
 interface RequestParams {
     url: string;
-    config?: Config;
+    config?: RequestConfig;
 }
 
 const TEST_URL = '/api/getUsername';

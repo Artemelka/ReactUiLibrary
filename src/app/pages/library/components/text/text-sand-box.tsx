@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { TextExample } from './components/text-example';
 import { TextView } from './components/text-view';
 

@@ -1,4 +1,4 @@
-import { nameSpaceCreator } from '../../../services';
+import { nameSpaceCreator } from 'services';
 import { EditorState, TranslateEditorActionsName } from './types';
 
 export const TRANSLATE_EDITOR_PAGE_REDUCER = 'translateEditorPage';

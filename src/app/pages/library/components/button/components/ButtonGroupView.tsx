@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SandboxLayout } from '../../../../../components';
-import { ButtonsGroup, Text } from '../../../../../elements';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { logger } from '../../../../../utils';
+import { ButtonsGroup, Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { logger } from 'utils';
 import { buttonsGroupProps, buttonGroupItems } from './constants';
 import { ButtonGroupItems } from './types';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 
@@ -35,6 +35,6 @@ export const ButtonGroupViewComponent = ({ labels }: { labels: Record<string, st
     </BlockItems>
 );
 
-export const ButtonGroupView = connect((state: Record<string, any> & LocalizationState) => ({
+export const ButtonGroupView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(ButtonGroupViewComponent);

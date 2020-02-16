@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { ModalExample } from './components/ModalExample';
 import { ModalView } from './components/ModalView';
 

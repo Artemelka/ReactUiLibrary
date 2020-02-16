@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RadioButtons } from '../../../../../elements';
+import { RadioButtons } from 'elements';
 import { RadioButtonsProps } from '../../../../../elements/inputs/radio/types';
 import { RadioButtonsContainerState } from './types';
 

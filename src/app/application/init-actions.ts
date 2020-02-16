@@ -5,12 +5,12 @@ import {
     localizationIsLoadingSelector,
     localizationLoadingCountSelector,
     StoreKeys
-} from '../services/localization';
-import { changeAppLoaderState } from './components';
-import { API } from './api';
-import { LocalizationState } from '../services/localization/types';
+} from 'services';
+import { changeAppLoaderState } from 'components';
+import { API } from '../api';
+import { AppState } from '../types'
 
-export const initLocalization = () => (dispatch: Dispatch, getState: () => Record<string, any> & LocalizationState): void => {
+export const initLocalization = () => (dispatch: Dispatch, getState: () => AppState): void => {
     dispatch(changeAppLoaderState(true));
 
     const userLanguage = window.navigator.language;

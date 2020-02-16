@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Text } from '../../../../../elements';
-import { SandboxLayout } from '../../../../../components';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
 import { ModalDialogContainer } from './modal-dialog-container';
 import { ModalPanelContainer } from './modal-panel-container';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 
@@ -34,6 +34,6 @@ export const ModalViewComponent = ({ labels }: { labels: Record<string, string> 
     </Fragment>
 );
 
-export const ModalView = connect((state: Record<string, any> & LocalizationState) => ({
+export const ModalView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(ModalViewComponent);

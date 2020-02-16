@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import classNames from 'classnames/bind';
-import { localizationLabelsSelector } from '../../../../../services/localization';
+
 import { LocalizationState } from '../../../../../services/localization/types';
 import { Checkbox, Text } from '../../../../elements';
 import { ToggleProps } from '../../types';
@@ -33,6 +33,4 @@ export class SideBarToggleComponent extends Component<ToggleProps> {
     }
 }
 
-export const SideBarToggle = connect((state: Record<string, any> & LocalizationState) => ({
-    labels: localizationLabelsSelector(state)
-}))(SideBarToggleComponent);
+

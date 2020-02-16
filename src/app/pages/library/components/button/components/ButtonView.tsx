@@ -1,11 +1,11 @@
 import React, { Component, ComponentType, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '../../../../../elements';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { SandboxLayout } from '../../../../../components';
+import { Button } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
 import { examplesParams } from './constants';
 import { ExampleParams } from './types';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 
@@ -33,6 +33,6 @@ export const ButtonViewComponent = ({ labels }: { labels: Record<string, string>
     </Fragment>
 );
 
-export const ButtonView = connect((state: Record<string, any> & LocalizationState) => ({
+export const ButtonView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(ButtonViewComponent);

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { Text } from '../../../../../elements';
-import { SandboxLayout } from '../../../../../components';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
 import { ProgressComponent } from './progress-component';
 import { ExampleProps, CircularExampleProps } from './types';
 

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { PageLayout } from '../../layouts';
-import { FooterAside, LanguageSelect } from '../../components';
+import { FooterAside, LanguageSelect } from 'components';
 import style from './LayoutPage.less';
 
 const cn = classNames.bind(style);
 const { Aside, Footer, Header, Main, Page } = PageLayout;
-
 const SHOW = 'show';
 const HIDE = 'hide';
 const contentStyle = {
@@ -26,9 +25,9 @@ class LayoutPage extends Component<null, State> {
         headerHidden: false
     };
 
-    handleHideAsideClick = () => this.setState(({asideHidden}) => ({asideHidden: !asideHidden}));
+    handleHideAsideClick = () => this.setState(({ asideHidden }) => ({ asideHidden: !asideHidden }));
 
-    handleHideHeaderClick = () => this.setState(({headerHidden}) => ({headerHidden: !headerHidden}));
+    handleHideHeaderClick = () => this.setState(({ headerHidden }) => ({ headerHidden: !headerHidden }));
 
     render() {
         const { asideHidden, headerHidden } = this.state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { RadioExample } from './components/radio-example';
 import { RadioView } from './components/radio-view';
 

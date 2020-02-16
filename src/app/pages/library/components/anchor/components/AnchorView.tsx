@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Anchor } from '../../../../../elements';
-import { SandboxLayout } from '../../../../../components';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { logger } from '../../../../../utils';
+import { Anchor } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { logger } from 'utils';
 import { PROJECT_LINK } from '../../../../../constants';
+import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;
 const anchorProps = [
@@ -53,6 +53,6 @@ export const AnchorViewComponent = ({ labels }: { labels: Record<string, string>
     </Fragment>
 );
 
-export const AnchorView = connect((state: Record<string, any> & LocalizationState) => ({
+export const AnchorView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(AnchorViewComponent);

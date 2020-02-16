@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import { initialState, LOCALIZATION_ACTIONS } from './constants';
-import { LocalizationState, StoreKeys } from './types';
+import { initialState, LOCALIZATION_ACTIONS, StoreKeys } from './constants';
+import { LocalizationState } from './types';
 
 const addDictionary = (state: LocalizationState, payload: Record<string, Record<string, string>>): LocalizationState => ({
     ...state,

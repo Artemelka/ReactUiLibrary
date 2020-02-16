@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'connected-react-router';
-import { appReducer } from './reducers';
+import { createStoreWithInsertReducer } from 'services';
+import { appReducer } from './app-reducers';
 import { history } from './app-history';
-import { createStoreWithInsertReducer } from '../services';
 
 const middleWares: Array<Middleware> = [
     routerMiddleware(history),

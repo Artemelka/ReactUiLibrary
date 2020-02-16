@@ -1,9 +1,9 @@
 import React, { Component, ComponentType } from 'react';
 import { connect } from 'react-redux';
-import { Progress } from '../../../../../elements';
-import { SandboxLayout } from '../../../../../components';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
+import { Progress } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { AppState } from '../../../../../types';
 import { ProgressProps } from '../../../../../elements/progress/types';
 import { ProgressState, ComponentProps, ComponentCircularProps } from './types';
 
@@ -62,6 +62,6 @@ export class ProgressComponentContainer extends Component<Props, ProgressState> 
     }
 }
 
-export const ProgressComponent = connect((state: Record<string, any> & LocalizationState) => ({
+export const ProgressComponent = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(ProgressComponentContainer);

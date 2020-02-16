@@ -1,11 +1,4 @@
-export enum StoreKeys {
-    ACTIVE_LOCALE = 'activeLocale',
-    DICTIONARY = 'dictionary',
-    IS_LOADING = 'isLoading',
-    LABELS = 'labels',
-    LOADING_COUNT = 'loadingCount',
-    LOCALES = 'locales'
-}
+import { StoreKeys } from './constants';
 
 export type LocalizationState = {
     [StoreKeys.ACTIVE_LOCALE]: string,

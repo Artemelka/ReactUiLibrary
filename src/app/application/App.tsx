@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import classNames from 'classnames/bind';
 import { initLocalization } from './init-actions';
-import { pages } from './pages';
-import style from './app.less';
+import { pages } from '../pages';
+import style from './App.less';
 
 const cn = classNames.bind(style);
 
@@ -12,7 +12,7 @@ interface AppContainerComponentProps {
     initLocalization?: () => void;
 }
 
-class AppContainerComponent extends Component<AppContainerComponentProps> {
+export class AppContainerComponent extends Component<AppContainerComponentProps> {
     static defaultProps: AppContainerComponentProps = {
         initLocalization: () => false
     };

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { LanguageSelect } from '../../components';
+import { LanguageSelect } from 'components';
 import { TestRequest, TestRouter } from './components';
-import { insertReducer } from '../../store';
+import { insertReducer } from '../../application/app-store';
 
 const style = require('./HomePage.less');
 const cn = classNames.bind(style);
+const SELECT_ID = 'home select';
 
 export class HomePage extends Component {
     render() {
@@ -24,7 +25,7 @@ export class HomePage extends Component {
                 </div>
                 <div className={cn('Test-page__item')}>
                     <h3>Test Localization</h3>
-                    <LanguageSelect/>
+                    <LanguageSelect id={SELECT_ID} name={SELECT_ID}/>
                 </div>
                 <div className={cn('Test-page__item')}>
                     <h3>Test ...</h3>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SandboxLayout } from '../../../../components';
+import { SandboxLayout } from 'components';
 import { TextareaExample } from './components/textarea-example';
 import { TextareaView } from './components/textarea-view';
 

@@ -1,9 +1,15 @@
 import axios from 'axios';
 import { DEFAULT_TIMEOUT, REQUEST_METHOD } from '../../constants';
 
-const { GET, POST } = REQUEST_METHOD;
+const { GET } = REQUEST_METHOD;
 
-export const request = (url: string, config: Record<string, any> = {}): Promise<any> => {
+export type RequestConfig = {
+    method?: keyof typeof REQUEST_METHOD;
+    timeout?: number;
+    data?: Record<string, any>;
+};
+
+export const request = (url: string, config: RequestConfig = {}): Promise<any> => {
     const {
         method = GET,
         data,

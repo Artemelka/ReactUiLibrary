@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Text } from '../../elements';
 import { localizationLabelsSelector } from '../../../services/localization';
-import { LocalizationState } from '../../../services/localization/types';
 import { SandboxPanel, SandboxPropsTable, SandboxBlockItems } from './components';
 import { SandboxContainerProps } from './types';
+import { AppState } from '../../types';
 import style from './sandbox.less';
 
 export const cn = classNames.bind(style);
@@ -54,6 +54,6 @@ export const SandboxContainerComponent = ({
     </div>
 );
 
-export const SandboxContainer = connect((state: Record<string, any> & LocalizationState) => ({
+export const SandboxContainer = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(SandboxContainerComponent);

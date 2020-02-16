@@ -1,4 +1,4 @@
-import { nameSpaceCreator } from '../../../services';
+import { nameSpaceCreator } from 'services';
 import { StoreKeys } from './types';
 
 export const APP_LOADER_REDUCER_KEY = 'appLoader';

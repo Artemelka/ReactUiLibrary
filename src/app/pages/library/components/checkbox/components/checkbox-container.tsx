@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Checkbox } from '../../../../../elements/inputs';
+import { Checkbox } from 'elements';
 import { CheckboxProps } from '../../../../../elements/inputs/checkbox/types';
 
 export class CheckboxContainer extends Component<CheckboxProps, { checked: boolean; }> {

@@ -1,5 +1,3 @@
-import { Location } from 'history';
-
 export type SideBarData = {[key: string]: any};
 
 export type SideBarState = {
@@ -25,7 +23,7 @@ export interface SideBarLinkProps {
     name: string;
     url: string;
     push: (path: string) => void;
-    router: Location;
+    pathname: string;
     withIndex?: boolean;
 }
 

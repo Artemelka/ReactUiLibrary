@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Text } from '../../../../../elements/text';
-import { SandboxLayout } from '../../../../../components';
+import { Text } from 'elements';
+import { SandboxLayout } from 'components';
+import { localizationLabelsSelector } from 'services';
+import { logger } from 'utils';
 import { SelectList } from '../../../../../elements/inputs/select/SelectList';
-import { LocalizationState } from '../../../../../../services/localization/types';
-import { localizationLabelsSelector } from '../../../../../../services/localization';
-import { logger } from '../../../../../utils';
-import { SelectContainer } from './select-container';
+import { AppState } from '../../../../../types';
 import { SelectOptions, SelectProps } from '../../../../../elements/inputs/select/types';
+import { SelectContainer } from './select-container';
 
 type SelectExampleProps = SelectProps & { label: string };
 
@@ -80,6 +80,6 @@ export const SelectViewComponent = ({ labels }: { labels: Record<string, string>
     </Fragment>
 );
 
-export const SelectView = connect((state: Record<string, any> & LocalizationState) => ({
+export const SelectView = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }))(SelectViewComponent);

@@ -22,3 +22,4 @@ export {
     ThirdPanel,
     ModalPanelName
 } from './modals';
+export { routerLocationSelector, locationPathNameSelector } from '../application/app-selectors';

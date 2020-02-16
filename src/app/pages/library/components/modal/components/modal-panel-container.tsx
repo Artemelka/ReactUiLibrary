@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { Button, ButtonsGroup } from '../../../../../elements';
+import { Button, ButtonsGroup } from 'elements';
+import { getUniqId } from 'utils';
 import {
     FirstPanel, SecondPanel, ThirdPanel, ModalPanelName, ButtonShowModal
 } from '../../../../../components/modals';
-import { getUniqId } from '../../../../../utils';
 
 const buttonsProps = [
     {

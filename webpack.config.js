@@ -22,7 +22,14 @@ module.exports = (env = {}) => {
         },
         devtool: "source-map",
         resolve: {
-            extensions: [".ts", ".tsx", ".js", '.jsx', ".json"]
+            extensions: [".ts", ".tsx", ".js", '.jsx', ".json"],
+            alias: {
+                app: "./src/app",
+                components: "./src/app/components",
+                utils: "./src/app/utils",
+                services: "./src/services",
+                elements: "./src/app/elements"
+            }
         },
         module: {
             rules: [

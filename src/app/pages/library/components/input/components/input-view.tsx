@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Input } from '../../../../../elements';
-import { SandboxLayout, Form } from '../../../../../components';
+import { Text, Input } from 'elements';
+import { SandboxLayout, Form } from 'components';
 
 const { BlockItems, Item } = SandboxLayout;
 const inputProps = [

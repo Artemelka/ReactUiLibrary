@@ -19,12 +19,22 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", {"legacy": true}],
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-export-namespace-from",
-    ["@babel/plugin-proposal-object-rest-spread", {"loose": true, "useBuiltIns": true}],
-    ["@babel/proposal-class-properties", {"loose": true}],
-    ["@babel/transform-runtime", {"helpers": true, "regenerator": false}],
-    "@babel/plugin-syntax-dynamic-import"
+        ["@babel/plugin-proposal-decorators", {"legacy": true}],
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-proposal-export-namespace-from",
+        ["@babel/plugin-proposal-object-rest-spread", {"loose": true, "useBuiltIns": true}],
+        ["@babel/proposal-class-properties", {"loose": true}],
+        ["@babel/transform-runtime", {"helpers": true, "regenerator": false}],
+        "@babel/plugin-syntax-dynamic-import",
+        ["module-resolver", {
+            "root": "./src",
+            "alias": {
+                "app": "./src/app",
+                "components": "./src/app/components",
+                "utils": "./src/app/utils",
+                "services": "./src/services",
+                "elements": "./src/app/elements"
+            }
+        }]
   ]
 }
