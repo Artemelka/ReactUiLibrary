@@ -24,7 +24,7 @@
         "@babel/plugin-proposal-export-namespace-from",
         ["@babel/plugin-proposal-object-rest-spread", {"loose": true, "useBuiltIns": true}],
         ["@babel/proposal-class-properties", {"loose": true}],
-        ["@babel/transform-runtime", {"helpers": true, "regenerator": false}],
+        ["@babel/transform-runtime", {"helpers": true}],
         "@babel/plugin-syntax-dynamic-import",
         ["module-resolver", {
             "root": "./src",

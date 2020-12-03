@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { LanguageSelect } from 'components';
+import { injectReducersAndSagas } from '../../application/app-store';
 import { TestRequest, TestRouter } from './components';
-import { insertReducer } from '../../application/app-store';
+import {
+    homePageReducer,
+    HOME_PAGE_REDUCER_NAME,
+    GET_REQUEST_WATCHER_SAGA_NAME,
+    getRequestWatcherSaga
+} from './redux';
 
 const style = require('./HomePage.less');
 const cn = classNames.bind(style);
@@ -36,11 +42,19 @@ export class HomePage extends Component {
     }
 }
 
-const homePageReducer = {
-    name: 'homePageReducer',
-    reducer: (state: any) => ({ ...state, test: 'ok' }),
+const asyncReducers = [{
+    name: HOME_PAGE_REDUCER_NAME,
+    reducer: homePageReducer,
     rewritable: true
-};
-const injectedReducers = [homePageReducer];
+}];
+const asyncSagas = [
+    {
+        name: GET_REQUEST_WATCHER_SAGA_NAME,
+        saga: getRequestWatcherSaga
+    }
+];
 
-export default insertReducer(injectedReducers)(HomePage);
+export default injectReducersAndSagas({
+    asyncReducers,
+    asyncSagas
+})(HomePage);

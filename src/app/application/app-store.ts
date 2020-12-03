@@ -1,25 +1,31 @@
-import { applyMiddleware, createStore, Middleware } from 'redux';
+import { applyMiddleware, createStore, Middleware, Reducer, Store } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware, { RunSagaOptions, Saga, Task } from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-import { createStoreWithInsertReducer } from 'services';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from 'redux-logger';
+import { createInjectReducerAndSagas } from 'services';
 import { appReducer } from './app-reducers';
 import { history } from './app-history';
 
-const middleWares: Array<Middleware> = [
+type AsyncReducerMap = Record<string, Reducer>;
+type AppStore = Store & {
+    appReducer?: (asyncReducers?: AsyncReducerMap) => Reducer;
+    runSaga?: (saga: Saga, options: RunSagaOptions<string, Store>) => Task;
+};
+
+const sagaMiddleware = createSagaMiddleware();
+const middlewares: Array<Middleware> = [
+    sagaMiddleware,
     routerMiddleware(history),
     thunk,
     logger
 ];
+const store: AppStore = createStore(appReducer(), composeWithDevTools(applyMiddleware(...middlewares)));
 
-const asyncStore = createStoreWithInsertReducer(
-    createStore,
-    appReducer,
-    composeWithDevTools(applyMiddleware(...middleWares)),
-    true
-);
+store.runSaga = sagaMiddleware.run;
+store.appReducer = appReducer;
 
-export const appStore = asyncStore.store;
-export const insertReducer = asyncStore.insertReducer;
+export const appStore = store;
+export const injectReducersAndSagas = createInjectReducerAndSagas({ store, withEjectReducers: true });
 
