@@ -23,7 +23,8 @@ export enum APP_STORE_KEY {
 export const DEFAULT_TIMEOUT = 60000;
 export enum REQUEST_METHOD {
     POST = 'POST',
-    GET = 'GET'
+    GET = 'GET',
+    PUT = 'PUT'
 }
 
 export const HTTP_STATUSES = {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { localizationLabelsSelector } from 'services';
 import { TranslateEditorPageComponent } from './TranslateEditorPage';
-import { insertReducer } from '../../application/app-store';
+import { injectReducersAndSagas } from '../../application/app-store';
 import { translateEditorPageReducer } from './reducer';
 import { TRANSLATE_EDITOR_PAGE_REDUCER } from './constants';
 import { closeEditorModal, openEditorModal } from './actions';
@@ -15,8 +15,8 @@ const TranslateEditorPageReducer = {
     rewritable: true
 };
 
-const injectedReducers = [TranslateEditorPageReducer];
-export const TranslateEditorPage = insertReducer(injectedReducers)(
+const asyncReducers = [TranslateEditorPageReducer];
+export const TranslateEditorPage = injectReducersAndSagas({ asyncReducers })(
     connect((state: AppState & EditorState) => ({
         isOpenModal: isOpenEditorModalSelector(state),
         labels: localizationLabelsSelector(state),

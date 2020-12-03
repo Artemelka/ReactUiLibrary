@@ -1,24 +1,43 @@
 import React, { Component, ComponentType, FC } from 'react';
-import { Reducer, Store, StoreEnhancer, StoreCreator } from 'redux';
+import { Reducer, Store } from 'redux';
+import { Saga, RunSagaOptions, Task } from 'redux-saga';
 
 type AsyncReducerMap = Record<string, Reducer>;
-type CreateReducer = (asyncReducers?: AsyncReducerMap) => Reducer;
+type AsyncSagasMap = Record<string, Task>;
+type ReactComponent = ComponentType | FC;
+type AppStore = Store & {
+    appReducer?: (asyncReducers?: AsyncReducerMap) => Reducer;
+    runSaga?: (saga: Saga, options: RunSagaOptions<string, Store>) => Task;
+};
 type AsyncReducerItem = {
     name: string,
     reducer: Reducer,
     rewritable?: boolean
 };
+type AsyncSagaItemType = {
+    args?: RunSagaOptions<string, Store>;
+    saga: Saga;
+    name: string;
+};
+type InjectReducerAndSagaParamsType = {
+    asyncReducers?: Array<AsyncReducerItem>;
+    asyncSagas?: Array<AsyncSagaItemType>
+};
+type InjectReducerAndSagaType = (params: InjectReducerAndSagaParamsType) =>
+    (component: ReactComponent) => ReactComponent;
+type CreateInjectReducerAndSagaParamsType = {
+    store: AppStore;
+    withEjectReducers?: boolean;
+};
 
-export const createStoreWithInsertReducer = (
-    reduxCreateStore: StoreCreator,
-    createReducer: CreateReducer,
-    middleWares: StoreEnhancer,
-    withRemove?: boolean
-) => {
-    const createdStore: Store = reduxCreateStore(createReducer(), middleWares);
+export const createInjectReducerAndSagas = ({
+    store,
+    withEjectReducers = false
+}: CreateInjectReducerAndSagaParamsType): InjectReducerAndSagaType => {
     const asyncReducersMap: AsyncReducerMap = {};
+    const asyncSagasMap: AsyncSagasMap = {};
 
-    const injectReducer = (asyncReducers: Array<AsyncReducerItem>) => {
+    const injectReducers = (asyncReducers: Array<AsyncReducerItem>) => {
         const replacedReducerNames: Array<string> = [];
 
         asyncReducers.forEach(({ name, reducer, rewritable }: AsyncReducerItem) => {
@@ -27,7 +46,7 @@ export const createStoreWithInsertReducer = (
                     return;
                 }
 
-                createdStore.dispatch({ type: '@@injectReducer/REWRITE_ASYNC_REDUCER', payload: name });
+                store.dispatch({ type: '@@injectReducer/REWRITE_ASYNC_REDUCER', payload: name });
                 console.warn(`The reducer ${name} is being replaced with a new async reducer`);
             }
 
@@ -36,13 +55,13 @@ export const createStoreWithInsertReducer = (
         });
 
         if (replacedReducerNames.length) {
-            createdStore.replaceReducer(createReducer(asyncReducersMap));
-            createdStore.dispatch({ type: '@@injectReducer/INJECT_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            store.replaceReducer(store.appReducer(asyncReducersMap));
+            store.dispatch({ type: '@@injectReducer/INJECT_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
             replacedReducerNames.length = 0;
         }
     };
 
-    const deleteReducer = (asyncReducers: Array<AsyncReducerItem>) => {
+    const ejectReducers = (asyncReducers: Array<AsyncReducerItem>) => {
         const replacedReducerNames: Array<string> = [];
 
         asyncReducers.forEach(({ name }) => {
@@ -55,29 +74,63 @@ export const createStoreWithInsertReducer = (
         });
 
         if (replacedReducerNames.length) {
-            createdStore.replaceReducer(createReducer(asyncReducersMap));
-            createdStore.dispatch({ type: '@@injectReducer/REMOVE_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
+            store.replaceReducer(store.appReducer(asyncReducersMap));
+            store.dispatch({ type: '@@injectReducer/REMOVE_ASYNC_REDUCER', payload: replacedReducerNames.join('; ') });
             replacedReducerNames.length = 0;
         }
     };
 
-    const insertReducer = (asyncReducers: Array<AsyncReducerItem>) =>
-        (RenderComponent: ComponentType | FC) => {
-            injectReducer(asyncReducers);
+    const injectSagas = (asyncSagas: Array<AsyncSagaItemType>) => {
+        const addedSagaNames: Array<string> = [];
 
-            return RenderComponent;
-        };
+        asyncSagas.forEach(({ name, saga, args }: AsyncSagaItemType) => {
+            asyncSagasMap[name] = store.runSaga(saga, args);
+            addedSagaNames.push(name);
+        });
 
-    const insertWithRemoveReducer = (asyncReducers: Array<AsyncReducerItem>) =>
+        if (addedSagaNames.length) {
+            store.dispatch({ type: '@@injectSaga/INJECT_ASYNC_SAGAS', payload: addedSagaNames.join('; ') });
+            addedSagaNames.length = 0;
+        }
+
+    };
+
+    const ejectSagas = (asyncSagas: Array<AsyncSagaItemType>) => {
+        const removedSagaNames: Array<string> = [];
+
+        asyncSagas.forEach(({ name }: AsyncSagaItemType) => {
+            if (asyncSagasMap[name]) {
+                asyncSagasMap[name].cancel();
+                delete asyncSagasMap[name];
+                removedSagaNames.push(name);
+            } else {
+                console.warn(`The saga ${name} is not found in asyncSagas`);
+            }
+        });
+
+        if (removedSagaNames.length) {
+            store.dispatch({ type: '@@injectSaga/REMOVE_ASYNC_SAGAS', payload: removedSagaNames.join('; ') });
+            removedSagaNames.length = 0;
+        }
+    };
+
+    return ({ asyncReducers = [], asyncSagas = [] }: InjectReducerAndSagaParamsType) =>
         (RenderComponent: ComponentType | FC) => (
-            class InsertReducerContainer extends Component<null> {
-                constructor(props: null) {
+            class InsertReducerContainer extends Component<Record<string, any>> {
+                static displayName = `InsertReducersAndSagas${RenderComponent.displayName || RenderComponent.name}Container`;
+
+                constructor(props: Record<string, any>) {
                     super(props);
-                    injectReducer(asyncReducers);
+                    injectReducers(asyncReducers);
+                    injectSagas(asyncSagas);
                 }
 
                 componentWillUnmount(): void {
-                    deleteReducer(asyncReducers);
+                    if (withEjectReducers) {
+                        ejectReducers(asyncReducers);
+                    }
+
+                    ejectSagas(asyncSagas);
                 }
 
                 render () {
@@ -85,9 +138,4 @@ export const createStoreWithInsertReducer = (
                 }
             }
         );
-
-    return ({
-        store: createdStore,
-        insertReducer: withRemove ? insertWithRemoveReducer : insertReducer
-    });
 };

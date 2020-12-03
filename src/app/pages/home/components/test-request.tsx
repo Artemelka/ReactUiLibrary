@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Action } from 'redux';
+import { connect } from 'react-redux';
 import { Button, ButtonsGroup } from '../../../elements';
 import { getPostConfig, requestWrapper, requestGetParams } from '../utils';
+import { fetchGetRequestActionSaga } from '../redux';
 
-const USER_PARAMS = 'name=tim';
+
 const TRANSLATE_URL = '/api/translate';
 const testDictionaryCollections = {
     ['test-RU']: {
@@ -14,7 +17,7 @@ const testDictionaryCollections = {
         testKey: 'test-key',
         first: 'first',
         second: 'second'
-    },
+    }
 };
 const newKeyData = [{
     keyName: 'key-test-add',
@@ -40,8 +43,15 @@ const changeLocale = {
     name: 'test-RU'
 };
 
-export class TestRequest extends Component {
-    handleRequestGet = () => requestWrapper(requestGetParams, USER_PARAMS);
+type MapDispatchToPropsType = {
+    fetchGetRequest: () => Action
+};
+type TestRequestPropsType = MapDispatchToPropsType;
+
+export class TestRequestComponent extends Component<TestRequestPropsType> {
+    handleRequestGet = () => {
+        this.props.fetchGetRequest();
+    }
 
     handleRequestErrorGet = () => requestWrapper(requestGetParams);
 
@@ -146,3 +156,7 @@ export class TestRequest extends Component {
         );
     }
 }
+
+export const TestRequest = connect(null, {
+    fetchGetRequest: fetchGetRequestActionSaga
+})(TestRequestComponent);
