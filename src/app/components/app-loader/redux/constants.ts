@@ -7,5 +7,6 @@ export const initialState = {
 };
 
 export const APP_LOADER_ACTIONS = nameSpaceCreator(`@@${APP_LOADER_REDUCER_KEY}`)([
-    'CHANGE_STATE'
+    'SET_LOADING_START',
+    'SET_LOADING_STOP'
 ]);

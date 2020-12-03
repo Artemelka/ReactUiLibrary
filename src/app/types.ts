@@ -4,7 +4,7 @@ import { LOCALIZATION_REDUCER_KEY } from 'services';
 import { APP_LOADER_REDUCER_KEY } from 'components';
 import { APP_STORE_KEY } from './constants';
 import { LocalizationState } from '../services/localization/types';
-import { AppLoaderState } from './components/app-loader/types';
+import { AppLoaderState } from 'components';
 
 export type AppState = {
     [APP_STORE_KEY.ROUTER]: RouterState,

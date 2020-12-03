@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { localizationLabelsSelector, localizationLocalesSelector } from '../../../services/localization';
-import { selectOptions } from './constants';
+import { localizationLabelsSelector, localizationLocalesSelector } from '../../../../services/localization';
+import { selectOptions } from '../constants';
 
 export const languageSelectOptionsSelector = createSelector(
     localizationLabelsSelector,
