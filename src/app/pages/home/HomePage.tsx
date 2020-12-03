@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import { LanguageSelect } from 'components';
-import { injectReducersAndSagas } from '../../application/app-store';
+import { injectReducersAndSagas } from '../../application/redux';
 import { TestRequest, TestRouter } from './components';
 import {
     homePageReducer,

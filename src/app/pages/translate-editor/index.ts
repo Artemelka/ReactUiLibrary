@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { localizationLabelsSelector } from 'services';
 import { TranslateEditorPageComponent } from './TranslateEditorPage';
-import { injectReducersAndSagas } from '../../application/app-store';
+import { injectReducersAndSagas } from '../../application/redux/app-store';
 import { translateEditorPageReducer } from './reducer';
 import { TRANSLATE_EDITOR_PAGE_REDUCER } from './constants';
 import { closeEditorModal, openEditorModal } from './actions';

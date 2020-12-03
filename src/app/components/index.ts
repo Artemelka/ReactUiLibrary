@@ -1,10 +1,4 @@
-export {
-    AppLoader,
-    APP_LOADER_REDUCER_KEY,
-    appLoaderIsLoadingSelector,
-    appLoaderReducer,
-    changeAppLoaderState
-} from './app-loader';
+export * from './app-loader';
 export { CodeBlock } from './code-block/CodeBlock';
 export { FooterAside } from './footer/FooterAside';
 export { Form } from './form';
@@ -22,4 +16,4 @@ export {
     ThirdPanel,
     ModalPanelName
 } from './modals';
-export { routerLocationSelector, locationPathNameSelector } from '../application/app-selectors';
+export { routerLocationSelector, locationPathNameSelector } from '../application/redux';

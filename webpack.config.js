@@ -83,7 +83,8 @@ module.exports = (env = {}) => {
             }),
             new webpack.DefinePlugin({
                 'process.env': {
-                    MOCK: JSON.stringify(env.MOCK)
+                    MOCK: JSON.stringify(env.MOCK),
+                    MODE: JSON.stringify(env.MODE)
                 }
             })
         ]

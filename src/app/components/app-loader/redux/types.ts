@@ -8,6 +8,6 @@ export type AppLoaderState = {
 
 export type AppLoaderAction<T> = { type: string, payload: T };
 
-export interface AppLoaderProps {
+export type AppLoaderProps = {
     enabled?: boolean;
-}
+};

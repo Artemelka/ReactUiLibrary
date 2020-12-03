@@ -118,14 +118,14 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run client\" \"npm run server\"",
-    "client": "webpack-dev-server --history-api-fallback --open --mode development",
-    "client:mock": "webpack-dev-server --history-api-fallback --open --mode development --env.MOCK=true",
+    "client": "webpack-dev-server --history-api-fallback --open --mode development --env.MODE=development",
+    "client:mock": "webpack-dev-server --history-api-fallback --open --mode development --env.MODE=development --env.MOCK=true",
     "server": "node src/server/index.js",
     "stylelint": "stylelint \"src/**/*.less\"",
     "eslint": "eslint \"src/server/**/*.@(js|jsx)\"",
     "lint": "npm run eslint && npm run stylelint",
     "test": "jest --no-cache",
     "test:u": "jest -u",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production --env.MODE=production"
   }
 }

@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware, { RunSagaOptions, Saga, Task } from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger';
+import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
 import { createInjectReducerAndSagas } from 'services';
-import { appReducer } from './app-reducers';
+import { appReducer } from './reducer';
 import { history } from './app-history';
 
 type AsyncReducerMap = Record<string, Reducer>;
@@ -18,9 +18,13 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares: Array<Middleware> = [
     sagaMiddleware,
     routerMiddleware(history),
-    thunk,
-    logger
+    thunk
 ];
+
+if (process.env && process.env.MODE === 'development') {
+    middlewares.push(logger);
+}
+
 const store: AppStore = createStore(appReducer(), composeWithDevTools(applyMiddleware(...middlewares)));
 
 store.runSaga = sagaMiddleware.run;
