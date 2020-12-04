@@ -1,25 +1,44 @@
+import { createSelector } from 'reselect';
 import { LOCALIZATION_REDUCER_KEY, StoreKeys } from './constants';
-import { LocalizationState } from './types';
+import { LocalizationState, LocalizationLabelsType, LocalizationDictionaryType } from './types';
 
 type Store = Record<string, any> & { [LOCALIZATION_REDUCER_KEY]: LocalizationState };
 
-export const localizationActiveLocaleSelector = (state: Store): string =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.ACTIVE_LOCALE];
-
-export const localizationDictionarySelector = (state: Store): Record<string, Record<string, string>> =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.DICTIONARY];
-
-export const localizationIsLoadingSelector = (state: Store): boolean =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.IS_LOADING] || state[LOCALIZATION_REDUCER_KEY][StoreKeys.LOADING_COUNT] !== 0;
-
-export const localizationLoadingCountSelector = (state: Store): number =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.LOADING_COUNT];
-
-export const localizationLabelsSelector = (state: Store): Record<string, string> =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.LABELS];
-
-export const localizationLocalesSelector = (state: Store): Array<string> =>
-    state[LOCALIZATION_REDUCER_KEY][StoreKeys.LOCALES];
-
 export const localizationStateSelector = (state: Store): LocalizationState =>
     state[LOCALIZATION_REDUCER_KEY];
+
+export const localizationActiveLocaleSelector = createSelector(
+    localizationStateSelector,
+    (localizationState): string => localizationState[StoreKeys.ACTIVE_LOCALE]
+);
+
+export const localizationDictionarySelector = createSelector(
+    localizationStateSelector,
+    (localizationState): LocalizationDictionaryType => localizationState[StoreKeys.DICTIONARY]
+);
+
+export const localizationLabelsSelector = createSelector(
+    localizationStateSelector,
+    (localizationState): LocalizationLabelsType => localizationState[StoreKeys.LABELS]
+);
+
+export const localizationLocalesSelector = createSelector(
+    localizationStateSelector,
+    (localizationState): Array<string> => localizationState[StoreKeys.LOCALES]
+);
+
+export const localizationLoadingCountSelector = createSelector(
+    localizationStateSelector,
+    (localizationState): number => localizationState[StoreKeys.LOADING_COUNT]
+);
+
+export const isLoadingStateSelector = createSelector(
+    localizationStateSelector,
+    (localizationState): boolean => localizationState[StoreKeys.IS_LOADING]
+);
+
+export const localizationIsLoadingSelector = createSelector(
+    isLoadingStateSelector,
+    localizationLoadingCountSelector,
+    (isLoading, loadingCount): boolean => isLoading || loadingCount !== 0
+);

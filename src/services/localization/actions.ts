@@ -1,5 +1,5 @@
 import { LOCALIZATION_ACTIONS } from './constants';
-import { LocalizationAction, LocalizationState } from './types';
+import { LocalizationAction, LocalizationState, LocalizationDictionaryType, LocalizationLabelsType } from './types';
 
 const {
     ADD_DICTIONARY,
@@ -11,12 +11,14 @@ const {
     INIT_STORE
 } = LOCALIZATION_ACTIONS;
 
-export const addLocalizationDictionary = (dictionary: Record<string, Record<string, string>>): LocalizationAction<Record<string, Record<string, string>>> => ({
+export const addLocalizationDictionary = (
+    dictionary: LocalizationDictionaryType
+): LocalizationAction<LocalizationDictionaryType> => ({
     type: ADD_DICTIONARY,
     payload: dictionary
 });
 
-export const addLocalizationLabels = (labels: Record<string, string>): LocalizationAction<Record<string, string>> => ({
+export const addLocalizationLabels = (labels: LocalizationLabelsType): LocalizationAction<LocalizationLabelsType> => ({
     type: ADD_LABELS,
     payload: labels
 });

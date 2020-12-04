@@ -1,4 +1,5 @@
 import { nameSpaceCreator } from '../index';
+import { LocalizationState, LocalizationDictionaryType } from './types';
 
 export const LOCALIZATION_REDUCER_KEY = 'localization';
 
@@ -7,7 +8,7 @@ export const NavigatorLanguage = {
     RU: 'ru-RU'
 };
 
-export const DEFAULT_DICTIONARY = {
+export const DEFAULT_DICTIONARY: LocalizationDictionaryType = {
     [NavigatorLanguage.EN]: { test: 'test' },
     [NavigatorLanguage.RU]: { test: 'тест' }
 };
@@ -21,7 +22,7 @@ export enum StoreKeys {
     LOCALES = 'locales'
 }
 
-export const initialState = {
+export const initialState: LocalizationState = {
     [StoreKeys.ACTIVE_LOCALE]: NavigatorLanguage.RU,
     [StoreKeys.DICTIONARY]: {},
     [StoreKeys.IS_LOADING]: false,

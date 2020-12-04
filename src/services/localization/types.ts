@@ -1,10 +1,13 @@
 import { StoreKeys } from './constants';
 
+export type LocalizationLabelsType = Record<string, string>;
+export type LocalizationDictionaryType = Record<string, LocalizationLabelsType>;
+
 export type LocalizationState = {
     [StoreKeys.ACTIVE_LOCALE]: string,
-    [StoreKeys.DICTIONARY]: Record<string, Record<string, string>>,
+    [StoreKeys.DICTIONARY]: LocalizationDictionaryType,
     [StoreKeys.IS_LOADING]: boolean,
-    [StoreKeys.LABELS]: Record<string, string>,
+    [StoreKeys.LABELS]: LocalizationLabelsType,
     [StoreKeys.LOADING_COUNT]: number,
     [StoreKeys.LOCALES]: Array<string>,
 };
