@@ -6,7 +6,7 @@ import { localizationLabelsSelector } from '../../../../../services/localization
 import { EditorFormField } from './EditorFormField';
 import { validate } from './validation';
 import { LocalizationState } from '../../../../../services/localization/types';
-import { EditorFormProps } from '../types';
+import { EditorFormProps } from '../table/redux/types';
 
 const subscription = {
     fields: {

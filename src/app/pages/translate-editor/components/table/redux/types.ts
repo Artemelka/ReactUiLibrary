@@ -1,5 +1,5 @@
-import { TextInputProps } from '../../../elements/inputs/input/types';
-import { TextareaContainerProps } from '../../../elements/inputs/textarea/types';
+import { TextInputProps } from '../../../../../elements/inputs/input/types';
+import { TextareaContainerProps } from '../../../../../elements/inputs/textarea/types';
 
 export interface EditorFormProps {
     editRowData: Record<string, string>;

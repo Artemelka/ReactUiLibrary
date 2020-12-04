@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import { localizationIsLoadingSelector } from '../../../../../services/localization';
+import { AppState } from 'app/types';
+import { localizationIsLoadingSelector } from 'services/localization';
 import { EditorTableComponent } from './EditorTable';
-import { editorTableHeaderRowSelector, editorTableRowSelector } from '../selectors';
-import { getAllDictionaryActionCreator } from '../actions';
-import { LocalizationState } from '../../../../../services/localization/types';
+import { editorTableHeaderRowSelector, editorTableRowSelector, getAllDictionaryActionSaga } from './redux';
 
-export const EditorTable = connect((state: Record<string, any> & LocalizationState) => ({
+export const EditorTable = connect((state: AppState) => ({
     isLoading: localizationIsLoadingSelector(state),
     headerRow: editorTableHeaderRowSelector(state),
     rows: editorTableRowSelector(state)
-}), { getDictionary: getAllDictionaryActionCreator })(EditorTableComponent);
+}), {
+    getDictionary: getAllDictionaryActionSaga
+})(EditorTableComponent);
