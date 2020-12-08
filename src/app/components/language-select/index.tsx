@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
 import { Select } from 'elements';
 import { localizationActiveLocaleSelector } from 'services/localization';
-// import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
-import { StoreLoader } from '../../application/inject-redusers-and-sagas';
 import { AppState } from '../../types';
 import {
     languageSelectOptionsSelector,
@@ -20,9 +19,9 @@ const storeInjectConfig = { sagasToInject: asyncSagas};
 
 const WrappedSelect = (props: any) => {
     return (
-        <StoreLoader storeInjectConfig={storeInjectConfig}>
+        <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
             <Select {...props}/>
-        </StoreLoader>
+        </ReduxStoreLoader>
     );
 };
 

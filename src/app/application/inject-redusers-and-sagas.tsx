@@ -41,9 +41,3 @@ export const injectReducersAndSagas = ({ asyncReducers = [], asyncSagas = [] }: 
                 return <WrappedComponent {...this.props}/>;
             }
         };
-
-export const StoreLoader = ({ children, ...restProps}: any) => (
-    <ReduxStoreLoader store={appStore} {...restProps}>
-        {children}
-    </ReduxStoreLoader>
-);

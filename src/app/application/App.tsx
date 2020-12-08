@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import classNames from 'classnames/bind';
-// import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
-import { StoreLoader } from './inject-redusers-and-sagas';
+import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
 import {
     initLocalizationActionSaga,
     INIT_LOCALIZATION_WATCHER_SAGA_NAME,
@@ -34,11 +33,11 @@ export class AppContainerComponent extends Component<AppContainerComponentProps>
 
     render() {
         return (
-            <StoreLoader storeInjectConfig={storeInjectConfig}>
+            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
                 <div className={cn('App')}>
                     {pages.map(pageProps => <Route {...pageProps} key={pageProps.path} />)}
                 </div>
-            </StoreLoader>
+            </ReduxStoreLoader>
         );
     }
 }

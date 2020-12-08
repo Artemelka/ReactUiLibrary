@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
+import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
 import { LanguageSelect } from 'components';
-// import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
-import { StoreLoader } from '../../application/inject-redusers-and-sagas';
 import { TestRequest, TestRouter } from './components';
 import {
     homePageReducer,
@@ -34,7 +33,7 @@ const storeInjectConfig = {
 class HomePage extends Component {
     render() {
         return (
-            <StoreLoader storeInjectConfig={storeInjectConfig}>
+            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
                 <div className={cn('Test-page')}>
                     <div className={cn('Test-page__item')}>
                         <h1>Test home page</h1>
@@ -56,7 +55,7 @@ class HomePage extends Component {
                         ...
                     </div>
                 </div>
-            </StoreLoader>
+            </ReduxStoreLoader>
         );
     }
 }
