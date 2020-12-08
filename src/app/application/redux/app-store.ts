@@ -1,35 +1,16 @@
-import { applyMiddleware, createStore, Middleware, Reducer, Store } from 'redux';
-import thunk from 'redux-thunk';
-import createSagaMiddleware, { RunSagaOptions, Saga, Task } from 'redux-saga';
+import { Middleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createAppStore } from '@wildberries/redux-core-modules';
+import { ROOT_REDUCERS } from './reducer';
 import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
-import { createInjectReducerAndSagas } from 'services';
-import { appReducer } from './reducer';
 import { history } from './app-history';
 
-type AsyncReducerMap = Record<string, Reducer>;
-type AppStore = Store & {
-    appReducer?: (asyncReducers?: AsyncReducerMap) => Reducer;
-    runSaga?: (saga: Saga, options: RunSagaOptions<string, Store>) => Task;
-};
-
-const sagaMiddleware = createSagaMiddleware();
 const middlewares: Array<Middleware> = [
-    sagaMiddleware,
-    routerMiddleware(history),
-    thunk
+    routerMiddleware(history)
 ];
 
 if (process.env && process.env.MODE === 'development') {
     middlewares.push(logger);
 }
 
-const store: AppStore = createStore(appReducer(), composeWithDevTools(applyMiddleware(...middlewares)));
-
-store.runSaga = sagaMiddleware.run;
-store.appReducer = appReducer;
-
-export const appStore = store;
-export const injectReducersAndSagas = createInjectReducerAndSagas({ store, withEjectReducers: true });
-
+export const appStore = createAppStore({ extraMiddlewares: middlewares, rootReducers: ROOT_REDUCERS });

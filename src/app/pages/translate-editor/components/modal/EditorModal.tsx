@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ModalModule } from '../../../../elements';
 import { EditorForm } from '../form/EditorForm';
-import { EditorModalProps } from '../types';
+import { EditorModalProps } from '../table/redux/types';
 
 const { ModalPanel, ModalSize } = ModalModule;
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import classNames from 'classnames/bind';
+import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
 import {
     initLocalizationActionSaga,
-    injectReducersAndSagas,
     INIT_LOCALIZATION_WATCHER_SAGA_NAME,
     initLocalizationWatcherSaga
 } from './redux';
@@ -16,8 +16,9 @@ const asyncSagas = [{
     name: INIT_LOCALIZATION_WATCHER_SAGA_NAME,
     saga: initLocalizationWatcherSaga
 }];
+const storeInjectConfig = { sagasToInject: asyncSagas };
 
-interface AppContainerComponentProps {
+type AppContainerComponentProps = {
     initLocalization?: () => void;
 }
 
@@ -32,15 +33,15 @@ export class AppContainerComponent extends Component<AppContainerComponentProps>
 
     render() {
         return (
-            <div className={cn('App')}>
-                {pages.map(pageProps => <Route {...pageProps} key={pageProps.path} />)}
-            </div>
+            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+                <div className={cn('App')}>
+                    {pages.map(pageProps => <Route {...pageProps} key={pageProps.path} />)}
+                </div>
+            </ReduxStoreLoader>
         );
     }
 }
 
-export const AppContainer = injectReducersAndSagas({ asyncSagas })(
-    connect(null, {
-        initLocalization: initLocalizationActionSaga
-    })(AppContainerComponent)
-);
+export const AppContainer = connect(null, {
+    initLocalization: initLocalizationActionSaga
+})(AppContainerComponent);

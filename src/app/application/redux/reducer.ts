@@ -6,7 +6,7 @@ import { history } from './app-history';
 import { APP_STORE_KEY } from '../../constants';
 import { AppReducer } from '../../types';
 
-const ROOT_REDUCERS = {
+export const ROOT_REDUCERS = {
     [APP_STORE_KEY.ROUTER]: connectRouter(history),
     [LOCALIZATION_REDUCER_KEY]: localizationReducer,
     [APP_LOADER_REDUCER_KEY]: appLoaderReducer
