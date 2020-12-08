@@ -10,7 +10,7 @@ const middlewares: Array<Middleware> = [
 ];
 
 if (process.env && process.env.MODE === 'development') {
-    middlewares.push(logger);
+    // middlewares.push(logger);
 }
 
 export const appStore = createAppStore({ extraMiddlewares: middlewares, rootReducers: ROOT_REDUCERS });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageLayout } from '../../layouts';
-import { FooterAside, LanguageSelect } from '../../components';
+import { FooterAside, LanguageSelect } from 'components';
 import { PageContent } from './components';
 
 const { Footer, Main, Page } = PageLayout;

@@ -7,6 +7,7 @@ export const LIBRARY = 'library';
 export const LAYOUT = 'layout';
 export const TRANSLATE_EDITOR = 'translate-editor';
 export const FINAL_FORM = 'final-form';
+export const ART_REDUX = 'art-redux';
 
 interface TestRouterProps {
     goBack: () => void;
@@ -21,6 +22,8 @@ export class TestRouterComponent extends Component<TestRouterProps> {
     handleEditorClick = () => this.props.push(`/${TRANSLATE_EDITOR}`);
 
     handleFormClick = () => this.props.push(`/${FINAL_FORM}`);
+
+    handleArtReduxClick = () => this.props.push(`/${ART_REDUX}`);
 
     handleGoBackClick = () => this.props.goBack();
 
@@ -42,6 +45,10 @@ export class TestRouterComponent extends Component<TestRouterProps> {
                 <Button
                     onClick={this.handleFormClick}
                     label="final-form"
+                />
+                <Button
+                    onClick={this.handleArtReduxClick}
+                    label="art-redux"
                 />
                 <Button
                     onClick={this.handleGoBackClick}

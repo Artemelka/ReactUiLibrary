@@ -4,6 +4,7 @@ import LayoutPage from './layout/LayoutPage';
 import HomePage from './home/HomePage';
 import { TranslateEditorPage } from './translate-editor';
 import FinalFormPage from './final-form/FinalFormPage';
+import { ArtReduxPage } from './art-redux';
 import { RouteProps } from './types';
 
 export const pages: Array<RouteProps> = [
@@ -23,6 +24,9 @@ export const pages: Array<RouteProps> = [
     }, {
         component: FinalFormPage,
         path: '/final-form'
+    }, {
+        component: ArtReduxPage,
+        path: '/art-redux'
     }
 ];
 
