@@ -1,16 +1,38 @@
 import React from 'react';
 import { Button, Input } from 'elements';
 import { artStoreConnect } from 'services';
-import { countSelector, valueSelector, countPlusAction, setStoreAction } from '../../redux';
+import {
+    countSelector,
+    valueSelector,
+    valueBSelector,
+    countPlusAction,
+    setStoreAction,
+    testActionSaga
+} from '../../redux';
 
 type PageContentProps = {
     onButtonClick: () => void;
+    onInject: () => void;
     onInputChange: (value: string) => void;
+    onRemove: () => void;
+    onStartSaga: () => void;
     countValue: number;
     inputValue: string;
+    isInject: boolean;
+    valueB: string;
 };
 
-export const PageContentComponent = ({ onButtonClick, onInputChange, countValue, inputValue }: PageContentProps) => {
+export const PageContentComponent = ({
+    onButtonClick,
+    onInject,
+    onInputChange,
+    onRemove,
+    onStartSaga,
+    countValue,
+    inputValue,
+    isInject,
+    valueB
+}: PageContentProps) => {
     const handleInputChange = (event: any, inputValue: string) => {
         onInputChange(inputValue);
     };
@@ -20,8 +42,18 @@ export const PageContentComponent = ({ onButtonClick, onInputChange, countValue,
             <h2>Art Redux Page</h2>
             <Button label="Change store" onClick={onButtonClick}/>
             <p>count: {countValue}</p>
-            <Input.Text value={inputValue} id="1" name="test" onChange={handleInputChange} width={300} />
-            <p>value: {inputValue}</p>
+            {!isInject && <Button label="Inject reducer" onClick={onInject}/>}
+            {isInject && (
+                <>
+                    <Input.Text value={inputValue} id="1" name="test" onChange={handleInputChange} width={300} />
+                    <p>value: {valueB}</p>
+                    <div>
+                        <Button label="Run saga" onClick={onStartSaga}/>
+                    </div>
+                    <br/><br/>
+                    <Button label="Remove reducer" onClick={onRemove}/>
+                </>
+            )}
         </div>
     );
 };
@@ -29,10 +61,13 @@ export const PageContentComponent = ({ onButtonClick, onInputChange, countValue,
 export const PageContent = artStoreConnect({
     mapStateToProps: (state) => ({
         countValue: countSelector(state),
-        inputValue: valueSelector(state)
+        inputValue: valueSelector(state),
+        valueB: valueBSelector(state)
     }),
     mapDispatchToProps: {
         onButtonClick: countPlusAction,
-        onInputChange: setStoreAction
+        onInputChange: setStoreAction,
+        onStartSaga: testActionSaga
     }
+    // @ts-ignore
 })(PageContentComponent);

@@ -1,15 +1,20 @@
 import { Action } from '../types';
 
-export const checkAction = (action: Action) => {
+export const checkAction = (action: Action<string | Symbol>): boolean => {
     if (typeof action !== 'object' || typeof action === 'function') {
-        throw new Error('Action must be a plain object');
+        console.error('Action must be a plain object');
+        return false;
     }
 
     if (!action.type) {
-        throw new Error('Action must contain field type');
+        console.error('Action must contain field "type"');
+        return false;
     }
 
     if (!action.reducerName) {
-        throw new Error('Action must contain field reducerName');
+        console.error('Action must contain field "reducerName"');
+        return false;
     }
+
+    return true;
 };

@@ -12,3 +12,16 @@ export const setStoreAction = (payload: string) => ({
     type: SET_ASYNC_STORE_ACTION,
     payload
 });
+
+export const SET_ASYNC_STORE_B_ACTION = 'SET_ASYNC_STORE_B_ACTION';
+export const setAsyncStoreBAction = (payload: string) => ({
+    reducerName: ASYNC_REDUCER_NAME,
+    type: SET_ASYNC_STORE_B_ACTION,
+    payload
+});
+
+export const TEST_ACTION_SAGA = 'TEST_ACTION_SAGA';
+export const testActionSaga = () => ({
+    reducerName: TEST_REDUCER_NAME,
+    type: TEST_ACTION_SAGA
+});

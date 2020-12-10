@@ -1,11 +1,10 @@
 import { BaseAction } from 'services';
-import { COUNT_PLUS_ACTION, SET_ASYNC_STORE_ACTION } from './actions';
+import { COUNT_PLUS_ACTION, SET_ASYNC_STORE_ACTION, SET_ASYNC_STORE_B_ACTION } from './actions';
 
 export const initialState = {
     count: 0
 };
 export const testReducer = (store  = initialState, { type, payload }: BaseAction) => {
-    console.log('=== testReducer ===', type);
     switch (type) {
         case COUNT_PLUS_ACTION:
             return { ...store, count: store.count + 1 };
@@ -15,13 +14,16 @@ export const testReducer = (store  = initialState, { type, payload }: BaseAction
 };
 
 export const initialAsyncState = {
-    a: ''
+    a: 'ЛИЗА',
+    b: ''
 };
 export const testInjectReducer = (store  = initialAsyncState, { type, payload }: BaseAction) => {
-    console.log('=== testInjectReducer ===', type);
     switch (type) {
         case SET_ASYNC_STORE_ACTION:
             return { ...store, a: payload };
-        default: return store;
+        case SET_ASYNC_STORE_B_ACTION:
+            return { ...store, b: payload };
+        default:
+            return store;
     }
 };

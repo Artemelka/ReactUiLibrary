@@ -12,5 +12,14 @@ export {
     StoreKeys
 } from './localization';
 export { createArtStore } from './art-store';
-export { Reducer, Action, SubscribeAction, BaseAction, ArtStore, ArtStoreConfig, InjectReducerParams } from './art-store/types';
-export { ArtStoreProvider, artStoreConnect } from './react-art-store';
+export {
+    Reducer,
+    Action,
+    SubscribeAction,
+    BaseAction,
+    ArtStore,
+    ArtStoreConfig,
+    InjectReducerParams,
+    InjectSagaParams
+} from './art-store/types';
+export { ArtStoreProvider, artStoreConnect, ArtStoreInjector } from './react-art-store';
