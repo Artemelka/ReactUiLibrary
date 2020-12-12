@@ -8,5 +8,3 @@ export type LocalizationState = {
     [StoreKeys.LOADING_COUNT]: number,
     [StoreKeys.LOCALES]: Array<string>,
 };
-
-export type LocalizationAction<T> = { type: string, payload: T };

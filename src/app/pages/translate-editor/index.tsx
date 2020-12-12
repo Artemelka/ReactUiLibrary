@@ -11,7 +11,7 @@ import {
     isOpenEditorModalSelector,
     EditorState
 } from './redux';
-import { AppState } from '../../types';
+import { EditorStorePart } from './redux';
 
 const TranslateEditorPageReducer = {
     name: TRANSLATE_EDITOR_PAGE_REDUCER,
@@ -28,7 +28,7 @@ const WrappedComponent = (props: any) => {
     );
 };
 
-export const TranslateEditorPage = connect((state: AppState & EditorState) => ({
+export const TranslateEditorPage = connect((state: EditorStorePart) => ({
     isOpenModal: isOpenEditorModalSelector(state),
     labels: localizationLabelsSelector(state),
     modalData: EditorModalDataSelector(state)

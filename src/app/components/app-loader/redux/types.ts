@@ -1,13 +1,14 @@
-export enum StoreKeys {
-    IS_LOADING = 'isLoading'
-}
+import { Draft } from '@reduxjs/toolkit';
 
 export type AppLoaderState = {
-    [StoreKeys.IS_LOADING]: boolean;
+    isLoading: boolean;
 };
-
-export type AppLoaderAction<T> = { type: string, payload: T };
 
 export type AppLoaderProps = {
     enabled?: boolean;
+};
+
+export type AppLoaderCase = {
+    setAppLoaderStart: (state: Draft<AppLoaderState>) => void;
+    setAppLoaderStop: (state: Draft<AppLoaderState>) => void;
 };
