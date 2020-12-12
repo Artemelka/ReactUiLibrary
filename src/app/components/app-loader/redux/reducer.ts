@@ -1,20 +1,23 @@
-import { Action } from 'redux';
-import { APP_LOADER_ACTIONS, initialState } from './constants';
-import { AppLoaderState, StoreKeys } from './types';
+import { createSlice, Draft } from '@reduxjs/toolkit';
+import { AppLoaderState, AppLoaderCase } from './types';
 
-export const appLoaderReducer = (state: AppLoaderState = initialState, { type }: Action<string>) => {
-    switch (type) {
-        case APP_LOADER_ACTIONS.SET_LOADING_START:
-            return ({
-                ...state,
-                [StoreKeys.IS_LOADING]: true
-            });
-        case APP_LOADER_ACTIONS.SET_LOADING_STOP:
-            return ({
-                ...state,
-                [StoreKeys.IS_LOADING]: false
-            });
-        default:
-            return state;
-    }
+export const APP_LOADER_REDUCER_KEY = 'appLoader';
+export const initialState = {
+    isLoading: false
 };
+
+const appLoaderSlice = createSlice<AppLoaderState, AppLoaderCase>({
+    name: APP_LOADER_REDUCER_KEY,
+    initialState,
+    reducers: {
+        setAppLoaderStart: (state: Draft<AppLoaderState>) => {
+            state.isLoading = true;
+        },
+        setAppLoaderStop: (state: Draft<AppLoaderState>) => {
+            state.isLoading = false;
+        }
+    }
+});
+
+export const { setAppLoaderStart, setAppLoaderStop } = appLoaderSlice.actions;
+export const appLoaderReducer = appLoaderSlice.reducer;

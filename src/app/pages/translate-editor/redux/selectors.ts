@@ -1,16 +1,15 @@
-import { TRANSLATE_EDITOR_PAGE_REDUCER, EditorStoreKeys } from './constants';
-import { EditorState } from './types';
+import { createSelector } from 'reselect';
+import { TRANSLATE_EDITOR_PAGE_REDUCER, initialState } from './constants';
+import { EditorStorePart } from './types';
 
-type AppState = EditorState & Record<string, any>;
+const editorStoreSelector = (store: EditorStorePart) => store[TRANSLATE_EDITOR_PAGE_REDUCER] || initialState;
 
-export const isOpenEditorModalSelector = (state: AppState): boolean => {
-    const editorStore = state[TRANSLATE_EDITOR_PAGE_REDUCER] || {};
+export const isOpenEditorModalSelector = createSelector(
+    editorStoreSelector,
+    (state) => state.isOpenModal
+);
 
-    return editorStore[EditorStoreKeys.IS_OPEN_MODAL];
-};
-
-export const EditorModalDataSelector = (state: AppState): Record<string, string> => {
-    const editorStore = state[TRANSLATE_EDITOR_PAGE_REDUCER] || {};
-
-    return editorStore[EditorStoreKeys.MODAL_DATA];
-};
+export const EditorModalDataSelector = createSelector(
+    editorStoreSelector,
+    (state) => state.modalData
+);

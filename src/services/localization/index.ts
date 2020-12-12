@@ -1,14 +1,13 @@
+export { ErrorMessages, LOCALIZATION_REDUCER_KEY, NavigatorLanguage, StoreKeys } from './constants';
 export {
+    localizationReducer,
     addLocalizationDictionary,
     addLocalizationLabels,
     addLocalizationLocales,
     changeLocalizationActiveLocale,
     initLocalizationState,
     startLocalizationLoading,
-    stopLocalizationLoading
-} from './actions';
-export { ErrorMessages, LOCALIZATION_REDUCER_KEY, NavigatorLanguage, StoreKeys } from './constants';
-export { localizationReducer } from './reducer';
+    stopLocalizationLoading } from './reducer';
 export {
     localizationActiveLocaleSelector,
     localizationDictionarySelector,
@@ -16,5 +15,4 @@ export {
     localizationLabelsSelector,
     localizationLoadingCountSelector,
     localizationLocalesSelector,
-    localizationStateSelector
 } from './selectors';

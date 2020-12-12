@@ -4,7 +4,6 @@ export {
     StoreInjectorConsumer,
     StoreInjectorProvider,
     StoreInjectorConsumerProps,
-    StoreInjectorProviderProps,
     AppStore,
     AsyncReducerItem,
     AsyncSagaItem,
