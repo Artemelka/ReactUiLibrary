@@ -1,5 +1,5 @@
 export { history } from './app-history';
-export { appReducer } from './reducer';
+export { createReducer } from './reducer';
 export * from './selectors';
 export * from './app-store';
 export * from './actions';

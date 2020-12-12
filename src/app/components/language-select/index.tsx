@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
+import { StoreInjectorConsumer } from 'services';
 import { Select } from 'elements';
 import { localizationActiveLocaleSelector } from 'services/localization';
 import { AppState } from '../../types';
@@ -15,13 +15,12 @@ const asyncSagas = [{
     name: GET_LABELS_WATCHER_SAGA_NAME,
     saga: getLabelsWatcherSaga
 }];
-const storeInjectConfig = { sagasToInject: asyncSagas};
 
 const WrappedSelect = (props: any) => {
     return (
-        <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+        <StoreInjectorConsumer asyncSagas={asyncSagas}>
             <Select {...props}/>
-        </ReduxStoreLoader>
+        </StoreInjectorConsumer>
     );
 };
 

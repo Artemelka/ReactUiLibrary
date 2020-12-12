@@ -1,16 +1,28 @@
-import { Middleware } from 'redux';
+import { configureStore, Middleware } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
-import { createAppStore } from '@wildberries/redux-core-modules';
-import { ROOT_REDUCERS } from './reducer';
+import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
+import { createInjectorEnhancer, AppStore } from 'services';
+import { createReducer } from './reducer';
 import { history } from './app-history';
 
+const sagaMiddleware = createSagaMiddleware();
+const runSaga = sagaMiddleware.run;
+
 const middlewares: Array<Middleware> = [
-    routerMiddleware(history)
+    routerMiddleware(history),
+    sagaMiddleware
 ];
 
 if (process.env && process.env.MODE === 'development') {
     middlewares.push(logger);
 }
 
-export const appStore = createAppStore({ extraMiddlewares: middlewares, rootReducers: ROOT_REDUCERS });
+const enhancers = [createInjectorEnhancer({ createReducer, runSaga })];
+
+// @ts-ignore
+export const appStore: AppStore = configureStore({
+    reducer: createReducer(),
+    enhancers,
+    middleware: middlewares
+});
