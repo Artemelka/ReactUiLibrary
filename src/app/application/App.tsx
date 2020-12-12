@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import classNames from 'classnames/bind';
-import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
+import { StoreInjectorConsumer } from 'services';
 import {
     initLocalizationActionSaga,
     INIT_LOCALIZATION_WATCHER_SAGA_NAME,
@@ -16,11 +16,10 @@ const asyncSagas = [{
     name: INIT_LOCALIZATION_WATCHER_SAGA_NAME,
     saga: initLocalizationWatcherSaga
 }];
-const storeInjectConfig = { sagasToInject: asyncSagas };
 
 type AppContainerComponentProps = {
     initLocalization?: () => void;
-}
+};
 
 export class AppContainerComponent extends Component<AppContainerComponentProps> {
     static defaultProps: AppContainerComponentProps = {
@@ -28,16 +27,18 @@ export class AppContainerComponent extends Component<AppContainerComponentProps>
     };
 
     componentDidMount(): void {
-        this.props.initLocalization();
+        setTimeout(() => {
+            this.props.initLocalization();
+        }, 0);
     }
 
     render() {
         return (
-            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+            <StoreInjectorConsumer asyncSagas={asyncSagas}>
                 <div className={cn('App')}>
                     {pages.map(pageProps => <Route {...pageProps} key={pageProps.path} />)}
                 </div>
-            </ReduxStoreLoader>
+            </StoreInjectorConsumer>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
+import { StoreInjectorConsumer } from 'services';
 import { Table } from 'elements';
 import { EditorTableProps, GET_ALL_DICTIONARY_WATCHER_SAGA_NAME, getAllDictionaryWatcherSaga } from './redux';
 
@@ -7,7 +7,6 @@ const asyncSagas = [{
     name: GET_ALL_DICTIONARY_WATCHER_SAGA_NAME,
     saga: getAllDictionaryWatcherSaga
 }];
-const storeInjectConfig = { sagasToInject: asyncSagas };
 
 export class EditorTableComponent extends Component<EditorTableProps> {
     componentDidMount(): void {
@@ -34,9 +33,9 @@ export class EditorTableComponent extends Component<EditorTableProps> {
 
     render() {
         return (
-            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+            <StoreInjectorConsumer asyncSagas={asyncSagas}>
                 <Table {...this.props} />
-            </ReduxStoreLoader>
+            </StoreInjectorConsumer>
         );
     }
 }

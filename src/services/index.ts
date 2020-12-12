@@ -1,6 +1,15 @@
 export { mapPropsToClasses } from './map-props-to-classes/map-props-to-classes';
 export { nameSpaceCreator } from './name-spase-creator';
-export { createInjectReducerAndSagas } from './inject-reducer/inject-reducers';
+export {
+    StoreInjectorConsumer,
+    StoreInjectorProvider,
+    StoreInjectorConsumerProps,
+    StoreInjectorProviderProps,
+    AppStore,
+    AsyncReducerItem,
+    AsyncSagaItem,
+    createInjectorEnhancer
+} from './redux-store-injector';
 export {
     ErrorMessages,
     initLocalizationState,

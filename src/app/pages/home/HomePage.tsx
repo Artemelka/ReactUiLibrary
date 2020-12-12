@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
+import { StoreInjectorConsumer } from 'services';
 import { LanguageSelect } from 'components';
 import { TestRequest, TestRouter } from './components';
 import {
@@ -19,21 +19,15 @@ const asyncReducers = [{
     reducer: homePageReducer,
     rewritable: true
 }];
-const asyncSagas = [
-    {
-        name: GET_REQUEST_WATCHER_SAGA_NAME,
-        saga: getRequestWatcherSaga
-    }
-];
-const storeInjectConfig = {
-    sagasToInject: asyncSagas,
-    reducersToInject: asyncReducers
-};
+const asyncSagas = [{
+    name: GET_REQUEST_WATCHER_SAGA_NAME,
+    saga: getRequestWatcherSaga
+}];
 
 class HomePage extends Component {
     render() {
         return (
-            <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+            <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
                 <div className={cn('Test-page')}>
                     <div className={cn('Test-page__item')}>
                         <h1>Test home page</h1>
@@ -55,7 +49,7 @@ class HomePage extends Component {
                         ...
                     </div>
                 </div>
-            </ReduxStoreLoader>
+            </StoreInjectorConsumer>
         );
     }
 }

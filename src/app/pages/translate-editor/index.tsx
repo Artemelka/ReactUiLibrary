@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReduxStoreLoader } from '@wildberries/redux-core-modules';
-import { localizationLabelsSelector } from 'services';
+import { localizationLabelsSelector, StoreInjectorConsumer } from 'services';
 import { TranslateEditorPageComponent } from './TranslateEditorPage';
 import {
     translateEditorPageReducer,
@@ -20,13 +19,12 @@ const TranslateEditorPageReducer = {
 };
 
 const asyncReducers = [TranslateEditorPageReducer];
-const storeInjectConfig = { reducersToInject: asyncReducers };
 
 const WrappedComponent = (props: any) => {
     return (
-        <ReduxStoreLoader storeInjectConfig={storeInjectConfig}>
+        <StoreInjectorConsumer asyncReducers={asyncReducers} withEjectReducers>
             <TranslateEditorPageComponent {...props}/>
-        </ReduxStoreLoader>
+        </StoreInjectorConsumer>
     );
 };
 
