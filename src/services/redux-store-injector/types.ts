@@ -38,10 +38,10 @@ export type InjectSagasParams = {
 };
 
 export type ContextValue = {
-    setReducers: (asyncReducers: Array<AsyncReducerItem>) => void;
-    setSagas: (asyncSagas: Array<AsyncSagaItem>) => void;
-    ejectReducers: (asyncReducers: Array<AsyncReducerItem>) => void;
-    ejectSagas: (asyncSagas: Array<AsyncSagaItem>) => void;
+    setReducers?: (asyncReducers: Array<AsyncReducerItem>) => void;
+    setSagas?: (asyncSagas: Array<AsyncSagaItem>) => void;
+    ejectReducers?: (asyncReducers: Array<AsyncReducerItem>) => void;
+    ejectSagas?: (asyncSagas: Array<AsyncSagaItem>) => void;
 };
 
 export type StoreInjectorProviderProps = PropsWithChildren<{
