@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { ButtonsGroup, Text } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
 import { logger } from 'utils';
 import { buttonsGroupProps, buttonGroupItems } from './constants';
 import { ButtonGroupItems } from './types';

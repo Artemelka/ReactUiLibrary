@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { History } from 'history';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { Anchor } from 'elements';
-import { localizationLabelsSelector } from 'services';
 import { HOME_URL } from '../../constants';
 import { AppState } from '../../types';
 

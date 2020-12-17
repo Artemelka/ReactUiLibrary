@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { localizationLabelsSelector, localizationLocalesSelector } from '../../../../services/localization';
+import { localizationLabelsSelector, localizationLocalesSelector } from '@artemelka/react-localization';
 import { selectOptions } from '../constants';
 
 export const languageSelectOptionsSelector = createSelector(

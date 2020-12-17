@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { localizationActiveLocaleSelector } from '@artemelka/react-localization';
 import { StoreInjectorConsumer } from 'services';
 import { Select } from 'elements';
-import { localizationActiveLocaleSelector } from 'services/localization';
 import { AppState } from '../../types';
 import {
     languageSelectOptionsSelector,

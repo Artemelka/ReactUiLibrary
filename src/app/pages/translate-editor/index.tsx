@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { localizationLabelsSelector, StoreInjectorConsumer } from 'services';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
+import { StoreInjectorConsumer } from 'services';
 import { TranslateEditorPageComponent } from './TranslateEditorPage';
 import {
     translateEditorPageReducer,
@@ -8,8 +9,7 @@ import {
     closeEditorModal,
     openEditorModal,
     EditorModalDataSelector,
-    isOpenEditorModalSelector,
-    EditorState
+    isOpenEditorModalSelector
 } from './redux';
 import { EditorStorePart } from './redux';
 

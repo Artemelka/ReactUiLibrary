@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { Text, Textarea } from 'elements';
 import { SandboxLayout, Form } from 'components';
-import { localizationLabelsSelector } from 'services';
 import { AppState } from '../../../../../types';
 
 const { BlockItems, Item } = SandboxLayout;

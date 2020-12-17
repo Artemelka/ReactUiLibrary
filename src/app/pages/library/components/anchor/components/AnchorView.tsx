@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { Anchor } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
 import { logger } from 'utils';
 import { PROJECT_LINK } from '../../../../../constants';
 import { AppState } from '../../../../../types';

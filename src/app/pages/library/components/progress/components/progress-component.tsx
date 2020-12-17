@@ -1,8 +1,8 @@
 import React, { Component, ComponentType } from 'react';
 import { connect } from 'react-redux';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { Progress } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
 import { AppState } from '../../../../../types';
 import { ProgressProps } from '../../../../../elements/progress/types';
 import { ProgressState, ComponentProps, ComponentCircularProps } from './types';

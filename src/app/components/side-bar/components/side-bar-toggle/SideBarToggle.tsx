@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import classNames from 'classnames/bind';
-
-import { LocalizationState } from '../../../../../services/localization/types';
-import { Checkbox, Text } from '../../../../elements';
+import { Checkbox, Text } from 'elements';
 import { ToggleProps } from '../../types';
 import style from './SideBarToggle.less';
 

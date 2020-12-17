@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { CardList } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { logger } from 'utils';
 import { CardItems, CardItem } from '../../../../../elements/card-list/types';
 import { AppState } from '../../../../../types';

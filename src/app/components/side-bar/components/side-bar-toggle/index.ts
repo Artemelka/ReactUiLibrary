@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { localizationLabelsSelector } from 'services';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { SideBarToggleComponent } from './SideBarToggle';
 import { AppState } from '../../../../types';
 

@@ -4,11 +4,11 @@ import {
     startLocalizationLoading,
     stopLocalizationLoading,
     ErrorMessages
-} from 'services/localization';
+} from '@artemelka/react-localization';
 import { API } from '../../../../../../../api';
 
 export function* getAllDictionaryWorkerSaga() {
-    yield put(startLocalizationLoading());
+    yield put(startLocalizationLoading(true));
 
     try {
         const dictionary = yield call(API.localization.getAllDictionary);
@@ -17,6 +17,6 @@ export function* getAllDictionaryWorkerSaga() {
     } catch (error) {
         console.error(ErrorMessages.REQUEST_ERROR, error);
     } finally {
-        yield put(stopLocalizationLoading());
+        yield put(stopLocalizationLoading(false));
     }
 }

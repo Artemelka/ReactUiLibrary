@@ -3,7 +3,7 @@ import {
     addLocalizationLabels,
     changeLocalizationActiveLocale,
     ErrorMessages
-} from 'services/localization';
+} from '@artemelka/react-localization';
 import { setAppLoaderStop, setAppLoaderStart } from 'components';
 import { API } from '../../../../../api';
 

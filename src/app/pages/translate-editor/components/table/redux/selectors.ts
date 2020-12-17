@@ -3,7 +3,7 @@ import {
     localizationDictionarySelector,
     localizationLabelsSelector,
     localizationActiveLocaleSelector
-} from '../../../../../../services/localization';
+} from '@artemelka/react-localization';
 
 export const editorTableRowSelector = createSelector(
     localizationDictionarySelector,
