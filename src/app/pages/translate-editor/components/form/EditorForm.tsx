@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '../../../../elements';
-import { Form } from '../../../../components';
-import { localizationLabelsSelector } from '../../../../../services/localization';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
+import { Button } from 'elements';
+import { Form } from 'components';
+import { AppState } from '../../../../types';
 import { EditorFormField } from './EditorFormField';
 import { validate } from './validation';
-import { LocalizationState } from '../../../../../services/localization/types';
-import { EditorFormProps } from '../table/redux/types';
+import { EditorFormProps } from '../table/redux';
 
 const subscription = {
     fields: {
@@ -43,7 +43,9 @@ export class EditorFormComponent extends Component<EditorFormProps> {
                                 <label htmlFor={fieldName}>{fieldName}</label>
                                 <EditorFormField
                                     error={Boolean(formProps.state[fieldName].error)}
-                                    errorMessage={labels[formProps.state[fieldName].error] || formProps.state[fieldName].error}
+                                    errorMessage={
+                                        labels[formProps.state[fieldName].error] || formProps.state[fieldName].error
+                                    }
                                     id={fieldName}
                                     name={fieldName}
                                     onBlur={formProps.handleBlur}
@@ -55,7 +57,11 @@ export class EditorFormComponent extends Component<EditorFormProps> {
                         ))}
                         <div>
                             <Button
-                                // disabled={formProps.state.submitting || !Boolean(Object.keys(formProps.state.values).length) || formProps.state.pristine}
+                                // disabled={
+                                // formProps.state.submitting ||
+                                // !Boolean(Object.keys(formProps.state.values).length) ||
+                                // formProps.state.pristine
+                                // }
                                 type="submit"
                                 label="submit"
                             />
@@ -67,7 +73,7 @@ export class EditorFormComponent extends Component<EditorFormProps> {
     }
 }
 
-export const EditorForm = connect((state: Record<string, any> & LocalizationState) => ({
+export const EditorForm = connect((state: AppState) => ({
     labels: localizationLabelsSelector(state)
 }), {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import { Text } from '../../elements';
-import { localizationLabelsSelector } from '../../../services/localization';
+import { Text } from 'elements';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { SandboxPanel, SandboxPropsTable, SandboxBlockItems } from './components';
 import { SandboxContainerProps } from './types';
 import { AppState } from '../../types';

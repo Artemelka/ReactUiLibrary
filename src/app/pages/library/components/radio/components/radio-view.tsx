@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { getUniqId, logger } from 'utils';
 import { RadioButtonsContainer } from './radio-container';
 import { AppState } from '../../../../../types';

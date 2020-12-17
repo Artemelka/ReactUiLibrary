@@ -1,8 +1,8 @@
 import React, { Component, ComponentType, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { localizationLabelsSelector } from '@artemelka/react-localization';
 import { Button } from 'elements';
 import { SandboxLayout } from 'components';
-import { localizationLabelsSelector } from 'services';
 import { examplesParams } from './constants';
 import { ExampleParams } from './types';
 import { AppState } from '../../../../../types';

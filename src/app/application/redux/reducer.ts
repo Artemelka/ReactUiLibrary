@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { combineReducers } from '@reduxjs/toolkit';
 import { connectRouter } from 'connected-react-router';
-import { LOCALIZATION_REDUCER_KEY, localizationReducer } from 'services';
+import { LOCALIZATION_REDUCER_KEY, localizationReducer } from '@artemelka/react-localization';
 import { appLoaderReducer, APP_LOADER_REDUCER_KEY } from 'components';
 import { history } from './app-history';
 import { APP_STORE_KEY } from '../../constants';

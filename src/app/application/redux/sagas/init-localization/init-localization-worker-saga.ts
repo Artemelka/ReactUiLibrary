@@ -3,9 +3,8 @@ import {
     ErrorMessages,
     initLocalizationState,
     localizationIsLoadingSelector,
-    localizationLoadingCountSelector,
-    StoreKeys
-} from 'services';
+    localizationLoadingCountSelector
+} from '@artemelka/react-localization';
 import { setAppLoaderStart, setAppLoaderStop } from 'components';
 import { API } from '../../../../api';
 
@@ -24,12 +23,12 @@ export function* initLocalizationWorkerSaga() {
         const loadingCount = yield select(localizationLoadingCountSelector);
 
         yield put(initLocalizationState({
-            [StoreKeys.DICTIONARY]: { [activeLocale]: response },
-            [StoreKeys.LABELS]: response,
-            [StoreKeys.LOCALES]: locales,
-            [StoreKeys.ACTIVE_LOCALE]: activeLocale,
-            [StoreKeys.IS_LOADING]: isLoading,
-            [StoreKeys.LOADING_COUNT]: loadingCount
+            activeLocale,
+            dictionary: { [activeLocale]: response },
+            isLoading,
+            labels: response,
+            loadingCount,
+            locales
         }));
     } catch (error) {
         console.error(ErrorMessages.REQUEST_ERROR, error);
