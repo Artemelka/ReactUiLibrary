@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import classNames from 'classnames/bind';
-import { StoreInjectorConsumer } from 'services';
+import { StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import {
     initLocalizationActionSaga,
     INIT_LOCALIZATION_WATCHER_SAGA_NAME,
