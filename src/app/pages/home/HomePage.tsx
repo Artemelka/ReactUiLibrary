@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
-import { StoreInjectorConsumer } from 'services';
+import { StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { LanguageSelect } from 'components';
 import { TestRequest, TestRouter } from './components';
 import {

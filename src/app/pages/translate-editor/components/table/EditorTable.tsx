@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StoreInjectorConsumer } from 'services';
+import { StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { Table } from 'elements';
 import { EditorTableProps, GET_ALL_DICTIONARY_WATCHER_SAGA_NAME, getAllDictionaryWatcherSaga } from './redux';
 

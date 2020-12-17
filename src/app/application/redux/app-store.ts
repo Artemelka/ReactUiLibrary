@@ -2,7 +2,7 @@ import { configureStore, Middleware } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
-import { createInjectorEnhancer, AppStore } from 'services';
+import { createInjectorEnhancer, AppStore } from '@artemelka/redux-store-injector';
 import { createReducer } from './reducer';
 import { history } from './app-history';
 

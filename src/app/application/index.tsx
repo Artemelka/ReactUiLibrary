@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { AppLoader } from 'components';
-import { StoreInjectorProvider } from 'services';
+import { StoreInjectorProvider } from '@artemelka/redux-store-injector';
 import { appStore, history } from './redux';
 import { AppContainer } from './App';
 import { mockAllRequest } from '../api';

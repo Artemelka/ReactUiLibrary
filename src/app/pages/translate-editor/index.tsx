@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { localizationLabelsSelector } from '@artemelka/react-localization';
-import { StoreInjectorConsumer } from 'services';
+import { StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { TranslateEditorPageComponent } from './TranslateEditorPage';
 import {
     translateEditorPageReducer,
