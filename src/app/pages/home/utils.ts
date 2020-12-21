@@ -6,7 +6,7 @@ interface RequestParams {
     config?: RequestConfig;
 }
 
-const TEST_URL = '/api/getUsername';
+const TEST_URL = '/api/v1/get-user-name';
 
 export const requestGetParams = { url: TEST_URL };
 export const concatUrl = (url: string, queryParams?: string): string => queryParams ? `${url}?${queryParams}` : url;

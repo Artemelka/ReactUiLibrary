@@ -1,4 +1,4 @@
-const NAMESPACE_API = 'api';
+const NAMESPACE_API = 'api/v1';
 const LOCALIZATION_SERVICE = 'localization';
 
 export const API_URL = {
